@@ -1,0 +1,15 @@
+Dear ${FirstName} ${FamilyName},
+
+Your password has been changed by the administrator.
+
+Visit ${PortalLoginUrl}, using your username and password given below.
+
+Username: ${Username}
+Password: ${Password}
+
+NOTE: Please change the password by yourself as soon as you login.
+ 
+This is an automated email, kindly do not reply to the sender of this email.
+
+Thanks and regards
+Team Personium

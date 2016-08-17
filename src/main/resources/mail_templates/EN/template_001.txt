@@ -1,0 +1,16 @@
+Dear ${FirstName} ${FamilyName},
+
+Welcome to Personium Unit Manager. 
+Your account has been registered with us. 
+
+If you feel that you are not the intended recipient of this email, please ignore this notification. 
+Otherwise, please verify your email address by clicking the below link:
+
+${EmailVerificationLink}
+
+Please note, failure to verify the email within 5 days of receiving this email will lead to automatic suspension of your account.
+
+This is an automated email, kindly do not reply to the sender of this email.
+
+Thanks and regards
+Team Personium

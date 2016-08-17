@@ -1,0 +1,9 @@
+Dear ${FirstName} ${FamilyName},
+
+Following users have been deleted successfully:
+${DeletedUserList}
+
+This is an automated email, kindly do not reply to the sender of this email.
+
+Thanks and regards
+Team Personium

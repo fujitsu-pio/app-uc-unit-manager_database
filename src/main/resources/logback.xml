@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true">
+	<timestamp key="bySecond" datePattern="yyyy-MM-dd" />
+	<property resource="environment.properties" />
+	<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/PCS_Portal.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			 <!-- rollover daily -->
+			 <fileNamePattern>${LOG_HOME}/PCS_Portal.log.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+             <timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>10MB</maxFileSize>
+			 </timeBasedFileNamingAndTriggeringPolicy>
+		 </rollingPolicy>
+		<encoder>
+			<pattern>%msg%n</pattern>
+			<outputPatternAsPresentationHeader>false</outputPatternAsPresentationHeader>
+		</encoder>
+		<statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+	</appender>
+	<logger name="org.hibernate">
+        <level value="OFF"/>
+    </logger>
+	<logger name="com.fujitsu.dc.gui" level="${LEVEL}" />
+	<root level="${LEVEL}">
+		<appender-ref ref="ROLLING" />
+	</root>
+</configuration>

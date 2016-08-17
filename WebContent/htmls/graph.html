@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<!--
+Personium
+Copyright 2016 FUJITSU LIMITED
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<meta charset="utf-8">
+<style>
+.link {
+	stroke: #696969;
+	stroke-width: 0.4px;
+}
+
+.svg {
+	//background-color: yellow;
+	stroke-width: 0.0px;
+}
+
+.separator {
+	stroke: #fff;
+	stroke-width: 2px;
+}
+
+.node circle {
+	stroke: #000;
+	stroke-width: 0.2px;
+}
+
+.node text {
+	font: 9px sans-serif;
+	pointer-events: none;
+}
+div.tooltip {
+	position: absolute;
+	text-align: left;
+	width: auto;
+	height: auto;
+	padding: 8px;
+	font: 10px sans-serif;
+	background: #61c6d2;
+	color: white;
+	border: solid 1px #aaa;
+	border-radius: 8px;
+	opacity: 0;
+}
+.normalButtonBlueCreateEnv {
+	min-width: 100px;
+	height: 29px;
+	background: #58c2cf;
+	border: none;
+	border-radius: 5px;
+	color: #ffffff;
+	cursor: pointer;
+	font-family: Segoe UI;
+	margin: -4px 118px 10px 10px;
+}
+</style>
+
+<!-- <input type="button" class="normalButtonBlueCreateEnv" ID="btnCancel" value="Back" onclick="callmethod(); return 0;" /> 
+ <input type="button" class="normalButtonBlueCreateEnv" ID="btnclickcell" value="Bharat" onclick="clickcell('Bharat'); return 0;" /> -->
+
+<script type="text/javascript" src="../js/d3.js"></script>
+<script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.modalbox.js"></script>
+<script type="text/javascript" src="../js/spin.js"></script>
+<script type="text/javascript" src="../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../js/main/util/extend.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/commonFunctions.js"></script>
+<script type="text/javascript" src="../js/uCell.js"></script>
+<script type="text/javascript" src="../js/informationStorage.js"></script>
+<link href="../css/stylesheet.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="../js/main/util/CopyObject.js"></script>
+<script type="text/javascript" src="../js/main/util/StringUtils.js"></script>
+<script type="text/javascript" src="../js/main/util/UrlUtils.js"></script>
+<script type="text/javascript" src="../js/main/http/DcRequestHeaderBuilder.js"></script>
+<script type="text/javascript" src="../js/main/http/RestAdapter.js"></script>
+<script type="text/javascript" src="../js/main/http/RestAdapterFactory.js"></script>
+<script type="text/javascript" src="../js/main/http/DcResponse.js"></script>
+<!-- include core functions -->
+<script type="text/javascript" src="../js/main/core/DaoException.js"></script>
+<script type="text/javascript" src="../js/main/core/DaoConfig.js"></script>
+
+<script type="text/javascript" src="../js/main/core/AbstractODataContext.js"></script>
+<script type="text/javascript" src="../js/main/core/DcCollection.js"></script>
+<script type="text/javascript" src="../js/main/core/DavCollection.js"></script>
+<script type="text/javascript" src="../js/main/core/EntitySet.js"></script>
+<script type="text/javascript" src="../js/main/core/Accessor.js"></script>
+<script type="text/javascript" src="../js/main/core/Account.js"></script>
+<script type="text/javascript" src="../js/main/core/AccountManager.js"></script>
+<script type="text/javascript" src="../js/main/core/Ace.js"></script>
+<script type="text/javascript" src="../js/main/core/Acl.js"></script>
+<script type="text/javascript" src="../js/main/core/AclManager.js"></script>
+<script type="text/javascript" src="../js/main/core/AssociationEnd.js"></script>
+<script type="text/javascript" src="../js/main/core/AssociationEndManager.js"></script>
+<script type="text/javascript" src="../js/main/core/Box.js"></script>
+<script type="text/javascript" src="../js/main/core/BoxManager.js"></script>
+<script type="text/javascript" src="../js/main/core/Cell.js"></script>
+<script type="text/javascript" src="../js/main/core/CellManager.js"></script>
+<script type="text/javascript" src="../js/main/core/EntityType.js"></script>
+<script type="text/javascript" src="../js/main/core/EntityTypeManager.js"></script>
+<script type="text/javascript" src="../js/main/core/Event.js"></script>
+<script type="text/javascript" src="../js/main/core/EventManager.js"></script>
+<script type="text/javascript" src="../js/main/core/ExtCell.js"></script>
+<script type="text/javascript" src="../js/main/core/ExtCellManager.js"></script>
+<script type="text/javascript" src="../js/main/core/ExtRoleManager.js"></script>
+<script type="text/javascript" src="../js/main/core/LinkManager.js"></script>
+<script type="text/javascript" src="../js/main/core/MetadataLinkManager.js"></script>
+<script type="text/javascript" src="../js/main/core/OwnerAccessor.js"></script>
+<script type="text/javascript" src="../js/main/core/DcQuery.js"></script>
+<script type="text/javascript" src="../js/main/core/Relation.js"></script>
+<script type="text/javascript" src="../js/main/core/RelationManager.js"></script>
+<script type="text/javascript" src="../js/main/core/Role.js"></script>
+<script type="text/javascript" src="../js/main/core/RoleManager.js"></script>
+<script type="text/javascript" src="../js/main/core/ServiceCollection.js"></script>
+<script type="text/javascript" src="../js/main/core/UnitManager.js"></script>
+<script type="text/javascript" src="../js/main/core/ODataCollection.js"></script>
+<script type="text/javascript" src="../js/main/core/ODataResponse.js"></script>
+<script type="text/javascript" src="../js/mainNavigation.js"></script>
+<script type="text/javascript" src="../js/commonFunctions.js"></script>
+<script type="text/javascript" src="../js/uAccount.js"></script>
+<!-- <script type="text/javascript" src="../js/common.js"></script> -->
+<script type="text/javascript" src="../js/uBox.js"></script>
+<script type="text/javascript" src="../js/boxProfile.js"></script>
+<script type="text/javascript" src="../js/uRole.js"></script>
+<script type="text/javascript" src="../js/uRelation.js"></script>
+<script type="text/javascript" src="../js/roleToAccountMapping.js"></script> 
+<script type="text/javascript" src="../js/externalCell.js"></script>
+<script type="text/javascript" src="../js/externalCellToRelationMapping.js"></script> 
+<script type="text/javascript" src="../js/relationToExternalCellMapping.js"></script> 
+<script type="text/javascript" src="../js/relationToRoleMapping.js"></script>
+<script type="text/javascript" src="../js/externalRole.js"></script>
+<script type="text/javascript" src="../js/odata.js"></script>
+<script type="text/javascript" src="../js/socialGraph.js"></script>
+
+
+	<!-- Spinner code - Start -->
+	<div id ="dvUserImage" style="visibility:hidden;width:0;height:0"></div>
+	<div id="modalSpinnerRelationMappingLink" class="modelbackSpinner" style="display: none;">
+		<div 
+			style="display: block; height: 0; width: 0; background: transparent; position: absolute; top: 50%; left: 50%; border: 0"
+			id="dialogSpinner">
+			<div id="loadingID" class="percent">
+			</div> 	
+			<div id="percentID" class="percent">
+			</div> 
+			<div id="spinnerPopUp">
+			<!-- <div>
+				<img id="rotatingImage" src="../images/gridloader.gif"
+					alt="Loading..." />
+									
+			</div>  -->
+			</div>
+		</div>
+		<!-- Spinner code - End -->
+		<div style="display: none;" id="dvemptyTableMessage" 
+			class="emptyTableMessage emptyTableMessageGraph">Social Graph cannot be displayed as no. of Cells exceed 1000 
+		</div>
+	</div>
+
+<script>
+
+// Global variable
+var width			= 1042,
+	height			= 600,
+	ufRadius		= 5,
+	charge			= -400,
+	gravity			= .6,
+	HIDE_POSITION	= -100,
+	SHOW_CELLNAME	= 20,
+	MAX_NODE_COUNT	= 101,
+	MAX_NODE_LENGTH	= 1000
+	IMG_WIDTH		= 150,
+	IMG_HEIGHT		= 150,
+
+	fNodeR			= (Math.min(width,height)*.80)/2, //80 percent of smaller side
+	fNodeX			= width /2,
+	fNodeY			= (height-80) / 2,
+	selectedNodeID	= -1,
+	selectedCellName= "",
+	token			= "",
+	cellList		= "",
+	jsonString		= "",
+	lenJSONstring	= "",
+	nodes			= [],
+	Extnodes		= [],
+	extNodesArray	= [],
+	links			= [],
+	fNodePos		= [],
+	fNodestorage	= [];
+
+	persistTokenForGraph();
+
+	token			= getClientStore().token;
+	cellList		= getCellList();
+	jsonString		= JSON.parse(cellList);
+	lenJSONstring	= jsonString.length;
+
+	getArrayNodes();
+	getArrayOfExtNodes();
+	getArrayOfLinks();
+
+	if (lenJSONstring > MAX_NODE_LENGTH) {
+		document.getElementById("dvemptyTableMessage").style.display = "block";
+			return;
+	}else if (lenJSONstring >500) {
+		ufRadius = 5,
+		charge=-100,
+		gravity=-0.1;
+	}else if (lenJSONstring >=300 && lenJSONstring <500) {
+		ufRadius = 10,
+		charge=-100,
+		gravity=-0.1;
+	}else if (lenJSONstring >100 && lenJSONstring <300) {
+		ufRadius = 15,
+		charge=-100,
+		gravity=-0.1;
+	} else if(lenJSONstring >50 && lenJSONstring <=100) {
+		ufRadius = 21,
+		charge=-100,
+		gravity=-0.1;
+	} else if(lenJSONstring <=50) {
+		ufRadius = 25,
+		charge=-100,
+		gravity=-0.1;
+	}
+	else {
+		document.getElementById("dvemptyTableMessage").style.display = "none";
+	}
+
+	//Suggested by Masa-san
+	/* var xcolor = d3.scale.ordinal()
+				.range(
+					[ "47c9af", "2ecc71", "3498db",
+					"9b59b6", "34495e", "f1c40f",
+					"e67e22", "e74c3c", "d35400",
+					"95a5a6", "16a085", "27ae60",
+					"2980b9", "8e44ad", "2c3e50",
+					"f1c40f" ]).domain(
+								[ 0, 1, 2, 3 ]); */
+
+	var xcolor = d3
+					.scale.ordinal()
+					//.range([ "3E89E6", "GREEN", "BLUE","GREY"])
+					.range([ "GREEN", "YELLOW", "RED","GREY"])
+					.domain([ 0, 1, 2, 3 ]);
+
+	var svg = d3
+					.select("body")
+					.append("svg")
+					.attr("class", "svg")
+					.attr("width", width)
+					.attr("height", height);
+
+	createMarker();
+	
+	//This div add as a tooltip
+	var tooltipdiv = d3
+					.select("body")
+					.append("div")
+					.attr("class", "tooltip");
+
+	var force = d3.layout.force()
+					.size([ width, height ])
+					.nodes(nodes)
+					.links(links);
+
+	unfocusForceView();
+
+	var link = svg
+					.selectAll(".link")
+					.data(links)
+					.enter()
+					.append("line")
+					.attr("class", "link");
+
+	link
+					.filter(function(d) {
+						return d.bond > 1;
+					})
+					.append("line")
+					.attr("class", "separator");
+
+/*
+	link
+		.append("text")
+		.text(function(d) { return d.relation;})
+		.attr("font-family", "sans-serif")
+		.attr("font-size", "9px")
+		.attr("text-anchor", "right")
+		.attr("fill", "black");
+*/
+
+	var node = svg
+					.selectAll(".node")
+					.data(nodes)
+					.enter()
+					.append("circle")
+					.attr("class", "node")
+					.call(force.drag);
+
+	node
+					.attr("name", function(d){ return d.name;})
+					.attr("color", function(d){return d.color;})
+					.attr("ID",function(d) { return d.ID;})
+					.attr("DisplayInfo",function(d) { return "Cell Name: "+d.name + ",Created On: " + d.cellCreatedDate;})
+					.attr("r", function(d) { return ufRadius;})
+					.style("fill", function(d) { 
+						if(d.color===1) {
+							return xcolor(2);
+						} else {
+							return xcolor(3);
+						}
+					})
+					//.on("dblclick",dblClick)
+					.on("click",click)
+					.on("mouseover", mouseOver)
+					.on("mouseout", mouseOut);
+
+	//Add the SVG Text Element to the svgContainer to show the CellName
+	var text = svg
+					.selectAll("text")
+					.data(nodes)
+					.enter()
+					.append("text");
+	
+	var cellName = text
+					.attr("x", function(d) { return d.x; })
+					.attr("y", function(d) { return d.y; })
+					.attr("font-family", "sans-serif")
+					.attr("font-size", "10px")
+					.attr("text-anchor", "middle");
+
+	var cellProfileImage = svg
+					.append("image")
+					.attr("width", IMG_WIDTH)
+					.attr("height", IMG_HEIGHT)
+					.attr("x",fNodeX-fNodeR*0.35)
+					.attr("y",fNodeY-fNodeR*0.90)
+					.style("visibility","hidden");
+	
+	var cellProfileDesc = svg
+					.append("foreignObject")
+					.attr("width", 200)
+					.attr("height", 500)
+					.attr("x",fNodeX-fNodeR*0.35)
+					.attr("y",fNodeY-fNodeR*0.90 + IMG_HEIGHT)
+					.attr("id","fo1")
+					.append("xhtml:body")
+					.style("font", "10px 'Arial'")
+					.style("visibility","hidden");
+
+	node
+					.each(function(d){
+						d.size=ufRadius;
+					});
+	
+	displayCellName();
+
+function persistTokenForGraph (){
+	var jsonData = {};
+	var tempToken = sessionStorage.tempToken;
+	var envName = sessionStorage.selectedEnvName;
+	var unitURL = sessionStorage.selectedUnitUrl;
+	jsonData["token"] = tempToken;
+	jsonData["environmentName"] = envName;
+	jsonData["baseURL"] = unitURL;
+	setClientStore(jsonData);
+}
+
+function unfocusForceView() {
+	force
+		.charge(-90) //-30
+		.gravity(.1)//0.1 default
+		.friction(.9)
+		.linkDistance(10 * ufRadius)
+		.on("tick", unfocusTick)
+		.start();
+}
+
+function unfocusTick() {
+	ufLinkTick();
+
+	cellNameTick();
+
+	ufNodeTick();
+
+}
+
+function displayCellName() {
+	cellName
+		.text(function(d) {
+			var cellName;
+			cellName =d.name;
+			if(d.name.length > 10) {
+				cellName = d.name.substring(0, 7)+ "...";
+			}
+			return cellName;
+		});
+}
+
+function displayRelationName() {
+	link
+		.selectAll("text")
+		.attr("x", function(d) { return (d.source.x + d.target.x) / 2;})
+		.attr("y", function(d) { return (d.source.y + d.target.y) / 2;})
+		.attr("rotate", 0)
+		.attr("dx", 5)
+		.attr("dy", 0);
+}
+
+function showToolTip(NodeObject) {
+	
+	var ypos = Number(NodeObject.attr("cy"));
+	var xpos = Number(NodeObject.attr("cx")) + 1.10*Number(NodeObject.attr("r"));
+
+	tooltipdiv
+		.style("visibility", "visible")
+		.style("opacity", 0.9)
+		.style("left", xpos + "px")
+		.style("top", ypos + "px")
+		.text(NodeObject.attr("DisplayInfo"));
+
+}
+
+function hideToolTip() {
+	tooltipdiv
+		.style("opacity", 0.5)
+		.style("visibility", "hidden");
+}
+/*
+function externalCellOfFocusNode() {
+	var arrCellData = [];
+	
+	for ( var count = 0; count < links.length; count++) {
+		var cellName = strCellRecords[count].Name.toUpperCase();
+		if (cellName.search(toBeSearchedCellName) != -1) {
+			singleCellInformation = {
+		"Name" : strCellRecords[count].Name,
+		"Date" : strCellRecords[count].__published,
+		"Count" : count
+		};
+		arrCellData.push(singleCellInformation);
+		}
+
+}
+*/
+function mouseOver() {
+
+	var el				= d3.select(this);
+	var selectedName	= el.attr("name");
+	var selectedColor	= el.attr("color");
+
+	showToolTip(el);
+	var test=links[source=="test"]
+	node
+		.style("fill",function(d) {
+			var color;
+			if (selectedColor==1) {
+				for (count=0;count<links.length;count++) {
+					if(links[count].source.name==selectedName && links[count].target.name==d.name) {
+						color = xcolor(1);
+						break;
+
+					} else {
+						if(d.color==1) {
+							color = xcolor(2);
+						}else {
+							color = xcolor(3);
+						}
+					}
+				}
+			} else {
+				for (count=0;count<links.length;count++) {
+					if(links[count].source.name==d.name && links[count].target.name==selectedName) {
+						color = xcolor(1);
+						break;
+
+					} else {
+						if(d.color==1) {
+							color = xcolor(2);
+						}else {
+							color = xcolor(3);
+						}
+					}
+				}
+				
+				
+			}
+			return color;
+		});
+	d3
+		.select(this)
+		.style("fill", xcolor(0));
+}
+
+function mouseOut() {
+
+	hideToolTip();
+
+	node
+		.style("fill",function(d) {
+			if(d.color==1) {
+				return xcolor(2);
+			}else {
+				return xcolor(3);
+			}
+		});
+}
+
+function click() {
+	var el = d3.select(this);
+	if(el.attr("color")==1) {
+		clickHandler(el);
+	}
+}
+
+function dblClick() {
+	var cellName = d3.select(this).attr("name");
+
+	var objSocialGraph = new socialGraph();
+
+	window.close();
+	alert(objSocialGraph);
+	objSocialGraph.getSelectedCell(cellName);
+}
+
+function clickHandler(pNode) {
+	selectedCellName= pNode.attr("name");
+	selectedNodeID	= pNode.attr("ID");
+
+	fNodestorage.push(selectedCellName);
+
+
+	setFocusNodePositions(pNode);
+	
+	var response = getCellInfo (selectedCellName);
+
+	focusForceView();
+	
+	displayCellProfileImage(response.Image);
+
+	displayCellProfileDesc(response.DisplayName,response.Description);
+
+}
+
+function displayCellProfileImage(binaryImage) {
+	var imgBinaryFile = binaryImage;
+	var img = document.createElement('img');
+
+	document.getElementById('dvUserImage').innerHTML = "";
+
+	img.id		="imgUserPhoto";
+	img.src		= imgBinaryFile;
+	img.width	= "124";
+	img.height	= "126";
+	img.src		= "../newImages/userImage.jpg";
+
+	if (binaryImage!= null && binaryImage!= undefined) {
+		img.src	= binaryImage;
+	}
+
+	document.getElementById('dvUserImage').appendChild(img);
+	
+	cellProfileImage
+			.attr("xlink:href", imgUserPhoto.src)
+			.style("visibility","visible");
+
+}
+
+function displayCellProfileDesc(DisplayName,Description) {
+	var cellProfile ="<h1><align='center'>" + DisplayName + "</align></h1><p>" + Description;
+
+	cellProfileDesc
+		.style("visibility","visible")
+		.html(cellProfile);
+}
+
+function setFocusNodePositions(pNode) {
+	var count	= 1;
+		fRadius	= 1,
+		intX	= 1,
+		intY	= 1,
+		xcount	= 1,
+		ycount	= 1,
+		varID	= pNode.attr("ID"),
+		cx		= pNode.attr("cx"),
+		cy		= pNode.attr("cy"),
+		nodeRel	= pNode.attr("weight"),
+		RemainingWidth = (width - height * 0.80)/2,
+		diameter= 1,
+		startY	= 1,
+		fNodePos= [];
+
+	if (nodeRel >500) {
+		fRadius = 5;
+	}else if (nodeRel >=250 && nodeRel <500) {
+		fRadius = 10;
+	}else if (nodeRel >90 && nodeRel <250) {
+		fRadius = 15;
+	} else if(nodeRel >61 && nodeRel <91) {
+		fRadius = 25;
+	} else if(nodeRel >34 && nodeRel <60) {
+		fRadius = 30;
+	} else if(nodeRel >11 && nodeRel <33) {
+		fRadius = 40;
+	} else if(nodeRel <=11) {
+		fRadius = 60;
+	}
+	diameter= 2*fRadius;
+	startY	= diameter;
+	xcount	= Math.floor(RemainingWidth/diameter);
+	ycount	= Math.floor(height/diameter);
+
+	node.each(function(d,i) {
+		var lRadius	= 0,
+			fPosX	= fNodeX,
+			fPosY	= fNodeY;
+		if(d.ID==varID) {
+				lRadius	= fNodeR;
+		}
+		for (count=0;count<links.length;count++) {
+			if(links[count].source.ID==varID && links[count].target.ID==d.ID) {
+				lRadius	= fRadius;
+				fPosY	= startY * intY;
+				fPosX	= diameter * intX;
+
+				if(count%2==0) {
+					fPosX = (width - diameter * intX);
+					intY = intY + 2;
+				}
+				if(intY>ycount) {
+					intX++;
+					startY = diameter;
+					intY = (intX%2==0)? 2 : 1;
+				}
+				count++;
+			}
+		}
+		fNodePos.push({ID:d.ID,x:fPosX,y:fPosY,r:lRadius});
+	});
+
+}
+
+function focusForceView() {
+
+	force
+		.gravity(-0.01)
+		.charge(-300)
+		.friction(0.9)
+		.on("tick", focusTick)
+		.start();
+}
+
+function focusTick() {
+	fNodeTick();
+	ufLinkTick();
+	cellNameTick();
+}
+
+function ufNodeTick() {
+	node
+		.attr("r", function(d){ return d.size;})
+		.attr("cx", function(d){ return d.x;})
+		.attr("cy", function(d){ return d.y;});
+}
+
+function fNodeTick() {
+	node
+		.transition()
+		.duration(100)
+		.each(function(d,i) {
+			var i =0;
+			for (i=0;i<fNodePos.length;i++) {
+				if(fNodePos[i].ID==d.ID) {
+					d.x		= fNodePos[i].x;
+					d.y		= fNodePos[i].y;
+					d.size	= fNodePos[i].r;
+					break;
+				}
+			}
+		});
+	ufNodeTick();
+
+}
+
+function ufLinkTick() {
+	link
+		.transition()
+		.duration(100)
+		.attr("x1", function(d) { return d.source.x;})
+		.attr("y1", function(d) { return d.source.y;})
+		.attr("x2", function(d) { return d.target.x;})
+		.attr("y2", function(d) { return d.target.y;});
+}
+
+function fLinkTick() {
+	link
+		.transition()
+		.duration(100)
+		.attr("x1", function(d) {
+			if(selectedNodeID == d.source.ID) {
+				return d.source.x;
+			}else{
+				return d.target.x;
+			}
+		})
+		.attr("y1", function(d) {
+			if(selectedNodeID == d.source.ID) {
+				return d.source.y;
+			}else{
+				return d.target.y;
+			}
+		})
+		.attr("x2", function(d) { return d.target.x;})
+		.attr("y2", function(d) { return d.target.y;});
+}
+
+function cellNameTick() {
+	cellName
+		.transition()
+		.duration(100)
+		.attr("x", function(d){ 
+			if((d.x==fNodeX && d.y==fNodeY) || d.size<=SHOW_CELLNAME) {
+				return HIDE_POSITION;
+			} else {
+				return d.x;
+			}
+		})
+		.attr("y", function(d){ 
+			if((d.x==fNodeX && d.y==fNodeY)||d.size<=SHOW_CELLNAME){
+				return HIDE_POSITION;
+			} else {
+				return d.y;
+			}
+		})
+		.attr("text", function(d){ return d.name;});
+}
+
+function getArrayNodes() {
+
+	for ( var i = 0; i < lenJSONstring; i++) {
+		var obj = jsonString[i];
+		if (!obj) {
+		} else {
+			var cellName = jsonString[i].Name;
+			var cellDate = jsonString[i].__published;
+		}
+		var node = {
+			name			: cellName,
+			color			: 1,
+			size			: ufRadius,
+			cellCreatedDate	: objCommon.convertEpochDateToReadableFormat(cellDate),
+			ID				: i
+		};
+		
+		nodes.push(node);
+	}
+}
+
+function getArrayOfExtNodes() {
+	var Cellcount=nodes.length;
+	for ( var i = 0; i < nodes.length; i++) {
+		var json = retrieveExternalList(nodes[i].name);
+		var jsonString = json.rawData;
+		var recordSize = jsonString.length;
+		var cellDate;
+		var addExternalCell=1;
+
+		if(jsonString[i] != undefined) {
+			 cellDate = jsonString[i].__published;
+		}
+		for ( var count = 0; count < recordSize; count++) {
+			var arrayData = jsonString[count];
+			var externalCellName = getExternalCellNameForSocialGraph(arrayData.Url);
+			if (!externalCellName) {
+
+			} else if(externalCellName !=undefined) {
+				//alert(nodes[i].name + "++++" + externalCellName);
+				for ( var count1 = 0; count1 < nodes.length; count1++) {
+					if(nodes[count1].name===externalCellName) {
+						addExternalCell=0;
+						break;
+					}
+				}
+				
+				if (addExternalCell == 1) {
+					for ( var count1 = 0; count1 < Extnodes.length; count1++) {
+						if(Extnodes[count1].name===externalCellName) {
+							addExternalCell=0;
+							break;
+						}
+					}
+				}
+					
+				if (addExternalCell==1) {
+					//alert("included" + externalCellName);
+					var extNode = {
+								name : externalCellName,
+								color:2,
+								size:ufRadius,
+								cellCreatedDate :  objCommon.convertEpochDateToReadableFormat(cellDate),
+								ID: Cellcount
+					};
+					Cellcount = Cellcount + 1;
+					Extnodes.push(extNode);
+					lenJSONstring = lenJSONstring + 1;
+				}
+				addExternalCell = 1;
+				
+				var extCellLink = {
+							cellName : nodes[i].name,
+							extCellName : externalCellName
+				};
+				extNodesArray.push(extCellLink);
+
+			}
+		}
+	}
+	
+	for (var i = 0; i < Extnodes.length; i++) {
+		nodes.push(Extnodes[i]);
+	}
+
+}
+
+function getArrayOfLinks() {
+	for ( var i = 0; i < nodes.length; i++) {
+		for ( var j = 0; j < extNodesArray.length; j++) {
+			if (nodes[i].name === extNodesArray[j].cellName) {
+				for(var cellCount=0 ; cellCount<nodes.length; cellCount++) {
+					if (extNodesArray[j].extCellName === nodes[cellCount].name ) {
+						links.push({
+							source : i,
+							target : cellCount,
+							relation : "friend",
+							bond : 1
+						});
+					}
+				}
+			}
+		}
+	}
+}
+
+function createMarker(){
+	// build the arrow.
+	svg
+		.append("svg:defs")
+		.selectAll("marker")
+		.data([ "mid" ])
+		.enter()
+		.append("svg:marker")
+		.attr("id", String)
+		.attr("viewBox", "0 -5 10 10")
+		.attr("refX", 10)
+		.attr("refY", 0)
+		.attr("markerWidth", 6)
+		.attr("markerHeight",6)
+		.attr("orient", "auto")
+		.append("svg:path")
+		.attr("d", "M0,-5L10,0L0,5");
+}
+
+function callmethod() {
+
+	cellProfileImage
+		.style("visibility","hidden");
+
+	cellProfileDesc
+		.style("visibility","hidden")
+
+	fNodestorage.pop();
+
+	if (fNodestorage.length>0) {
+		clickcell(fNodestorage.pop())
+		return;
+	}
+	
+	selectedNodeID = -1; //unfocus view should not have any selected cell.
+
+	node.each(function(d){
+		d.size=ufRadius;
+	});
+
+	unfocusForceView();
+
+}
+
+function clickcell(cellName) {
+	//No need to check the Unit Cell condition as all cells in the search it gives the top result and Node array contains the all Unit cells first and then contain
+	//external cell data.
+	var nodeObject = node
+		.filter(function(d) {
+			if(d.name==cellName) { 
+				return true;
+		};
+	});
+
+	clickHandler(nodeObject);
+}
+
+function getCellList() {
+	var baseUrl = "https://fj.baas.jp.fujitsu.com/";
+	var objJdcContext = new dcc.DcContext(baseUrl, "", "", "");
+	var accessor = objJdcContext.withToken(token);
+	var results = accessor.asCellOwner().unit.cell.query().top(1002).run();
+	var cellList = JSON.stringify(results);
+	return cellList;
+}
+
+function retrieveExternalList(cellname) {
+	var baseUrl = "https://fj.baas.jp.fujitsu.com/";
+	var externalCellURI = new Array();
+	var objJdcContext = new dcc.DcContext(baseUrl, cellname, "", "");
+	var accessor = objJdcContext.withToken(token);
+	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var json = objExtCellManager.retrieve("");
+		return json;
+}
+
+function getExternalCellNameForSocialGraph(uri) {
+	var arrUri = uri.split("/");
+	var externalCellName = arrUri[3];
+	return externalCellName;
+}
+
+function getCellInfo (cellName) {
+	var profileFileName = "profile.json";
+	var baseUrl = "https://fj.baas.jp.fujitsu.com/";
+	var response = null;
+	if (!baseUrl.endsWith("/")) {
+		baseUrl += "/";
+	}
+	var path = baseUrl+cellName+"/__/";
+	var objJDcContext = new dcc.DcContext(baseUrl, cellName);
+	var accessor = objJDcContext.withToken(token);
+	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	response = objJDavCollection.getJSON(profileFileName);
+	return response.bodyAsJson();
+}
+</script>

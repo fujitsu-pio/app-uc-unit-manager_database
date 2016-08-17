@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--
+Personium
+Copyright 2016 FUJITSU LIMITED
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="../../js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../../js/raphael.2.1.0.min.js"></script>
+<script type="text/javascript" src="../../js/justgage.1.0.1.js"></script>
+</head>
+<body>
+	<div class="divMainUnitManagement divScrollUnitManagement" id="scrollUnit" style="margin-top: 6px;">
+		<div class="divInnerUnitManagement divScrollInnerUnitManagement">
+			<div style="margin: 14px 0px 30px 0px;width: 100%;">
+			<div id='breadCrum' class="divBreadcrumServiceManagement" style="margin:0px;float: left;width: 39%;">
+				<div style="width: 103px;float: left;"><label class="umContentHeading japaneseFont" id="breadCrumServiceManagement" onclick="uHome.clickEnvironmentManagement();" style="margin-right: 5px;">サービス範囲</label>&nbsp;&gt;&nbsp;</div><div style="width: 67%;float: left;" class="unitURLEllipsis"><label
+					class="umContentText" id="lblUnitUrl"></label></div>
+
+			</div>
+			<div style="height: 12px;">
+			<div id="crudOperationMessageBlock"
+				class="crudOperationSuccessWrapper" style="display: none;line-height: 23px;width:207px;">
+				<div class="crudOperationMsgWrapper">
+					<span class="crudOperationSuccessIcon" id="messageIcon">&nbsp;</span>
+					<div id="successmsg" class="crudOperationSuccessMsg japaneseFont">ユニット名は、正常に更新！</div>
+				</div>
+			</div>
+			</div>
+			</div>
+
+
+			<div class="divUnitManagement">
+				<div>
+					<label id="unitName" class="Heading1 lblUnitName"></label>
+					<label id="unitID" style="display: none"></label>
+				</div>
+				<div>
+					<input type="button" class="editIconEnabled iconEditUnitName"
+						onclick="uUnitManagement.initializeTextWithDefaultValue('#editUnitNameModalWindow','#editUnitNameDialogBox');" title="編集">
+				</div>
+
+			</div>
+			<!-- <div id="scrollUnit" class="divScrollUnitManagement"> -->
+				<div>
+					<div class="divOuterNotificationMessageUnit" style="padding: 4px 0px 0px 4px;display: none;" id="testDiv">
+						<div id='divNotificationMessage'
+							class="umContentText divInnerNotificationMessageUnit">
+						</div>
+					</div>
+					<div id='dvUnitStatus' class="divOuterUnitDetails">
+						<div class="divInnerUnitDetails">
+							<div>
+								<label class="umContentHeading lblStatusText japaneseFont">ステータス:</label><label
+									id="statusIcon" class="lblStatusIcon"></label><label
+									id="lblStatus" class="umContentText lblStatusValue"></label>
+							</div>
+							<div class="margintop5">
+								<label class="umContentHeading japaneseFont">計画: </label> <label
+									id="lblPlan" class="umContentText lblPlanValue"></label>
+							</div>
+							<div class="margintop5">
+								<label class="umContentHeading japaneseFont">ドメイン: </label> <label
+									id="lblDomain" class="umContentText lblDomainValue"></label>
+							</div>
+							<div class="margintop5">
+								<label class="umContentHeading japaneseFont">環境ID: </label> <label
+									id="lblEnvID" class="umContentText lblEnvIDValue"></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="divOuterAPIVersion">
+						<div class="divHeader">
+							<div class="umContentHeading divHeading japaneseFont">APIバージョン</div>
+						</div>
+						<div id="dvApiVersion" class="umContentText divContentAPIVersion"></div>
+					</div>
+					<!-- STORAGE GRAPH -->
+					<div class="divOuterStorage">
+						<div class="divHeader">
+							<div class="umContentHeading divHeading japaneseFont">ストレージ</div>
+						</div>
+						<div style="float: left;">
+							<div id="gauge" class="divGauge"></div>
+						</div>
+						<div class="divDiskSpace">
+							<label class="umContentHeading japaneseFont">総容量: </label><label
+								class="umContentText" id="totalDiskSpace"></label><br> <label
+								class="umContentHeading japaneseFont">使用済みスペース: </label><label
+								class="umContentText" id="lblUsedStoreageSpace"></label>
+
+						</div>
+					</div>
+				<!-- DATABASE GRAPH -->
+				<div class="divOuterStorage">
+					<div class="divHeader">
+						<div class="umContentHeading divHeading japaneseFont">データベース</div>
+					</div>
+					<div style="float: left;">
+						<div id="databseGauge" class="divGauge"></div>
+					</div>
+					<div class="divDiskSpace">
+						<label class="umContentHeading japaneseFont">総容量: </label><label
+							class="umContentText" id="totalDatabaseSpace"></label><br> <label
+							class="umContentHeading japaneseFont">使用済みスペース: </label><label
+							class="umContentText" id="lblUsedDatabaseSpace"></label>
+
+					</div>
+				</div>
+
+					<div class="divOuterGlobalIP">
+						<div class="divHeader">
+							<div class="umContentHeading divHeading japaneseFont">グローバルIP</div>
+						</div>
+						<div id="globalIPList"></div>
+					</div>
+
+					<div class="divOuterMail">
+						<div class="divHeader">
+							<div class="umContentHeading divHeading japaneseFont">メール</div>
+						</div>
+						<div>
+							<div class="divMailText">
+								<label class="umContentText japaneseFont">プラグインからメールを送信するには、次のSMTPサーバーを使用してください。</label>
+							</div>
+							<div class="divServerText">
+								<label class="umContentHeading japaneseFont">サーバー: </label><label
+									class="umContentText" id="lblServer"></label>
+							</div>
+							<div class="divPortText">
+								<label class="umContentHeading japaneseFont">ポート: </label><label
+									class="umContentText" id="lblPort"></label>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
+	</div>
+
+	<!-- /********************* EDIT UNIT NAME : START **********************/ -->
+	<div id="editUnitNameModalWindow" class="modelback"
+		style="display: none;">
+		<div class="modal-window block-border divEditUnitPopup"
+			id="editUnitNameDialogBox">
+			<div style="height: 231px; width: 474px;">
+				<!-- <div style="height: 34px; width: 474px">
+					<label class="popupCloseIcon"
+						onclick="closeEntityModal('#editUnitNameModalWindow');"></label>
+				</div> -->
+				<div id="dvCloseIcon" class="popupCloseIcon"
+				onclick="closeEntityModal('#editUnitNameModalWindow');" tabindex="4" title="クローズ"></div>
+
+			<div class="sessionExpiryDiv" id="dvAccessheader">
+				<label class="sessionExpiredPopUpHeading japaneseFont" id="lblHeadingAccessToken">
+					編集部</label>
+			</div>
+				<div class="divEditUnitPopupInner">
+					<!-- <label class="Heading1">Edit Unit</label> -->
+					<section class="sectionEditunit">
+						<form onsubmit="return false;">
+						<input type="hidden" name="CSRFToken" value="" id = "CSRFTokenEditUnitName">
+							<table style="margin-left: 75px;">
+								<tr>
+									<td style="padding-bottom: 5px;"><label
+										class="umContentHeading japaneseFont">* 装置名</label></td>
+								</tr>
+								<tr>
+									<td><input type="text" id="txtUnitName" class="txtEditUnitName" tabindex="1"> <span
+										class="spanPopupErrorMessage">
+											<aside class="asidePopupErrorMessage japaneseFont" id="popupUnitNameErrorMsg"></aside>
+									</span></td>
+								</tr>
+							</table>
+						</form>
+					</section>
+					<section style="float: right;" class="divLogoutBtn ">
+						<input type="button" value="キャンセル" class="btnPopupCancel japaneseFont"
+							onclick="closeEntityModal('#editUnitNameModalWindow');" tabindex="2">
+						<input type="button" value="保存" class="btnPopupSave japaneseFont" id="btnSaveUnitName" onclick=" uUnitManagement.editUnitName();" tabindex="3">
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /********************* EDIT UNIT NAME : END **********************/ -->
+</body>
+</html>

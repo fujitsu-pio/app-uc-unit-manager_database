@@ -1,0 +1,8 @@
+Dear ${FirstName} ${FamilyName},
+
+Your account has been locked. 
+
+This is an automated email, kindly do not reply to the sender of this email.
+
+Thanks and regards
+Team Personium

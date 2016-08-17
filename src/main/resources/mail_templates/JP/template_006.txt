@@ -1,0 +1,12 @@
+Dear ${FirstName} ${FamilyName},
+
+Below is the new password: 
+
+Password: ${Password}
+
+NOTE: Please change the password by yourself as soon as you login.
+
+This is an automated email, kindly do not reply to the sender of this email.
+
+Thanks and regards
+Team Personium

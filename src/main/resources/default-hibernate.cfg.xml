@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://path.to:{Port}/</property>
+		<property name="hibernate.connection.characterEncoding">UTF-8</property>
+		<property name="hibernate.connection.username">uesr</property>
+		<property name="hibernate.connection.password">password</property>
+		
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+		
+		<!-- Minimum number of JDBC connections in the pool. Hibernate default: 1 -->
+		<property name="hibernate.c3p0.min_size">5</property>
+		
+		<!-- Maximum number of JDBC connections in the pool. Hibernate default: 100 -->
+		<property name="hibernate.c3p0.max_size">20</property>
+		
+		<!-- When an idle connection is removed from the pool (in second). Hibernate default: 0, never expire. -->
+		<property name="hibernate.c3p0.timeout">600</property>
+		
+		<!-- Number of prepared statements will be cached. Increase performance. Hibernate default: 0 , caching is disable.-->
+		<property name="hibernate.c3p0.max_statements">50</property>
+		
+		<!-- If this is a number greater than 0, c3p0 will test all idle, pooled but unchecked-out connections, every this number of seconds.
+		 Hibernate default: 1 -->
+		<property name="hibernate.c3p0.idle_test_period">300</property>
+		
+		<!-- List of XML mapping files <mapping resource=".hbm.xml"/> -->
+		<mapping class="com.fujitsu.dc.gui.portal.model.User" />
+		<mapping class="com.fujitsu.dc.gui.portal.model.UserEnvironment" />
+		<mapping class="com.fujitsu.dc.gui.portal.model.Unit" />
+		<mapping class="com.fujitsu.dc.gui.portal.model.OrgUnit" />
+		<mapping class="com.fujitsu.dc.gui.portal.model.Organization" />
+		<mapping class="com.fujitsu.dc.gui.portal.model.Environment" />
+		<mapping class="com.fujitsu.dc.gui.portal.model.UserEnvironmentId" />
+		<mapping class="com.fujitsu.dc.gui.portal.model.Message" />
+		<mapping class="com.fujitsu.dc.gui.portal.model.UnitMessage" />
+	</session-factory>
+</hibernate-configuration>

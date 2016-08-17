@@ -1,0 +1,14 @@
+Dear ${FirstName} ${FamilyName},
+
+Welcome to Personium Unit Manager.
+Your Unit Manager account has been activated by the administrator.
+
+Visit ${PortalLoginUrl} to get started, using your username and temporary password given below.
+
+Username: ${Username}
+Password: ${Password}
+
+This is an automated email, kindly do not reply to the sender of this email.
+
+Thanks and regards
+Team Personium

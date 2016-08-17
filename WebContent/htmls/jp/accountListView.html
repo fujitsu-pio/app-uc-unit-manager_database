@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--
+Personium
+Copyright 2016 FUJITSU LIMITED
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<script type="text/javascript" src="../../js/uCell.js"></script>
+<script type="text/javascript" src="../../js/uAccount.js"></script>
+</head>
+<body>
+<div class="boxOperationSection">
+		<div class="leftSubHeading">
+			<div class="divList">
+				<label class="lblList japaneseFont">アカウント一覧</label>
+			</div>
+
+			<div id="createEntityWrapper" class="createAccountWrapper"  style="width:180px !important;" onclick="objAccount.openPopUpWindow('#createAccDialog','#createAccModal');">
+				<div id="createIcon" class="createIcon"></div>
+				<div id="createText" class="createText japaneseFont">アカウントを作成する</div>
+			</div>
+
+			<div class="divEditIcon">
+				<input id="iconEditAccount" type="button" class="editIconDisabled" onclick="openCreateEntityModal('#accountEditModalWindow','#accountEditDialogBox', 'txtEditAccountName');" tabindex="-1" title="編集" disabled="disabled">
+			</div>
+
+			<div class="divDeleteIcon">
+				<input type="button" class="deleteIconDisabled" id="btnDeleteAccount" onclick="objAccount.openPopUpWindow('#multipleDeleteDialogBox','#multipleDeleteModalWindow');" tabindex="-1" title="削除">
+			</div>
+		</div>
+		<div id="accountMessageBlock" class="crudOperationSuccessWrapper" style="display:none;float: left;position:absolute;margin-top: 6px;">
+			<div class="crudOperationMsgWrapper operationMsgDynamicWidth">
+				<span class="crudOperationSuccessIcon" id="accountMessageIcon">&nbsp;</span>
+				<div id="accountSuccessmsg" class="crudOperationSuccessMsg japaneseFont"></div>
+			</div>
+		</div>
+		<div class="rightSubHeading">
+			<div class="sortWrapper">
+				<label class="sortText japaneseFont">日付で並べ替え</label>
+				<div class="downArrow"></div>
+			</div>
+			<div class="paginationWrapper">
+				<div class="recordCount" id="recordCount_Account"></div>
+				<div class="paginationIcons">
+					<div class="leftPagination">
+						<div class="firstPageDisabled" id="firstPage_Account" title="最初"></div>
+						<div class="prevPageDisabled" id="prevPage_Account" title="前"></div>
+					</div>
+					<div class="rightPagination">
+						<div class="nextPageDisabled" id="nextPage_Account" title="次"></div>
+						<div class="lastPageDisabled" id="lastPage_Account" title="ラスト"></div>
+					</div>
+					<div class="rightPagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ACCOUNT TABLE DIV -->
+	<div id="accountTableDiv">
+		<form name='fAccountTable'>
+			<table id='mainAccountTable' cellpadding='0' cellspacing='0' border='0'
+				class='mainTable'>
+				<thead>
+					<tr>
+						<th class='col1 japaneseFont'><input type='checkbox'  id='chkSelectall' onclick='objAccount.checkAllAccountGrid(this)' class='checkBox cursorHand regular-checkbox big-checkbox'/><label id="labelSelectAllAccount" for="chkSelectall" class="checkBoxLabel"></label></th>
+						<th class='col2 japaneseFont'>名前</th>
+						<th class='col3 japaneseFont'>作成された</th>
+						<th class='col4 japaneseFont'>更新日時</th>
+						<th class='col5 japaneseFont'>役割</th>
+					</tr>
+				</thead>
+				<tbody id='entityGridTbody' class="entityGridTbody"></tbody>
+			</table>
+		</form>
+	</div>
+	
+	<!-- Create Account Popup: start -->
+	<div id="createAccModal" class="modelback" style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 387px; width: 706px; background: #ffffff"
+			id="createAccDialog">
+			<div id="dvCloseIcon" class="crossDeletePropIcon"
+				onclick="closeCreateAccount();" tabindex="8" title="クローズ"></div>
+			<div class="accessTokenDiv" style="padding-bottom: 15px"
+				id="dvAccessheader">
+				<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
+					作る アカウント</label>
+			</div>
+			<div class= 'popUpCreateAccountContent'>
+				<table cellpadding='0' cellspacing='0' border='0' class="popupcreatePropertyTable">
+					<tr>
+						<td style="width: 336px">
+							<div style="margin-bottom: 10px;">
+								<label class="lblElement japaneseFont">* 名前</label>
+							</div>
+							<div>
+								<input type="text" class="bigTextBox propertyPopUpTextBox" id="txtAccountName" tabindex="1"> 
+								<span class="spanPopupErrorMessageCommon">
+									<aside class="asidePopupErrorMessageCommon japaneseFont" id="popupAccErrorMsg"></aside>
+								</span>
+							</div>
+						</td>
+						<td>
+							<div style="margin-bottom: 10px;">
+								<input type='checkbox' id='checkBoxAccountCreate' onclick='objCommon.clickAssignChkBoxCreatePopup("checkBoxAccountCreate", "dropDownAcntCreate", true, "selectRoleDropDownError");'
+									class='checkBox cursorHand regular-checkbox big-checkbox' tabindex="4" style="display: inline-block;opacity: 0;" onfocus="checkboxFocusOnAccount();" onblur="checkboxBlurOnAccount();"/>
+								<label	for="checkBoxAccountCreate" class="checkBoxLabel" style="margin-left: -17px" id = "lblAssignCreateRole"></label>
+								<label class="lblElement japaneseFont" style="vertical-align: text-top;margin-left: 10px;display: inline-block;margin-top: 2px;">役割の割り当て</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 336px">
+							<div style="margin-bottom: 10px;">
+								<label class="lblElement japaneseFont">* パスワード</label>
+							</div>
+							<div>
+								<input type="password" class="bigTextBox propertyPopUpTextBox"	id="txtPassword" autocomplete="off" tabindex="2">
+								<span	class="spanPopupErrorMessageCommon">
+									<aside class="asidePopupErrorMessageCommon japaneseFont" id="pasdError"></aside>
+								</span>
+							</div>
+						</td>
+						<td >
+							<div style="margin-bottom: 10px;margin-top: -60px;">
+								<label class="lblElement japaneseFont">役割</label>
+							</div>
+							<div>
+								<div class="customSelectIconAssociation"
+									style="background-position-x: 106.5%">
+									<select name="" id="dropDownAcntCreate" class="selectMenuPopup" disabled="disabled" tabindex="5">
+									<option>Select Role (Box)</option>
+									</select>
+								</div>
+								<span class="spanPopupErrorMessageCommon">
+									<aside class="asidePopupErrorMessageCommon japaneseFont" id="selectRoleDropDownError"></aside>
+								</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 336px">
+							<div style="margin-bottom: 10px;">
+								<label class="lblElement japaneseFont">* パスワードを再入力してください</label>
+							</div>
+							<div>
+								<input type="password" class="bigTextBox propertyPopUpTextBox"
+									id="txtRePassword" autocomplete="off" tabindex="3"> <span
+									class="spanPopupErrorMessageCommon">
+									<aside class="asidePopupErrorMessageCommon japaneseFont" id="rPasdError"></aside>
+								</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<!-- Button Section Starts -->
+			<section class="positionButtons">
+				<div id="dvCreate" class="dvCreate">
+					<input type="button" id="" class="btnClose japaneseFont"
+						onclick="accountNewCreate();" value="作る" tabindex="7">
+				</div>
+				<div id="dvCancel" class="dvCreate">
+					<input type="button" id="" onclick="closeCreateAccount()"
+						class="cancelBtn japaneseFont" value="キャンセル" tabindex="6">
+				</div>
+			</section>
+			<!-- Button Section Ends -->
+		</div>
+	</div>
+<!-- Create Account Popup:END -->
+
+	<!-- Account Single Delete Pop Up Start-->
+	<!-- <div id="singleDeleteModalWindow" class="modelback"
+		style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 175px; width: 375px; background: #ffffff"
+			id="singleDeleteDialogBox">
+			<div class="popupWrapper" id="deleteAccountpopup">
+				<a href="#" title="Close" id="modalbox-close" class="closeIcon"
+					onclick="closeDeleteAccount();">Close</a>
+				<header class="popupHeader"> Delete Account </header>
+				<div class="popupContent">
+					<section class="popupInnerContent">
+						<aside class="deleteAccount">Do you want to delete
+							selected account ?</aside>
+					</section>
+					<section class="bottomBtn">
+						<input type="button" value="Cancel"
+							onclick="closeEntityModal('#singleDeleteModalWindow');"
+							class="normalButtonGrey" /> <input type="button" value="Ok"
+							onclick="deleteSingleAccount();" class="normalButtonBlue" />
+					</section>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- Account Single Delete Pop Up End -->
+
+	<!-- Account Multiple Delete Pop Up Start
+	<div id="multipleDeleteModalWindow" class="modelback"
+		style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 175px; width: 375px; background: #ffffff"
+			id="multipleDeleteDialogBox">
+			<div class="popupWrapper" id="deleteAccountpopup">
+				<a href="#" title="Close" id="modalbox-close" class="closeIcon"
+					onclick="closeDeleteAccount();">Close111</a>
+				<header class="popupHeader">Delete Account(s)</header>
+				<div class="popupContent">
+					<section class="popupInnerContent">
+						<aside class="deleteAccount">Do you want to delete
+							selected account(s) ?</aside>
+					</section>
+					<section class="bottomBtn">
+
+						<input type="button" value="Cancel"
+							onclick="closeEntityModal('#multipleDeleteModalWindow');"
+							class="normalButtonGrey" /> <input type="button" value="Ok"
+							onclick="deleteMultipleAccounts();" class="normalButtonBlue" />
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	-->
+	<!-- Account Multiple Delete Pop Up Start-->
+	<div id="multipleDeleteModalWindow" class="modelback"
+		style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 230px; width: 474px; background: #ffffff"
+			id="multipleDeleteDialogBox">
+			<section class="headerSection">
+				<div id="dvCloseIcon" class="closeIconDiv" style="padding: 0px">
+					<a title="クローズ" id="modalbox-close"
+						class="popupCloseIcon"
+						onclick="closeEntityModal('#multipleDeleteModalWindow');" tabindex="3" title="クローズ"></a>
+				</div>
+				<div class="sessionExpiryDiv" id="">
+					<label class="sessionExpiredPopUpHeading japaneseFont" id="lblHeadingCollection">削除
+						アカウント</label>
+				</div>
+			</section>
+			<div class="sessionExpiredLabel japaneseFont" style="height: 27px;">
+				<label>やる あなた 欲しい へ 削除する 選択した アカウント ? </label>
+			</div>
+			<div class="sessionPopUpCloseSection">
+				<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+					onclick="closeEntityModal('#multipleDeleteModalWindow');" tabindex="1" id="btnCancelAccountDelete">
+				<input type="button" id="" class="btnClose japaneseFont"
+					onclick="deleteMultipleAccounts();" value="削除" tabindex="2">
+			</div>
+		</div>
+	</div>
+	<!-- Account Multiple Delete Pop Up End -->
+	<!-- Account conflict message  Pop Up Start-->
+	<div id="conflictModalwindow" class="modelback" style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 200px; width: 375px; background: #ffffff"
+			id="conflictDialogBox">
+			<div class="popupWrapper" id="deleteAccountpopup">
+				<a href="#" title="クローズ" id="modalbox-close" class="closeIcon japaneseFont"
+					onclick="closeDeleteAccount();">クローズ</a>
+				<header class="popupHeader japaneseFont">競合アカウント名</header>
+				<div class="popupContent">
+					<section class="popupInnerContent conflict">
+						<aside class="conflictAccount japaneseFont" id="conflictAccount"></aside>
+					</section>
+					<section class="bottomBtn">
+						<input type="button" value="Ok" onclick="closeDeleteAccount();"
+							class="normalButtonGrey japaneseFont" />
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Account conflict message Pop Up End -->
+
+<!-- Account EDIT Pop Up Start -->
+<div id="accountEditModalWindow" class="modelback" style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 387px; width: 474px; background: #ffffff"
+			id="accountEditDialogBox">
+			<div style="height: 300px; width: 474px;">
+				<div style="height: 34px; width: 474px">
+					<a class="popupCloseIcon"
+						onclick="objAccount.closeEditPopUpWindow();" tabindex="6" title="クローズ"></a>
+				</div>
+				<div class="divPopupInner">
+					<label class="AccessTokenHeading japaneseFont">編集 アカウント</label>
+					<section class="sectionContent"
+						style="height: 170px; width: 320px; margin-left: 58px;">
+						<form onsubmit="return false;">
+						<div class= 'popUpEditAccountContent'>
+							<table>
+								<tr>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">* 名前</label></td>
+								</tr>
+								<tr>
+									<td><input type="text" id="txtEditAccountName"
+										class="bigTextBoxCollection" autocomplete="off"
+										style="width: 205px" tabindex="1"> <span
+										class="spanPopupErrorMessageCommon">
+											<aside class="asidePopupErrorMessageCommon japaneseFont"
+												id="popupEditErrorMsg" style="width: 248px"></aside>
+									</span></td>
+								</tr>
+								<tr>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">* 新しいパスワード</label></td>
+								</tr>
+								<tr>
+									<td><input type="password" id="txtEditPassword"
+										class="bigTextBoxCollection" autocomplete="off"
+										style="width: 205px" tabindex="2"> <span
+										class="spanPopupErrorMessageCommon">
+											<aside class="asidePopupErrorMessageCommon japaneseFont"
+												id="editChangedPassword" style="width: 248px"></aside>
+									</span></td>
+								</tr>
+								<tr>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">* パスワードを再入力してください</label></td>
+								</tr>
+								<tr>
+									<td><input type="password" id="txtEditReTypePassword"
+										class="bigTextBoxCollection" autocomplete="off"
+										style="width: 205px" tabindex="3"> <span
+										class="spanPopupErrorMessageCommon">
+											<aside class="asidePopupErrorMessageCommon japaneseFont"
+												id="editReTypePassword" style="width: 248px"></aside>
+									</span></td>
+								</tr>
+							</table>
+							</div>
+						</form>
+					</section>
+			<!-- Button Section Starts -->
+			<section style="margin-top: 82px" class="positionButtons">
+				<div id="dvCreate" class="dvCreate">
+					<input onclick="updateAccount();" type="button" class="btnClose japaneseFont"
+						value="保存" tabindex="5">
+				</div>
+				<div id="dvCancel" class="dvCreate">
+					<input type="button" id="btnCancel"
+						onclick="objAccount.closeEditPopUpWindow();"
+						class="cancelBtn japaneseFont" value="キャンセル" tabindex="4">
+				</div>
+			</section>
+			<!-- Button Section Ends -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Account EDIT Pop Up End -->
+	<!-- Spinner code - Start -->
+	<div id="modalSpinnerAcct" class="modelbackSpinner"
+		style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 0; width: 0; background: transparent; position: absolute; top: 50%; left: 50%; border: 0"
+			id="dialogSpinner">
+			<div id="spinnerPopUp"></div>
+		</div>
+	</div>
+	<!-- Spinner code - End -->
+</body>
+</html>

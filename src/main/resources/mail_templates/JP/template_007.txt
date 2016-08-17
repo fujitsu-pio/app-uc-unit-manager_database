@@ -1,0 +1,10 @@
+Dear ${FirstName} ${FamilyName},
+
+Your password has been changed successfully.
+
+Username: ${Username}
+
+This is an automated email, kindly do not reply to the sender of this email.
+
+Thanks and regards
+Team Personium

@@ -1,0 +1,25 @@
+Personium Unit Manager
+Copyright 2016 FUJITSU LIMITED
+
+This product is licensed under Apache License, Version 2.0.
+
+Following open source software products are partially reused with/without some modifications in this product.
+Use of such parts may be subject to the license terms of original products.
+
+ - Apache2 
+  - prettify.js(https://code.google.com/archive/p/google-code-prettify/)
+ 
+ - BSD License
+  - d3.js(http://ja.d3js.node.ws/)
+
+ - MIT License
+   - jquery.js https://jquery.org/license/
+   - Raphel (https://github.com/DmitryBaranovskiy/raphael)
+   - spin.js(http://spin.js.org/ )
+   - justgage.1.0.1.js(http://justgage.com/)
+   - require.js(http://requirejs.org/docs/download.html)
+
+For details, see the source code comment of each part.
+
+This software is designed to dynamically link with dependent libraries using maven.
+See the pom.xml file for the dependent libraries.

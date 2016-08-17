@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<!--
+Personium
+Copyright 2016 FUJITSU LIMITED
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<script type="text/javascript" src="../../js/administratorManagement.js"></script>
+<link href="../../css/defaultTheme.css" rel="stylesheet" media="screen" />
+<!-- <link href="../css/homeStylesheet.css" rel="stylesheet" type="text/css"> -->
+<script type="text/javascript" src="../../js/jquery-1.5.2.min.js"></script>
+</head>
+<body>
+	<!-- <div class="adminMgmtPanel"> -->
+		<div class="adminMgmtScroll" id="adminMgmtScroll">
+			<div class="adminMgmtContent">
+				<div class="adminMgmtHead" id="adminMgmtHead">
+					<div class="adminMgmtTxt Heading1" style="padding-right: 10px;">Administrator</div>
+					<div style="float: left;margin-top: 26px;padding-left: 10px;border-left: 1px solid #d9d9d9;height: 25px;padding-top: 5px;"><label id="totalAvailableUserCount" style="font-family: Segoe UI;font-size: 10.5pt;color: #d9d9d9;">test</label></div>
+					<div id="maxUserMsg" class="maxUserLimitMessage" style="display: none;">Maximum 500 users can be registered</div>
+					<div id="successMsgDiv" class="successMsgDiv" style="display: none;margin-left:21%;float:left;">
+						<div class="greenTick"></div>
+						<div class="successMsg" id="successMsg">User created successfully!</div>
+					</div>
+					<!-- <input type="button" class="createUser" value="Create User" id="createUser"
+					onclick="openCreateEntityModal('#createNewUserModal','#createNewUserDialog');"/> -->
+					
+				<div style="float: right;margin-top: 38px;width: 297px;">
+				<select id="ddFilterByStatus" class="dropDownBig" onclick="" onchange="uAdministratorManagement.filterData(this.value)" style="float: left;margin-top: -2px;margin-right: 10px;padding-bottom: 2px;" tabindex="-1">
+						<option>All</option>
+						<option>Inactive</option>
+						<option>Active</option>
+						<option>Locked</option>
+					</select>
+					<div class='divEditIcon' title='Activate User' style="float: left;border-left: 1px solid #4b4b4b;padding-right: 8px;">
+					<input type="button" class="activateUserIconDisabled" style="outline: none;" id="adminMgmntActivateIcon" onclick="uAdministratorManagement.openPopUpWindow('userActivateAdminMgmntDialogBox','userActivateAdminMgmntModalWindow','ACTIVATE_USER');"/>
+					</div> 
+					<div class='divEditIcon' title='Create' style="float: left;padding-right: 8px;">
+					<input type="button" class="createIcon" style="border: 0;outline: none;" onclick="openCreateEntityModal('#createNewUserModal','#createNewUserDialog', 'txtCreateNewUserUserName');" id="adminMgmntCreateIcon"/>
+					</div>
+					<div class='divEditIcon' title='Edit' style="float: left;">
+					<input type="button" class="editIconDisabled" style="outline: none;" id="adminMgmntEditIcon" onclick="uAdministratorManagement.openPopUpWindow('editUserAdminMgmntDialog','editUserAdminMgmntModal','EDIT');"/>
+					</div> 
+					<div class='divDeleteIcon' title='Delete' style="float: left;">
+					<input type="button" class="deleteIconDisabled" style="outline: none;" id="adminMgmntDeleteIcon" onclick="uAdministratorManagement.openPopUpWindow('userDeleteAdminMgmntDialogBox','userDeleteAdminMgmntModalWindow','DELETE_USER');"/>
+					</div>
+					<div class='' title='Password Settings' style="float: left;padding-left: 6px;">
+					<input type="button" class="adminMgmntPassSettingsIconDisabled" style="border: 0;outline: none;" id="adminMgmntPasswordSettingsIcon" onclick="uAdministratorManagement.openPopUpWindow('changePassAdminMgmntDialog','changePassAdminMgmntModal','PASSWORD_SETTINGS');"/>
+					</div>
+				</div>
+			</div>
+				<div id="adminMgmtTableDiv">
+					<form name='ftable'>
+						<table id='adminMgmtTable' cellpadding='0' cellspacing='0' border='0'
+							class='adminMgmtTable'>
+							<thead>
+								<tr>
+								<th class='col0' style="width: 1%;"><input type='checkbox'
+							id='chkSelectallAdmin' onclick='uAdministratorManagement.adminCheckAll(this)'
+							class='checkBox cursorHand regular-checkbox big-checkbox'/><label for="chkSelectallAdmin" class="customChkbox checkBoxLabel"></label></th>
+									<th class='col1'>Name</th>
+									<th class="col2">Last Signed In</th>
+									<th class='col3'>Username</th>
+									<th class='col4'>Email</th>
+									<th class='col6'>Privilege</th>
+									<th class='col7'>Status</th>
+									<th class='col8'>Email Verified</th>
+									<th class='col5'>Lock Status</th>
+									<!-- <th class='col9'>Operations</th> -->
+								</tr>
+							</thead>
+							<tbody id='adminMgmtTbody' class="adminMgmtTableTbody"></tbody>
+						</table>
+					</form>
+				</div>
+				<div style="display: none;"	id="dvemptyTableMessage" class="emptyTableMessage userManagementEmptyTableMessageWidth"></div>
+				<div id="successMsgDiv1" class="successMsgDiv" style="display: none;position:absolute;float:left;margin-top: -240px;margin-left:39%!important">
+						<div class="greenTick"></div>
+						<div class="successMsg" id="successMsg1">User created successfully!</div>
+					</div>
+				<div style="display: none;"	id="dvemptyTableUserPrivilegeMessage" class="emptyTableMessage userManagementEmptyTableMessageWidth"></div>
+			</div>
+		</div>
+	<!-- /********************* CREATE USER : START **********************/ -->
+	<div id="createNewUserModal" class="modelback" style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block;padding-bottom:20px;width: 761px; background: #ffffff;height:401px;"
+			id="createNewUserDialog">
+			<div style="width: 761px;">
+			<div id="dvCloseIcon" class="crossDeletePropIcon" style="margin-top: 18px;margin-right: 17px;"
+				onclick="closeEntityModal('#createNewUserModal');" tabindex="10" title="Close"></div>
+				<div class="accessTokenDiv" style="margin-bottom: 12px;padding-top: 27px;">
+				<label class="AccessTokenHeading">
+					Create User</label>
+			</div>
+				<!-- <div style="height: 34px; width: 761px">
+					<label class="popupCloseIcon"
+						onclick="closeEntityModal('#createNewUserModal');"></label>
+				</div> -->
+				<div class="divPopupInner" style="width:727px;">
+					<!-- <div class="createEntityHeading">Create User</div> -->
+					<section class="sectionContent sectionContentCreateUser" style="height: 250px;">
+						<form autocomplete="off"> 
+							<input type="hidden" name="CSRFToken" value="" id = "CSRFTokenCreateUser">
+							<input type="hidden" name="CSRFToken" value="" id = "CSRFTokenSendMailVerification">
+							<table>
+								<tr>
+									<td style="width: 336px"><div style="margin-bottom: 10px;">
+										<label class="lblElement">* Username</label></div>
+										<div>
+											<input type="password" style="display:none;"/>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtCreateNewUserUserName" tabindex="1"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupUsernameErrorMsg"></aside>
+											</span>
+										</div>
+									</td>
+										<td><div style="margin-bottom: 10px;">
+											<label class="lblElement">* Email</label>
+										</div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtCreateNewUserEmail"
+											onfocus="uAdministratorManagement.validate('txtCreateNewUserFamilyName');" tabindex="4"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupEmailErrorMsg"></aside>
+											</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td style="width: 336px"><div style="margin-bottom: 10px;">
+										<label class="lblElement">* First Name</label></div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtCreateNewUserFirstName"
+												onfocus="uAdministratorManagement.validate('txtCreateNewUserRetypePassword');" tabindex="2"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupFirstNameErrorMsg"></aside>
+											</span>
+										</div>
+										<!-- <label class="lblElement">* Password</label></div>
+										<div>
+											<input type="password" autocomplete="off" disabled="disabled"
+												id="txtCreateNewUserPassword" value="" class="bigTextBox userPopUpTextBox"
+												onfocus="uAdministratorManagement.validate('txtCreateNewUserUserName');" tabindex="2"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupPasswordErrorMsg"></aside>
+											</span>
+										</div> -->
+									</td>
+								<td style="vertical-align: top;">
+										<!-- <div style="margin-bottom: 10px;" class="radio">
+											<label class="lblElement" style="margin-right:30px;">Administrator</label>
+											<input id="rdYes" type="radio" name="admin" value="Yes" checked="true" style="display: inline-block;opacity:0;"
+												onfocus="radioBtnYesFocus('#yesRadioBtn');" onblur="radioBtnYesBlur('#yesRadioBtn');" tabindex="7">
+												<label for="rdYes" class="radioButtonMargin customRadio" style="margin-left: -17px;" id="yesRadioBtn">Yes</label> 
+											<input  id="rdNo" type="radio" name="admin" value="No" style="display: inline-block;opacity:0;"
+												onfocus="radioBtnYesFocus('#noRadioBtn');" onblur="radioBtnYesBlur('#noRadioBtn');" tabindex="8">
+												 <label class="radioButtonMargin customRadio" for="rdNo" style="margin-left: -17px;" id="noRadioBtn">No</label>
+										</div> -->
+										<div style="margin-bottom: 10px;">
+											<label class="lblElement">* Re-enter Email</label>
+										</div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtCreateNewUserReEnterEmail"
+											onfocus="uAdministratorManagement.validate('txtCreateNewUserEmail');" tabindex="5"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupReEnterEmailErrorMsg"></aside>
+											</span>
+										</div>
+										
+									</td>
+								</tr>
+								<tr>
+									<td style="width: 336px"><div style="margin-bottom: 10px;">
+									<div style="margin-bottom: 10px;">
+											<label class="lblElement">* Family Name</label>
+										</div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtCreateNewUserFamilyName"
+												autocomplete="off"
+												onfocus="uAdministratorManagement.validate('txtCreateNewUserFirstName');" tabindex="3">
+											<span class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupFamilyNameErrorMsg"></aside>
+											</span>
+										</div>
+										<!-- <label class="lblElement">* Retype Password</label></div>
+										<div>
+											<input type="password" autocomplete="off" disabled="disabled"
+												id="txtCreateNewUserRetypePassword" value="" class="bigTextBox userPopUpTextBox"
+												onfocus="uAdministratorManagement.validate('txtCreateNewUserPassword');" tabindex="3"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupRetypePasswordErrorMsg"></aside>
+											</span>
+										</div> -->
+									</td>
+									<td>
+									<div style="margin-bottom: 10px;" class="radio">
+											<label class="lblElement" style="margin-right:30px;">Administrator</label>
+											<input id="rdYes" type="radio" name="admin" value="Yes" checked="true" style="display: inline-block;opacity:0;"
+												onfocus="radioBtnYesFocus('#yesRadioBtn');" onblur="radioBtnYesBlur('#yesRadioBtn');" tabindex="6">
+												<label for="rdYes" class="radioButtonMargin customRadio" style="margin-left: -17px;" id="yesRadioBtn">Yes</label> 
+											<input  id="rdNo" type="radio" name="admin" value="No" style="display: inline-block;opacity:0;"
+												onfocus="radioBtnYesFocus('#noRadioBtn');" onblur="radioBtnYesBlur('#noRadioBtn');" tabindex="7">
+												 <label class="radioButtonMargin customRadio" for="rdNo" style="margin-left: -17px;" id="noRadioBtn">No</label>
+										</div>
+									<!-- <div style="margin-bottom: 10px;">
+											<label class="lblElement">* Family Name</label>
+										</div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtCreateNewUserFamilyName"
+												autocomplete="off"
+												onfocus="uAdministratorManagement.validate('txtCreateNewUserFirstName');" tabindex="5">
+											<span class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupFamilyNameErrorMsg"></aside>
+											</span>
+										</div> -->
+									</td>
+								</tr>
+								<tr>
+									<td style="width: 336px"><div style="margin-bottom: 10px;">
+										<!-- <label class="lblElement">* First Name</label></div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtCreateNewUserFirstName"
+												onfocus="uAdministratorManagement.validate('txtCreateNewUserRetypePassword');" tabindex="4"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupFirstNameErrorMsg"></aside>
+											</span>
+										</div> -->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</section>
+					<section style="float: right;" class="divLogoutBtn">
+						<input type="button" value="Cancel" class="btnCancelPopup"
+							onclick="closeEntityModal('#createNewUserModal');" tabindex="8"> <input
+							type="button" value="Create" class="btnSavePopup" id="btnChangePassword"
+							onclick="uAdministratorManagement.createNewUser();" tabindex="9">
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /********************* CREATE USER : END **********************/ -->
+
+	<!-- /********************* EDIT USER : START **********************/ -->
+	<div id="editUserAdminMgmntModal" class="modelback"
+		style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block;padding-bottom:20px;width: 761px; background: #ffffff;height:397px;"
+			id="editUserAdminMgmntDialog">
+			<div style="width: 761px;">
+				<!-- <div style="height: 34px; width: 761px">
+					<label class="popupCloseIcon"
+						onclick="closeEntityModal('#editUserAdminMgmntModal');"></label>
+				</div> -->
+				<div id="dvCloseIcon" class="crossDeletePropIcon" style="margin-top: 18px;margin-right: 17px;"
+				onclick="closeEntityModal('#editUserAdminMgmntModal');" tabindex="10" title="Close"></div>
+				<div class="accessTokenDiv" style="margin-bottom: 12px;padding-top: 27px;">
+				<label class="AccessTokenHeading">
+					Edit User</label>
+			</div>
+				<div class="divPopupInner" style="width:727px;">
+					<!-- <div class="createEntityHeading">Edit User</div> -->
+					<section class="sectionContent sectionContentEditUser">
+						<form autocomplete="off"> 
+							<input type="hidden" name="CSRFToken" value="" id = "CSRFTokenEditUser">
+							<table>
+								<tr>
+									<td style="width: 336px"><div style="margin-bottom: 10px;">
+										<label class="lblElement">* Username</label></div>
+										<div>
+											<input type="password" style="display:none;"/>
+											<input type="text" disabled="disabled" class="bigTextBox userPopUpTextBox" id = "adminMgmntEditPopupUsername" tabindex="1"/>
+											<span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id=""></aside>
+											</span> 
+										</div>
+									</td>
+									<td style="vertical-align: top;">
+									<div style="margin-bottom: 10px;">
+											<label class="lblElement">* Email</label>
+										</div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtAdminMgmntEmail" tabindex="4">
+											<span class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupAdminMgmntEditEmailErrorMsg"></aside>
+											</span>
+										</div>
+										<!-- <div style="margin-bottom: 10px;" class="radio">
+											<label class="lblElement" style="margin-right:30px;">Administrator</label>
+											<input id="rdEditYes" type="radio" name="adminEdit" value="Yes" style="display: inline-block;opacity:0;" 
+											onfocus="radioBtnYesFocus('#yesEditRadioBtn');" onblur="radioBtnYesBlur('#yesEditRadioBtn');" tabindex="5">
+												<label for="rdEditYes" class="radioButtonMargin customRadio" style="margin-left: -17px;" id="yesEditRadioBtn">Yes</label> 
+											<input id="rdEditNo" type="radio" name="adminEdit" value="No" style="display: inline-block;opacity:0;" 
+											onfocus="radioBtnYesFocus('#noEditRadioBtn');" onblur="radioBtnYesBlur('#noEditRadioBtn');" tabindex="6">
+												 <label class="radioButtonMargin customRadio" for="rdEditNo" style="margin-left: -17px;" id="noEditRadioBtn">No</label>
+										</div> -->
+										
+									</td>
+								</tr>
+								<tr>
+									<td style="width: 336px"><div style="margin-bottom: 10px;">
+										<label class="lblElement">* First Name</label></div>
+										<div>
+											<input type="text" 
+												id="txtAdminMgmntFirstName" value="" class="bigTextBox userPopUpTextBox" tabindex="2"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupAdminMgmntEditFirstNameErrorMsg"></aside>
+											</span>
+										</div>
+									</td>
+									<td>
+									<div style="margin-bottom: 10px;">
+											<label class="lblElement">* Re-enter Email</label>
+										</div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtAdminMgmntReEnterEmail" tabindex="5">
+											<span class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupAdminMgmntEditReEnterEmailErrorMsg"></aside>
+											</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td style="width: 336px"><div style="margin-bottom: 10px;">
+										<label class="lblElement">* Family Name</label></div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtAdminMgmntFamilyName" tabindex="3"> <span
+												class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupAdminMgmntEditFamilyNameErrorMsg"></aside>
+											</span>
+										</div>
+									</td>
+										<td>
+									<div style="margin-bottom: 10px;" class="radio">
+											<label class="lblElement" style="margin-right:30px;">Administrator</label>
+											<input id="rdEditYes" type="radio" name="adminEdit" value="Yes" style="display: inline-block;opacity:0;"
+											onfocus="radioBtnYesFocus('#yesEditRadioBtn');" onblur="radioBtnYesBlur('#yesEditRadioBtn');" tabindex="6">
+												<label for="rdEditYes" class="radioButtonMargin customRadio" style="margin-left: -17px;" id="yesEditRadioBtn">Yes</label> 
+											<input  id="rdEditNo" type="radio" name="adminEdit" value="No" style="display: inline-block;opacity:0;" 
+											onfocus="radioBtnYesFocus('#noEditRadioBtn');" onblur="radioBtnYesBlur('#noEditRadioBtn');" tabindex="7">
+												 <label class="radioButtonMargin customRadio" for="rdEditNo" style="margin-left: -17px;" id="noEditRadioBtn">No</label>
+										</div>
+									<!-- <div style="margin-bottom: 10px;">
+											<label class="lblElement">* Email</label>
+										</div>
+										<div>
+											<input type="text" class="bigTextBox userPopUpTextBox" id = "txtAdminMgmntEmail" tabindex="4">
+											<span class="spanPopupErrorMessageCommon" style="margin-bottom:5px;">
+												<aside class="asidePopupErrorMessageCommon" style="width:247px;"
+													id="popupAdminMgmntEditEmailErrorMsg"></aside>
+											</span>
+										</div> -->
+									</td>
+								</tr>
+							</table>
+						</form>
+					</section>
+					<section style="float: right;" class="divLogoutBtn">
+						<input type="button" value="Cancel" class="btnCancelPopup"
+							onclick="closeEntityModal('#editUserAdminMgmntModal');" tabindex="8"> <input
+							type="button" value="Save" class="btnSavePopup" id="btnChangePassword"
+							onclick="uAdministratorManagement.editAdminMgmntUserInfo();" tabindex="9">
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /********************* EDIT USER : END **********************/ -->
+
+	<!-- /********************* PASSWORD SETTINGS : START **********************/ -->
+	<div id="changePassAdminMgmntModal" class="modelback"
+		style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 279px; width:565px; background: #ffffff"
+			id="changePassAdminMgmntDialog">
+			<div style="height: 231px; width: 565px;">
+				<div style="height: 34px; width: 569px">
+					<a class="popupCloseIcon"
+						onclick="closeEntityModal('#changePassAdminMgmntModal');" tabindex="6"></a>
+				</div>
+				<div class="divPopupInner" style="margin-left: 40px;width: 525px;margin-top: -12px;">
+					<div class="sessionExpiredPopUpHeading" style="font-size: 17pt;float: left;margin-bottom: 10px;">Reset password for&nbsp;</div><div class="sessionExpiredPopUpHeading" style="font-size: 17pt;float: left;margin-bottom: 10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;max-width: 310px;width: 310px;" id="passwordSettingUsername"></div>
+					<label id="lblChangePasswordWarning" style="float: left;color: #c80000" class="lblElement"></label>
+					<section class="sectionContent"
+						style="height: 135px; width: 505px;">
+						<form onsubmit="return false;">
+						<input type="hidden" name="CSRFToken" value="" id = "CSRFTokenPassword">
+						<input type="hidden" name="CSRFToken" value="" id = "CSRFTokenSendMailLoginCredential">
+							<table>
+							<tr>
+							<td colspan="2" style="padding-bottom: 4px;"><div class="lblElement lblSetPassword unselectedPasswordSetting" id="divSetPassword" onclick="uAdministratorManagement.setPassword();">Set password</div>
+							<div class="lblElement lblAutoGenPassword selectedPasswordSetting" onclick="uAdministratorManagement.autoGeneratePassword();" id="divAutoGenPassword">Auto-generate password</div></td>
+							</tr>
+								<!-- <tr>
+									<td style="padding-bottom: 5px;padding-bottom: 0px;"><label class="lblElement">*
+											New Password</label></td>
+								</tr> -->
+								<tr>
+									<td><input type="password" id="txtPassSettingsNewPassword" placeholder="Type Password" style="width: 190px;background-position-x: 192px; "
+										onblur="uAdministratorManagement.validate('txtPassSettingsNewPassword');"
+										class="bigTextBoxCollection" autocomplete="off" tabindex="1"> <span
+										class="spanPopupErrorMessageCommon" style="margin-bottom:6px;width:245px;">
+											<aside class="asidePopupErrorMessageCommon"
+												id="popupPassSettingsNewPassErrorMsg"></aside>
+									</span></td>
+									<td><input type="password" id="txtPassSettingsRetypePassword" placeholder="Retype Password" style="width: 190px;background-position-x: 192px"
+										onblur="uAdministratorManagement.validate('txtPassSettingsRetypePassword');"
+										class="bigTextBoxCollection" autocomplete="off" tabindex="2"> <span
+										class="spanPopupErrorMessageCommon" style="margin-bottom:6px;width:245px;">
+											<aside class="asidePopupErrorMessageCommon"
+												id="popupPassSettingsRetypePassErrorMsg"></aside>
+									</span></td>
+								</tr>
+								
+								<!-- <tr>
+									<td style="padding-bottom: 5px;"><label class="lblElement">*
+											Confirm New Password</label></td>
+								</tr> -->
+								<!-- <tr>
+									<td><input type="password" id="txtPassSettingsRetypePassword" placeholder="Retype Password"
+										onblur="uAdministratorManagement.validate('txtPassSettingsRetypePassword');"
+										class="bigTextBoxCollection" autocomplete="off" tabindex="2"> <span
+										class="spanPopupErrorMessageCommon" style="margin-bottom:6px;width:295px;">
+											<aside class="asidePopupErrorMessageCommon"
+												id="popupPassSettingsRetypePassErrorMsg"></aside>
+									</span></td>
+								</tr> -->
+								<tr>
+								<td colspan="2">
+								<div style="float: left;"><input type='checkbox' id='chkFirstTimeChangePassword'
+							class='checkBox cursorHand regular-checkbox big-checkbox' disabled="disabled" tabindex="3"/><label
+							for="chkFirstTimeChangePassword" class="checkBoxLabel"></label></div>
+							<div style="float: left;padding-left: 10px;" class="lblElement">Requires a change of password in the next sign in</div>
+								</td>
+								</tr>
+							</table>
+						</form>
+					</section>
+					<section style="float: right;margin-right: 20px;margin-top: 62px;" class="divLogoutBtn">
+						<input type="button" value="Cancel" class="btnCancelPopup"
+							onclick="closeEntityModal('#changePassAdminMgmntModal');" tabindex="4"> <input
+							type="button" value="Save" class="btnSavePopup" style="margin-right:0px;" id=""
+							onclick="uAdministratorManagement.passwordSettings();" tabindex="5">
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /********************* PASSWORD SETTINGS : END **********************/ -->
+
+	<!-- /********************* DELETE USER : START **********************/ -->
+
+	<div id="userDeleteAdminMgmntModalWindow" class="modelback"
+		style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 234px; width: 460px; background: #ffffff"
+			id="userDeleteAdminMgmntDialogBox">
+			<div id="dvCloseIcon" class="popupCloseIcon"
+				onclick="closeEntityModal('#userDeleteAdminMgmntModalWindow');" tabindex="3" title="Close"></div>
+
+			<div class="sessionExpiryDiv" id="dvAccessheader">
+				<label class="sessionExpiredPopUpHeading" id="lblHeadingAccessToken">
+					Delete User(s)</label>
+			</div>
+
+			<div class="sessionExpiredLabel" style="margin-top: 26px;">
+				<div style="text-align:left;">Are you sure you want to delete the selected user(s)?</div>
+				<div style="text-align:left;">Once deleted, it cannot be recovered.</div>
+				<span id="deleteUsername" style="display:none;"></span>
+			</div>
+			<div id="dvClose" class="sessionPopUpCloseSection">
+				<input type="hidden" name="CSRFToken" value="" id = "CSRFTokenDeleteUser">
+				<input type="button" value="Cancel" class="btnCancelPopup" id="btnCancelDeleteUser"
+					onclick="closeEntityModal('#userDeleteAdminMgmntModalWindow');" tabindex="1">
+				<input type="button" id="btnDeleteProperty" class="btnSavePopup"
+					onclick="uAdministratorManagement.deleteSelectedUser();"
+					value="Delete" style="margin-right: 0px;" tabindex="2">
+			</div>
+		</div>
+	</div>
+
+	<!-- /********************* DELETE USER : END **********************/ -->
+	
+	<!-- /********************* PASSWORD SETTINGS : END **********************/ -->
+
+	<!-- /********************* ACTIVATE USER : START **********************/ -->
+
+	<div id="userActivateAdminMgmntModalWindow" class="modelback"
+		style="display: none;">
+		<div class="modal-window block-border"
+			style="display: block; height: 234px; width: 460px; background: #ffffff"
+			id="userActivateAdminMgmntDialogBox">
+			<div id="dvCloseIcon" class="popupCloseIcon"
+				onclick="closeEntityModal('#userActivateAdminMgmntModalWindow');" tabindex="3"></div>
+
+			<div class="sessionExpiryDiv" id="dvAccessheader">
+				<label class="sessionExpiredPopUpHeading" id="lblHeadingAccessToken">
+					Activate User(s)</label>
+			</div>
+
+			<div class="sessionExpiredLabel" id="dynamicActivationText" style="margin-top: 26px; padding-left: 74px; padding-right: 74px">
+				<div style="text-align:left;" id="dvActivateUserStatusMsg">Are you sure you want to activate the selected user(s)?</div>
+				<span id="dvDynamicActivateUserStatusMsg" style="display:none;color: #c80000">Some user(s) have not verifed the email address.</span>
+			</div>
+			<div id="dvClose" class="sessionPopUpCloseSection">
+				<input type="hidden" name="CSRFToken" value="" id = "CSRFTokenActivateUser">
+				<input type="button" value="Cancel" class="btnCancelPopup"
+					onclick="closeEntityModal('#userActivateAdminMgmntModalWindow');" tabindex="1" id="btnCancelAdminActivateUser">
+				<input type="button" id="btnDeleteProperty" class="btnSavePopup"
+					onclick="uAdministratorManagement.updateMultipleUserStatusActive();"
+					value="Activate" style="margin-right: 0px;" tabindex="2">
+			</div>
+		</div>
+	</div>
+
+	<!-- /********************* ACTIVATE USER : END **********************/ -->
+
+</body>
+</html>

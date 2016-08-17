@@ -1,0 +1,20 @@
+Dear ${FirstName} ${FamilyName},
+
+Following user has verified his/her email address and waiting for your action for account activation.
+Please do the needful.
+
+-----------------------------------------------------
+UserID			: ${Username}
+Username		: ${UserFirstName} ${UserFamilyName}
+Email			: ${Email}
+Privilege		: ${Privilege}
+Organization		: ${OrganizationName}
+User created on	: ${UserCreatedDate}
+Email verified on	: ${EmailVerifiedDate}
+Current Account Status	: ${CurrentAccountStatus}
+-----------------------------------------------------
+
+You are receiving this email because you are an administrator in the organization.
+
+Thanks and regards
+Team Personium
