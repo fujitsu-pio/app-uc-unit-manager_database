@@ -15,36 +15,36 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 /**
- * It creates a new object dcc.ODataManager.
+ * It creates a new object _pc.ODataManager.
  * @class This is the abstract class for generating / deleting the OData related functions and serves
  * as middle layer in API calls for CRUD operations.
  * @constructor
- * @param {dcc.Accessor} Accessor
+ * @param {_pc.Accessor} Accessor
  * @param {Object} col
  * @param {String} name
  */
-dcc.ODataManager = function(as, col, name) {
+_pc.ODataManager = function(as, col, name) {
   this.initializeProperties(this, as, col, name);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AbstractODataContext} self
-//* @param {dcc.Accessor} as アクセス主体
-//* @param {dcc.DcCollection} col
+//* @param {_pc.AbstractODataContext} self
+//* @param {_pc.Accessor} as アクセス主体
+//* @param {_pc.PersoniumCollection} col
 //* @param name entitySetName
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AbstractODataContext} self
- * @param {dcc.Accessor} as Accessor
- * @param {dcc.DcCollection} col
+ * @param {_pc.AbstractODataContext} self
+ * @param {_pc.Accessor} as Accessor
+ * @param {_pc.PersoniumCollection} col
  * @param name entitySetName
  */
-dcc.ODataManager.prototype.initializeProperties = function(self, as, col, name) {
+_pc.ODataManager.prototype.initializeProperties = function(self, as, col, name) {
   if (typeof as !== "undefined") {
 //  /** アクセス主体. */
     /** Accessor. */
@@ -75,16 +75,16 @@ dcc.ODataManager.prototype.initializeProperties = function(self, as, col, name) 
 ///**
 //* IDをEntitySet指定する.
 //* @param {String} key keyPredicate
-//* @return {dcc.ODataManager} EntitySetオブジェクト
+//* @return {_pc.ODataManager} EntitySetオブジェクト
 //*/
 /**
  * This method sets key for EntityID.
  * @param {String} key keyPredicate
- * @return {dcc.ODataManager} EntitySet object
+ * @return {_pc.ODataManager} EntitySet object
  */
-dcc.ODataManager.prototype.key = function(key) {
+_pc.ODataManager.prototype.key = function(key) {
   if (typeof key !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.keyPredicate = key;
   return this;
@@ -93,16 +93,16 @@ dcc.ODataManager.prototype.key = function(key) {
 ///**
 //* navigationPropertyをEntitySet指定する.
 //* @param {String} navProp NavigationProperty
-//* @return {dcc.ODataManager} EntitySetオブジェクト
+//* @return {_pc.ODataManager} EntitySetオブジェクト
 //*/
 /**
  * This method specifies the EntitySet navigationProperty.
  * @param {String} navProp NavigationProperty
- * @return {dcc.ODataManager} EntitySet object
+ * @return {_pc.ODataManager} EntitySet object
  */
-dcc.ODataManager.prototype.nav = function(navProp) {
+_pc.ODataManager.prototype.nav = function(navProp) {
   if (typeof navProp !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.naviProperty = navProp;
   return this;
@@ -116,7 +116,7 @@ dcc.ODataManager.prototype.nav = function(navProp) {
  * This method returns the Base URL for making a connection.
  * @return {String} Base URL
  */
-dcc.ODataManager.prototype.getBaseUrl = function() {
+_pc.ODataManager.prototype.getBaseUrl = function() {
   return this.accessor.getContext().getBaseUrl();
 };
 
@@ -136,11 +136,11 @@ dcc.ODataManager.prototype.getBaseUrl = function() {
  * @param {String} headers POST Request Header
  * @param {Object} callback object optional
  * @return {Object} Response
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.internalCreate = function(body, headers, callback) {
+_pc.ODataManager.prototype.internalCreate = function(body, headers, callback) {
   var url = this.getUrl();
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
 
   if (callback !== undefined) {
 //  restAdapter.post(url, body, "application/json", headers, function(resp) {
@@ -177,9 +177,9 @@ dcc.ODataManager.prototype.internalCreate = function(body, headers, callback) {
  * @param {String} id ID value
  * @param {Object} callback object optional
  * @return {Object} Object of the result
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.internalRetrieve = function(id, callback) {
+_pc.ODataManager.prototype.internalRetrieve = function(id, callback) {
   return this.internalRetrieveMultikey("'" + encodeURIComponent(id) + "'", callback);
 };
 
@@ -197,9 +197,9 @@ dcc.ODataManager.prototype.internalRetrieve = function(id, callback) {
  * @param {String} id composite key url encoding the target
  * @param {Object} callback object optional
  * @return {Object} response as json
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.internalRetrieveMultikey = function(id, callback) {
+_pc.ODataManager.prototype.internalRetrieveMultikey = function(id, callback) {
   var url=null;
   if(id === undefined || id === "''"){
     url = this.getUrl();
@@ -208,7 +208,7 @@ dcc.ODataManager.prototype.internalRetrieveMultikey = function(id, callback) {
     url = this.getUrl() + "(" + id + ")";
   }
 
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
 //  restAdapter.get(url, "application/json", "*", function(resp) {
 //  var responseBody = resp.bodyAsJson();
@@ -230,7 +230,7 @@ dcc.ODataManager.prototype.internalRetrieveMultikey = function(id, callback) {
 	if (response.bodyAsJson().d !== undefined) {
 		return response.bodyAsJson().d.results;
 	} else {
-		throw new dcc.DaoException(response.bodyAsJson().message.value, response.bodyAsJson().code);
+		throw new _pc.DaoException(response.bodyAsJson().message.value, response.bodyAsJson().code);
 	}
 
   }
@@ -244,7 +244,7 @@ dcc.ODataManager.prototype.internalRetrieveMultikey = function(id, callback) {
 //* @param {String} etag ETag値
 //* @param headers
 //* @param callback object optional
-//* @return response DcHttpClient
+//* @return response PersoniumHttpClient
 //* @throws {DaoException} DAO例外
 //*/
 /**
@@ -255,10 +255,10 @@ dcc.ODataManager.prototype.internalRetrieveMultikey = function(id, callback) {
  * @param {String} etag ETag value
  * @param {Object} headers
  * @param {Object} callback object optional
- * @return {Object} response DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {Object} response PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.internalUpdate = function(id, body, etag, headers, callback) {
+_pc.ODataManager.prototype.internalUpdate = function(id, body, etag, headers, callback) {
   var response = this.internalUpdateMultiKey("'" + encodeURIComponent(id) + "'", body, etag, headers, callback);
   return response;
 };
@@ -272,9 +272,9 @@ dcc.ODataManager.prototype.internalUpdate = function(id, body, etag, headers, ca
 //* @throws DaoException DAO例外
 //*/
 ////void internalUpdate(String id, JSONObject body, String etag, HashMap<String, String> headers) throws DaoException {
-//dcc.ODataManager.prototype.internalUpdate = function() {
+//_pc.ODataManager.prototype.internalUpdate = function() {
 //var url = this.getUrl() + "('" + id + "')";
-//var factory = new dcc.RestAdapterFactory();
+//var factory = new _pc.RestAdapterFactory();
 //var restAdapter = factory.create(this.accessor);
 //restAdapter.put(url, body.toJSONString(), etag, headers, RestAdapter.CONTENT_TYPE_JSON);
 //};
@@ -295,11 +295,11 @@ dcc.ODataManager.prototype.internalUpdate = function(id, body, etag, headers, ca
  * @param {Object} body PUT Request Body
  * @param {String} etag ETag value
  * @param {Object} callback object optional
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.internalUpdateMultiKey = function(multiKey, body, etag, headers, callback) {
+_pc.ODataManager.prototype.internalUpdateMultiKey = function(multiKey, body, etag, headers, callback) {
   var url = this.getUrl() + "(" + multiKey + ")";
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = "";
   if (callback !== undefined) {
     response = restAdapter.put(url, JSON.stringify(body), etag, "application/json", headers, callback);
@@ -324,10 +324,10 @@ dcc.ODataManager.prototype.internalUpdateMultiKey = function(multiKey, body, eta
  * @param {String} id ID value
  * @param {String} etag ETag value
  * @param {Object} callback object optional
- * @return {dcc.Promise} promise
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Promise} promise
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.internalDel = function(id, etag, callback) {
+_pc.ODataManager.prototype.internalDel = function(id, etag, callback) {
   var response = this.internalDelMultiKey("'" + encodeURIComponent(id) + "'", etag, callback);
   return response;
 };
@@ -347,12 +347,12 @@ dcc.ODataManager.prototype.internalDel = function(id, etag, callback) {
  * @param {String} id composite key url encoding the target
  * @param {String} etag ETag value
  * @param {Object} callback object optional
- * @return {dcc.Promise} promise
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Promise} promise
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.internalDelMultiKey = function(id, etag, callback) {
+_pc.ODataManager.prototype.internalDelMultiKey = function(id, etag, callback) {
   var url = this.getUrl() + "(" + id + ")";
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = restAdapter.del(url, etag, callback);
   return response;
 };
@@ -369,11 +369,11 @@ dcc.ODataManager.prototype.internalDelMultiKey = function(id, etag, callback) {
  * @param {Object} body JSON object
  * @param {Object} callback object optional
  * @return {Object} Response of the registration result
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.createAsJson = function(body, callback) {
+_pc.ODataManager.prototype.createAsJson = function(body, callback) {
   if (typeof body !== "object") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   if (callback !== undefined) {
     this.internalCreate(JSON.stringify(body), {}, function(resp) {
@@ -408,19 +408,19 @@ dcc.ODataManager.prototype.createAsJson = function(body, callback) {
 //* ODataデータを登録 createAsResponse.
 //* @param {Object} json 登録するJSONオブジェクト
 //* @param callback object optional
-//* @return {?} 登録結果のレスポンス dcc.ODataResponse
+//* @return {?} 登録結果のレスポンス _pc.ODataResponse
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method registers the OData data and returns in ODataResponse form.
  * @param {Object} json JSON object
  * @param {Object} callback object optional
- * @return {dcc.ODataResponse} Response of the registration result
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.ODataResponse} Response of the registration result
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.createAsResponse = function(body, callback) {
+_pc.ODataManager.prototype.createAsResponse = function(body, callback) {
   if (typeof body !== "object") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   if (callback !== undefined) {
     this.internalCreate(JSON.stringify(body), {}, function(resp) {
@@ -432,7 +432,7 @@ dcc.ODataManager.prototype.createAsResponse = function(body, callback) {
         if (callback.success !== undefined) {
           var responseBody = resp.bodyAsJson();
           var json = responseBody.d.results;
-          var odataResponse = new dcc.ODataResponse(this.accessor, json);
+          var odataResponse = new _pc.ODataResponse(this.accessor, json);
           callback.success(odataResponse);
         }
       }
@@ -448,7 +448,7 @@ dcc.ODataManager.prototype.createAsResponse = function(body, callback) {
     if (responseBody.d !== undefined && responseBody.d.results !== undefined) {
       responseJson = responseBody.d.results;
     }
-    return new dcc.ODataResponse(this.accessor, responseJson);
+    return new _pc.ODataResponse(this.accessor, responseJson);
   }
 };
 
@@ -464,11 +464,11 @@ dcc.ODataManager.prototype.createAsResponse = function(body, callback) {
  * @param {String} id ID value
  * @param {Object} callback object optional
  * @return {Object} JSON object
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.retrieveAsJson = function(id, callback) {
+_pc.ODataManager.prototype.retrieveAsJson = function(id, callback) {
   if (typeof id !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   if (callback !== undefined) {
     this.internalRetrieve(id, function(resp) {
@@ -498,7 +498,7 @@ dcc.ODataManager.prototype.retrieveAsJson = function(id, callback) {
 //* @param {Object} body PUTするリクエストボディ
 //* @param {String} etag ETag値
 //* @param callback object optional
-//* @return dcc.ODataResponse
+//* @return _pc.ODataResponse
 //* @throws {DaoException} DAO例外
 //*/
 /**
@@ -507,12 +507,12 @@ dcc.ODataManager.prototype.retrieveAsJson = function(id, callback) {
  * @param {Object} body PUT Request Body
  * @param {String} etag ETag value
  * @param {Object} callback object optional
- * @return {dcc.ODataResponse} Response
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.ODataResponse} Response
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.update = function(id, body, etag, callback) {
+_pc.ODataManager.prototype.update = function(id, body, etag, callback) {
   if (typeof id !== "string" || typeof etag !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   if (callback !== undefined) {
     this.internalUpdate(id, body, etag, {}, function(resp) {
@@ -522,7 +522,7 @@ dcc.ODataManager.prototype.update = function(id, body, etag, callback) {
         }
       } else {
         if (callback.success !== undefined) {
-          var odataResponse = new dcc.ODataResponse(resp.accessor, "");
+          var odataResponse = new _pc.ODataResponse(resp.accessor, "");
           callback.success(odataResponse);
         }
       }
@@ -532,7 +532,7 @@ dcc.ODataManager.prototype.update = function(id, body, etag, callback) {
     });
   } else {
     this.internalUpdate(id, body, etag);
-    return new dcc.ODataResponse(this.accessor, "");
+    return new _pc.ODataResponse(this.accessor, "");
   }
 };
 
@@ -549,12 +549,12 @@ dcc.ODataManager.prototype.update = function(id, body, etag, callback) {
  * @param {String} id ID value
  * @param {String} etag ETag value
  * @param {Object} callback object optional
- * @return {dcc.Promise} promise
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Promise} promise
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataManager.prototype.del = function(id, etag, callback) {
+_pc.ODataManager.prototype.del = function(id, etag, callback) {
   if (typeof id !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   if (typeof etag === "undefined") {
     etag = "*";
@@ -567,7 +567,7 @@ dcc.ODataManager.prototype.del = function(id, etag, callback) {
         }
       } else {
         if (callback.success !== undefined) {
-          var odataResponse = new dcc.ODataResponse(resp.accessor, "");
+          var odataResponse = new _pc.ODataResponse(resp.accessor, "");
           callback.success(odataResponse);
         }
       }
@@ -582,17 +582,17 @@ dcc.ODataManager.prototype.del = function(id, etag, callback) {
 
 /**
  * This method appends query string to execute Query for Search.
- * @param {dcc.DcQuery} query
+ * @param {_pc.PersoniumQuery} query
  * @param {Object} callback object optional
  * @return {Object} JSON response
  */
-dcc.ODataManager.prototype.doSearch = function(query, callback) {
+_pc.ODataManager.prototype.doSearch = function(query, callback) {
   var url = this.getUrl();
   var qry = query.makeQueryString();
   if ((qry !== null) && (qry !== "")) {
     url += "?" + qry;
   }
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
     restAdapter.get(url, "application/json", "*", callback);
   } else {
@@ -604,35 +604,35 @@ dcc.ODataManager.prototype.doSearch = function(query, callback) {
 
 /**
  * This method appends query string to execute Query for Search.
- * @param {dcc.DcQuery} query
+ * @param {_pc.PersoniumQuery} query
  * @param {Object} callback object optional
- * @return {dcc.ODataResponse} response
+ * @return {_pc.ODataResponse} response
  */
-dcc.ODataManager.prototype.doSearchAsResponse = function(query, callback) {
+_pc.ODataManager.prototype.doSearchAsResponse = function(query, callback) {
   var url = this.getUrl();
   var qry = query.makeQueryString();
   if ((qry !== null) && (qry !== "")) {
     url += "?" + qry;
   }
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
     restAdapter.get(url, "application/json", "*", callback);
   } else {
     restAdapter.get(url, "application/json", "*" );
-    return new dcc.ODataResponse(this.accessor, "", restAdapter.bodyAsJson());
+    return new _pc.ODataResponse(this.accessor, "", restAdapter.bodyAsJson());
   }
 };
 
 ///**
 //* クエリを生成.
-//* @return {dcc.DcQuery} 生成したQueryオブジェクト
+//* @return {_pc.PersoniumQuery} 生成したQueryオブジェクト
 //*/
 /**
  * This method executes Query.
- * @return {dcc.DcQuery} Query object generated
+ * @return {_pc.PersoniumQuery} Query object generated
  */
-dcc.ODataManager.prototype.query = function() {
-  return new dcc.DcQuery(this);
+_pc.ODataManager.prototype.query = function() {
+  return new _pc.PersoniumQuery(this);
 };
 
 ///**
@@ -644,14 +644,14 @@ dcc.ODataManager.prototype.query = function() {
  * This method checks whether the specified Odata exists.
  * @param {String} id ID value
  * @return {boolean} true:Survival false:Absence */
-dcc.ODataManager.prototype.exists = function(id) {
+_pc.ODataManager.prototype.exists = function(id) {
   var status = true;
   if (typeof id !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
 
   var url = this.getUrl() + "('" + id + "')";
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   try {
     var response = restAdapter.head(url);
     if(response.getStatusCode() === 404){
@@ -671,7 +671,7 @@ dcc.ODataManager.prototype.exists = function(id) {
  * This method generates the URL for executing API calls.
  * @returns {String}　URL
  */
-dcc.ODataManager.prototype.getUrl = function() {
+_pc.ODataManager.prototype.getUrl = function() {
   var sb = "";
   // $Batchモードの場合は、相対パス
   /** In the case of $ Batch mode, the relative path . */

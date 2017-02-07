@@ -46,7 +46,7 @@ roleToRelationMapping.prototype.retrieveChunkedData = function(lowerLimit, upper
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var uri = objRoleManager.getUrl();
 	var mainBoxValue = getUiProps().MSG0039;
 	var key="";
@@ -58,7 +58,7 @@ roleToRelationMapping.prototype.retrieveChunkedData = function(lowerLimit, upper
 	uri += key + "/"+"_Relation";
 	uri = uri + "?$orderby=__updated desc&$skip=" + lowerLimit + "&$top="
 			+ upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -72,7 +72,7 @@ roleToRelationMapping.prototype.retrieveRoleRelationAssignRecordCount = function
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var uri = objRoleManager.getUrl();
 	var mainBoxValue = getUiProps().MSG0039;
 	var key="";
@@ -83,7 +83,7 @@ roleToRelationMapping.prototype.retrieveRoleRelationAssignRecordCount = function
 	
 	uri += key + "/"+"_Relation";
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -98,7 +98,7 @@ roleToRelationMapping.prototype.retrieveRoleRelationAssignRecordCount = function
  */
 roleToRelationMapping.prototype.initializeAbstractDataContext = function(
 		accessor) {
-	return new dcc.AbstractODataContext(accessor);
+	return new _pc.AbstractODataContext(accessor);
 };
 
 /**
@@ -108,7 +108,7 @@ roleToRelationMapping.prototype.initializeAbstractDataContext = function(
  */
 roleToRelationMapping.prototype.initializeLinkManager = function(accessor,
 		context) {
-	return new dcc.LinkManager(accessor, context);
+	return new _pc.LinkManager(accessor, context);
 };
 
 /**
@@ -228,11 +228,11 @@ roleToRelationMapping.prototype.refreshDropDown = function() {
 roleToRelationMapping.prototype.getRelationDetails = function() {
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var count = retrieveRelationRecordCount();
 	var uri = objRelationManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -457,7 +457,7 @@ roleToRelationMapping.prototype.deleteMapping = function(relationName, multiple)
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objLinkManager = new dcc.LinkManager(accessor);
+	var objLinkManager = new _pc.LinkManager(accessor);
 	var context = objCommon.initializeAbstractDataContext(accessor);
 	var mainBoxValue = getUiProps().MSG0039;
 	var key = "(Name='" + roleName + "'";
@@ -569,7 +569,7 @@ roleToRelationMapping.prototype.retrieveAllRoleToRelationJsonData = function () 
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var totalRecordCount = objRoleToRelationMapping.retrieveRoleRelationAssignRecordCount();
 	var uri = objRoleManager.getUrl();
 	var mainBoxValue = getUiProps().MSG0039;
@@ -581,7 +581,7 @@ roleToRelationMapping.prototype.retrieveAllRoleToRelationJsonData = function () 
 	uri += key + "/"+"_Relation";
 	uri = uri + "?$orderby=__updated desc &$top="
 			+ totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

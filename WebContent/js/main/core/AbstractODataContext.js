@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class デタクラの各機能を現したクラスの抽象クラス.
@@ -23,29 +23,29 @@
 //* @param as アクセス主体
 //*/
 /**
- * It creates a new object dcc.AbstractODataContext.
+ * It creates a new object _pc.AbstractODataContext.
  * @class This is the super class inherited by other cell control classes 
  * showing function of each entity.
  * @constructor
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.AbstractODataContext = function(as) {
+_pc.AbstractODataContext = function(as) {
   this.initializeProperties(this, as);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AbstractODataContext} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.AbstractODataContext} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AbstractODataContext} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.AbstractODataContext} self
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.AbstractODataContext.prototype.initializeProperties = function(self, as) {
+_pc.AbstractODataContext.prototype.initializeProperties = function(self, as) {
 ///** アクセス主体. */
-  /** {dcc.Accessor} Accessor */
+  /** {_pc.Accessor} Accessor */
   if (as !== undefined) {
     self.accessor = as.clone();
   }
@@ -57,25 +57,25 @@ dcc.AbstractODataContext.prototype.initializeProperties = function(self, as) {
 
 ///**
 //* アクセス主体を設定する.
-//* @param {dcc.Accessor}　as アクセス主体
+//* @param {_pc.Accessor}　as アクセス主体
 //*/
 /**
  * THis method sets the Accessor object.
- * @param {dcc.Accessor}　as Accessor
+ * @param {_pc.Accessor}　as Accessor
  */
-dcc.AbstractODataContext.prototype.setAccessor = function(as) {
+_pc.AbstractODataContext.prototype.setAccessor = function(as) {
   this.accessor = as;
 };
 
 ///**
 //* アクセス主体を取得する.
-//* @return {dcc.Accessor} アクセス主体
+//* @return {_pc.Accessor} アクセス主体
 //*/
 /**
  * This method fetches the Accessor object.
- * @return {dcc.Accessor} Accessor
+ * @return {_pc.Accessor} Accessor
  */
-dcc.AbstractODataContext.prototype.getAccessor = function() {
+_pc.AbstractODataContext.prototype.getAccessor = function() {
   return this.accessor;
 };
 
@@ -87,7 +87,7 @@ dcc.AbstractODataContext.prototype.getAccessor = function() {
  * This method gets the JSON data while registration.
  * @return {Object} JSON data at the time of the registration
  */
-dcc.AbstractODataContext.prototype.getRawData = function() {
+_pc.AbstractODataContext.prototype.getRawData = function() {
   return this.rawData;
 };
 
@@ -99,7 +99,7 @@ dcc.AbstractODataContext.prototype.getRawData = function() {
  * This method sets the JSON data while registration.
  * @param {Object} JSON data at the time of the registration
  */
-dcc.AbstractODataContext.prototype.setRawData = function(json) {
+_pc.AbstractODataContext.prototype.setRawData = function(json) {
   this.rawData = json;
 };
 
@@ -111,7 +111,7 @@ dcc.AbstractODataContext.prototype.setRawData = function(json) {
  * This method converts JSON to string.
  * @return {String} JSON String
  */
-dcc.AbstractODataContext.prototype.toJSONString = function() {
+_pc.AbstractODataContext.prototype.toJSONString = function() {
   return this.rawData.toJSONString();
 };
 
@@ -123,7 +123,7 @@ dcc.AbstractODataContext.prototype.toJSONString = function() {
  * This method returns the Odata link URI.
  * @return {String} OData Link URI
  */
-dcc.AbstractODataContext.prototype.getODataLink = function() {
+_pc.AbstractODataContext.prototype.getODataLink = function() {
   return this.rawData.__metadata.uri;
 };
 
@@ -149,7 +149,7 @@ dcc.AbstractODataContext.prototype.getODataLink = function() {
  * @param {String} headerKey HeaderKey
  * @return {String} headerValue
  */
-dcc.AbstractODataContext.prototype.getHeaderValue = function(headerKey) {
+_pc.AbstractODataContext.prototype.getHeaderValue = function(headerKey) {
   var headerValue = this.accessor.getResHeaders()[headerKey];
   if (headerKey === "ETag" && this.body !== null && this.body !== "") {
     headerValue = this.body.__metadata.etag;

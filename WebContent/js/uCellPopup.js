@@ -164,10 +164,10 @@ cellUI.popup.prototype.performCellCreate = function () {
 		var url =  getClientStore().baseURL;
 		token = getClientStore().token;
 		var cellName = document.getElementById("textCellPopup").value;
-		var objJdcContext = new dcc.DcContext(url, cellName, "", "");
+		var objJdcContext = new _pc.PersoniumContext(url, cellName, "", "");
 		var ac = objJdcContext.withToken(token);
-		var objCell = new dcc.Cell(ac);
-		var objCellManager = new dcc.CellManager(ac);
+		var objCell = new _pc.Cell(ac);
+		var objCellManager = new _pc.CellManager(ac);
 		document.getElementById("popupCellNameErrorMsg").innerHTML = "";
 		//Cell name validation
 		if (this.validateInput()) {
@@ -262,8 +262,8 @@ cellUI.popup.prototype.createCell = function(accessor, objCell, objCellManager) 
 	if ($('#chkAdmin').is(':checked')) {
 		var roleName = document.getElementById("txtRoleName").value;
 		var json = {"Name" : roleName,"_Box.Name" : null};
-		var objJRole = new dcc.Role(accessor, json);
-		var objRoleManager = new dcc.RoleManager(accessor);
+		var objJRole = new _pc.Role(accessor, json);
+		var objRoleManager = new _pc.RoleManager(accessor);
 		objRoleManager.create(objJRole);
 	}
 	//When Create Profile is checked.

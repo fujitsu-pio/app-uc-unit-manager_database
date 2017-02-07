@@ -1222,9 +1222,9 @@ common.prototype.cellCountCheck = function(token,flag) {
 common.prototype.initializeAccessor = function(baseUrl, cellName, schemaURL, boxName) { 
   if (getClientStore() != undefined) {
     var token = getClientStore().token;
-    var objJDcContext = new dcc.DcContext(baseUrl, cellName, schemaURL, boxName);
-    var accessor = objJDcContext.withToken(token);
-    accessor.setCurrentCell(new dcc.Cell(accessor, cellName));
+    var objJPersoniumContext = new _pc.PersoniumContext(baseUrl, cellName, schemaURL, boxName);
+    var accessor = objJPersoniumContext.withToken(token);
+    accessor.setCurrentCell(new _pc.Cell(accessor, cellName));
     return accessor;
   }
 };
@@ -1560,7 +1560,7 @@ common.prototype.alternateRowColor = function(tableId) {
  */
 common.prototype.initializeAbstractDataContext = function(
     accessor) {
-  return new dcc.AbstractODataContext(accessor);
+  return new _pc.AbstractODataContext(accessor);
 };
 
 /**
@@ -1570,7 +1570,7 @@ common.prototype.initializeAbstractDataContext = function(
  */
 common.prototype.initializeLinkManager = function(accessor,
     context) {
-  return new dcc.LinkManager(accessor, context);
+  return new _pc.LinkManager(accessor, context);
 };
 
 /** 
@@ -1660,11 +1660,11 @@ common.prototype.getReadableDateForAccessToken = function(epochDate,strEpochDate
  * This function extracts the status code from response object.
  */
 common.prototype.getStatusCode = function (response) {
-	if (response instanceof dcc.DavResponse) {
+	if (response instanceof _pc.DavResponse) {
 		return this.getStatusCode(response.body);
-	} else if (response instanceof dcc.DcHttpClient) {
+	} else if (response instanceof _pc.PersoniumHttpClient) {
 		return response.httpClient.status;
-	} else if (response instanceof dcc.Promise) {
+	} else if (response instanceof _pc.Promise) {
 		if (response.resolvedValue!== null) {
 			return response.resolvedValue.status;
 		} else { 
@@ -1781,11 +1781,11 @@ function HashTable(obj)
 common.prototype.retrieveCellRecordCount = function () {
 	var baseUrl = getClientStore().baseURL;
 	var token = getClientStore().token;
-	var objJdcContext = new dcc.DcContext(baseUrl, "", "", "");
+	var objJdcContext = new _pc.PersoniumContext(baseUrl, "", "", "");
 	var accessor = objJdcContext.withToken(token);
 	var uri = baseUrl + "__ctl/Cell";
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -2654,11 +2654,11 @@ common.prototype.getRoleListForSelectedCell = function () {
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var count = retrieveRoleRecordCount();
 	var uri = objRoleManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

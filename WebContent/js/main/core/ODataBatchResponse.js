@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Entityへアクセスするためのクラス.
 //* @constructor
-//* @augments dcc.DavCollection
+//* @augments _pc.DavCollection
 //*/
 /**
- * It creates a new object dcc.ODataBatchResponse.
+ * It creates a new object _pc.ODataBatchResponse.
  * @class This class is the Response class for ODataBatch.
  * @constructor
- * @augments dcc.DavCollection
+ * @augments _pc.DavCollection
  * @param {Object} header
  * @param {Object} body
  */
-dcc.ODataBatchResponse = function(header, body) {
+_pc.ODataBatchResponse = function(header, body) {
   this.initializeProperties(this, header, body);
 };
-dcc.DcClass.extend(dcc.ODataBatchResponse, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.ODataBatchResponse, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.ODataBatchResponse} self
+//* @param {_pc.ODataBatchResponse} self
 //* @param {String} header ヘッダー情報
 //* @param {String} body ボディ情報
 //* @param {?} path
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.ODataBatchResponse} self
+ * @param {_pc.ODataBatchResponse} self
  * @param {String} header Header information
  * @param {String} body Body information
  */
-dcc.ODataBatchResponse.prototype.initializeProperties = function(self, header, body) {
+_pc.ODataBatchResponse.prototype.initializeProperties = function(self, header, body) {
   self.rawHeader = header;
   self.body = body;
   self.headers = this.parseHeaders(header);
@@ -62,7 +62,7 @@ dcc.ODataBatchResponse.prototype.initializeProperties = function(self, header, b
  * This method gets the statuc code of response.
  * @return {String} Status code
  */
-dcc.ODataBatchResponse.prototype.getStatusCode = function() {
+_pc.ODataBatchResponse.prototype.getStatusCode = function() {
   return this.statusCode;
 };
 
@@ -74,7 +74,7 @@ dcc.ODataBatchResponse.prototype.getStatusCode = function() {
  * This method gets the header string before analysis is performed.
  * @return {String} Header string
  */
-dcc.ODataBatchResponse.prototype.getRawHeaders = function() {
+_pc.ODataBatchResponse.prototype.getRawHeaders = function() {
   return this.rawHeaders;
 };
 
@@ -86,7 +86,7 @@ dcc.ODataBatchResponse.prototype.getRawHeaders = function() {
  * This method gets a hash map of the response header.
  * @return {Array} Hash map of header
  */
-dcc.ODataBatchResponse.prototype.getHeaders = function() {
+_pc.ODataBatchResponse.prototype.getHeaders = function() {
   return this.headers;
 };
 
@@ -100,7 +100,7 @@ dcc.ODataBatchResponse.prototype.getHeaders = function() {
  * @param {String} key Key in header
  * @return {Array} Value of the specified key
  */
-dcc.ODataBatchResponse.prototype.getHeader = function(key) {
+_pc.ODataBatchResponse.prototype.getHeader = function(key) {
   return this.headers[key];
 };
 
@@ -112,7 +112,7 @@ dcc.ODataBatchResponse.prototype.getHeader = function(key) {
  * This method returns response body as String.
  * @return {String} Body text
  */
-dcc.ODataBatchResponse.prototype.bodyAsString = function() {
+_pc.ODataBatchResponse.prototype.bodyAsString = function() {
   return this.body;
 };
 
@@ -124,9 +124,9 @@ dcc.ODataBatchResponse.prototype.bodyAsString = function() {
 /**
  * This method returns response body as Object.
  * @return {Object} JSON object
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataBatchResponse.prototype.bodyAsJson = function() {
+_pc.ODataBatchResponse.prototype.bodyAsJson = function() {
   return JSON.parse(this.body);
 };
 /**
@@ -134,7 +134,7 @@ dcc.ODataBatchResponse.prototype.bodyAsJson = function() {
  * @param {String} value Headers
  * @returns {Array} map
  */
-dcc.ODataBatchResponse.prototype.parseHeaders = function(value) {
+_pc.ODataBatchResponse.prototype.parseHeaders = function(value) {
   var lines = value.split("\n");
   // １行目がから ステータスコードを取得
   if (lines[0].startsWith("HTTP")) {

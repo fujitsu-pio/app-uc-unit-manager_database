@@ -23,11 +23,11 @@ describe(
 			});
 			//Test case for pass condition.
 			it("getExternalCellNameFromURIPass",function() {
-				expect(objRelationToExternalCellMapping.getExternalCellNameFromURI("https://fj.baas.jp.fujitsu.com/pcs1hcl08")).toEqual("pcs1hcl08");
+				expect(objRelationToExternalCellMapping.getExternalCellNameFromURI("https://demo.personium.io/pcs1hcl08")).toEqual("pcs1hcl08");
 			});
 			//Test case for fail condition.
 			it("getExternalCellNameFromURIFail",function() {
-				expect(objRelationToExternalCellMapping.getExternalCellNameFromURI("https://fj.baas.jp.fujitsu.com/pcs1hcl0812")).not.toEqual("pcs1hcl08");
+				expect(objRelationToExternalCellMapping.getExternalCellNameFromURI("https://demo.personium.io/pcs1hcl0812")).not.toEqual("pcs1hcl08");
 			});
 			
 			//Test case for pass condition.

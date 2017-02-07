@@ -15,37 +15,37 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class メッセージの送受信のためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.MessageManager.
+ * It creates a new object _pc.MessageManager.
  * @class This class is used for sending and receiving messages.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  */
-dcc.MessageManager = function(as) {
+_pc.MessageManager = function(as) {
   this.initializeProperties(this, as);
 };
-dcc.DcClass.extend(dcc.MessageManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.MessageManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.MessageManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.MessageManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.MessageManager} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.MessageManager} self
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.MessageManager.prototype.initializeProperties = function(self, as) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.MessageManager.prototype.initializeProperties = function(self, as) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 
 ///** 送信メッセージのマネージャクラス. */
@@ -56,8 +56,8 @@ dcc.MessageManager.prototype.initializeProperties = function(self, as) {
   self.received = null;
 
   if (as !== undefined) {
-    self.sent = new dcc.SentMessageManager(as, this);
-    self.received = new dcc.ReceivedMessageManager(as);
+    self.sent = new _pc.SentMessageManager(as, this);
+    self.received = new _pc.ReceivedMessageManager(as);
   }
 };
 
@@ -69,7 +69,7 @@ dcc.MessageManager.prototype.initializeProperties = function(self, as) {
  * This method returns the URL for sending messages.
  * @returns {String} URL
  */
-dcc.MessageManager.prototype.getUrl = function() {
+_pc.MessageManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.getBaseUrl();
   sb += this.accessor.getCurrentCell().getName();
@@ -80,10 +80,10 @@ dcc.MessageManager.prototype.getUrl = function() {
 ///**
 //* 送信メッセージオブジェクトを作成.
 //* @param {object} json Jsonオブジェクト
-//* @return {dcc.Message} メッセージオブジェクト
+//* @return {_pc.Message} メッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
-//dcc.MessageManager.prototype.sendMail = function(json) {
+//_pc.MessageManager.prototype.sendMail = function(json) {
 
 ////String boxBound
 ////,String inReplyTo
@@ -93,22 +93,22 @@ dcc.MessageManager.prototype.getUrl = function() {
 ////,String body
 ////,int priority
 
-//return new dcc.Message(this.accessor, json);
+//return new _pc.Message(this.accessor, json);
 //};
 
 ///**
 //* メッセージを送信する.
-//* @param {dcc.Message} message 送信するメッセージオブジェクト
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @param {_pc.Message} message 送信するメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to send a message.
- * @param {dcc.Message} message Message object to be sent
- * @return {dcc.Message} Message object received
- * @throws {dcc.DaoException} DAO exception
+ * @param {_pc.Message} message Message object to be sent
+ * @return {_pc.Message} Message object received
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageManager.prototype.send = function(message) {
+_pc.MessageManager.prototype.send = function(message) {
   var responseJson = {};
   var requestBody = JSON.stringify(message);
   var json = this.internalCreate(requestBody);
@@ -116,73 +116,73 @@ dcc.MessageManager.prototype.send = function(message) {
   if (responseBody.d !== undefined && responseBody.d.results !== undefined) {
     responseJson = responseBody.d.results;
   }
-  return new dcc.Message(this.accessor, responseJson);
+  return new _pc.Message(this.accessor, responseJson);
 };
 
 ///**
 //* メッセージを既読にする.
 //* @param {String} messageId メッセージID
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to read a message.
  * @param {String} messageId messageID
- * @return {dcc.Message} Message object obtained
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object obtained
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageManager.prototype.changeMailStatusForRead = function(messageId) {
-  var statusManager = new dcc.MessageStatusManager(this.accessor, messageId);
+_pc.MessageManager.prototype.changeMailStatusForRead = function(messageId) {
+  var statusManager = new _pc.MessageStatusManager(this.accessor, messageId);
   return statusManager.changeMailStatusForRead();
 };
 
 ///**
 //* メッセージを未読にする.
 //* @param {String} messageId メッセージID
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to unread a message.
  * @param {String} messageId messageID
- * @return {dcc.Message} Message object obtained
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object obtained
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageManager.prototype.changeMailStatusForUnRead = function(messageId) {
-  var statusManager = new dcc.MessageStatusManager(this.accessor, messageId);
+_pc.MessageManager.prototype.changeMailStatusForUnRead = function(messageId) {
+  var statusManager = new _pc.MessageStatusManager(this.accessor, messageId);
   return statusManager.changeMailStatusForUnRead();
 };
 
 ///**
 //* メッセージを承認する.
 //* @param {String} messageId メッセージID
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to approve a message.
  * @param {String} messageId messageID
- * @return {dcc.Message} Message object obtained
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object obtained
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageManager.prototype.approveConnect = function(messageId) {
-  var statusManager = new dcc.MessageStatusManager(this.accessor, messageId);
+_pc.MessageManager.prototype.approveConnect = function(messageId) {
+  var statusManager = new _pc.MessageStatusManager(this.accessor, messageId);
   return statusManager.approveConnect();
 };
 
 ///**
 //* メッセージを拒否する.
 //* @param {String} messageId メッセージID
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to reject a message.
  * @param {String} messageId messageID
- * @return {dcc.Message} Message object obtained
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object obtained
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageManager.prototype.rejectConnect = function(messageId) {
-  var statusManager = new dcc.MessageStatusManager(this.accessor, messageId);
+_pc.MessageManager.prototype.rejectConnect = function(messageId) {
+  var statusManager = new _pc.MessageStatusManager(this.accessor, messageId);
   return statusManager.rejectConnect();
 };

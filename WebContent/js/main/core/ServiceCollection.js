@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class ServiceのCURDのためのクラス.
 //* @constructor
-//* @augments dcc.DcCollection
+//* @augments _pc.PersoniumCollection
 //*/
 /**
- * It creates a new object dcc.ServiceCollection.
+ * It creates a new object _pc.ServiceCollection.
  * @class This class performs CRUD operations for ServiceCollection.
  * @constructor
- * @augments dcc.DcCollection
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.PersoniumCollection
+ * @param {_pc.Accessor} Accessor
  * @param {String} path
  */
-dcc.ServiceCollection = function(as, path) {
+_pc.ServiceCollection = function(as, path) {
   this.initializeProperties(this, as, path);
 };
-dcc.DcClass.extend(dcc.ServiceCollection, dcc.DcCollection);
+_pc.PersoniumClass.extend(_pc.ServiceCollection, _pc.PersoniumCollection);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.ServiceCollection} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.ServiceCollection} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {?} path
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.ServiceCollection} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.ServiceCollection} self
+ * @param {_pc.Accessor} as Accessor
  * @param {String} path
  */
-dcc.ServiceCollection.prototype.initializeProperties = function(self, as, path) {
-  this.uber = dcc.DcCollection.prototype;
+_pc.ServiceCollection.prototype.initializeProperties = function(self, as, path) {
+  this.uber = _pc.PersoniumCollection.prototype;
   this.uber.initializeProperties(self, as, path);
 };
 
@@ -64,10 +64,10 @@ dcc.ServiceCollection.prototype.initializeProperties = function(self, as, path) 
  * @param {String} key Property Name
  * @param {String} value Property values
  * @param {String} subject Value of the service subject
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ServiceCollection.prototype.configure = function(key, value, subject) {
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+_pc.ServiceCollection.prototype.configure = function(key, value, subject) {
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = restAdapter.setService(this.getPath(), key, value, subject);
   return response;
 };
@@ -80,8 +80,8 @@ dcc.ServiceCollection.prototype.configure = function(key, value, subject) {
  * @param callback (deprecated) for backward compatibility.
  * @throws {DaoException}
  */
-dcc.ServiceCollection.prototype.multipleServiceConfigure = function(arrServiceNameAndSrcFile, subject, callback) {
-	var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+_pc.ServiceCollection.prototype.multipleServiceConfigure = function(arrServiceNameAndSrcFile, subject, callback) {
+	var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
 	var response = restAdapter.setMultipleService(this.getPath(), arrServiceNameAndSrcFile, subject, callback);
 	return response;
 };
@@ -92,7 +92,7 @@ dcc.ServiceCollection.prototype.multipleServiceConfigure = function(arrServiceNa
  * @param {Object} callback callback parameter
  * @private
  */
-dcc.ServiceCollection.prototype.processCallback = function(resp, callback) {
+_pc.ServiceCollection.prototype.processCallback = function(resp, callback) {
   if (resp.getStatusCode() >= 300) {
     if (callback.error !== undefined) {
       callback.error(resp);
@@ -114,7 +114,7 @@ dcc.ServiceCollection.prototype.processCallback = function(resp, callback) {
 //* @param name 実行するサービス名
 //* @param bodyOrOptions can contain either options or body
 //* @param callback contains call back, not required if options is specified
-//* @return DcResponseオブジェクト
+//* @return PersoniumResponseオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
@@ -124,10 +124,10 @@ dcc.ServiceCollection.prototype.processCallback = function(resp, callback) {
  * @param {String} name Service name to be executed
  * @param {Object} bodyOrOptions can contain either options or body
  * @param {Object} callback contains call back, not required if options is specified
- * @return {dcc.DcResponse} DcResponse object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumResponse} PersoniumResponse object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ServiceCollection.prototype.call = function(method, name, bodyOrOptions,
+_pc.ServiceCollection.prototype.call = function(method, name, bodyOrOptions,
     callback) {
   var response = null;
   if (bodyOrOptions !== null && typeof bodyOrOptions === "object") {
@@ -145,7 +145,7 @@ dcc.ServiceCollection.prototype.call = function(method, name, bodyOrOptions,
 //* @param method メソッド
 //* @param name 実行するサービス名
 //* @param body リクエストボディ
-//* @return DcResponseオブジェクト
+//* @return PersoniumResponseオブジェクト
 //* @throws {DaoException} DAO例外
 //* @private
 //*/
@@ -154,14 +154,14 @@ dcc.ServiceCollection.prototype.call = function(method, name, bodyOrOptions,
  * @param {String} method Method
  * @param {String} name Service name to be executed
  * @param {Object} body Request Body
- * @return {dcc.DcResponse} DcResponse object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumResponse} PersoniumResponse object
+ * @throws {_pc.DaoException} DAO exception
  * @private
  */
-dcc.ServiceCollection.prototype._callWithNoOptions = function(method, name,
+_pc.ServiceCollection.prototype._callWithNoOptions = function(method, name,
     body, callback) {
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
-  var url = dcc.UrlUtils.append(this.getPath(), name);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
+  var url = _pc.UrlUtils.append(this.getPath(), name);
   var defaultContentType = "text/plain";
   var response = null;
   var self = this;
@@ -213,7 +213,7 @@ dcc.ServiceCollection.prototype._callWithNoOptions = function(method, name,
 //* @param method メソッド
 //* @param name 実行するサービス名
 //* @param options containing header,body and success, error, complete callback
-//* @return DcResponseオブジェクト
+//* @return PersoniumResponseオブジェクト
 //* @throws {DaoException} DAO例外
 //* @private
 //*/
@@ -222,14 +222,14 @@ dcc.ServiceCollection.prototype._callWithNoOptions = function(method, name,
  * @param {String} method method
  * @param {String} name Service to be executed
  * @param {Object} options containing header,body and success, error, complete callback
- * @return {dcc.DcResponse} DcResponse object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumResponse} PersoniumResponse object
+ * @throws {_pc.DaoException} DAO exception
  * @private
  */
-dcc.ServiceCollection.prototype._callWithOptions = function(method, name,
+_pc.ServiceCollection.prototype._callWithOptions = function(method, name,
     options) {
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
-  var url = dcc.UrlUtils.append(this.getPath(), name);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
+  var url = _pc.UrlUtils.append(this.getPath(), name);
   var response = null;
   var acceptHeader = "text/plain";
   var contentTypeHeader = "text/plain";
@@ -315,11 +315,11 @@ dcc.ServiceCollection.prototype._callWithOptions = function(method, name,
  * @param {String} contentType Content Type
  * @param {String} data PUT Data
  * @param {String} etagValue ETag of PUT target. Specify "*" for forcing new or updated
- * @returns {dcc.DcHttpClient} response
- * @throws {dcc.DaoException} DAO exception
+ * @returns {_pc.PersoniumHttpClient} response
+ * @throws {_pc.DaoException} DAO exception
  */
 //public void put(String pathValue, String contentType, String data, String etagValue) throws DaoException {
-dcc.ServiceCollection.prototype.put = function(pathValue, contentType, data,
+_pc.ServiceCollection.prototype.put = function(pathValue, contentType, data,
     etag) {
   //    byte[] bs;
   //    try {
@@ -329,8 +329,8 @@ dcc.ServiceCollection.prototype.put = function(pathValue, contentType, data,
   //    }
   //    InputStream is = new ByteArrayInputStream(bs);
   //    this.put(pathValue, contentType, is, etagValue);
-  var url = dcc.UrlUtils.append(this.getPath(), "__src/" + pathValue);
-  var response = dcc.RestAdapterFactory.create(this.accessor).put(url, data, etag,
+  var url = _pc.UrlUtils.append(this.getPath(), "__src/" + pathValue);
+  var response = _pc.RestAdapterFactory.create(this.accessor).put(url, data, etag,
       contentType);
   return response;
 };
@@ -340,9 +340,9 @@ dcc.ServiceCollection.prototype.put = function(pathValue, contentType, data,
 //* @throws {DaoException} DAO例外
 //*/
 //public void put(String pathValue, String contentType, InputStream is, String etagValue) throws DaoException {
-//dcc.ServiceCollection.prototype.put = function() {
-//var url = dcc.UrlUtils.append(this.getPath(), "__src/" + pathValue);
-//var restAdapter = new dcc.RestAdapterFactory().create(this.accessor);
+//_pc.ServiceCollection.prototype.put = function() {
+//var url = _pc.UrlUtils.append(this.getPath(), "__src/" + pathValue);
+//var restAdapter = new _pc.RestAdapterFactory().create(this.accessor);
 //restAdapter.putStream(url, contentType, is, etagValue);
 //};
 ///**
@@ -353,22 +353,22 @@ dcc.ServiceCollection.prototype.put = function(pathValue, contentType, data,
 /**
  * This method deletes the data in the path specified.
  * @param {String} pathValue DAV Path
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ServiceCollection.prototype.del = function(pathValue) {
-  var url = dcc.UrlUtils.append(this.getPath(), "__src/" + pathValue);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+_pc.ServiceCollection.prototype.del = function(pathValue) {
+  var url = _pc.UrlUtils.append(this.getPath(), "__src/" + pathValue);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   restAdapter.del(url, "*");
 };
 
 /**
  * This method calls PROPFIND API for specified path to get 
  * registered service file detail. 
- * @returns {dcc.DcHttpClient} response.
- * @throws {dcc.DaoException} DAO exception
+ * @returns {_pc.PersoniumHttpClient} response.
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ServiceCollection.prototype.propfind = function () {
-	var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+_pc.ServiceCollection.prototype.propfind = function () {
+	var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
 	var response = restAdapter.propfind(this.url);
 	return response;
 };

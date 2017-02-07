@@ -14,37 +14,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class メッセージの送受信のためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.SentMessageManager.
+ * It creates a new object _pc.SentMessageManager.
  * @class This class performs CRUD for SEnt Messages.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  */
-dcc.SentMessageManager = function(as) {
+_pc.SentMessageManager = function(as) {
   this.initializeProperties(this, as);
 };
-dcc.DcClass.extend(dcc.SentMessageManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.SentMessageManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.SentMessageManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.SentMessageManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.SentMessageManager} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.SentMessageManager} self
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.SentMessageManager.prototype.initializeProperties = function(self, as) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.SentMessageManager.prototype.initializeProperties = function(self, as) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 };
 
@@ -56,7 +56,7 @@ dcc.SentMessageManager.prototype.initializeProperties = function(self, as) {
  * This method returns the URL.
  * @returns {String} URL
  */
-dcc.SentMessageManager.prototype.getUrl = function() {
+_pc.SentMessageManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.getBaseUrl();
   sb += this.accessor.getCurrentCell().getName();
@@ -67,27 +67,27 @@ dcc.SentMessageManager.prototype.getUrl = function() {
 ///**
 //* 送信メッセージを取得.
 //* @param {String} messageId メッセージID
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method gets the outgoing messages.
  * @param {String} messageId MessageID
- * @return {dcc.Message} Message object 
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object 
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.SentMessageManager.prototype.retrieve = function(messageId) {
+_pc.SentMessageManager.prototype.retrieve = function(messageId) {
   var json = this.internalRetrieve(messageId);
-  return new dcc.Message(this.accessor, json);
+  return new _pc.Message(this.accessor, json);
 };
 
 /**
  * This method delete message on the basis of messageID
  * @param {String} messageId
  * @param {String} etag
- * @returns {dcc.Promise} response
+ * @returns {_pc.Promise} response
  */
-dcc.SentMessageManager.prototype.del = function(messageId, etag) {
+_pc.SentMessageManager.prototype.del = function(messageId, etag) {
 	var key = "'" + messageId + "'";
 	var response = this.internalDelMultiKey(key, etag);
 	return response;

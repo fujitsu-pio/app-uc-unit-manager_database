@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.fujitsu</groupId>
-	<artifactId>Personium_Unit_Manager</artifactId>
+	<groupId>io.personium</groupId>
+	<artifactId>personium-unit-manager</artifactId>
 	<packaging>war</packaging>
-	<version>2.0.0</version>
+	<version>1.4.1</version>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -24,15 +24,15 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<testSource>1.7</testSource>
-                    <testTarget>1.7</testTarget>
+					<source>1.8</source>
+					<target>1.8</target>
+					<testSource>1.8</testSource>
+                    <testTarget>1.8</testTarget>
 				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.7</version>
+				<version>1.8</version>
 				<executions>
 					<execution>
 						<phase>test</phase>
@@ -100,9 +100,7 @@
 							<HudsonJavaHome>${JAVA_HOME}</HudsonJavaHome>
 							<HudsonWorkspace>${WORKSPACE}</HudsonWorkspace>
 							<HudsonUrl>${HUDSON_URL}</HudsonUrl>
-							<HudsonSvnRevision>V2_${SVN_REVISION}</HudsonSvnRevision>
 							<Build_Environment>${environment.type}</Build_Environment>
-							<SVN_URL>${SVN_URL}</SVN_URL>
 						</manifestEntries>
 					</archive>
 				</configuration>
@@ -145,7 +143,7 @@
 -->
 			</plugin>
 		</plugins>
-		<finalName>PCS_Portal_${project.version}_${environment.type}_${SVN_REVISION}</finalName>
+		<finalName>personium-unit-mgr</finalName>
 	</build>
 
 	<dependencies>
@@ -316,7 +314,7 @@
 					<docencoding>UTF-8</docencoding>
 					<charset>UTF-8</charset>
 					<encoding>UTF-8</encoding>
- 					<excludePackageNames>com.fujitsu.dc.client.utils:com.fujitsu.dc.client.http</excludePackageNames>
+ 					<excludePackageNames>io.personium.client.utils:io.personium.client.http</excludePackageNames>
 					<show>public</show>							
 				</configuration>
 			</plugin>
@@ -372,7 +370,7 @@
 				<version>2.8</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<configLocation>dc-checks.xml</configLocation>
+					<configLocation>personium-checkstyle.xml</configLocation>
 					<propertiesLocation>checkstyle_maven.properties</propertiesLocation>
 				</configuration>
 				<reportSets>

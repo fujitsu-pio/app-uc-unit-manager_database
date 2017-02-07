@@ -45,8 +45,8 @@ boxProfile.prototype.boxProfileRoleTable = function () {
 	var boxName = sessionStorage.boxName;
 	$(".dynamicBoxProfileRow").remove();
 	var accessor = objCommon.initializeAccessor(url, cellName);
-	var objAbstractDataContext =  new dcc.AbstractODataContext(accessor);
-	var objLinkManager = new dcc.LinkManager(accessor, objAbstractDataContext);
+	var objAbstractDataContext =  new _pc.AbstractODataContext(accessor);
+	var objLinkManager = new _pc.LinkManager(accessor, objAbstractDataContext);
 	var response =  objLinkManager.retrieveBoxProfileLinks(objAbstractDataContext,objBoxProfile.SOURCE, objBoxProfile.DESTINATION, boxName);
 	var responseBody = response.bodyAsJson();
 	var json = responseBody.d.results;
@@ -103,7 +103,7 @@ boxProfile.prototype.deleteBoxProfileRole = function () {
 	var boxName = sessionStorage.boxName;
 	var roleName = sessionStorage.BoxProfileRoleName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var response = objRoleManager.del(roleName, boxName);
 	var statusCode = objCommon.getStatusCode(response);
 	if (statusCode == 204) {
@@ -122,7 +122,7 @@ boxProfile.prototype.deleteBoxProfileRelation = function () {
 	var boxName = sessionStorage.boxName;
 	var relationName = sessionStorage.BoxProfileRelationName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelManager = new dcc.RelationManager(accessor);
+	var objRelManager = new _pc.RelationManager(accessor);
 	var response = objRelManager.del(relationName, boxName);
 	var statusCode = objCommon.getStatusCode(response);
 	if (statusCode === 204) {
@@ -144,8 +144,8 @@ boxProfile.prototype.createRoleFromBoxProfile = function () {
 	json = {"Name" : roleName,"_Box.Name" : boxName};
 	if (objBoxProfile.validateRoleName(roleName,"roleBoxPopupErrorMsg")) {
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objRole = new dcc.Role(accessor, json);
-		var objRoleManager = new dcc.RoleManager(accessor);
+		var objRole = new _pc.Role(accessor, json);
+		var objRoleManager = new _pc.RoleManager(accessor);
 		var check =false;
 		try {
 			objRoleManager.retrieve(roleName,boxName);
@@ -215,8 +215,8 @@ boxProfile.prototype.boxProfileRelationTable = function () {
 	var boxName = sessionStorage.boxName;
 	$(".dynamicBoxRelationRow").remove();
 	var accessor = objCommon.initializeAccessor(url, cellName);
-	var objAbstractDataContext =  new dcc.AbstractODataContext(accessor);
-	var objLinkManager = new dcc.LinkManager(accessor, objAbstractDataContext);
+	var objAbstractDataContext =  new _pc.AbstractODataContext(accessor);
+	var objLinkManager = new _pc.LinkManager(accessor, objAbstractDataContext);
 	var response =  objLinkManager.retrieveBoxProfileLinks(objAbstractDataContext,objBoxProfile.SOURCE, "Relation", boxName);
 	var responseBody = response.bodyAsJson();
 	var json = responseBody.d.results;
@@ -264,8 +264,8 @@ boxProfile.prototype.createRelationFromBoxProfile = function () {
 	json = {"Name" : relationName,"_Box.Name" : boxName};
 	if (objBoxProfile.validateRelationName(relationName)){
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objRelation = new dcc.Relation(accessor, json);
-		var objRelationManager = new dcc.RelationManager(accessor);
+		var objRelation = new _pc.Relation(accessor, json);
+		var objRelationManager = new _pc.RelationManager(accessor);
 		var check = false;
 		try {
 			objRelationManager.retrieve(relationName, boxName);
@@ -507,7 +507,7 @@ boxProfile.prototype.editBoxProfile = function(json){
 	}
 	var path = baseUrl + cellName + "/" + boxName + "/";
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
 	response = objJDavCollection.put(objBoxProfile.profileFileName, "application/json", JSON.stringify(json), "*");
 	return response;
 	};
@@ -530,7 +530,7 @@ boxProfile.prototype.retrieveCollectionAPIResponse = function(profileFileName){
 	}
 	var path = baseUrl+cellName+"/" + boxName + "/";
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
 	response = objJDavCollection.getJSON(profileFileName);
 	return response;
 };
@@ -747,7 +747,7 @@ boxProfile.prototype.createBoxProfile = function (boxName, fileData) {
 	var cellName = sessionStorage.selectedcell;
 	var path = baseUrl+cellName+"/"+boxName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
 	response = objJDavCollection.put(objBoxProfile.profileFileName, "application/json", JSON.stringify(fileData), "*");
 	return response;
 };

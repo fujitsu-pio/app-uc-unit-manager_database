@@ -34,7 +34,7 @@ relationToExternalCellMapping.prototype.retrieveLinkedExtCellCount = function() 
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var uri = objRelationManager.getUrl();
 	var key="";
 	var relationName = sessionStorage.relationName;
@@ -46,7 +46,7 @@ relationToExternalCellMapping.prototype.retrieveLinkedExtCellCount = function() 
 	}
 	uri += key + "/"+"_ExtCell";
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -64,7 +64,7 @@ relationToExternalCellMapping.prototype.retrieveChunkedData = function(lowerLimi
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var uri = objRelationManager.getUrl();
 	var key="";
 	var relationName = sessionStorage.relationName;
@@ -77,7 +77,7 @@ relationToExternalCellMapping.prototype.retrieveChunkedData = function(lowerLimi
 	uri += key + "/"+"_ExtCell";
 	uri = uri + "?$orderby=__updated desc &$skip=" + lowerLimit + "&$top="
 			+ upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -132,11 +132,11 @@ relationToExternalCellMapping.prototype.getExternalCellList = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var count = objExtCell.retrieveRecordCount();
 	var uri = objExtCellManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -446,8 +446,8 @@ relationToExternalCellMapping.prototype.deleteRelationExtCellMapping = function(
 	var externalCellURI = encodeURIComponent(extCellUrl);
 	var accessor = objCommon.initializeAccessor(getClientStore().baseURL,
 			sessionStorage.selectedcell, "", "");
-	var context = new dcc.AbstractODataContext(accessor);
-	var objLinkManager = new dcc.LinkManager(accessor, context);
+	var context = new _pc.AbstractODataContext(accessor);
+	var objLinkManager = new _pc.LinkManager(accessor, context);
 	var relationName = sessionStorage.relationName;
 	var mainBoxValue = getUiProps().MSG0039;
 	var boxName = sessionStorage.boxName;
@@ -544,7 +544,7 @@ relationToExternalCellMapping.prototype.getExtCellUrlForDelete = function(select
 		var cellName = sessionStorage.selectedcell;
 		var baseUrl = getClientStore().baseURL;
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objRelationManager = new dcc.RelationManager(accessor);
+		var objRelationManager = new _pc.RelationManager(accessor);
 		var uri = objRelationManager.getUrl();
 		var key="";
 		var relationName = sessionStorage.relationName;
@@ -558,7 +558,7 @@ relationToExternalCellMapping.prototype.getExtCellUrlForDelete = function(select
 		uri += key + "/"+"_ExtCell";
 		uri = uri + "?$orderby=__updated desc &$top="
 				+ totalRecordCount;
-		var restAdapter = dcc.RestAdapterFactory.create(accessor);
+		var restAdapter = _pc.RestAdapterFactory.create(accessor);
 		var response = restAdapter.get(uri, "application/json");
 		var json = response.bodyAsJson().d.results;
 		return json;

@@ -223,7 +223,7 @@ Personium Unit Manager Demo App
 					<div class="browserSupportedMessage" id="incompatibleBrowseMsg">
 					<label style="display: table;margin: 0 auto;font-size: 13pt;color: #c80000">Your browser is not supported.</label>
 					</br>
-					<label style="display: table;margin: 0 auto;">To use Persona Container, we recommend using the latest version</label>
+					<label style="display: table;margin: 0 auto;">To use Personium unit manager, we recommend using the latest version</label>
 					</br>
 					<label style="display: table;margin: 0 auto;margin-top: -14px">of Google Chrome.</label>
 					</div>
@@ -252,7 +252,7 @@ Personium Unit Manager Demo App
 							<select id="ddLanguageSelector" name="ddLanguageSelector" class="dropDownBig" onclick="" style="float: left;margin-top: -17px;margin-right: 10px;padding-bottom: 2px;margin-left: 80px;height: 30px;width: 150px;">
 						
 						<option value="en">English(en)</option>
-						<option value="jp">Japanese(jp)</option>
+						<option value="ja">Japanese(ja)</option>
 					</select>
 							</dt>
 							<dt class="dtLoginBtn">

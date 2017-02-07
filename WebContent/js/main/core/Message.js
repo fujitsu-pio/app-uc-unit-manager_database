@@ -15,41 +15,41 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Boxへアクセスするためのクラス.
 //* @constructor
-//* @augments dcc.AbstractODataContext
+//* @augments _pc.AbstractODataContext
 //*/
 /**
- * It creates a new object dcc.Message.
+ * It creates a new object _pc.Message.
  * @class This class represents Message object for Sent and Received Messages functionality.
  * @constructor
- * @augments dcc.AbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.AbstractODataContext
+ * @param {_pc.Accessor} Accessor
  * @param {Object} json
  */
-dcc.Message = function(as, json) {
+_pc.Message = function(as, json) {
   this.initializeProperties(this, as, json);
 };
-dcc.DcClass.extend(dcc.Message, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.Message, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Message} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Message} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json JSONオブジェクト
 //* @param {?} path
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Message} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Message} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} json JSON object
  */
-dcc.Message.prototype.initializeProperties = function(self, as, json) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.Message.prototype.initializeProperties = function(self, as, json) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
 ///** 送信メッセージのマネージャクラス. */
@@ -67,8 +67,8 @@ dcc.Message.prototype.initializeProperties = function(self, as, json) {
   }
 
   if (as !== undefined) {
-    self.sent = new dcc.SentMessageManager(as, this);
-    self.received = new dcc.ReceivedMessageManager(as, this);
+    self.sent = new _pc.SentMessageManager(as, this);
+    self.received = new _pc.ReceivedMessageManager(as, this);
   }
 };
 
@@ -80,6 +80,6 @@ dcc.Message.prototype.initializeProperties = function(self, as, json) {
  * This method returns the json as body.
  * @return {Object} Body
  */
-dcc.Message.prototype.getBody = function() {
+_pc.Message.prototype.getBody = function() {
   return this.body;
 };

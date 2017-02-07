@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* コマンドを$Batchフォーマットに生成する.
@@ -24,28 +24,28 @@
 /**
  * This class is used to generate the $ Batch format command.
  * @class Represents ODataBatch.
- * @param {dcc.Accessor} Accessor
+ * @param {_pc.Accessor} Accessor
  * @param {String} name
  */
-dcc.ODataBatch = function(as, name) {
+_pc.ODataBatch = function(as, name) {
   this.initializeProperties(this, as, name);
 };
-dcc.DcClass.extend(dcc.ODataBatch, dcc.ODataCollection);
+_pc.PersoniumClass.extend(_pc.ODataBatch, _pc.ODataCollection);
 
 ///**
 //* オブジェクトを初期化.
-//* @param {dcc.EntityType} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.EntityType} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json サーバーから返却されたJSONオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.EntityType} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.EntityType} self
+ * @param {_pc.Accessor} as Accessor
  * @param {String} name Path to URL
  */
-dcc.ODataBatch.prototype.initializeProperties = function(self, as, name) {
-  this.uber = dcc.ODataCollection.prototype;
+_pc.ODataBatch.prototype.initializeProperties = function(self, as, name) {
+  this.uber = _pc.ODataCollection.prototype;
   this.uber.initializeProperties(self, as, name);
   this.accessor.setBatch(true);
 
@@ -58,17 +58,17 @@ dcc.ODataBatch.prototype.initializeProperties = function(self, as, name) {
 //*/
 /**
  * This method is responsible for Batch execution of commands.
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataBatch.prototype.send = function() {
-  var url = dcc.UrlUtils.append(this.getPath(), "$batch");
+_pc.ODataBatch.prototype.send = function() {
+  var url = _pc.UrlUtils.append(this.getPath(), "$batch");
   var boundary = this.accessor.getBatchAdapter().getBatchBoundary();
   var contentType = "multipart/mixed; boundary=" + boundary;
 
-  var rest = new dcc.RestAdapter(this.accessor);
+  var rest = new _pc.RestAdapter(this.accessor);
   var res = rest.post(url, this.accessor.getBatchAdapter().getBody(), contentType);
 
-  var parser = new dcc.ODataBatchResponseParser();
+  var parser = new _pc.ODataBatchResponseParser();
 
   this.odataResponses = parser.parse(res.bodyAsString(), boundary);
 };
@@ -79,9 +79,9 @@ dcc.ODataBatch.prototype.send = function() {
 //*/
 /**
  * This method is responsible for inserting the BatchBoundary.
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ODataBatch.prototype.insertBoundary = function() {
+_pc.ODataBatch.prototype.insertBoundary = function() {
   this.accessor.getBatchAdapter().insertBoundary();
 };
 
@@ -93,7 +93,7 @@ dcc.ODataBatch.prototype.insertBoundary = function() {
  * This method acquires batch execution result.
  * @return {Object} batch execution result object
  */
-dcc.ODataBatch.prototype.getBatchResponses = function() {
+_pc.ODataBatch.prototype.getBatchResponses = function() {
   return this.odataResponses;
 };
 
@@ -101,10 +101,10 @@ dcc.ODataBatch.prototype.getBatchResponses = function() {
  * Batch $links Generate link.
  * @param {String} name EntitySet Name
  * @param {String} id Of User data __id
- * @returns {dcc.BatchLinksEntity} BatchLinksEntity
+ * @returns {_pc.BatchLinksEntity} BatchLinksEntity
  */
-dcc.ODataBatch.prototype.batchLinksEntity = function(name, id) {
-  return new dcc.BatchLinksEntity(name, id, this.accessor, this.getPath());
+_pc.ODataBatch.prototype.batchLinksEntity = function(name, id) {
+  return new _pc.BatchLinksEntity(name, id, this.accessor, this.getPath());
 };
 
 ///**
@@ -119,6 +119,6 @@ dcc.ODataBatch.prototype.batchLinksEntity = function(name, id) {
  * @param {String} id __id Of user data
  * @return {Object} Generated Link target object
  */
-dcc.ODataBatch.prototype.batchLinksTarget = function(name, id) {
-  return new dcc.BatchLinksEntity(name, id);
+_pc.ODataBatch.prototype.batchLinksTarget = function(name, id) {
+  return new _pc.BatchLinksEntity(name, id);
 };

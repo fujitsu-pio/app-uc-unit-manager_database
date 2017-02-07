@@ -3,10 +3,10 @@
 	<timestamp key="bySecond" datePattern="yyyy-MM-dd" />
 	<property resource="environment.properties" />
 	<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_HOME}/PCS_Portal.log</file>
+		<file>${LOG_HOME}/personium_unit-mgr.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			 <!-- rollover daily -->
-			 <fileNamePattern>${LOG_HOME}/PCS_Portal.log.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+			 <fileNamePattern>${LOG_HOME}/personium_unit-mgr.log.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
              <timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<!-- or whenever the file size reaches 100MB -->
@@ -22,7 +22,7 @@
 	<logger name="org.hibernate">
         <level value="OFF"/>
     </logger>
-	<logger name="com.fujitsu.dc.gui" level="${LEVEL}" />
+	<logger name="io.personium.gui" level="${LEVEL}" />
 	<root level="${LEVEL}">
 		<appender-ref ref="ROLLING" />
 	</root>

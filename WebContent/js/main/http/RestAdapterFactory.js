@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* RestAdapterを生成するクラス.
 //* @class Represents RestAdapterFactory.
 //*/
 /**
- * It creates a new object dcc.RestAdapterFactory.
+ * It creates a new object _pc.RestAdapterFactory.
  * @class This class generates RestAdapter.
  * @constructor
  */
-dcc.RestAdapterFactory = function() {
+_pc.RestAdapterFactory = function() {
 };
 
 ///**
@@ -36,14 +36,14 @@ dcc.RestAdapterFactory = function() {
 //*/
 /**
  * It generate a BatchAdapter or ResrAdapter.
- * @param {dcc.Accessor} accessor object
- * @return {dcc.RestAdapter/dcc.BatchAdapter} object
+ * @param {_pc.Accessor} accessor object
+ * @return {_pc.RestAdapter/_pc.BatchAdapter} object
  */
-dcc.RestAdapterFactory.create = function(accessor) {
+_pc.RestAdapterFactory.create = function(accessor) {
   if (accessor.isBatchMode()) {
     return accessor.getBatchAdapter();
   } else {
-    return new dcc.RestAdapter(accessor);
+    return new _pc.RestAdapter(accessor);
   }
 };
 

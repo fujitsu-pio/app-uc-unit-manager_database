@@ -15,38 +15,38 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Accountのアクセスクラス.
 //* @constructor
-//* @augments dcc.AbstractODataContext
+//* @augments _pc.AbstractODataContext
 //*/
 /**
- * It creates a new object dcc.Account.
+ * It creates a new object _pc.Account.
  * @class This class creates an Account as cell control object.
  * @constructor
- * @augments dcc.AbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.AbstractODataContext
+ * @param {_pc.Accessor} Accessor
  * @param {Object} body 
  */
-dcc.Account = function(as, body) {
+_pc.Account = function(as, body) {
   this.initializeProperties(this, as, body);
 };
-dcc.DcClass.extend(dcc.Account, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.Account, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Account} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Account} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Account} self
- * @param {dcc.Accessor} as accessor
+ * @param {_pc.Account} self
+ * @param {_pc.Accessor} as accessor
  */
-dcc.Account.prototype.initializeProperties = function(self, as, json) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.Account.prototype.initializeProperties = function(self, as, json) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
 ///** クラス名. */
@@ -75,7 +75,7 @@ dcc.Account.prototype.initializeProperties = function(self, as, json) {
  * This method sets the account name.
  * @param {String} value
  */
-dcc.Account.prototype.setName = function(value) {
+_pc.Account.prototype.setName = function(value) {
   this.name = value;
 };
 
@@ -87,7 +87,7 @@ dcc.Account.prototype.setName = function(value) {
  * This method gets the account name.
  * @return {String} Account name
  */
-dcc.Account.prototype.getName = function() {
+_pc.Account.prototype.getName = function() {
   return this.name;
 };
 
@@ -99,7 +99,7 @@ dcc.Account.prototype.getName = function() {
  * This method sets the password.
  * @param {String} value password
  */
-dcc.Account.prototype.setPassword = function(value) {
+_pc.Account.prototype.setPassword = function(value) {
   this.password = value;
 };
 
@@ -111,7 +111,7 @@ dcc.Account.prototype.setPassword = function(value) {
  * This method gets the password.
  * @return {String} password value
  */
-dcc.Account.prototype.getPassword = function() {
+_pc.Account.prototype.getPassword = function() {
   return this.password;
 };
 
@@ -123,7 +123,7 @@ dcc.Account.prototype.getPassword = function() {
  * This method gets the Odata key.
  * @return {String} OData key information
  */
-dcc.Account.prototype.getKey = function() {
+_pc.Account.prototype.getKey = function() {
   return "('" + this.name + "')";
 };
 
@@ -135,7 +135,7 @@ dcc.Account.prototype.getKey = function() {
  * This method gets the class name.
  * @return {String} OData class name
  */
-dcc.Account.prototype.getClassName = function() {
+_pc.Account.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 

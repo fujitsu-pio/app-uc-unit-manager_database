@@ -509,7 +509,7 @@ entityTypeProperty.prototype.retrieveMaxPropertyList = function (entityTypeName)
 			var cellName = sessionStorage.selectedcell;
 			var accessor = objCommon.initializeAccessor(baseUrl, cellName, "",
 					boxName);
-			var restAdapter = dcc.RestAdapterFactory.create(accessor);
+			var restAdapter = _pc.RestAdapterFactory.create(accessor);
 			var response = restAdapter.get(uri, "application/json");
 			var json = response.bodyAsJson().d.results;
 			return json;
@@ -538,7 +538,7 @@ entityTypeProperty.prototype.retrievePropertyAPIResponse = function(json,
 	var collectionName = uEntityTypeOperations.getFolderHeirarchy(boxName);//sessionStorage.collectionName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, "",
 			boxName);
-	var objPropertyManager = new dcc.PropertyManager(accessor, collectionName);
+	var objPropertyManager = new _pc.PropertyManager(accessor, collectionName);
 	if (operationPerformed === "CREATE") {
 		response = objPropertyManager.create(json);
 	}
@@ -961,7 +961,7 @@ entityTypeProperty.prototype.createPropertyDetailsTable = function(
 	dynamicRowsCTPDetailsView += "<td class='entityTypeDetailsTable complexTypePropText' style='padding-top:1px;overflow:auto;max-height:45px;display: block;'>" + uri + "</td>";
 	dynamicRowsCTPDetailsView += "</tr>";
 	$("#propertyDetailsView").append(dynamicRowsCTPDetailsView);
-	if (sessionStorage.selectedLanguage == 'jp') {
+	if (sessionStorage.selectedLanguage == 'ja') {
 		$(".entityTypeProp").addClass('japaneseFont');
 		$(".complexTypePropMetadata").addClass('japaneseFont');
 	}

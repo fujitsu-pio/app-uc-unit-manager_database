@@ -185,8 +185,8 @@ schemaManagement.prototype.createAssociationEndOne = function(fromAssEnd, fromAs
 	var path = sessionStorage.selectedCollectionURL;//baseUrl+cellName+"/"+boxName + "/" + colName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
 	var json = {"Name":fromAssEnd, "_EntityType.Name":fromEntityTypeName, "Multiplicity":fromAssType};
-	var objjAssociationEnd = new dcc.AssociationEnd(accessor, json, path);
-	var objAssociationEndManager = new dcc.AssociationEndManager(accessor, objjAssociationEnd);
+	var objjAssociationEnd = new _pc.AssociationEnd(accessor, json, path);
+	var objAssociationEndManager = new _pc.AssociationEndManager(accessor, objjAssociationEnd);
 	var response = objAssociationEndManager.create(objjAssociationEnd);
 	return true;
 };
@@ -211,8 +211,8 @@ schemaManagement.prototype.createAssociationTwoWithLink = function(toEntityTypeN
 	var path = sessionStorage.selectedCollectionURL;//baseUrl+cellName+"/"+boxName + "/" + colName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
 	var json = {"Name":toAssEnd, "Multiplicity":toAssType,  "_EntityType.Name":toEntityTypeName};
-	var objjAssociationEnd = new dcc.AssociationEnd(accessor, json, path);
-	var objAssociationEndManager = new dcc.AssociationEndManager(accessor, objjAssociationEnd);
+	var objjAssociationEnd = new _pc.AssociationEnd(accessor, json, path);
+	var objAssociationEndManager = new _pc.AssociationEndManager(accessor, objjAssociationEnd);
 	var response = objAssociationEndManager.createNavProList(objjAssociationEnd, fromEntityTypeName, fromAssEnd);
 	return response;
 };
@@ -234,8 +234,8 @@ schemaManagement.prototype.associationAlreadyExists = function(entityTypeName, a
 	var colName= sessionStorage.collectionName;
 	var path = sessionStorage.selectedCollectionURL;//baseUrl+cellName+"/"+boxName + "/" + colName;
 	var json = "";
-	var objjAssociationEnd = new dcc.AssociationEnd(accessor, json, path);
-	var objAssociationEndManager = new dcc.AssociationEndManager(accessor, objjAssociationEnd);
+	var objjAssociationEnd = new _pc.AssociationEnd(accessor, json, path);
+	var objAssociationEndManager = new _pc.AssociationEndManager(accessor, objjAssociationEnd);
 	var response = null;
 	try {
 		 response = objAssociationEndManager.retrieve(ascEnd, entityTypeName);
@@ -356,8 +356,8 @@ schemaManagement.prototype.createAssociationManager = function(){
 	var collectionName= sessionStorage.collectionName;
 	var path = baseUrl+cellName+"/"+boxName + "/" + collectionName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objDCCollection = new dcc.DcCollection(accessor , path);
-	var objAssociationEndManager = new dcc.AssociationEndManager(accessor, objDCCollection);
+	var objDCCollection = new _pc.PersoniumCollection(accessor , path);
+	var objAssociationEndManager = new _pc.AssociationEndManager(accessor, objDCCollection);
 	return objAssociationEndManager;
 };
 
@@ -377,9 +377,9 @@ schemaManagement.prototype.retrieveAPIResponse = function (entityTypeName, mode,
 	var path = sessionStorage.selectedCollectionURL;//baseUrl+cellName+"/"+boxName + "/" + collectionName;
 	//var json = {"Name":associationEndName, "_EntityType.Name":entityTypeName};
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objDCCollection = new dcc.DcCollection(accessor , path);
-	//var objJassociationEnd = new dcc.AssociationEnd(accessor, json, path);
-	var objAssociationEndManager = new dcc.AssociationEndManager(accessor, objDCCollection);
+	var objDCCollection = new _pc.PersoniumCollection(accessor , path);
+	//var objJassociationEnd = new _pc.AssociationEnd(accessor, json, path);
+	var objAssociationEndManager = new _pc.AssociationEndManager(accessor, objDCCollection);
 	if (mode == "fromEditMode") {
 		response = objAssociationEndManager.retrieveAssociationList(entityTypeName, associationEndName);
 	} 
@@ -995,7 +995,7 @@ schemaManagement.prototype.retrieveRecordCountAssociationEnd = function(entityTy
 		uri = objAssociationEndManager.getAssociationUri(entityTypeName);
 	}
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -1015,7 +1015,7 @@ schemaManagement.prototype.retrieveChunkedData = function(entityTypeName, lowerL
 		uri = objAssociationEndManager.getAssociationUri(entityTypeName);
 	}
 	uri = uri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -1029,10 +1029,10 @@ schemaManagement.prototype.retrieveChunkedData = function(entityTypeName, lowerL
  * @param accessor
  */
 schemaManagement.prototype.retrieveRecordCount = function(objjDCCollection, accessor) {
-	var objComplexTypeManager = new dcc.ComplexTypeManager(accessor, objjDCCollection);
+	var objComplexTypeManager = new _pc.ComplexTypeManager(accessor, objjDCCollection);
 	var uri = objComplexTypeManager.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -1051,13 +1051,13 @@ schemaManagement.prototype.fetchComplexTypes = function(url) {
 	}
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objjDCCollection = new dcc.DcCollection(accessor, url);
+	var objjDCCollection = new _pc.PersoniumCollection(accessor, url);
 	var recordCount = uSchemaManagement.retrieveRecordCount(objjDCCollection, accessor);
-	var objComplexTypeManager = new dcc.ComplexTypeManager(accessor,
+	var objComplexTypeManager = new _pc.ComplexTypeManager(accessor,
 			objjDCCollection);
 	var uri = objComplexTypeManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top="+recordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var sortedJSONString = response.bodyAsJson().d.results;
 	var totalRecordsize = sortedJSONString.length;

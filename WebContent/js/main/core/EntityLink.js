@@ -21,16 +21,16 @@
  * @constructor
  * @augments AbstractODataContext
  */
-dcc.EntityLink = function(as, path) {
+_pc.EntityLink = function(as, path) {
     this.initializeProperties(this, as, path);
 };
-dcc.DcClass.extend(dcc.EntityLink, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.EntityLink, _pc.AbstractODataContext);
 
 /**
  * プロパティを初期化する.
  */
-dcc.EntityLink.prototype.initializeProperties = function(self, as, path) {
-    this.uber = dcc.AbstractODataContext.prototype;
+_pc.EntityLink.prototype.initializeProperties = function(self, as, path) {
+    this.uber = _pc.AbstractODataContext.prototype;
     this.uber.initializeProperties(self, as);
 
     if (as !== undefined) {
@@ -48,7 +48,7 @@ dcc.EntityLink.prototype.initializeProperties = function(self, as, path) {
  * URLを取得.
  * @return URL文字列
  */
-dcc.EntityLink.prototype.getPath = function() {
+_pc.EntityLink.prototype.getPath = function() {
     return this.url;
 };
 
@@ -56,7 +56,7 @@ dcc.EntityLink.prototype.getPath = function() {
  * ODataのキーを取得する.
  * @return ODataのキー情報
  */
-dcc.EntityLink.prototype.getKey = function() {
+_pc.EntityLink.prototype.getKey = function() {
     return "";
 };
 
@@ -64,7 +64,7 @@ dcc.EntityLink.prototype.getKey = function() {
  * クラス名をキャメル型で取得する.
  * @return ODataのキー情報
  */
-dcc.EntityLink.prototype.getClassName = function() {
+_pc.EntityLink.prototype.getClassName = function() {
     return this.CLASSNAME;
 };
 

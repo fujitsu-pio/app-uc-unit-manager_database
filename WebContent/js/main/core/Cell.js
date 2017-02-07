@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Cellへアクセスするためのクラス.
 //* @constructor
-//* @augments dcc.AbstractODataContext
+//* @augments _pc.AbstractODataContext
 //*/
 /**
- * It creates a new object dcc.Cell.
+ * It creates a new object _pc.Cell.
  * @class This class represents Cell object to perform cell related operations.
  * @constructor
- * @augments dcc.AbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.AbstractODataContext
+ * @param {_pc.Accessor} Accessor
  * @param {String} key
  */
-dcc.Cell = function(as, key) {
+_pc.Cell = function(as, key) {
   this.initializeProperties(this, as, key);
 };
-dcc.DcClass.extend(dcc.Cell, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.Cell, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Cell} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Cell} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} body
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Cell} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Cell} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} body
  */
-dcc.Cell.prototype.initializeProperties = function(self, as, body) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.Cell.prototype.initializeProperties = function(self, as, body) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
 ///** キャメル方で表現したクラス名. */
@@ -104,15 +104,15 @@ dcc.Cell.prototype.initializeProperties = function(self, as, body) {
 
   if (self.accessor !== undefined) {
     self.accessor.setCurrentCell(this);
-    self.relation = new dcc.RelationManager(self.accessor);
-    self.role = new dcc.RoleManager(self.accessor);
-    self.message = new dcc.MessageManager(self.accessor);
+    self.relation = new _pc.RelationManager(self.accessor);
+    self.role = new _pc.RoleManager(self.accessor);
+    self.message = new _pc.MessageManager(self.accessor);
 //  this.acl = new AclManager(this.accessor);
-    self.account = new dcc.AccountManager(self.accessor);
-    self.box = new dcc.BoxManager(self.accessor);
+    self.account = new _pc.AccountManager(self.accessor);
+    self.box = new _pc.BoxManager(self.accessor);
 //  this.extRole = new ExtRoleManager(this.accessor);
-    self.extCell = new dcc.ExtCellManager(self.accessor);
-    self.event = new dcc.EventManager(self.accessor);
+    self.extCell = new _pc.ExtCellManager(self.accessor);
+    self.event = new _pc.EventManager(self.accessor);
   }
 };
 
@@ -124,7 +124,7 @@ dcc.Cell.prototype.initializeProperties = function(self, as, body) {
  * This method gets the Cell name.
  * @return {String} Cell name
  */
-dcc.Cell.prototype.getName = function() {
+_pc.Cell.prototype.getName = function() {
   return this.name;
 };
 
@@ -136,9 +136,9 @@ dcc.Cell.prototype.getName = function() {
  * This method sets the Cell name.
  * @param {String} value Cell name
  */
-dcc.Cell.prototype.setName = function(value) {
+_pc.Cell.prototype.setName = function(value) {
   if (typeof value !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.name = value;
 };
@@ -152,7 +152,7 @@ dcc.Cell.prototype.setName = function(value) {
  * This method gets the URL for performing cell related operations.
  * @return {String} URL of the cell
  */
-dcc.Cell.prototype.getUrl = function() {
+_pc.Cell.prototype.getUrl = function() {
   return this.accessor.getBaseUrl() + encodeURI(this.name) + "/";
 };
 
@@ -164,13 +164,13 @@ dcc.Cell.prototype.getUrl = function() {
 /**
  * This method gets the access token.
  * @return {String} Access Token
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.Cell.prototype.getAccessToken = function() {
+_pc.Cell.prototype.getAccessToken = function() {
   if (this.accessor.getAccessToken() !== null) {
     return this.accessor.getAccessToken();
   } else {
-    throw new dcc.DaoException.create("Unauthorized");
+    throw new _pc.DaoException.create("Unauthorized");
   }
 };
 
@@ -182,7 +182,7 @@ dcc.Cell.prototype.getAccessToken = function() {
  * This method gets the expiration date of the access token.
  * @return {String} expiration date of the access token
  */
-dcc.Cell.prototype.getExpiresIn = function() {
+_pc.Cell.prototype.getExpiresIn = function() {
   return this.accessor.getExpiresIn();
 };
 
@@ -194,7 +194,7 @@ dcc.Cell.prototype.getExpiresIn = function() {
  * This method gets the access token type.
  * @return {String} access token type
  */
-dcc.Cell.prototype.getTokenType = function() {
+_pc.Cell.prototype.getTokenType = function() {
   return this.accessor.getTokenType();
 };
 
@@ -206,13 +206,13 @@ dcc.Cell.prototype.getTokenType = function() {
 /**
  * This method gets the refresh token.
  * @return {String} Refreash token
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.Cell.prototype.getRefreshToken = function() {
+_pc.Cell.prototype.getRefreshToken = function() {
   if (this.accessor.getRefreshToken() !== null) {
     return this.accessor.getRefreshToken();
   } else {
-    throw new dcc.DaoException("Unauthorized");
+    throw new _pc.DaoException("Unauthorized");
   }
 };
 
@@ -224,7 +224,7 @@ dcc.Cell.prototype.getRefreshToken = function() {
  * This method gets the expiration date of the refresh token.
  * @return {String} expiration date of the refresh token
  */
-dcc.Cell.prototype.getRefreshExpiresIn = function() {
+_pc.Cell.prototype.getRefreshExpiresIn = function() {
   return this.accessor.getRefreshExpiresIn();
 };
 
@@ -232,7 +232,7 @@ dcc.Cell.prototype.getRefreshExpiresIn = function() {
  * This method returns the location.
  * @return {String} location
  */
-dcc.Cell.prototype.getLocation = function() {
+_pc.Cell.prototype.getLocation = function() {
   return this.location;
 };
 
@@ -241,10 +241,10 @@ dcc.Cell.prototype.getLocation = function() {
 //* @param user アカウント名
 //* @throws DaoException DAO例外
 //*/
-//dcc.Cell.prototype.setOwnerRepresentativeAccounts = function(user) {
-//var value = "<dc:account>" + user + "</dc:account>";
+//_pc.Cell.prototype.setOwnerRepresentativeAccounts = function(user) {
+//var value = "<p:account>" + user + "</p:account>";
 //RestAdapter rest = (RestAdapter) RestAdapterFactory.create(this.accessor);
-//rest.proppatch(this.getUrl(), "dc:ownerRepresentativeAccounts", value);
+//rest.proppatch(this.getUrl(), "p:ownerRepresentativeAccounts", value);
 //};
 
 ///**
@@ -253,12 +253,12 @@ dcc.Cell.prototype.getLocation = function() {
 //* @throws DaoException DAO例外
 //*/
 //public void setOwnerRepresentativeAccounts(String[] accountName) throws DaoException {
-//dcc.Cell.prototype.setOwnerRepresentativeAccounts = function(accountName) {
+//_pc.Cell.prototype.setOwnerRepresentativeAccounts = function(accountName) {
 //StringBuilder sb = new StringBuilder();
 //for (Object an : accountName) {
-//sb.append("<dc:account>");
+//sb.append("<p:account>");
 //sb.append(an);
-//sb.append("</dc:account>");
+//sb.append("</p:account>");
 //}
 //RestAdapter rest = (RestAdapter) RestAdapterFactory.create(this.accessor);
 //rest.proppatch(this.getUrl(), "dc:ownerRepresentativeAccounts", sb.toString());
@@ -268,20 +268,20 @@ dcc.Cell.prototype.getLocation = function() {
 //* Boxへアクセスするためのクラスを生成.
 //* @param {?} boxName Box Name
 //* @param {?} schemaValue スキーマ名
-//* @return {dcc.Box} 生成したBoxインスタンス
+//* @return {_pc.Box} 生成したBoxインスタンス
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method generates classes to access the Box.
  * @param {String} boxName Box Name
  * @param {String} schemaValue Schema value
- * @return {dcc.Box} Box object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Box} Box object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.Cell.prototype.boxCtl = function(boxName, schemaValue) {
+_pc.Cell.prototype.boxCtl = function(boxName, schemaValue) {
   this.accessor.setBoxName(boxName);
-  var url = dcc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), this.accessor.getBoxName());
-  return new dcc.Box(this.accessor, {"Name":boxName, "Schema":schemaValue}, url);
+  var url = _pc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), this.accessor.getBoxName());
+  return new _pc.Box(this.accessor, {"Name":boxName, "Schema":schemaValue}, url);
 };
 
 ///**
@@ -292,7 +292,7 @@ dcc.Cell.prototype.boxCtl = function(boxName, schemaValue) {
  * This method gets the Base URL.
  * @return {String} baseUrl Base URL
  */
-dcc.Cell.prototype.getBaseUrlString = function() {
+_pc.Cell.prototype.getBaseUrlString = function() {
   return this.accessor.getBaseUrl();
 };
 
@@ -304,7 +304,7 @@ dcc.Cell.prototype.getBaseUrlString = function() {
  * This method gets the key of OData.
  * @return {String} OData key
  */
-dcc.Cell.prototype.getKey = function() {
+_pc.Cell.prototype.getKey = function() {
   return "('" + this.name + "')";
 };
 
@@ -316,7 +316,7 @@ dcc.Cell.prototype.getKey = function() {
  * This method gets the class name.
  * @return {String} OData class name
  */
-dcc.Cell.prototype.getClassName = function() {
+_pc.Cell.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 
@@ -324,6 +324,6 @@ dcc.Cell.prototype.getClassName = function() {
  * Get the cookie peer key.
  * @returns {String} Cookie Peer key
  */
-dcc.Cell.prototype.getCookiePeer = function(){
+_pc.Cell.prototype.getCookiePeer = function(){
   return this.accessor.getCookiePeer();
 };

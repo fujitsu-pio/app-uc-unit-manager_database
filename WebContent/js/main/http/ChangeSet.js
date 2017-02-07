@@ -15,36 +15,36 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* $Batchの複数ChangeSetをまとめる.
 //* @class Represents ChangeSet.
 //*/
 /**
- * It creates a new object dcc.ChangeSet.
+ * It creates a new object _pc.ChangeSet.
  * @class This class puts together a multiple ChangeSet of $ Batch.
  * @constructor
  * @param {String} value
  * @param {String} batchBoundary
  */
-dcc.ChangeSet = function(value, batchBoundary) {
+_pc.ChangeSet = function(value, batchBoundary) {
   this.initializeProperties(this, value, batchBoundary);
 };
 
 ///**
 //* オブジェクトを初期化.
-//* @param {dcc.EntityType} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.EntityType} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json サーバーから返却されたJSONオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.EntityType} self
+ * @param {_pc.EntityType} self
  * @param {String} as ChangeSetBoundary
  * @param {String} BatchBoundary
  */
-dcc.ChangeSet.prototype.initializeProperties = function(self, value, batchBoundary) {
+_pc.ChangeSet.prototype.initializeProperties = function(self, value, batchBoundary) {
   self.changesetBoundary = value;
   self.body = null;
   self.batchBoundary = batchBoundary;
@@ -54,7 +54,7 @@ dcc.ChangeSet.prototype.initializeProperties = function(self, value, batchBounda
  * This method appends the value to ChangeSetBoundary.
  * @param {String} value
  */
-dcc.ChangeSet.prototype.append = function(value) {
+_pc.ChangeSet.prototype.append = function(value) {
   if (this.body === null) {
     this.body = "";
   } else {
@@ -73,7 +73,7 @@ dcc.ChangeSet.prototype.append = function(value) {
  * This method retuns the ChangeSet data.
  * @returns {String} sb.
  */
-dcc.ChangeSet.prototype.get = function(){
+_pc.ChangeSet.prototype.get = function(){
   this.body += "\r\n";
   var sb = "";
   var changeSetFooter = "--" + this.changesetBoundary + "--";
@@ -83,7 +83,7 @@ dcc.ChangeSet.prototype.get = function(){
   try {
     sb += ("Content-Length: " + this.body.length + changeSetFooter.length + "\r\n");
   } catch (e) {
-    throw dcc.DaoException(e.getMessage());
+    throw _pc.DaoException(e.getMessage());
   }
   sb += "\r\n";
   // ChangeSetBody

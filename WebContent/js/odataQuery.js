@@ -323,7 +323,7 @@ odataQuery.prototype.retrieveAPIResponse = function (queryString) {
 	var path = sessionStorage.selectedCollectionURL;//baseUrl + cellName + "/" + boxName + "/" + colName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
 	path += queryString;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = "";
 	var result = false;
 	try{
@@ -1073,7 +1073,7 @@ odataQuery.prototype.checkQueryType = function (json, toggleMode, inlineResponse
 		$("#headerChkBox").attr("disabled",true);
 		$("#headerChkBoxLabel").css("cursor","default");
 		$("#dvNoDataMsg").css('width', '90px');
-		if (sessionStorage.selectedLanguage == 'jp') {
+		if (sessionStorage.selectedLanguage == 'ja') {
 			$("#dvNoDataMsg").css('width', '190px');
 			$("#dvNoDataMsg").addClass('japaneseFont');
 		}
@@ -1170,7 +1170,7 @@ odataQuery.prototype.createRawQueryResponseTable = function (json, toggleMode, i
 		//$(".pagination").hide();
 		var noDataRawView = "<div id='dvNoDataJsonView' class='dvNoDataJsonView' style='width:90px;'>"+ noDataMessage +"</div>";
 	     $("#odataRaw").html(noDataRawView);
-	     if (sessionStorage.selectedLanguage == 'jp') {
+	     if (sessionStorage.selectedLanguage == 'ja') {
 				$("#dvNoDataJsonView").css('width', '190px');
 				$("#dvNoDataJsonView").addClass('japaneseFont');
 			}

@@ -15,37 +15,37 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class RelationのCRUDのためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.RelationManager.
+ * It creates a new object _pc.RelationManager.
  * @class This class performs CRUD operations for Relation object.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  */
-dcc.RelationManager = function(as) {
+_pc.RelationManager = function(as) {
   this.initializeProperties(this, as);
 };
-dcc.DcClass.extend(dcc.RelationManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.RelationManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AbstractODataContext} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.AbstractODataContext} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AbstractODataContext} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.AbstractODataContext} self
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.RelationManager.prototype.initializeProperties = function(self, as) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.RelationManager.prototype.initializeProperties = function(self, as) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 };
 
@@ -57,7 +57,7 @@ dcc.RelationManager.prototype.initializeProperties = function(self, as) {
  * This method generates the URL for relation operations.
  * @returns {String} URL
  */
-dcc.RelationManager.prototype.getUrl = function() {
+_pc.RelationManager.prototype.getUrl = function() {
   var sb = this.getBaseUrl();
   // HCL:-Changes done to get the cellName
   sb += this.accessor.cellName;
@@ -67,17 +67,17 @@ dcc.RelationManager.prototype.getUrl = function() {
 
 ///**
 //* Relationを作成.
-//* @param {dcc.Relation} obj Relationオブジェクト
-//* @return {dcc.Relation} Relationオブジェクト
+//* @param {_pc.Relation} obj Relationオブジェクト
+//* @return {_pc.Relation} Relationオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method performs create operation.
- * @param {dcc.Relation} obj Relation object
- * @return {dcc.Relation} Relation object
- * @throws {dcc.DaoException} DAO exception
+ * @param {_pc.Relation} obj Relation object
+ * @return {_pc.Relation} Relation object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RelationManager.prototype.create = function(obj) {
+_pc.RelationManager.prototype.create = function(obj) {
   var json = null;
   if (obj.getClassName !== undefined && obj.getClassName() === "Relation") {
     var body = {};
@@ -91,38 +91,38 @@ dcc.RelationManager.prototype.create = function(obj) {
     json = this.internalCreate(requestBody);
     if (json.getStatusCode() >= 400) {
       var response = json.bodyAsJson();// throw exception with code
-      throw new dcc.DaoException(response.message.value, response.code);
+      throw new _pc.DaoException(response.message.value, response.code);
     }
-    return new dcc.Relation(this.accessor, json.bodyAsJson().d.results);
+    return new _pc.Relation(this.accessor, json.bodyAsJson().d.results);
   }
 };
 
 ///**
 //* Relationを作成.
 //* @param {Object} body リクエストボディ
-//* @return {dcc.Relation} 作成したRelationオブジェクト
+//* @return {_pc.Relation} 作成したRelationオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
-//dcc.RelationManager.prototype.createAsMap = function(body) {
+//_pc.RelationManager.prototype.createAsMap = function(body) {
 //var json = internalCreate(body);
-//return new dcc.Relation(accessor, json);
+//return new _pc.Relation(accessor, json);
 //};
 
 ///**
 //* Relationを取得(複合キー).
 //* @param {String} relationName 取得対象のRelation名
 //* @param {String}boxName 取得対象のBox名
-//* @return {dcc.Relation} 取得したRelationオブジェクト
+//* @return {_pc.Relation} 取得したRelationオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method performs retrieve operation.
  * @param {String} relationName Relation name
  * @param {String} boxName Box name
- * @return {dcc.Relation} Relation object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Relation} Relation object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RelationManager.prototype.retrieve = function(relationName, boxName) {
+_pc.RelationManager.prototype.retrieve = function(relationName, boxName) {
   var json = null;
   if (typeof boxName === "undefined") {
     json = this.internalRetrieve(relationName);
@@ -130,7 +130,7 @@ dcc.RelationManager.prototype.retrieve = function(relationName, boxName) {
     if (json === true) {
       return json;
     } else {
-      return new dcc.Relation(this.accessor, json);
+      return new _pc.Relation(this.accessor, json);
     }
   }
   var key = "Name='" + relationName + "',_Box.Name='" + boxName + "'";
@@ -139,7 +139,7 @@ dcc.RelationManager.prototype.retrieve = function(relationName, boxName) {
   if (json === true) {
     return json;
   } else {
-    return new dcc.Relation(this.accessor, json);
+    return new _pc.Relation(this.accessor, json);
   }
 };
 
@@ -158,10 +158,10 @@ dcc.RelationManager.prototype.retrieve = function(relationName, boxName) {
  * @param {String} boxName Box name
  * @param {Object} body
  * @param {String} etag
- * @return {dcc.Promise} promise
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Promise} promise
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RelationManager.prototype.update = function(relationName, boxName, body, etag) {
+_pc.RelationManager.prototype.update = function(relationName, boxName, body, etag) {
      var response = null;
      if (boxName !== undefined && boxName !== null) {
       var key = "Name='" + relationName + "',_Box.Name='" + boxName + "'";
@@ -183,10 +183,10 @@ dcc.RelationManager.prototype.update = function(relationName, boxName, body, eta
  * This method performs delete operation.
  * @param {String} relationName Relation name
  * @param {String} boxName Box name
- * @return {dcc.Promise} promise
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Promise} promise
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RelationManager.prototype.del = function(relationName, boxName) {
+_pc.RelationManager.prototype.del = function(relationName, boxName) {
   var key = "Name='"+relationName+"'";
   if (boxName !== undefined && boxName !== null && boxName !== "__") {
     key += ",_Box.Name='"+boxName+"'";

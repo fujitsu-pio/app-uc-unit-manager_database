@@ -15,42 +15,42 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class DAVリソースへアクセスするためのクラス.
 //* @constructor
-//* @augments dcc.DavCollection
+//* @augments _pc.DavCollection
 //*/
 /**
- * It creates a new object dcc.DavResponse.
+ * It creates a new object _pc.DavResponse.
  * @class This class is used to access the DAV resource.
  * @constructor
- * @augments dcc.DavCollection
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.DavCollection
+ * @param {_pc.Accessor} Accessor
  * @param {Object} json
  */
-dcc.DavResponse = function(as, json) {
+_pc.DavResponse = function(as, json) {
   this.initializeProperties(this, as, json);
 };
-dcc.DcClass.extend(dcc.DavResponse, dcc.DavCollection);
+_pc.PersoniumClass.extend(_pc.DavResponse, _pc.DavCollection);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.DavResponse} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.DavResponse} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json JSONオブジェクト
 //* @param {?} path
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.DavResponse} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.DavResponse} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} json JSON object
  * @param {String} path
  */
-dcc.DavResponse.prototype.initializeProperties = function(self, as, body) {
-  this.uber = dcc.DavCollection.prototype;
+_pc.DavResponse.prototype.initializeProperties = function(self, as, body) {
+  this.uber = _pc.DavCollection.prototype;
   this.uber.initializeProperties(self, as);
 
   if (body !== undefined) {
@@ -66,6 +66,6 @@ dcc.DavResponse.prototype.initializeProperties = function(self, as, body) {
  * This method is used to return the body.
  * @return {Object} Body
  */
-dcc.DavResponse.prototype.getBody = function() {
+_pc.DavResponse.prototype.getBody = function() {
   return this.body;
 };

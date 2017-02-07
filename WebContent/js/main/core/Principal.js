@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 /**
  * Principal Interface http://tools.ietf.org/html/rfc3744#section-5.5.1.
  * @class Represents Principal.
  */
-dcc.Principal = function() {
+_pc.Principal = function() {
 };
 
 /**
@@ -29,5 +29,5 @@ dcc.Principal = function() {
  * @const
  * @type {String}
  */
-dcc.Principal.ALL = "all";
+_pc.Principal.ALL = "all";
 

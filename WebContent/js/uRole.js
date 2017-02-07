@@ -40,10 +40,10 @@ uRole.prototype.retrieveChunkedData = function (lowerLimit, upperLimit) {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var dataUri = objRoleManager.getUrl();
 	dataUri = dataUri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var dataResponse = restAdapter.get(dataUri, "application/json");
 	var dataJson = dataResponse.bodyAsJson().d.results;
 	return dataJson;
@@ -91,7 +91,7 @@ function deleteRole(roleBoxPair,count) {
 	}
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl,cellName,"","");
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var response = objRoleManager.del(roleName, boxName);
 	try {
 		if (response.resolvedValue.status == 204) {
@@ -295,8 +295,8 @@ function getAccountCount(roleName,boxName,accessor){
 	var key = null;
 	var accountCount =0;
 	var baseUrl = getClientStore().baseURL;
-	var objJdcContext = new dcc.DcContext(baseUrl, cellName, "", "");
-	var objLinkMgr = new dcc.LinkManager(accessor,objJdcContext );
+	var objJdcContext = new _pc.PersoniumContext(baseUrl, cellName, "", "");
+	var objLinkMgr = new _pc.LinkManager(accessor,objJdcContext );
 	key = "(Name="+roleName+",_Box.Name="+boxName+")";
 	if (boxName == "'"+mainBoxValue+"'") {
 		key = "(Name="+roleName+")";
@@ -402,7 +402,7 @@ function createChunkedRoleTable(json, recordSize){
 function createRoleManager(){
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl,cellName,"","");
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	return objRoleManager;
 }
 
@@ -414,10 +414,10 @@ function retrieveRoleRecordCount() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var uri = objRoleManager.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -536,8 +536,8 @@ function createRole() {
 				boxName = undefined;
 			}
 			json = {"Name" : roleName,"_Box.Name" : boxName};
-			var objJRole = new dcc.Role(accessor, json);
-			var objRoleManager = new dcc.RoleManager(accessor);
+			var objJRole = new _pc.Role(accessor, json);
+			var objRoleManager = new _pc.RoleManager(accessor);
 			
 			try {
 				 objRoleManager.retrieve(roleName,boxName);
@@ -625,11 +625,11 @@ function bindBoxDropDown(JSONstring,dropDownId, boxName) {
 function retrieveBox(dropDownId, boxName) {
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl,cellName,"","");
-	var objBoxManager = new dcc.BoxManager(accessor);
+	var objBoxManager = new _pc.BoxManager(accessor);
 	var totalRecordCount = objBox.retrieveRecordCount(objBoxManager);
 	var dataUri = objBoxManager.getUrl();
 	dataUri = dataUri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var dataResponse = restAdapter.get(dataUri, "application/json");
 	var dataJson = dataResponse.bodyAsJson().d.results;
 	//var JSONstring =  objBoxManager.getBoxes("");
@@ -721,7 +721,7 @@ function updateRole() {
 		}
 		var baseUrl = getClientStore().baseURL;
 		var accessor = objCommon.initializeAccessor(baseUrl,cellName,"","");
-		var objJRoleManager = new dcc.RoleManager(accessor);
+		var objJRoleManager = new _pc.RoleManager(accessor);
 		editRole(oldRoleName, oldBoxName, body, objJRoleManager);
 	}
 	 else {
@@ -738,8 +738,8 @@ function getRelationCount(roleName,boxName,accessor){
 	var key = null;
 	var relationCount =0;
 	var baseUrl = getClientStore().baseURL;
-	var objJdcContext = new dcc.DcContext(baseUrl, cellName, "", "");
-	var objLinkMgr = new dcc.LinkManager(accessor,objJdcContext );
+	var objJdcContext = new _pc.PersoniumContext(baseUrl, cellName, "", "");
+	var objLinkMgr = new _pc.LinkManager(accessor,objJdcContext );
 	key = "(Name="+roleName+",_Box.Name="+boxName+")";
 	if (boxName == "'"+mainBoxValue+"'") {
 		key = "(Name="+roleName+")";
@@ -766,8 +766,8 @@ function getExtItemCount(roleName,boxName,accessor,item){
 	var key = null;
 	var relationCount =0;
 	var baseUrl = getClientStore().baseURL;
-	var objJdcContext = new dcc.DcContext(baseUrl, cellName, "", "");
-	var objLinkMgr = new dcc.LinkManager(accessor,objJdcContext );
+	var objJdcContext = new _pc.PersoniumContext(baseUrl, cellName, "", "");
+	var objLinkMgr = new _pc.LinkManager(accessor,objJdcContext );
 	key = "(Name="+roleName+",_Box.Name="+boxName+")";
 	if (boxName == "'"+mainBoxValue+"'") {
 		key = "(Name="+roleName+")";
@@ -873,10 +873,10 @@ function retrieveAllRoleData() {
 	var cellName = sessionStorage.selectedcell;
 	var totalRecordCount = retrieveRoleRecordCount();
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var dataUri = objRoleManager.getUrl();
 	dataUri = dataUri + "?$orderby=__updated desc &$top="+ totalRecordCount;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var dataResponse = restAdapter.get(dataUri, "application/json");
 	var dataJson = dataResponse.bodyAsJson().d.results;
 	return dataJson;

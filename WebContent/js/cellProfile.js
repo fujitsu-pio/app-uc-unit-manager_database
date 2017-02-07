@@ -197,7 +197,7 @@ cellProfile.prototype.retrieveCollectionAPIResponse = function (json, operationP
 	}
 	var path = baseUrl+cellName+"/__/";
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
 	if (operationPerformed === "EDIT") {
 		response = objJDavCollection.put(profileFileName, "application/json", JSON.stringify(json), "*");
 	}
@@ -585,8 +585,8 @@ cellProfile.prototype.getNewTokenValues = function (paramOldRefreshToken, mode) 
 		} else if (mode == 'PersistToken') {
 			CSRFTokenDisplayEnvironment = sessionStorage.requestId;
 		}
-		var refreshtokenURL = "__auth?dc_target=" + paramTargetURL
-			+ "&dc_env=" + paramEnvironmentID + "&grant_type=refresh_token"+"&refresh_token=" + paramOldRefreshToken;
+		var refreshtokenURL = "__auth?p_target=" + paramTargetURL
+			+ "&p_env=" + paramEnvironmentID + "&grant_type=refresh_token"+"&refresh_token=" + paramOldRefreshToken;
 			$.ajax({
 			dataType : 'json',
 			url : '../../'+refreshtokenURL,
@@ -612,7 +612,7 @@ cellProfile.prototype.retrieveExternalCellList = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var json = objExtCellManager.retrieve("");
 	return json;
 };
@@ -654,7 +654,7 @@ cellProfile.prototype.retrieveCollectionResponse = function (json,cellName) {
 	}
 	var path = baseUrl+cellName+"/__/";
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
 	response = objJDavCollection.getJSON(profileFileName);
 	return response;
 	

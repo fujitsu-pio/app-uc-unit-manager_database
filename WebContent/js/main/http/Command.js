@@ -15,34 +15,34 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* ＄Batchアクセスのためのリクエストを作成するクラス..
 //* @class Represents a command. 
 //*/
 /**
- * It creates a new object dcc.Command.
+ * It creates a new object _pc.Command.
  * @class This class is used to create a request for $ Batch access.
  * @constructor
  * @param {String} batchBoundary
  */
-dcc.Command = function(batchBoundary) {
+_pc.Command = function(batchBoundary) {
   this.initializeProperties(this, batchBoundary);
 };
 
 ///**
 //* オブジェクトを初期化.
-//* @param {dcc.EntityType} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.EntityType} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json サーバーから返却されたJSONオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.EntityType} self
+ * @param {_pc.EntityType} self
  * @param {String} as BatchBoundary
  */
-dcc.Command.prototype.initializeProperties = function(self, batchBoundary) {
+_pc.Command.prototype.initializeProperties = function(self, batchBoundary) {
   self.url = null;
   self.method = null;
   self.etag = null;
@@ -56,7 +56,7 @@ dcc.Command.prototype.initializeProperties = function(self, batchBoundary) {
  * This method sets the Body.
  * @param {String} body to set.
  */
-dcc.Command.prototype.setBody = function(value) {
+_pc.Command.prototype.setBody = function(value) {
   this.body = value;
 //this.body = value.replace(/\"/g,"\\\"");
   try {
@@ -71,7 +71,7 @@ dcc.Command.prototype.setBody = function(value) {
  * @param {String} key
  * @param {String} value
  */
-dcc.Command.prototype.addHeader = function(key, value) {
+_pc.Command.prototype.addHeader = function(key, value) {
   this.headers[key] = value;
 };
 
@@ -79,7 +79,7 @@ dcc.Command.prototype.addHeader = function(key, value) {
  * This method gets the Batch string data.
  * @returns {String} sb
  */
-dcc.Command.prototype.get = function() {
+_pc.Command.prototype.get = function() {
   var sb = "";
   // GET
   if (this.method === "GET") {

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class ComplexTypeのCRUDのためのクラス.
@@ -23,17 +23,17 @@
 //* @augments jEntitySet
 //*/
 /**
- * It creates a new object dcc.ComplexTypeManager.
+ * It creates a new object _pc.ComplexTypeManager.
  * @class This class performs CRUD operations for CmplexType.
  * @constructor
  * @augments jEntitySet
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} collection
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} collection
  */
-dcc.ComplexTypeManager = function(as, collection) {
+_pc.ComplexTypeManager = function(as, collection) {
   this.initializeProperties(this, as, collection);
 };
-dcc.DcClass.extend(dcc.ComplexTypeManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.ComplexTypeManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
@@ -41,11 +41,11 @@ dcc.DcClass.extend(dcc.ComplexTypeManager, dcc.ODataManager);
 /**
  * This method initializes the properties of this class.
  * @param {Object} self
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} collection object
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} collection object
  */
-dcc.ComplexTypeManager.prototype.initializeProperties = function(self, as, collection) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.ComplexTypeManager.prototype.initializeProperties = function(self, as, collection) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as, collection);
 };
 
@@ -53,7 +53,7 @@ dcc.ComplexTypeManager.prototype.initializeProperties = function(self, as, colle
  * This method gets the URL. 
  * @return {String} URL
  */
-dcc.ComplexTypeManager.prototype.getUrl = function() {
+_pc.ComplexTypeManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.collection.getPath();
   sb += "/$metadata/ComplexType";
@@ -70,9 +70,9 @@ dcc.ComplexTypeManager.prototype.getUrl = function() {
  * This method performs create operation for ComplexType.
  * @param {Object} obj ComplexType object
  * @return {Object} ComplexType object
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ComplexTypeManager.prototype.create = function(obj) {
+_pc.ComplexTypeManager.prototype.create = function(obj) {
   var json = null;
   json = this.internalCreate(JSON.stringify(obj));
   return json;
@@ -81,18 +81,18 @@ dcc.ComplexTypeManager.prototype.create = function(obj) {
 ///**
 //* Boxを取得.
 //* @param name 取得対象のbox名
-//* @return {dcc.EntityType} object
+//* @return {_pc.EntityType} object
 //* @throws DaoException DAO例外
 //*/
 /**
  * This method performs retrieve operation for ComplexType.
  * @param {String} name ComplexType name
- * @return {dcc.EntityType} object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.EntityType} object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ComplexTypeManager.prototype.retrieve = function(name) {
+_pc.ComplexTypeManager.prototype.retrieve = function(name) {
   var json = this.internalRetrieve(name);
-  return new dcc.EntityType(this.accessor, json);
+  return new _pc.EntityType(this.accessor, json);
 };
 
 /**
@@ -101,7 +101,7 @@ dcc.ComplexTypeManager.prototype.retrieve = function(name) {
  * @param {String} complexType
  * @returns {String} URL
  */
-dcc.ComplexTypeManager.prototype.getPath = function(path, complexType){
+_pc.ComplexTypeManager.prototype.getPath = function(path, complexType){
   var url = path + "/$metadata/ComplexType('" + complexType + "')";
   return url;
 };
@@ -110,22 +110,22 @@ dcc.ComplexTypeManager.prototype.getPath = function(path, complexType){
 //* 指定PathのデータをDeleteします(ETag指定).
 //* @param pathValue DAVのパス
 //* @param etagValue PUT対象のETag。新規または強制更新の場合は "*" を指定する
-//* @return {dcc.Promise} promise
+//* @return {_pc.Promise} promise
 //* @throws DaoException DAO例外
 //*/
 /**
  * This method performs delete operation for ComplexType.
  * @param {String} pathValue DAV path
  * @param {String} etagValue ETag of PUT target. Specify "*" for forcing new or updated
- * @return {dcc.Promise} promise
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Promise} promise
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ComplexTypeManager.prototype.del = function(path, complexType, etagValue) {
+_pc.ComplexTypeManager.prototype.del = function(path, complexType, etagValue) {
   if (typeof etagValue === undefined) {
     etagValue = "*";
   }
   var url = this.getPath(path, complexType);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = restAdapter.del(url, etagValue,"");
   return response;
 };

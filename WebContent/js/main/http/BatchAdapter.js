@@ -15,19 +15,19 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* ＄Batchアクセスのためのリクエストを作成するクラス..
 //* @class Represents BatchAdapter.
 //*/
 /**
- * It creates a new object dcc.BatchAdapter.
+ * It creates a new object _pc.BatchAdapter.
  * @class This class is used to create a request for $ Batch access .
  * @constructor
- * @param {dcc.Accessor} Accessor
+ * @param {_pc.Accessor} Accessor
  */
-dcc.BatchAdapter = function(as) {
+_pc.BatchAdapter = function(as) {
   this.initializeProperties(this, as);
 };
 
@@ -37,20 +37,20 @@ dcc.BatchAdapter = function(as) {
 /**
  * This method initializes the properties of this class.
  * @param {Object} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.BatchAdapter.prototype.initializeProperties = function(self, as) {
+_pc.BatchAdapter.prototype.initializeProperties = function(self, as) {
   this.accessor = as;
   this.batchBoundary = "batch_" + this.getUUID();
   this.changeSet = null;
-  this.batch = new dcc.Batch(this.batchBoundary);
+  this.batch = new _pc.Batch(this.batchBoundary);
 };
 
 /**
  * This method returns the reference to the accessor.
- * @return {dcc.Accessor} the accessor
+ * @return {_pc.Accessor} the accessor
  */
-dcc.BatchAdapter.prototype.getAccessor = function() {
+_pc.BatchAdapter.prototype.getAccessor = function() {
   return this.accessor;
 };
 
@@ -58,7 +58,7 @@ dcc.BatchAdapter.prototype.getAccessor = function() {
  * This method returns the batch boundary.
  * @return {String} the batchBoundary
  */
-dcc.BatchAdapter.prototype.getBatchBoundary = function() {
+_pc.BatchAdapter.prototype.getBatchBoundary = function() {
   return this.batchBoundary;
 };
 
@@ -67,9 +67,9 @@ dcc.BatchAdapter.prototype.getBatchBoundary = function() {
  * @param {String} value
  * @returns {String} value
  */
-dcc.BatchAdapter.prototype.appendChangeSet = function(value) {
+_pc.BatchAdapter.prototype.appendChangeSet = function(value) {
   if (null === this.changeSet) {
-    this.changeSet = new dcc.ChangeSet("changeset_" + this.getUUID(), this.batchBoundary);
+    this.changeSet = new _pc.ChangeSet("changeset_" + this.getUUID(), this.batchBoundary);
   }
   this.changeSet.append(value);
 };
@@ -77,7 +77,7 @@ dcc.BatchAdapter.prototype.appendChangeSet = function(value) {
 /**
  * This method appends value of ChangeSet to Batch and overwrites ChangeSet. 
  */
-dcc.BatchAdapter.prototype.writeChangeSet = function() {
+_pc.BatchAdapter.prototype.writeChangeSet = function() {
   if ( (null !== this.changeSet) && (undefined !== this.changeSet)) {
     this.batch.append(this.changeSet.get());
     this.changeSet = null;
@@ -90,9 +90,9 @@ dcc.BatchAdapter.prototype.writeChangeSet = function() {
 //*/
 /**
  * This method inserts the BatchBoundary.
- * @throws {dcc.DaoException} Dao exception
+ * @throws {_pc.DaoException} Dao exception
  */
-dcc.BatchAdapter.prototype.insertBoundary = function() {
+_pc.BatchAdapter.prototype.insertBoundary = function() {
   this.writeChangeSet();
 };
 
@@ -101,28 +101,28 @@ dcc.BatchAdapter.prototype.insertBoundary = function() {
  * @param {String} url
  * @param {String} accept
  * @param {String} etag
- * @returns {dcc.DcBatchResponse} Response
+ * @returns {_pc.PersoniumBatchResponse} Response
  */
-dcc.BatchAdapter.prototype.get = function(url, accept, etag) {
+_pc.BatchAdapter.prototype.get = function(url, accept, etag) {
   // 溜めたChangeSetを吐き出す
   /** Update ChangeSet. */
   this.writeChangeSet();
-  var cmd = new dcc.Command(this.batchBoundary);
+  var cmd = new _pc.Command(this.batchBoundary);
   cmd.method = "GET";
   cmd.url = url;
 //cmd.addHeader("Accept-Encoding", "gzip");
   cmd.addHeader("Accept", accept);
   cmd.etag = etag;
   this.batch.append(cmd.get());
-  return new dcc.DcBatchResponse();
+  return new _pc.PersoniumBatchResponse();
 };
 
 /**
  * This method retrieves the ChangeSet.
  * @param {String} url
- * @returns {dcc.DcBatchResponse} Response
+ * @returns {_pc.PersoniumBatchResponse} Response
  */
-dcc.BatchAdapter.prototype.head = function(url) {
+_pc.BatchAdapter.prototype.head = function(url) {
   // 溜めたChangeSetを吐き出す
   this.writeChangeSet();
   return this.get(url, "application/json", null);
@@ -135,10 +135,10 @@ dcc.BatchAdapter.prototype.head = function(url) {
  * @param {String} etag
  * @param {String} contentType
  * @param {Array} map
- * @returns {dcc.DcBatchResponse} response
+ * @returns {_pc.PersoniumBatchResponse} response
  */
-dcc.BatchAdapter.prototype.put = function(url, data, etag, contentType, map) {
-  var cmd = new dcc.Command();
+_pc.BatchAdapter.prototype.put = function(url, data, etag, contentType, map) {
+  var cmd = new _pc.Command();
   cmd.method = "PUT";
   cmd.url = url;
   cmd.addHeader("Content-Type", contentType);
@@ -150,7 +150,7 @@ dcc.BatchAdapter.prototype.put = function(url, data, etag, contentType, map) {
     }
   }
   this.appendChangeSet(cmd.get());
-  return new dcc.DcBatchResponse();
+  return new _pc.PersoniumBatchResponse();
 };
 
 /**
@@ -159,10 +159,10 @@ dcc.BatchAdapter.prototype.put = function(url, data, etag, contentType, map) {
  * @param {String} data
  * @param {String} contentType
  * @param {Array} map
- * @returns {dcc.DcBatchResponse} response
+ * @returns {_pc.PersoniumBatchResponse} response
  */
-dcc.BatchAdapter.prototype.post = function(url, data, contentType, map) {
-  var cmd = new dcc.Command();
+_pc.BatchAdapter.prototype.post = function(url, data, contentType, map) {
+  var cmd = new _pc.Command();
   cmd.method = "POST";
   cmd.url = url;
   cmd.addHeader("Content-Type", contentType);
@@ -173,7 +173,7 @@ dcc.BatchAdapter.prototype.post = function(url, data, contentType, map) {
     }
   }
   this.appendChangeSet(cmd.get());
-  return new dcc.DcBatchResponse();
+  return new _pc.PersoniumBatchResponse();
 };
 
 /**
@@ -181,8 +181,8 @@ dcc.BatchAdapter.prototype.post = function(url, data, contentType, map) {
  * @param {String} url
  * @param {String} etag
  */
-dcc.BatchAdapter.prototype.del = function(url, etag) {
-  var cmd = new dcc.Command();
+_pc.BatchAdapter.prototype.del = function(url, etag) {
+  var cmd = new _pc.Command();
   cmd.method = "DELETE";
   cmd.url = url;
   cmd.etag = etag;
@@ -196,10 +196,10 @@ dcc.BatchAdapter.prototype.del = function(url, etag) {
 //*/
 /**
  * This method gets the body of information $ Batch.
- * @return {dcc.DcBatchResponse} Body to Batch registration.
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumBatchResponse} Body to Batch registration.
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.BatchAdapter.prototype.getBody = function() {
+_pc.BatchAdapter.prototype.getBody = function() {
   // 溜めたChangeSetを吐き出す
   /** Update ChangeSet. */
   this.writeChangeSet();
@@ -212,10 +212,10 @@ dcc.BatchAdapter.prototype.getBody = function() {
 //* @param data 書き込むデータ
 //* @param etag ETag
 //* @param contentType CONTENT-TYPE値
-//* @return DcResponseオブジェクト
+//* @return PersoniumResponseオブジェクト
 //* @throws DaoException DAO例外
 //*/
-//dcc.BatchAdapter.prototype.merge = function(url, data, etag, contentType) {
+//_pc.BatchAdapter.prototype.merge = function(url, data, etag, contentType) {
 ////TODO バッチ経由のMERGEメソッドの処理を実装する
 //var res = null;
 //return res;
@@ -229,7 +229,7 @@ dcc.BatchAdapter.prototype.getBody = function() {
  * This method returns the UUID.
  * @returns {String} UUID
  */
-dcc.BatchAdapter.prototype.getUUID = function() {
+_pc.BatchAdapter.prototype.getUUID = function() {
   var S4 = function() {
     return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
   };
@@ -244,8 +244,8 @@ dcc.BatchAdapter.prototype.getUUID = function() {
 /**
  * This method returns response body in JSON format.
  * @return {Object} JSON object
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.BatchAdapter.prototype.bodyAsJson = function() {
+_pc.BatchAdapter.prototype.bodyAsJson = function() {
   return {"d":{"results":[]}};
 };

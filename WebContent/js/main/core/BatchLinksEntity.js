@@ -15,54 +15,54 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class ODataのBatchLinksEntityクラス.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.BatchLinksEntity.
+ * It creates a new object _pc.BatchLinksEntity.
  * @class BatchLinksEntity class of OData.
  * @constructor
  * @param {String} entitySetName
  * @param {String} id
- * @param {dcc.Accessor} Accessor
+ * @param {_pc.Accessor} Accessor
  * @param {String} collectionUrl 
  */
-dcc.BatchLinksEntity = function(entitySetName, id, as, collectionUrl) {
+_pc.BatchLinksEntity = function(entitySetName, id, as, collectionUrl) {
   this.initializeProperties(this, entitySetName, id, as, collectionUrl);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AbstractODataContext} self
+//* @param {_pc.AbstractODataContext} self
 //* @param {String} entitySetName EntitySet名
 //* @param {String} id Entityの__id
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {String} collectionUrl ODataコレクションのURL
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AbstractODataContext} self
+ * @param {_pc.AbstractODataContext} self
  * @param {String} entitySetName EntitySet Name
  * @param {String} id __id Of Entity
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Accessor} as Accessor
  * @param {String} collectionUrl URL of OData collection
  */
-dcc.BatchLinksEntity.prototype.initializeProperties = function(self,
+_pc.BatchLinksEntity.prototype.initializeProperties = function(self,
     entitySetName, id, as, collectionUrl) {
   if (typeof entitySetName !== "string" || typeof id !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.entitySetName = entitySetName;
   this.id = id;
   if (typeof as !== "undefined") {
     if (typeof collectionUrl !== "string") {
-      throw new dcc.DaoException("InvalidParameter");
+      throw new _pc.DaoException("InvalidParameter");
     }
     this.collectionUrl = collectionUrl;
-    this.entity = new dcc.LinkManager(as, this);
+    this.entity = new _pc.LinkManager(as, this);
   }
 };
 
@@ -74,28 +74,28 @@ dcc.BatchLinksEntity.prototype.initializeProperties = function(self,
  * This method gets the URL of the OData collection.
  * @return {String} collectionUrl URL of OData collection
  */
-dcc.BatchLinksEntity.prototype.getCollectionUrl = function() {
+_pc.BatchLinksEntity.prototype.getCollectionUrl = function() {
   return this.collectionUrl;
 };
 /**
  * This method gets the key of the OData collection.
  * @return {String} key of OData collection
  */
-dcc.BatchLinksEntity.prototype.getKey = function() {
+_pc.BatchLinksEntity.prototype.getKey = function() {
   return "('" + this.id + "')";
 };
 /**
  * This method gets the class name of the OData collection.
  * @return {String} entitySetName of OData collection
  */
-dcc.BatchLinksEntity.prototype.getClassName = function() {
+_pc.BatchLinksEntity.prototype.getClassName = function() {
   return this.entitySetName;
 };
 /**
  * This method gets the odata link of the OData collection.
  * @return {String} odata link of OData collection
  */
-dcc.BatchLinksEntity.prototype.getODataLink = function() {
+_pc.BatchLinksEntity.prototype.getODataLink = function() {
   if (this.collectionUrl == null) {
     // $links先用
     /** $ links-destination */
@@ -110,7 +110,7 @@ dcc.BatchLinksEntity.prototype.getODataLink = function() {
  * This method creates url for odata collection.
  * @returns {String} URL
  */
-dcc.BatchLinksEntity.prototype.makeUrlForLink = function() {
+_pc.BatchLinksEntity.prototype.makeUrlForLink = function() {
   var url = this.getODataLink();
   url += "/$links/";
   return url;

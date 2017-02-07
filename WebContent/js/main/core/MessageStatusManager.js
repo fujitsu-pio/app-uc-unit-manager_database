@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class メッセージの送受信のためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.MessageStatusManager.
+ * It creates a new object _pc.MessageStatusManager.
  * @class This class is used for sending and receiving messages.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  * @param {String} messageId
  */
-dcc.MessageStatusManager = function(as, messageId) {
+_pc.MessageStatusManager = function(as, messageId) {
   this.initializeProperties(this, as, messageId);
 };
-dcc.DcClass.extend(dcc.MessageStatusManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.MessageStatusManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.MessageStatusManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.MessageStatusManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {string} messageId メッセージID
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.MessageStatusManager} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.MessageStatusManager} self
+ * @param {_pc.Accessor} as Accessor
  * @param {string} messageId messageID
  */
-dcc.MessageStatusManager.prototype.initializeProperties = function(self, as, messageId) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.MessageStatusManager.prototype.initializeProperties = function(self, as, messageId) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 
   self.messageId = messageId;
@@ -62,7 +62,7 @@ dcc.MessageStatusManager.prototype.initializeProperties = function(self, as, mes
  * This method returns the URL for receiving messages.
  * @returns {String} URL
  */
-dcc.MessageStatusManager.prototype.getUrl = function() {
+_pc.MessageStatusManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.getBaseUrl();
   sb += this.accessor.getCurrentCell().getName();
@@ -73,64 +73,64 @@ dcc.MessageStatusManager.prototype.getUrl = function() {
 
 ///**
 //* メッセージを既読にする.
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to read a message.
- * @return {dcc.Message} Message object obtained
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object obtained
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageStatusManager.prototype.changeMailStatusForRead = function() {
+_pc.MessageStatusManager.prototype.changeMailStatusForRead = function() {
   var requestBody = {"Command" : "read"};
   var json = this.internalCreate(JSON.stringify(requestBody));
-  return new dcc.Message(this.accessor, json);
+  return new _pc.Message(this.accessor, json);
 };
 
 ///**
 //* メッセージを未読にする.
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to unread a message.
- * @return {dcc.Message} Message object obtained
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object obtained
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageStatusManager.prototype.changeMailStatusForUnRead = function() {
+_pc.MessageStatusManager.prototype.changeMailStatusForUnRead = function() {
   var requestBody = {"Command" : "unread"};
   var json = this.internalCreate(JSON.stringify(requestBody));
-  return new dcc.Message(this.accessor, json);
+  return new _pc.Message(this.accessor, json);
 };
 
 ///**
 //* メッセージを承認する.
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to approve a message.
- * @return {dcc.Message} Message object obtained
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object obtained
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageStatusManager.prototype.approveConnect = function() {
+_pc.MessageStatusManager.prototype.approveConnect = function() {
   var requestBody = {"Command" : "approved"};
   var json = this.internalCreate(JSON.stringify(requestBody));
-  return new dcc.Message(this.accessor, json);
+  return new _pc.Message(this.accessor, json);
 };
 
 ///**
 //* メッセージを拒否する.
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used to reject a message.
- * @return {dcc.Message} Message object obtained
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object obtained
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MessageStatusManager.prototype.rejectConnect = function() {
+_pc.MessageStatusManager.prototype.rejectConnect = function() {
   var requestBody = {"Command" : "rejected"};
   var json = this.internalCreate(JSON.stringify(requestBody));
-  return new dcc.Message(this.accessor, json);
+  return new _pc.Message(this.accessor, json);
 };

@@ -15,43 +15,43 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Boxへアクセスするためのクラス.
 //* @constructor
-//* @augments dcc.DavCollection
+//* @augments _pc.DavCollection
 //*/
 /**
- * It creates a new object dcc.Box.
+ * It creates a new object _pc.Box.
  * @class This class represents Box to access box related fields.
  * @constructor
- * @augments dcc.DavCollection
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.DavCollection
+ * @param {_pc.Accessor} Accessor
  * @param {Object} json
  * @param {String} path 
  */
-dcc.Box = function(as, json, path) {
+_pc.Box = function(as, json, path) {
   this.initializeProperties(this, as, json, path);
 };
-dcc.DcClass.extend(dcc.Box, dcc.DavCollection);
+_pc.PersoniumClass.extend(_pc.Box, _pc.DavCollection);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Box} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Box} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json JSONオブジェクト
 //* @param {?} path
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Box} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Box} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} json JSON object
  * @param {String} path
  */
-dcc.Box.prototype.initializeProperties = function(self, as, json, path) {
-  this.uber = dcc.DavCollection.prototype;
+_pc.Box.prototype.initializeProperties = function(self, as, json, path) {
+  this.uber = _pc.DavCollection.prototype;
   this.uber.initializeProperties(self, as, path);
 
   self.name = "";
@@ -64,8 +64,8 @@ dcc.Box.prototype.initializeProperties = function(self, as, json, path) {
     self.schema = json.Schema;
   }
   if (as !== undefined) {
-    self.acl = new dcc.AclManager(as, this);
-    self.event = new dcc.EventManager(as);
+    self.acl = new _pc.AclManager(as, this);
+    self.event = new _pc.EventManager(as);
   }
 };
 
@@ -77,7 +77,7 @@ dcc.Box.prototype.initializeProperties = function(self, as, json, path) {
  * This method gets the box name.
  * @return {String} Box name
  */
-dcc.Box.prototype.getName = function() {
+_pc.Box.prototype.getName = function() {
   return this.name;
 };
 
@@ -89,7 +89,7 @@ dcc.Box.prototype.getName = function() {
  * This method sets the box name.
  * @param {String} value Box name
  */
-dcc.Box.prototype.setName = function(value) {
+_pc.Box.prototype.setName = function(value) {
   this.name = value;
 };
 
@@ -101,7 +101,7 @@ dcc.Box.prototype.setName = function(value) {
  * This method gets the box schema.
  * @return {String} value Box schema
  */
-dcc.Box.prototype.getSchema = function() {
+_pc.Box.prototype.getSchema = function() {
   return this.schema;
 };
 
@@ -113,7 +113,7 @@ dcc.Box.prototype.getSchema = function() {
  * This method sets the box schema.
  * @param {String} value Box schema
  */
-dcc.Box.prototype.setSchema = function(value) {
+_pc.Box.prototype.setSchema = function(value) {
   this.schema = value;
 };
 
@@ -125,7 +125,7 @@ dcc.Box.prototype.setSchema = function(value) {
  * This method generates the json for Box.
  * @return {Object} JSON object
  */
-dcc.Box.prototype.toJSON = function() {
+_pc.Box.prototype.toJSON = function() {
   var json = {};
   json.Name = this.name;
   json.Schema = this.schema;

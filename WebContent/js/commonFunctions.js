@@ -538,7 +538,7 @@ function setSocialNavWidth(){
 	if (width>1280) {
 		/*var socialNavWidth = Math.round((width - leftPanelWidth - rightGap - navContentsWidthFixed)/6);
 		socialNavWidth = socialNavWidth + socialTabContentWidthFixed;*/
-		if (sessionStorage.selectedLanguage === 'jp') {
+		if (sessionStorage.selectedLanguage === 'ja') {
 			socialNavWidth = socialNavWidth + 1.5;
 			$('#socialNav').css('min-width', socialNavWidth + "%");
 		} else {

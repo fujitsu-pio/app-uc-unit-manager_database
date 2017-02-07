@@ -1,5 +1,5 @@
 {
-"header_logo_label":"Persona Container Portal",
+"header_logo_label":"Personium Unit Manager",
 "header_logout_label":"Logout",
 "specialCharacter":/^[-_]*$/,
 "letters":/^[0-9a-zA-Z]+$/,

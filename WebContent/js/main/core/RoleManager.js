@@ -15,37 +15,37 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class RoleのCRUDのためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.RoleManager.
+ * It creates a new object _pc.RoleManager.
  * @class This class performs CRUD operations for Role object.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  */
-dcc.RoleManager = function(as) {
+_pc.RoleManager = function(as) {
   this.initializeProperties(this, as);
 };
-dcc.DcClass.extend(dcc.RoleManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.RoleManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Accessor} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Accessor} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Accessor} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Accessor} self
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.RoleManager.prototype.initializeProperties = function(self, as) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.RoleManager.prototype.initializeProperties = function(self, as) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 };
 
@@ -57,7 +57,7 @@ dcc.RoleManager.prototype.initializeProperties = function(self, as) {
  * This method gets the URL for Role operations.
  * @returns {String} URL
  */
-dcc.RoleManager.prototype.getUrl = function() {
+_pc.RoleManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.getBaseUrl();
   // HCL:-Changes done to get the cellName
@@ -69,17 +69,17 @@ dcc.RoleManager.prototype.getUrl = function() {
 
 ///**
 //* Roleを作成.
-//* @param {dcc.Role} obj Roleオブジェクト
-//* @return {dcc.Role} Roleオブジェクト
+//* @param {_pc.Role} obj Roleオブジェクト
+//* @return {_pc.Role} Roleオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method creates a Role.
- * @param {dcc.Role} obj Role object
- * @return {dcc.Role} Role object
- * @throws {dcc.DaoException} DAO exception
+ * @param {_pc.Role} obj Role object
+ * @return {_pc.Role} Role object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RoleManager.prototype.create = function(obj) {
+_pc.RoleManager.prototype.create = function(obj) {
   var json = null;
   var responseJson = null;
   if (obj.getClassName !== undefined && obj.getClassName() === "Role") {
@@ -95,9 +95,9 @@ dcc.RoleManager.prototype.create = function(obj) {
     json = this.internalCreate(requestBody);
     if(json.getStatusCode() >= 400){
       var response = json.bodyAsJson();
-      throw new dcc.DaoException(response.message.value, response.code);
+      throw new _pc.DaoException(response.message.value, response.code);
     }
-    return new dcc.Role(this.accessor, json.bodyAsJson().d.results);
+    return new _pc.Role(this.accessor, json.bodyAsJson().d.results);
   }
 };
 
@@ -105,17 +105,17 @@ dcc.RoleManager.prototype.create = function(obj) {
 //* Roleを取得(複合キー).
 //* @param {String} roleName 取得対象のRole名
 //* @param {String}boxName 取得対象のBox名
-//* @return {dcc.Role} 取得したしたRoleオブジェクト
+//* @return {_pc.Role} 取得したしたRoleオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method retrieves a Role object.
  * @param {String} roleName Role Name
  * @param {String}boxName Box name
- * @return {dcc.Role} Role object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Role} Role object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RoleManager.prototype.retrieve = function(roleName, boxName) {
+_pc.RoleManager.prototype.retrieve = function(roleName, boxName) {
   var json = null;
   if (typeof boxName === "undefined") {
     json = this.internalRetrieve(roleName);
@@ -124,7 +124,7 @@ dcc.RoleManager.prototype.retrieve = function(roleName, boxName) {
     if (json === true) {
       return json;
     } else {
-      return new dcc.Role(this.accessor, json);
+      return new _pc.Role(this.accessor, json);
     }
   }
   var key = "Name='" + roleName + "',_Box.Name='" + boxName + "'";
@@ -133,7 +133,7 @@ dcc.RoleManager.prototype.retrieve = function(roleName, boxName) {
  /* if (json === true) {
     return json;
   } else {*/
-    return new dcc.Role(this.accessor, json);
+    return new _pc.Role(this.accessor, json);
   //}
 };
 
@@ -143,9 +143,9 @@ dcc.RoleManager.prototype.retrieve = function(roleName, boxName) {
  * @param {String} boxName
  * @param {Object} body
  * @param {String} etag
- * @return {Object} response DcHttpClient
+ * @return {Object} response PersoniumHttpClient
  */
-dcc.RoleManager.prototype.update = function(roleName, boxName, body, etag) {
+_pc.RoleManager.prototype.update = function(roleName, boxName, body, etag) {
   var response = null;
   if (boxName !== undefined && boxName !== null) {
     var key = "Name='" + roleName + "',_Box.Name='" + boxName + "'";
@@ -168,9 +168,9 @@ dcc.RoleManager.prototype.update = function(roleName, boxName, body, etag) {
  * @param {String} roleName Role Name
  * @param {String} boxName Box Name
  * @return {Object} response
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RoleManager.prototype.del = function(roleName, boxName) {
+_pc.RoleManager.prototype.del = function(roleName, boxName) {
   var key = "Name='" + roleName + "'";
   if (boxName !== undefined && boxName !== null && boxName !=="undefined") {
     key += ",_Box.Name='" + boxName + "'";

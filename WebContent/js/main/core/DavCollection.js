@@ -15,46 +15,46 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class DAVコレクションへアクセスするクラス.
 //* @constructor
-//* @augments dcc.DcCollection
+//* @augments _pc.PersoniumCollection
 //*/
 /**
- * It creates a new object dcc.DavCollection.
+ * It creates a new object _pc.DavCollection.
  * @class This class is used to access the DAV collection for Odata operations.
  * @constructor
- * @augments dcc.DcCollection
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.PersoniumCollection
+ * @param {_pc.Accessor} Accessor
  * @param {String} path
  */
-dcc.DavCollection = function(as, path) {
+_pc.DavCollection = function(as, path) {
   this.initializeProperties(this, as, path);
 };
-dcc.DcClass.extend(dcc.DavCollection, dcc.DcCollection);
+_pc.PersoniumClass.extend(_pc.DavCollection, _pc.PersoniumCollection);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.DavCollection} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.DavCollection} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {?} pathValue
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.DavCollection} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.DavCollection} self
+ * @param {_pc.Accessor} as Accessor
  * @param {String} pathValue
  */
-dcc.DavCollection.prototype.initializeProperties = function(self, as, pathValue) {
-  this.uber = dcc.DcCollection.prototype;
+_pc.DavCollection.prototype.initializeProperties = function(self, as, pathValue) {
+  this.uber = _pc.PersoniumCollection.prototype;
   this.uber.initializeProperties(self, as, pathValue);
 
   if (as !== undefined) {
 //  /** boxレベルACLへアクセスするためのクラス. */
     /** class to access the box level ACL. */
-    self.acl = new dcc.AclManager(as, this);
+    self.acl = new _pc.AclManager(as, this);
   }
 };
 
@@ -66,14 +66,14 @@ dcc.DavCollection.prototype.initializeProperties = function(self, as, pathValue)
 /**
  * This method is used to create a collection.
  * @param {String} name Collection name
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.mkCol = function(name) {
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
-  var response = restAdapter.mkcol(dcc.UrlUtils.append(this.getPath(), name));
+_pc.DavCollection.prototype.mkCol = function(name) {
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
+  var response = restAdapter.mkcol(_pc.UrlUtils.append(this.getPath(), name));
   if (response.getStatusCode() >= 400) {
     var responseJSON = response.bodyAsJson();
-    throw new dcc.DaoException(responseJSON.message.value,
+    throw new _pc.DaoException(responseJSON.message.value,
         responseJSON.code);
   }
   return response;
@@ -87,15 +87,15 @@ dcc.DavCollection.prototype.mkCol = function(name) {
 /**
  * This method is used to create a odata collection.
  * @param {String} name ODataCollection name
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.mkOData = function(name) {
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
-  var response = restAdapter.mkOData(dcc.UrlUtils
+_pc.DavCollection.prototype.mkOData = function(name) {
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
+  var response = restAdapter.mkOData(_pc.UrlUtils
       .append(this.getPath(), name));
   if (response.getStatusCode() >= 400) {
     var responseJSON = response.bodyAsJson();
-    throw new dcc.DaoException(responseJSON.message.value,
+    throw new _pc.DaoException(responseJSON.message.value,
         responseJSON.code);
   }
   return response;
@@ -109,14 +109,14 @@ dcc.DavCollection.prototype.mkOData = function(name) {
 /**
  * This method is used to create a service collection.
  * @param {String} name ServiceCollection name
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.mkService = function(name) {
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
-  var response = restAdapter.mkService(dcc.UrlUtils.append(this.getPath(), name));
+_pc.DavCollection.prototype.mkService = function(name) {
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
+  var response = restAdapter.mkService(_pc.UrlUtils.append(this.getPath(), name));
   if (response.getStatusCode() >= 400) {
     var responseJSON = response.bodyAsJson();
-    throw new dcc.DaoException(responseJSON.message.value,
+    throw new _pc.DaoException(responseJSON.message.value,
         responseJSON.code);
   }
   return response;
@@ -130,11 +130,11 @@ dcc.DavCollection.prototype.mkService = function(name) {
 /**
  * This method is used to create a Calendar.
  * @param {String[]} name CalendarCollection name
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.mkCalendar = function(name) {
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
-  restAdapter.mkCalendar(dcc.UrlUtils.append(this.getPath(), name), "");
+_pc.DavCollection.prototype.mkCalendar = function(name) {
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
+  restAdapter.mkCalendar(_pc.UrlUtils.append(this.getPath(), name), "");
 };
 
 ///**
@@ -145,9 +145,9 @@ dcc.DavCollection.prototype.mkCalendar = function(name) {
 /**
  * This method gets the list of resources in the collection.
  * @return {String[]} List of resources
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.getFileList = function() {
+_pc.DavCollection.prototype.getFileList = function() {
   return this.getResourceList();
 };
 
@@ -159,9 +159,9 @@ dcc.DavCollection.prototype.getFileList = function() {
 /**
  * This method gets a list of sub-collection in the collection.
  * @return {String} List of resources
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.getColList = function() {
+_pc.DavCollection.prototype.getColList = function() {
   return this.getResourceList();
 };
 
@@ -173,12 +173,12 @@ dcc.DavCollection.prototype.getColList = function() {
 /**
  * This method calls propfind API to fetch the list of resources.
  * @return {String[]} List of sub-collection or resource
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.getResourceList = function() {
+_pc.DavCollection.prototype.getResourceList = function() {
   var folderList = [];
   var type = "";
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = restAdapter.propfind(this.url);
   var doc = response.bodyAsXml();
   var nl = doc.getElementsByTagName("response");
@@ -233,58 +233,58 @@ dcc.DavCollection.prototype.getResourceList = function() {
 //* @param key プロパティ名
 //* @param value プロパティの値
 //*/
-//dcc.DavCollection.prototype.setProp = function(key, value) {
+//_pc.DavCollection.prototype.setProp = function(key, value) {
 //};
 ///**
 //* コレクションからプロパティを取得する.
 //* @param key プロパティ名
 //* @return 取得したプロパティ値
 //*/
-//dcc.DavCollection.prototype.getProp = function(key) {
+//_pc.DavCollection.prototype.getProp = function(key) {
 //return "";
 //};
 ///**
 //* サブコレクションを指定.
 //* @param name コレクション名
-//* @return {dcc.DavCollection} 指定したコレクション名のDavCollectionオブジェクト
+//* @return {_pc.DavCollection} 指定したコレクション名のDavCollectionオブジェクト
 //*/
 /**
  * This method specifies and retrieves the collection.
  * @param {String} name Collection name
- * @return {dcc.DavCollection} DavCollection object
+ * @return {_pc.DavCollection} DavCollection object
  */
-dcc.DavCollection.prototype.col = function(name) {
-  return new dcc.DavCollection(this.accessor, dcc.UrlUtils.append(this
+_pc.DavCollection.prototype.col = function(name) {
+  return new _pc.DavCollection(this.accessor, _pc.UrlUtils.append(this
       .getPath(), name));
 };
 
 ///**
 //* ODataコレクションを指定.
 //* @param name ODataコレクション名
-//* @return {dcc.ODataCollection} 取得したODataCollectionオブジェクト
+//* @return {_pc.ODataCollection} 取得したODataCollectionオブジェクト
 //*/
 /**
  * This method specifies and retrieves the odata collection.
  * @param {String} name Odata Collection name
- * @return {dcc.ODataCollection} ODataCollection object
+ * @return {_pc.ODataCollection} ODataCollection object
  */
-dcc.DavCollection.prototype.odata = function(name) {
-  return new dcc.ODataCollection(this.accessor, dcc.UrlUtils.append(this
+_pc.DavCollection.prototype.odata = function(name) {
+  return new _pc.ODataCollection(this.accessor, _pc.UrlUtils.append(this
       .getPath(), name));
 };
 
 ///**
 //* Serviceコレクションを指定.
 //* @param name Serviceコレクション名
-//* @return {dcc.ServiceCollection} 取得したSerivceコレクションオブジェクト
+//* @return {_pc.ServiceCollection} 取得したSerivceコレクションオブジェクト
 //*/
 /**
  * This method specifies and retrieves the service collection.
  * @param {String} name Service Collection name
- * @return {dcc.ServiceCollection} SerivceCollection object
+ * @return {_pc.ServiceCollection} SerivceCollection object
  */
-dcc.DavCollection.prototype.service = function(name) {
-  return new dcc.ServiceCollection(this.accessor, dcc.UrlUtils.append(this
+_pc.DavCollection.prototype.service = function(name) {
+  return new _pc.ServiceCollection(this.accessor, _pc.UrlUtils.append(this
       .getPath(), name));
 };
 
@@ -302,15 +302,15 @@ dcc.DavCollection.prototype.service = function(name) {
  * @param {String} charset Character code
  * @param {String} etag Used for if-none-match condition
  * @return {String} GET String
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.getString = function(pathValue, charset, callback,
+_pc.DavCollection.prototype.getString = function(pathValue, charset, callback,
     etag) {
   if (charset === undefined) {
     charset = "utf-8";
   }
-  var url = dcc.UrlUtils.append(this.getPath(), pathValue);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var url = _pc.UrlUtils.append(this.getPath(), pathValue);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
     restAdapter.get(url, "text/plain", etag, function(resp) {
       if (resp.getStatusCode() >= 300) {
@@ -348,11 +348,11 @@ dcc.DavCollection.prototype.getString = function(pathValue, charset, callback,
  * @param {String} callback Character code
  * @param {String} etag Used for if-none-match condition
  * @return {String} GET Binary data
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.getBinary = function(pathValue, callback, etag) {
-  var url = dcc.UrlUtils.append(this.getPath(), pathValue);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+_pc.DavCollection.prototype.getBinary = function(pathValue, callback, etag) {
+  var url = _pc.UrlUtils.append(this.getPath(), pathValue);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
     restAdapter.getBinary(url, etag, function(resp) {
       if (resp.getStatusCode() >= 300) {
@@ -391,15 +391,15 @@ dcc.DavCollection.prototype.getBinary = function(pathValue, callback, etag) {
  * @param {String} callback Callback method
  * @param {String} etag Used for if-none-match condition
  * @return {String} GET Binary data
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.getBinaryAsBase64 = function(pathValue,
+_pc.DavCollection.prototype.getBinaryAsBase64 = function(pathValue,
     contentType, callback, etag) {
   var body = this.getBinary(pathValue, callback, etag);
   return "data:" + contentType + ";base64," + this.base64encoder(body);
 };
 
-dcc.DavCollection.prototype.base64encoder = function(s) {
+_pc.DavCollection.prototype.base64encoder = function(s) {
   var base64list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
   var t = "", p = -6, a = 0, i = 0, v = 0, c;
 
@@ -426,7 +426,7 @@ dcc.DavCollection.prototype.base64encoder = function(s) {
 //* @param {String} pathValue 取得するパス
 //* @param {String} charset 文字コード
 //* @param {string} etag Used for if-none-match condition
-//* @return {dcc.DavResponse} GETした文字列を保持するレスポンス
+//* @return {_pc.DavResponse} GETした文字列を保持するレスポンス
 //* @throws {DaoException} DAO例外
 //*/
 /**
@@ -434,16 +434,16 @@ dcc.DavCollection.prototype.base64encoder = function(s) {
  * @param {String} pathValue Path
  * @param {String} charset Character code
  * @param {String} etag Used for if-none-match condition
- * @return {dcc.DavResponse} GET Response holding string
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.DavResponse} GET Response holding string
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.getAsResponse = function(pathValue, charset,
+_pc.DavCollection.prototype.getAsResponse = function(pathValue, charset,
     callback, etag) {
   if (charset === undefined) {
     charset = "utf-8";
   }
-  var url = dcc.UrlUtils.append(this.getPath(), pathValue);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var url = _pc.UrlUtils.append(this.getPath(), pathValue);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
     restAdapter.get(url, "text/plain", etag, function(resp) {
       if (resp.getStatusCode() >= 300) {
@@ -453,7 +453,7 @@ dcc.DavCollection.prototype.getAsResponse = function(pathValue, charset,
       } else {
         if (callback.success !== undefined) {
           var body = resp.bodyAsString(charset);
-          callback.success(new dcc.DavResponse(resp.accessor, body));
+          callback.success(new _pc.DavResponse(resp.accessor, body));
         }
       }
       if (callback.complete !== undefined) {
@@ -463,7 +463,7 @@ dcc.DavCollection.prototype.getAsResponse = function(pathValue, charset,
   } else {
     restAdapter.get(url, "text/plain", etag);
     var body = restAdapter.bodyAsString(charset);
-    return new dcc.DavResponse(this.accessor, body);
+    return new _pc.DavResponse(this.accessor, body);
   }
 };
 
@@ -473,10 +473,10 @@ dcc.DavCollection.prototype.getAsResponse = function(pathValue, charset,
 //* @return GETしたストリーム
 //* @throws DaoException DAO例外
 //*/
-//dcc.DavCollection.prototype.getStream = function(pathValue) {
-//String url = dcc.UrlUtils.append(this.getPath(), pathValue);
+//_pc.DavCollection.prototype.getStream = function(pathValue) {
+//String url = _pc.UrlUtils.append(this.getPath(), pathValue);
 //// リクエスト
-//DcResponse res = RestAdapterFactory.create(this.accessor).get(url,
+//PersoniumResponse res = RestAdapterFactory.create(this.accessor).get(url,
 //"application/octet-stream");
 //// レスポンスボディをストリームとして返却
 //return res.bodyAsStream();
@@ -494,7 +494,7 @@ dcc.DavCollection.prototype.getAsResponse = function(pathValue, charset,
 //*/
 ////public void put(String pathValue, String contentType, String enc,
 //InputStream is, String etag) throws DaoException {
-//dcc.DavCollection.prototype.initializeProperties = function() {
+//_pc.DavCollection.prototype.initializeProperties = function() {
 //// ストリームの場合はエンコーディング指定は使用しない
 //put(pathValue, contentType, is, etag);
 //};
@@ -510,8 +510,8 @@ dcc.DavCollection.prototype.getAsResponse = function(pathValue, charset,
 //*/
 ////public void put(String pathValue, String contentType, InputStream is,
 //String etagValue) throws DaoException {
-//dcc.DavCollection.prototype.put = function() {
-//String url = dcc.UrlUtils.append(this.getPath(), pathValue);
+//_pc.DavCollection.prototype.put = function() {
+//String url = _pc.UrlUtils.append(this.getPath(), pathValue);
 //((RestAdapter) RestAdapterFactory.create(this.accessor)).putStream(url,
 //contentType, is, etagValue);
 //};
@@ -530,12 +530,12 @@ dcc.DavCollection.prototype.getAsResponse = function(pathValue, charset,
  * @param {String} contentType Character code
  * @param {String} data PUT data
  * @param {String} etagValue ETag of PUT target. Specify "*" for forcing new or updated
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.put = function(pathValue, contentType, data, etag,
+_pc.DavCollection.prototype.put = function(pathValue, contentType, data, etag,
     callback) {
-  var url = dcc.UrlUtils.append(this.getPath(), pathValue);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var url = _pc.UrlUtils.append(this.getPath(), pathValue);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = "";
   if (callback !== undefined) {
     response = restAdapter.put(url, data, etag, contentType, {}, function(
@@ -546,7 +546,7 @@ dcc.DavCollection.prototype.put = function(pathValue, contentType, data, etag,
         }
       } else {
         if (callback.success !== undefined) {
-          callback.success(new dcc.DavResponse(resp.accessor, ""));
+          callback.success(new _pc.DavResponse(resp.accessor, ""));
         }
       }
       if (callback.complete !== undefined) {
@@ -555,7 +555,7 @@ dcc.DavCollection.prototype.put = function(pathValue, contentType, data, etag,
     });
   } else {
     response = restAdapter.put(url, data, etag, contentType);
-    return new dcc.DavResponse(this.accessor, response);
+    return new _pc.DavResponse(this.accessor, response);
   }
   return response;
 };
@@ -569,7 +569,7 @@ dcc.DavCollection.prototype.put = function(pathValue, contentType, data, etag,
 //* @param etag PUT対象のETag。新規または強制更新の場合は "*" を指定する
 //* @throws DaoException DAO例外
 //*/
-//dcc.DavCollection.prototype.put = function(pathValue, contentType, enc, data,
+//_pc.DavCollection.prototype.put = function(pathValue, contentType, enc, data,
 //etag) {
 //byte[] bs;
 //try {
@@ -582,7 +582,7 @@ dcc.DavCollection.prototype.put = function(pathValue, contentType, data, etag,
 //throw new DaoException("UnsupportedEncodingException", e);
 //}
 //InputStream is = new ByteArrayInputStream(bs);
-//String url = dcc.UrlUtils.append(this.getPath(), pathValue);
+//String url = _pc.UrlUtils.append(this.getPath(), pathValue);
 //((RestAdapter) RestAdapterFactory.create(this.accessor)).putStream(url,
 //contentType, is, etag);
 //};
@@ -596,14 +596,14 @@ dcc.DavCollection.prototype.put = function(pathValue, contentType, data, etag,
  * This method is used to delete the data in the specified Path (ETag specified).
  * @param {String} pathValue DAV Path
  * @param {String} etagValue ETag of PUT target. Specify "*" for forcing new or updated
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.DavCollection.prototype.del = function(pathValue, etagValue, callback) {
+_pc.DavCollection.prototype.del = function(pathValue, etagValue, callback) {
   if (typeof etagValue === "undefined") {
     etagValue = "*";
   }
-  var url = dcc.UrlUtils.append(this.getPath(), pathValue);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var url = _pc.UrlUtils.append(this.getPath(), pathValue);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   //var response = "";
   if (callback !== undefined) {
     restAdapter.del(url, etagValue, function(resp) {
@@ -613,7 +613,7 @@ dcc.DavCollection.prototype.del = function(pathValue, etagValue, callback) {
         }
       } else {
         if (callback.success !== undefined) {
-          callback.success(new dcc.DavResponse(resp.accessor, ""));
+          callback.success(new _pc.DavResponse(resp.accessor, ""));
         }
       }
       if (callback.complete !== undefined) {
@@ -622,7 +622,7 @@ dcc.DavCollection.prototype.del = function(pathValue, etagValue, callback) {
     });
   } else {
     var response = restAdapter.del(url, etagValue);
-    return new dcc.DavResponse(this.accessor, response);
+    return new _pc.DavResponse(this.accessor, response);
   }
 
   //Commented out response since both conditions either call callback or return DavResponse
@@ -639,7 +639,7 @@ dcc.DavCollection.prototype.del = function(pathValue, etagValue, callback) {
  * @param {String} headerKey Key of the header
  * @return {String} value of the header
  */
-dcc.DavCollection.prototype.getHeaderValue = function(headerKey) {
+_pc.DavCollection.prototype.getHeaderValue = function(headerKey) {
   return this.accessor.getResHeaders()[headerKey];
 };
 
@@ -649,9 +649,9 @@ dcc.DavCollection.prototype.getHeaderValue = function(headerKey) {
  * @param {string} etag Used for if-none-match condition
  * @returns
  */
-dcc.DavCollection.prototype.getJSON = function(pathValue, etag) {
-  var url = dcc.UrlUtils.append(this.getPath(), pathValue);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+_pc.DavCollection.prototype.getJSON = function(pathValue, etag) {
+  var url = _pc.UrlUtils.append(this.getPath(), pathValue);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = restAdapter.get(url, "application/json", etag);
   return response;
 };

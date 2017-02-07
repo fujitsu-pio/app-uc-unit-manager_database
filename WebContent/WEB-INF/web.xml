@@ -20,7 +20,7 @@
 	</session-config>
 	<servlet>
 		<servlet-name>HomeServlet</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.HomeServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.HomeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeServlet</servlet-name>
@@ -28,7 +28,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>Info</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.InfoStoreServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.InfoStoreServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Info</servlet-name>
@@ -36,7 +36,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>RegisterServlet</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.UnitUserRegisterServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.UnitUserRegisterServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegisterServlet</servlet-name>
@@ -44,7 +44,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>Login</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.LoginServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.LoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -52,7 +52,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>LogOut</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.LogOutServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.LogOutServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LogOut</servlet-name>
@@ -60,7 +60,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>check</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.CheckServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.CheckServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>check</servlet-name>
@@ -68,7 +68,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>TokenGeneration</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.TokenGeneration</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.TokenGeneration</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TokenGeneration</servlet-name>
@@ -76,7 +76,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>CreateEnvironment</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.CreateEnvironmentServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.CreateEnvironmentServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CreateEnvironment</servlet-name>
@@ -84,7 +84,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>ChangePassword</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.ChangePasswordServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.ChangePasswordServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ChangePassword</servlet-name>
@@ -92,7 +92,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>EditUserInfo</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.EditUserInformationServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.EditUserInformationServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>EditUserInfo</servlet-name>
@@ -100,7 +100,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>DeleteEnvironmentServlet</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.DeleteEnvironmentServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.DeleteEnvironmentServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DeleteEnvironmentServlet</servlet-name>
@@ -108,7 +108,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>AdministratorManagement</servlet-name>
-		<servlet-class>com.fujitsu.dc.gui.portal.servlet.AdministratorManagementServlet</servlet-class>
+		<servlet-class>io.personium.gui.portal.servlet.AdministratorManagementServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdministratorManagement</servlet-name>
@@ -116,7 +116,7 @@
 	</servlet-mapping>
 	<servlet>
 	<servlet-name>UnitManagementServlet</servlet-name>
-	<servlet-class>com.fujitsu.dc.gui.portal.servlet.UnitManagementServlet</servlet-class>
+	<servlet-class>io.personium.gui.portal.servlet.UnitManagementServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 	<servlet-name>UnitManagementServlet</servlet-name>
@@ -124,7 +124,7 @@
 	</servlet-mapping>
 	<servlet>
 	<servlet-name>MailServlet</servlet-name>
-	<servlet-class>com.fujitsu.dc.gui.portal.servlet.MailerServlet</servlet-class>
+	<servlet-class>io.personium.gui.portal.servlet.MailerServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 	<servlet-name>MailServlet</servlet-name>
@@ -133,7 +133,7 @@
 	
 	<filter>
 		<filter-name>AuthenticationFilter</filter-name>
-		<filter-class>com.fujitsu.dc.gui.portal.AuthenticationFilter</filter-class>
+		<filter-class>io.personium.gui.portal.AuthenticationFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthenticationFilter</filter-name>

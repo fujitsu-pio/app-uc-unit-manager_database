@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class EntityTypeのCRUDのためのクラス.
@@ -23,17 +23,17 @@
 //* @augments jEntitySet 
 //*/
 /**
- * It creates a new object dcc.EntityManager.
+ * It creates a new object _pc.EntityManager.
  * @class This class is used for performing CRUD operations for Entity.
  * @constructor
  * @augments jEntitySet
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} collection
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} collection
  */
-dcc.EntityManager = function(as, collection) {
+_pc.EntityManager = function(as, collection) {
   this.initializeProperties(this, as, collection);
 };
-dcc.DcClass.extend(dcc.EntityManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.EntityManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
@@ -41,11 +41,11 @@ dcc.DcClass.extend(dcc.EntityManager, dcc.ODataManager);
 /**
  * This method initializes the properties of this class.
  * @param {Object} self
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} collection object
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} collection object
  */
-dcc.EntityManager.prototype.initializeProperties = function(self, as, collection) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.EntityManager.prototype.initializeProperties = function(self, as, collection) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as, collection);
 };
 
@@ -53,7 +53,7 @@ dcc.EntityManager.prototype.initializeProperties = function(self, as, collection
  * This method creates and returns the URL for performing Entity related operations.
  * @return {String} URL
  */
-dcc.EntityManager.prototype.getUrl = function() {
+_pc.EntityManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.collection.getPath();
   return sb;
@@ -62,14 +62,14 @@ dcc.EntityManager.prototype.getUrl = function() {
 ///**
 //* Entityを作成.
 //* @param jsonData Entityオブジェクト
-//* @return {dcc.DcHttpClient} response
+//* @return {_pc.PersoniumHttpClient} response
 //*/
 /**
  * This method creates an Entity for the data.
  * @param {Object} jsonData Entity object
- * @return {dcc.DcHttpClient} response
+ * @return {_pc.PersoniumHttpClient} response
  */
-dcc.EntityManager.prototype.create = function(jsonData) {
+_pc.EntityManager.prototype.create = function(jsonData) {
   var response = this.internalCreate(JSON.stringify(jsonData));
   return response;
 };
@@ -78,7 +78,7 @@ dcc.EntityManager.prototype.create = function(jsonData) {
  * This method retrieves the entity list.
  * return {Object} JSON response
  */
-dcc.EntityManager.prototype.retrieve = function(id) {
+_pc.EntityManager.prototype.retrieve = function(id) {
 	var json = this.internalRetrieve(id);
 	return json;
 };
@@ -88,9 +88,9 @@ dcc.EntityManager.prototype.retrieve = function(id) {
  * @param {String} entityName entity Name
  * @param {Object} body data
  * @param {String} etag value
- * @return {dcc.DcHttpClient} response
+ * @return {_pc.PersoniumHttpClient} response
  */
-dcc.EntityManager.prototype.update = function(entityName, body, etag) {
+_pc.EntityManager.prototype.update = function(entityName, body, etag) {
   var response = null;
   response = this.internalUpdate(entityName, body, etag);
   return response;
@@ -99,10 +99,10 @@ dcc.EntityManager.prototype.update = function(entityName, body, etag) {
  * The purpose of the following method is to delete an entity.
  * @param {String} entityTypeName
  * @param {String} etag
- * @return {dcc.Promise} promise
+ * @return {_pc.Promise} promise
  */
 
-dcc.EntityManager.prototype.del = function(entityTypeName, etag) {
+_pc.EntityManager.prototype.del = function(entityTypeName, etag) {
   var key = encodeURIComponent("'" + entityTypeName + "'");
   var response = this.internalDelMultiKey(key, etag);
   return response;

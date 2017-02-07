@@ -51,7 +51,7 @@ sentMessage.prototype.createSentMessageManager = function(){
 	var boxName = collectionPath;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, boxName);
-	var objSentMessageManager = new dcc.SentMessageManager(accessor);
+	var objSentMessageManager = new _pc.SentMessageManager(accessor);
 	return objSentMessageManager;
 };
 
@@ -64,7 +64,7 @@ sentMessage.prototype.retrieveRecordCount = function() {
 	var objSentMessageManager = this.createSentMessageManager();
 	var uri = objSentMessageManager.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -81,7 +81,7 @@ sentMessage.prototype.retrieveChunkedData = function(lowerLimit, upperLimit) {
 	var objSentMessageManager = this.createSentMessageManager();
 	var dataUri = objSentMessageManager.getUrl();
 	dataUri = dataUri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var dataResponse = restAdapter.get(dataUri, "application/json");
 	var dataJson = dataResponse.bodyAsJson().d.results;
 	return dataJson;
@@ -111,7 +111,7 @@ sentMessage.prototype.getMessageDetail = function (messageID) {
 	var boxName = collectionPath;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, boxName);
-	var objSentMessageManager = new dcc.SentMessageManager(accessor);
+	var objSentMessageManager = new _pc.SentMessageManager(accessor);
 	var json = objSentMessageManager.retrieve(messageID);
 	json = json.body;
 	return json;
@@ -181,7 +181,7 @@ sentMessage.prototype.retrieveAllSentMessages = function () {
 	var totalRecordCount = uSentMessage.retrieveRecordCount();
 	var dataUri = objSentMessageManager.getUrl();
 	dataUri = dataUri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var dataResponse = restAdapter.get(dataUri, "application/json");
 	var dataJson = dataResponse.bodyAsJson().d.results;
 	return dataJson;
@@ -853,7 +853,7 @@ sentMessage.prototype.deleteMessage = function(messageID, etag,count) {
 	var boxName = collectionPath;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, boxName);
-	var objSentMessageManager = new dcc.SentMessageManager(accessor);
+	var objSentMessageManager = new _pc.SentMessageManager(accessor);
 	var response = objSentMessageManager.del(messageID, etag);
 	if (response.resolvedValue.status == 204) {
 		sbSuccessfulSentMessage ++;
@@ -1155,7 +1155,7 @@ sentMessage.prototype.retrieveAPIResponse = function (queryString) {
 	var path = baseUrl + cellName + "/__ctl";
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
 	path += queryString;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = null;
 	try {
 		response = restAdapter.get(path, "application/json", "*");

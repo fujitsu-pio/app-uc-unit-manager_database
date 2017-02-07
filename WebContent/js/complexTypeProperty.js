@@ -457,7 +457,7 @@ complexTypeProperty.prototype.retrieveAPIResponse = function (json, operationPer
 	}
 	var collectionName= uEntityTypeOperations.getFolderHeirarchy(boxName);//sessionStorage.collectionName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, "", boxName);
-	var objComplexTypePropertyManager = new dcc.ComplexTypePropertyManager(accessor, collectionName);
+	var objComplexTypePropertyManager = new _pc.ComplexTypePropertyManager(accessor, collectionName);
 	if (operationPerformed === "CREATE") {
 		response = objComplexTypePropertyManager.create(json);
 	}
@@ -715,7 +715,7 @@ complexTypeProperty.prototype.deleteComplexTypeProperty = function () {
 	}
 	var collectionName= uEntityTypeOperations.getFolderHeirarchy(boxName);//sessionStorage.collectionName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, "", boxName);
-	var objComplexTypePropertyManager = new dcc.ComplexTypePropertyManager(accessor, collectionName);
+	var objComplexTypePropertyManager = new _pc.ComplexTypePropertyManager(accessor, collectionName);
 	var complexTypePropertyName = sessionStorage.deletedComplexTypePropName;
 	var complextypeName = sessionStorage.deletedComplexTypeName;
 	complextypeName = objCommon.getEnityNameAfterRemovingSpecialChar(complextypeName);

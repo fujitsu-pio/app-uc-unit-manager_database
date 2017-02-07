@@ -15,23 +15,23 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 /**
  * @namespace Namespace enclosing the PCS client library classes.
  */
-var dcc = {};
+var _pc = {};
 
 ///**
 //* @class JS-DAOの動作設定情報を保持するオブジェクト.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.DaoConfig.
+ * It creates a new object _pc.DaoConfig.
  * @class This class is used for holding the operation setting information of JS-DAO.
  * @constructor
  */
-dcc.DaoConfig = function() {
+_pc.DaoConfig = function() {
   this.initializeProperties();
 };
 
@@ -41,7 +41,7 @@ dcc.DaoConfig = function() {
 /**
  * This method initializes the properties of this class.
  */
-dcc.DaoConfig.prototype.initializeProperties = function() {
+_pc.DaoConfig.prototype.initializeProperties = function() {
 ///** HTTPタイムアウト値 (number). */
   /** HTTP time-out value (number). */
   this.connectionTimeout = 0;
@@ -72,7 +72,7 @@ dcc.DaoConfig.prototype.initializeProperties = function() {
  * This method is used to get the HTTP time-out value.
  * @return {Number} Time-out value (ms)
  */
-dcc.DaoConfig.prototype.getConnectionTimeout = function() {
+_pc.DaoConfig.prototype.getConnectionTimeout = function() {
   return this.connectionTimeout;
 };
 
@@ -86,9 +86,9 @@ dcc.DaoConfig.prototype.getConnectionTimeout = function() {
  * It throws an exception if a non-type is specified.
  * @param {Number} value Time-out value (ms)
  */
-dcc.DaoConfig.prototype.setConnectionTimeout = function(value) {
+_pc.DaoConfig.prototype.setConnectionTimeout = function(value) {
   if (typeof value !== "number") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.connectionTimeout = value;
 };
@@ -101,7 +101,7 @@ dcc.DaoConfig.prototype.setConnectionTimeout = function(value) {
  * This method gets the Chunked attribute as specified.
  * @return {boolean} Chunked value
  */
-dcc.DaoConfig.prototype.getChunked = function() {
+_pc.DaoConfig.prototype.getChunked = function() {
   return this.chunked;
 };
 
@@ -115,9 +115,9 @@ dcc.DaoConfig.prototype.getChunked = function() {
  * It throws an exception if a non-boolean type is specified.
  * @param {boolean} value Chunked value
  */
-dcc.DaoConfig.prototype.setChunked = function(value) {
+_pc.DaoConfig.prototype.setChunked = function(value) {
   if (typeof value !== "boolean") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.chunked = value;
 };
@@ -131,7 +131,7 @@ dcc.DaoConfig.prototype.setChunked = function(value) {
  * You will be prompted to asynchronous communication.
  * @return {Boolean} Asynchronous flag
  */
-dcc.DaoConfig.prototype.getAsync = function() {
+_pc.DaoConfig.prototype.getAsync = function() {
   return this.async;
 };
 
@@ -145,9 +145,9 @@ dcc.DaoConfig.prototype.getAsync = function() {
  * It throws an exception if a non-boolean type is specified.
  * @param {Boolean} value Asynchronous flag
  */
-dcc.DaoConfig.prototype.setAsync = function(value) {
+_pc.DaoConfig.prototype.setAsync = function(value) {
   if (typeof value !== "boolean") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.async = value;
 };
@@ -158,9 +158,9 @@ dcc.DaoConfig.prototype.setAsync = function(value) {
 //*/
 /**
  * This method acquires HttpClient object.
- * @return {dcc.DcHttpClient} HttpClient object
+ * @return {_pc.PersoniumHttpClient} HttpClient object
  */
-dcc.DaoConfig.prototype.getHttpClient = function() {
+_pc.DaoConfig.prototype.getHttpClient = function() {
   return this.httpClient;
 };
 
@@ -170,9 +170,9 @@ dcc.DaoConfig.prototype.getHttpClient = function() {
 //*/
 /**
  * This method sets HttpClient object.
- * @param {dcc.DcHttpClient} value HttpClient object
+ * @param {_pc.PersoniumHttpClient} value HttpClient object
  */
-dcc.DaoConfig.prototype.setHttpClient = function(value) {
+_pc.DaoConfig.prototype.setHttpClient = function(value) {
   this.httpClient = value;
 };
 
@@ -181,7 +181,7 @@ dcc.DaoConfig.prototype.setHttpClient = function(value) {
 //* @return RestAdapterモッククラス
 //*/
 ////public final RestAdapter getMockRestAdapter() {
-//dcc.DaoConfig.prototype.getMockRestAdapter = function() {
+//_pc.DaoConfig.prototype.getMockRestAdapter = function() {
 //return mockRestAdapter;
 //};
 
@@ -190,7 +190,7 @@ dcc.DaoConfig.prototype.setHttpClient = function(value) {
 //* @param value RestAdapterモッククラス
 //*/
 ////public final void setMockRestAdapter(final RestAdapter value) {
-//dcc.DaoConfig.prototype.setMockRestAdapter = function() {
+//_pc.DaoConfig.prototype.setMockRestAdapter = function() {
 //this.mockRestAdapter = value;
 //};
 

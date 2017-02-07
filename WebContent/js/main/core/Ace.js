@@ -15,26 +15,26 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 /**
- * It creates a new object dcc.Ace.
+ * It creates a new object _pc.Ace.
  * @class class representing Ace (Access Control Element) in WebDAV ACL implemented in PCS.
  * @constructor
  */
-dcc.Ace = function() {
+_pc.Ace = function() {
   this.initializeProperties(this);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Ace} self
+//* @param {_pc.Ace} self
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Ace} self
+ * @param {_pc.Ace} self
  */
-dcc.Ace.prototype.initializeProperties = function(self) {
+_pc.Ace.prototype.initializeProperties = function(self) {
   /** Granted Privileges List for this Ace. */
   self.privilegeList = [];
   /** Role Name. @deprecated */
@@ -45,19 +45,19 @@ dcc.Ace.prototype.initializeProperties = function(self) {
 
 /**
  * Get Principal of this Ace in the form of Role.
- * @return {dcc.Principal} Principal
+ * @return {_pc.Principal} Principal
  * @deprecated Use getPrincipal()
  */
-dcc.Ace.prototype.getRole = function() {
+_pc.Ace.prototype.getRole = function() {
   return this.principal;
 };
 
 /**
  * Set the Principal (typically a role) of this Ace in the form of Role.
- * @param {dcc.Role} Role object
+ * @param {_pc.Role} Role object
  * @deprecated Use setPrincipal(principal)
  */
-dcc.Ace.prototype.setRole = function(obj) {
+_pc.Ace.prototype.setRole = function(obj) {
   this.setPrincipal(obj);
 };
 
@@ -66,7 +66,7 @@ dcc.Ace.prototype.setRole = function(obj) {
  * @return {String} Role Name
  * @deprecated
  */
-dcc.Ace.prototype.getRoleName = function() {
+_pc.Ace.prototype.getRoleName = function() {
   if (this.principal !== null) {
     return this.principal.getName();
   } else {
@@ -79,7 +79,7 @@ dcc.Ace.prototype.getRoleName = function() {
  * @return {String} the _Box.Name value of the Role
  * @deprecated
  */
-dcc.Ace.prototype.getBoxName = function() {
+_pc.Ace.prototype.getBoxName = function() {
   if (this.principal !== null) {
     return this.principal.getBoxName();
   } else {
@@ -92,7 +92,7 @@ dcc.Ace.prototype.getBoxName = function() {
  * @param {String} value Role Name
  * @deprecated
  */
-dcc.Ace.prototype.setRoleName = function(value) {
+_pc.Ace.prototype.setRoleName = function(value) {
   this.roleName = value;
 };
 
@@ -100,7 +100,7 @@ dcc.Ace.prototype.setRoleName = function(value) {
  * Add a privilege.
  * @param {String} value privilege name
  */
-dcc.Ace.prototype.addPrivilege = function(value) {
+_pc.Ace.prototype.addPrivilege = function(value) {
   this.privilegeList.push(value);
 };
 
@@ -108,22 +108,22 @@ dcc.Ace.prototype.addPrivilege = function(value) {
  * Gives the privilege list.
  * @return {Array.<String>} list of privileges
  */
-dcc.Ace.prototype.getPrivilegeList = function() {
+_pc.Ace.prototype.getPrivilegeList = function() {
   return this.privilegeList;
 };
 
 /**
  * Set the Principal (typically a role or string value ALL) for this Ace.
- * @param {dcc.Principal}
+ * @param {_pc.Principal}
  */
-dcc.Ace.prototype.setPrincipal = function(principal){
+_pc.Ace.prototype.setPrincipal = function(principal){
   this.principal = principal;
 };
 
 /**
  * Get the Principal (typically a role or string value ALL) of this Ace.
- * @returns {dcc.Principal.principalType}
+ * @returns {_pc.Principal.principalType}
  */
-dcc.Ace.prototype.getPrincipal = function(){
+_pc.Ace.prototype.getPrincipal = function(){
   return this.principal;
 };

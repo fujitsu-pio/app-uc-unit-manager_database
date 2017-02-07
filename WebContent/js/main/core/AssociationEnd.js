@@ -15,41 +15,41 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class AssociationEndのアクセスクラス.
 //* @constructor
-//* @augments dcc.AbstractODataContext
+//* @augments _pc.AbstractODataContext
 //*/
 /**
- * It creates a new object dcc.AssociationEnd.
+ * It creates a new object _pc.AssociationEnd.
  * @class This is the access class of Association End.
  * @constructor
- * @augments dcc.AbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.AbstractODataContext
+ * @param {_pc.Accessor} Accessor
  * @param {Object} json
  * @param {String} path
  */
-dcc.AssociationEnd = function(as, json, path) {
+_pc.AssociationEnd = function(as, json, path) {
   this.initializeProperties(this, as, json, path);
 };
-dcc.DcClass.extend(dcc.AssociationEnd, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.AssociationEnd, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AbstractODataContext} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.AbstractODataContext} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json JSONオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AbstractODataContext} self
- * @param {dcc.Accessor} as accessor
+ * @param {_pc.AbstractODataContext} self
+ * @param {_pc.Accessor} as accessor
  * @param {Object} json JSON object
  */
-dcc.AssociationEnd.prototype.initializeProperties = function(self, as, json, path) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.AssociationEnd.prototype.initializeProperties = function(self, as, json, path) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
 ///** キャメル型で表現したクラス名. */
@@ -70,7 +70,7 @@ dcc.AssociationEnd.prototype.initializeProperties = function(self, as, json, pat
 
   /** Link manager of the Account. */
   self.associationEnd = null;
-  self.associationEnd = new dcc.MetadataLinkManager(as, this);
+  self.associationEnd = new _pc.MetadataLinkManager(as, this);
 
   if (json !== undefined && json !== null) {
     self.rawData = json;
@@ -88,7 +88,7 @@ dcc.AssociationEnd.prototype.initializeProperties = function(self, as, json, pat
  * This method sets the name for AssociationEnd.
  * @param {String} value AssociationEnd name
  */
-dcc.AssociationEnd.prototype.setName = function(value) {
+_pc.AssociationEnd.prototype.setName = function(value) {
   this.name = value;
 };
 
@@ -100,7 +100,7 @@ dcc.AssociationEnd.prototype.setName = function(value) {
  * This method gets the name of AssociationEnd.
  * @return {String} AssociationEnd name
  */
-dcc.AssociationEnd.prototype.getName = function() {
+_pc.AssociationEnd.prototype.getName = function() {
   return this.name;
 };
 
@@ -112,7 +112,7 @@ dcc.AssociationEnd.prototype.getName = function() {
  * This method sets the EntityType name.
  * @param {String} value EntityType name
  */
-dcc.AssociationEnd.prototype.setEntityTypeName = function(value) {
+_pc.AssociationEnd.prototype.setEntityTypeName = function(value) {
   this.entityTypeName = value;
 };
 
@@ -124,7 +124,7 @@ dcc.AssociationEnd.prototype.setEntityTypeName = function(value) {
  * This method gets the EntityType name.
  * @return {String} EntityType name
  */
-dcc.AssociationEnd.prototype.getEntityTypeName = function() {
+_pc.AssociationEnd.prototype.getEntityTypeName = function() {
   return this.entityTypeName;
 };
 
@@ -136,7 +136,7 @@ dcc.AssociationEnd.prototype.getEntityTypeName = function() {
  * This method sets the multiplicity.
  * @param {String} value multiplicity
  */
-dcc.AssociationEnd.prototype.setMultiplicity = function(value) {
+_pc.AssociationEnd.prototype.setMultiplicity = function(value) {
   this.multiplicity = value;
 };
 
@@ -148,7 +148,7 @@ dcc.AssociationEnd.prototype.setMultiplicity = function(value) {
  * This method gets the multiplicity.
  * @return {String} multiplicity
  */
-dcc.AssociationEnd.prototype.getMultiplicity = function() {
+_pc.AssociationEnd.prototype.getMultiplicity = function() {
   return this.multiplicity;
 };
 
@@ -161,7 +161,7 @@ dcc.AssociationEnd.prototype.getMultiplicity = function() {
  * @return {String} OData key
  */
 //public String getKey() {
-dcc.AssociationEnd.prototype.getKey = function() {
+_pc.AssociationEnd.prototype.getKey = function() {
   return "(Name='" + this.name + "',_EntityType.Name='" + this.entityTypeName + "')";
 };
 
@@ -173,7 +173,7 @@ dcc.AssociationEnd.prototype.getKey = function() {
  * This method gets the class name.
  * @return {String} OData class name
  */
-dcc.AssociationEnd.prototype.getClassName = function() {
+_pc.AssociationEnd.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 
@@ -185,6 +185,6 @@ dcc.AssociationEnd.prototype.getClassName = function() {
  * This method gets the URL.
  * @return {String} URL value.
  */
-dcc.AssociationEnd.prototype.getPath = function() {
+_pc.AssociationEnd.prototype.getPath = function() {
   return this.url;
 };

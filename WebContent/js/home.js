@@ -676,19 +676,19 @@ home.prototype.displayUnitURLList1 = function(jsonData) {
 		}
 		
 		classEnvBtn = "class='EnvBtnEnabled ContentHeading1 backgroundcolor4 border2'";
-		if (sessionStorage.selectedLanguage == 'jp') {
+		if (sessionStorage.selectedLanguage == 'ja') {
 			classEnvBtn = "class='EnvBtnEnabled ContentHeading1 backgroundcolor4 border2 openCellListWidth'";
 		}
 
 		if(OpenCellListButton==0) {
 			clickEnvironment ='';
 			classEnvBtn = "class='EnvBtnDisabled ContentHeading1 backgroundcolor4 border2'";
-			if (sessionStorage.selectedLanguage == 'jp') {
+			if (sessionStorage.selectedLanguage == 'ja') {
 				classEnvBtn = "class='EnvBtnDisabled ContentHeading1 backgroundcolor4 border2 openCellListWidth'";
 			}
 		}
 		var dynamicStatusWidth = '100px';
-		if (sessionStorage.selectedLanguage === 'jp') {
+		if (sessionStorage.selectedLanguage === 'ja') {
 			dynamicStatusWidth = '118px';
 		}
 		dynamicURLList += "<div id='midcol' class='backgroundcolor2 border' style='height:178px;position:relative'>";
@@ -760,7 +760,7 @@ $.ajax({
 		beforeSend: function (request)
 		{
 			request.setRequestHeader("Accept", 'application/json');
-			request.setRequestHeader("X-Dc-Version", 0);
+			request.setRequestHeader("X-Personium-Version", 0);
 		},
 		url		: unitUrl,//url needs to be changed.
 		type	: 'GET',
@@ -931,8 +931,8 @@ home.prototype.getUserPrivilege = function(jsonData) {
 		dataType : 'json',
 		url : '../../__auth' ,//+ tokenUrl,
 		data : {
-			dc_target : target,
-			dc_env : envID,
+			p_target : target,
+			p_env : envID,
 			username : userName,
 			CSRFTokenDisplayEnvironment : CSRFTokenDisplayEnvironment
 		},

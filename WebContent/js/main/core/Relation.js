@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Relationのアクセスクラス.
 //* @constructor
-//* @augments dcc.AbstractODataContext
+//* @augments _pc.AbstractODataContext
 //*/
 /**
- * It creates a new object dcc.Relation.
+ * It creates a new object _pc.Relation.
  * @class This class represents Relation object.
  * @constructor
- * @augments dcc.AbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.AbstractODataContext
+ * @param {_pc.Accessor} Accessor
  * @param {Object} json
  */
-dcc.Relation = function(as, json) {
+_pc.Relation = function(as, json) {
   this.initializeProperties(this, as, json);
 };
-dcc.DcClass.extend(dcc.Relation, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.Relation, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Relation} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Relation} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json JSONオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Relation} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Relation} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} json JSON object
  */
-dcc.Relation.prototype.initializeProperties = function(self, as, json) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.Relation.prototype.initializeProperties = function(self, as, json) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
 ///** クラス名. */
@@ -74,8 +74,8 @@ dcc.Relation.prototype.initializeProperties = function(self, as, json) {
     self.boxname = json["_Box.Name"];
   }
   if (as !== undefined) {
-    self.role = new dcc.LinkManager(as, this, "Role");
-    self.extCell = new dcc.LinkManager(as, this, "ExtCell");
+    self.role = new _pc.LinkManager(as, this, "Role");
+    self.extCell = new _pc.LinkManager(as, this, "ExtCell");
   }
 };
 
@@ -87,7 +87,7 @@ dcc.Relation.prototype.initializeProperties = function(self, as, json) {
  * This method sets the Relation name.
  * @param {String} value Relation name
  */
-dcc.Relation.prototype.setName = function(value) {
+_pc.Relation.prototype.setName = function(value) {
   this.name = value;
 };
 
@@ -99,7 +99,7 @@ dcc.Relation.prototype.setName = function(value) {
  * This method gets the Relation name.
  * @return {String} Relation name
  */
-dcc.Relation.prototype.getName = function() {
+_pc.Relation.prototype.getName = function() {
   return this.name;
 };
 
@@ -111,7 +111,7 @@ dcc.Relation.prototype.getName = function() {
  * This method sets the box name.
  * @param {String} value _box.name value
  */
-dcc.Relation.prototype.setBoxName = function(value) {
+_pc.Relation.prototype.setBoxName = function(value) {
   this.boxname = value;
 };
 
@@ -123,7 +123,7 @@ dcc.Relation.prototype.setBoxName = function(value) {
  * This method gets the box name.
  * @return {String} _box.name value
  */
-dcc.Relation.prototype.getBoxName = function() {
+_pc.Relation.prototype.getBoxName = function() {
   return this.boxname;
 };
 
@@ -135,7 +135,7 @@ dcc.Relation.prototype.getBoxName = function() {
  * This method gets the key for Relation.
  * @return {String} Key information
  */
-dcc.Relation.prototype.getKey = function() {
+_pc.Relation.prototype.getKey = function() {
   if (this.boxname !== null) {
     return "(_Box.Name='" + this.boxname + "',Name='" + this.name + "')";
   } else {
@@ -151,7 +151,7 @@ dcc.Relation.prototype.getKey = function() {
  * This method returns the class name.
  * @return {String} Class name
  */
-dcc.Relation.prototype.getClassName = function() {
+_pc.Relation.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 

@@ -50,7 +50,7 @@ registerFileAsService.prototype.fetchEngineServiceUploadedFileList = function ()
 	}
 	path += engineServiceName+"/__src";*/
 	path += "/__src";
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
 	var serviceColList =  objJDavCollection.getResourceList(path);
 	var sortedServiceCollectionData = objCommon.sortByKey(serviceColList, 'Date');
 	var recordSize = sortedServiceCollectionData.length;
@@ -280,7 +280,7 @@ registerFileAsService.prototype.registerFileAsAService = function () {
 				 path += "/";
 				}
 			path += sessionStorage.rowSelectCollectionName;*/
-			var objServiceCollection = new dcc.ServiceCollection(accessor, path);
+			var objServiceCollection = new _pc.ServiceCollection(accessor, path);
 			var response = objServiceCollection.multipleServiceConfigure(registeredServiceList, ENGINE);
 			var statusCode = response.httpClient.status;
 			this.displayNotificationMessageOnPopUp(statusCode);
@@ -340,7 +340,7 @@ registerFileAsService.prototype.retrieveRegisteredFilesList = function () {
 		path += "/";
 	}
 	path += engineServiceName;*/
-	var objServiceCollection = new dcc.ServiceCollection(accessor, path);
+	var objServiceCollection = new _pc.ServiceCollection(accessor, path);
 	var response  = objServiceCollection.propfind();
 	registeredServicesList =  this.getRegisteredServices(response);
 	return registeredServicesList;
@@ -494,8 +494,8 @@ registerFileAsService.prototype.getRegisteredServices = function(response) {
 		var prop = propstat[count].getElementsByTagName("prop");
 		var dcService = prop[count].lastElementChild;
 		var dcPath = dcService.children;
-		var lenDcPath = dcPath.length;
-		for ( var serviceCount = 0; serviceCount < lenDcPath; serviceCount++) {
+		var lenPersoniumPath = dcPath.length;
+		for ( var serviceCount = 0; serviceCount < lenPersoniumPath; serviceCount++) {
 			if (dcPath[serviceCount].attributes[0] != undefined) {
 				serviceName = dcPath[serviceCount].attributes[0].value;
 				sourceFileName = dcPath[serviceCount].attributes[1].value;
@@ -530,7 +530,7 @@ registerFileAsService.prototype.registerFiles = function (serviceName,serviceFil
 	 path += "/";
 	}
 	path += sessionStorage.rowSelectCollectionName;
-	var objServiceCollection = new dcc.ServiceCollection(accessor, path);
+	var objServiceCollection = new _pc.ServiceCollection(accessor, path);
 	if (isAllRecordSelected == false) {
 	 response = objServiceCollection.multipleServiceConfigure(arrServiceRegistration, ENGINE);
 	}

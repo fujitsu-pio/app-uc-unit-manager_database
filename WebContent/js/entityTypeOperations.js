@@ -61,8 +61,8 @@ entityTypeOperations.prototype.validateEntityTypeName = function(entityTypeName,
  * @returns
  */
 entityTypeOperations.prototype.entityNameAlreadyExists = function(accessor, entityTypeName, path){
-	var objjDCCollection = new dcc.DcCollection(accessor , path);
-	var objEntityTypeManager = new dcc.EntityTypeManager(accessor, objjDCCollection);
+	var objjDCCollection = new _pc.PersoniumCollection(accessor , path);
+	var objEntityTypeManager = new _pc.EntityTypeManager(accessor, objjDCCollection);
 	var status = false;
 	try {
 		objEntityTypeManager.retrieve(entityTypeName);
@@ -105,12 +105,12 @@ entityTypeOperations.prototype.createEntityType = function(){
 	var entityTypeName = document.getElementById("txtETypeName").value;
 	if (uEntityTypeOperations.validateEntityTypeName(entityTypeName, "popupETypeErrorMsg", "#txtETypeName")) {
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objjDCCollection = new dcc.DcCollection(accessor , path);
-		var objEntityTypeManager = new dcc.EntityTypeManager(accessor, objjDCCollection);
+		var objjDCCollection = new _pc.PersoniumCollection(accessor , path);
+		var objEntityTypeManager = new _pc.EntityTypeManager(accessor, objjDCCollection);
 		var json = {
 				"Name" : entityTypeName
 		};
-		var objjEntityType = new dcc.EntityType(accessor, json);
+		var objjEntityType = new _pc.EntityType(accessor, json);
 		var notExists = uEntityTypeOperations.entityNameAlreadyExists(accessor, entityTypeName, path);
 		if(notExists){
 			objCommon.showValidValueIcon('#txtETypeName');
@@ -379,18 +379,18 @@ entityTypeOperations.prototype.fetchEntityTypes = function(url){
 	}
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objjDCCollection = new dcc.DcCollection(accessor , url);
-	var objEntityTypeManager = new dcc.EntityTypeManager(accessor, objjDCCollection);
+	var objjDCCollection = new _pc.PersoniumCollection(accessor , url);
+	var objEntityTypeManager = new _pc.EntityTypeManager(accessor, objjDCCollection);
 	var uri = objEntityTypeManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=100";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var entityTypeNames = [];
 	try {
 		var response = restAdapter.get(uri, "application/json");
 		var sortedJSONString = response.bodyAsJson().d.results;
 		var totalRecordsize = sortedJSONString.length;
-		/*var objjDCCollection = new dcc.DcCollection(accessor , url);
-		var objEntityTypeManager = new dcc.EntityTypeManager(accessor, objjDCCollection);
+		/*var objjDCCollection = new _pc.PersoniumCollection(accessor , url);
+		var objEntityTypeManager = new _pc.EntityTypeManager(accessor, objjDCCollection);
 		var response = objEntityTypeManager.retrieve('');
 		var JSONstring = response.rawData;
 		var totalRecordsize = null;
@@ -454,8 +454,8 @@ entityTypeOperations.prototype.validateComplexTypeName = function(complexTypeNam
  * @returns
  */
 entityTypeOperations.prototype.complexTypeNameAlreadyExists = function(accessor, complexTypeName, path){
-	var objjDCCollection = new dcc.DcCollection(accessor , path);
-	var objComplexTypeManager = new dcc.ComplexTypeManager(accessor, objjDCCollection);
+	var objjDCCollection = new _pc.PersoniumCollection(accessor , path);
+	var objComplexTypeManager = new _pc.ComplexTypeManager(accessor, objjDCCollection);
 	var status = false;
 	try {
 		objComplexTypeManager.retrieve(complexTypeName);
@@ -482,8 +482,8 @@ entityTypeOperations.prototype.createComplexType = function(){
 	var complexTypeName = document.getElementById("txtCTypeName").value;
 	if (uEntityTypeOperations.validateComplexTypeName(complexTypeName, '#txtCTypeName')) {
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objjDCCollection = new dcc.DcCollection(accessor , path);
-		var objComplexTypeManager = new dcc.ComplexTypeManager(accessor, objjDCCollection);
+		var objjDCCollection = new _pc.PersoniumCollection(accessor , path);
+		var objComplexTypeManager = new _pc.ComplexTypeManager(accessor, objjDCCollection);
 		var json = {
 				"Name" : complexTypeName
 		};
@@ -568,8 +568,8 @@ entityTypeOperations.prototype.updateEntityType = function () {
 		var cellName = sessionStorage.selectedcell;
 		var path = sessionStorage.selectedCollectionURL;
 		var accessor = objCommon.initializeAccessor(baseUrl,cellName);
-		var objjDCCollection = new dcc.DcCollection(accessor , path);
-		var objJEntityTypeManager = new dcc.EntityTypeManager(accessor,objjDCCollection);
+		var objjDCCollection = new _pc.PersoniumCollection(accessor , path);
+		var objJEntityTypeManager = new _pc.EntityTypeManager(accessor,objjDCCollection);
 		if (newEntityTypeName === existingEntityName) {
 			uEntityTypeOperations.editEntityType(existingEntityName, body, objJEntityTypeManager);
 			if ($("#AssociationTab").hasClass("genericSelectRed")) {
@@ -655,8 +655,8 @@ entityTypeOperations.prototype.deleteComplexType = function(){
 	var path = sessionStorage.selectedCollectionURL;
 	var complexTypeName = $('#tabComplexTypeName').text();
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objjDCCollection = new dcc.DcCollection(accessor , path);
-	var objComplexTypeManager = new dcc.ComplexTypeManager(accessor, objjDCCollection);
+	var objjDCCollection = new _pc.PersoniumCollection(accessor , path);
+	var objComplexTypeManager = new _pc.ComplexTypeManager(accessor, objjDCCollection);
 	var promise = objComplexTypeManager.del(path, complexTypeName,"*");
 	uEntityTypeOperations.displayMsgForDeleteCompType(promise, complexTypeName);
 	removeSpinner("modalSpinnerEntityType");
@@ -675,8 +675,8 @@ entityTypeOperations.prototype.DeleteEntityType = function () {
 	var cellName = sessionStorage.selectedcell;
 	var path = sessionStorage.selectedCollectionURL;
 	var accessor = objCommon.initializeAccessor(baseUrl,cellName);
-	var objjDCCollection = new dcc.DcCollection(accessor , path);
-	var objJEntityTypeManager = new dcc.EntityTypeManager(accessor,objjDCCollection);
+	var objjDCCollection = new _pc.PersoniumCollection(accessor , path);
+	var objJEntityTypeManager = new _pc.EntityTypeManager(accessor,objjDCCollection);
 	var etag = objJEntityTypeManager.getEtag(entityTypeName);
 	var promise = objJEntityTypeManager.del(entityTypeName, etag);
 	if (promise != undefined) {

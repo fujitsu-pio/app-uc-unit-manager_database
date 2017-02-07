@@ -15,37 +15,37 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class CellのCRUDを行うクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.CellManager.
+ * It creates a new object _pc.CellManager.
  * @class This class performs CRUD operations for Cell.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  */
-dcc.CellManager = function(as) {
+_pc.CellManager = function(as) {
   this.initializeProperties(this, as);
 };
-dcc.DcClass.extend(dcc.CellManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.CellManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.CellManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.CellManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.CellManager} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.CellManager} self
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.CellManager.prototype.initializeProperties = function(self, as) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.CellManager.prototype.initializeProperties = function(self, as) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 };
 
@@ -57,27 +57,27 @@ dcc.CellManager.prototype.initializeProperties = function(self, as) {
  * This method gets the URL for performing cell related operations.
  * @return {String} URL for Cell
  */
-dcc.CellManager.prototype.getUrl = function() {
+_pc.CellManager.prototype.getUrl = function() {
   return this.getBaseUrl() + "__ctl/Cell";
 };
 
 ///**
 //* Cellを作成.
 //* @param {Object} body リクエストボディ
-//* @param {dcc.Cell} cell
+//* @param {_pc.Cell} cell
 //* @param callback object
-//* @return {dcc.Cell} 作成したCellオブジェクト
+//* @return {_pc.Cell} 作成したCellオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method performs create operation for Cell.
  * @param {Object} body Request body
- * @param {dcc.Cell} cell
+ * @param {_pc.Cell} cell
  * @param {Object} callback object
- * @return {dcc.Cell} Cell object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Cell} Cell object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.CellManager.prototype.create = function(body, cell, callback) {
+_pc.CellManager.prototype.create = function(body, cell, callback) {
   var json = null;
   if (typeof cell !== "undefined") {
     var newBody = {};
@@ -98,7 +98,7 @@ dcc.CellManager.prototype.create = function(body, cell, callback) {
       } else {
         var responseBody = resp.bodyAsJson();
         var json = responseBody.d.results;
-        var newCell = new dcc.Cell(this.accessor, json.Name);
+        var newCell = new _pc.Cell(this.accessor, json.Name);
         if (callback.success !== undefined) {
           callback.success(newCell);
         }
@@ -110,7 +110,7 @@ dcc.CellManager.prototype.create = function(body, cell, callback) {
     });
   } else {
     json = this.cellCreate(body);
-    return new dcc.Cell(this.accessor, json.Name);
+    return new _pc.Cell(this.accessor, json.Name);
   }
 };
 
@@ -126,11 +126,11 @@ dcc.CellManager.prototype.create = function(body, cell, callback) {
  * @param {Object} body Request body
  * @param {Object} callback object
  * @return {Object} response JSON object
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.CellManager.prototype.cellCreate = function(body, callback) {
+_pc.CellManager.prototype.cellCreate = function(body, callback) {
   var url = this.getUrl();
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var headers = {};
   var requestBody = JSON.stringify(body);
   if(callback !== undefined){
@@ -139,7 +139,7 @@ dcc.CellManager.prototype.cellCreate = function(body, callback) {
     var response = restAdapter.post(url, requestBody, "application/json",headers);
     var responseBody = response.bodyAsJson();
     if(responseBody.d === undefined){
-      throw new dcc.DaoException(responseBody.message.value,responseBody.code);
+      throw new _pc.DaoException(responseBody.message.value,responseBody.code);
     }
     var json = responseBody.d.results;
     return json;
@@ -149,18 +149,18 @@ dcc.CellManager.prototype.cellCreate = function(body, callback) {
 ///**
 //* retrieve cell.
 //* @param {String} id 取得対象のID
-//* @return {dcc.Cell} 取得したしたCellオブジェクト
+//* @return {_pc.Cell} 取得したしたCellオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method performs the retrieve operation for cell.
  * @param {String} id ID of cell
- * @return {dcc.Cell} Cell object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Cell} Cell object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.CellManager.prototype.retrieve = function(id) {
+_pc.CellManager.prototype.retrieve = function(id) {
   if (typeof id !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   var json = this.internalRetrieve(id);
   //TODO-HCL
@@ -170,7 +170,7 @@ dcc.CellManager.prototype.retrieve = function(id) {
   else{
     //returns response in JSON format.
     this.accessor.cellName = json.Name;
-    return new dcc.Cell(this.accessor, json.Name);
+    return new _pc.Cell(this.accessor, json.Name);
   }
   //return new Cell(this.accessor, json.Name);
 };
@@ -179,9 +179,9 @@ dcc.CellManager.prototype.retrieve = function(id) {
  * Delete Cell.
  * @param {String} cellName
  * @param {String} etag value
- * @return {dcc.Promise} response
+ * @return {_pc.Promise} response
  */
-dcc.CellManager.prototype.del = function(cellName, etag) {
+_pc.CellManager.prototype.del = function(cellName, etag) {
   var key = "Name='" + cellName + "'";
   var response =  this.internalDelMultiKey(key, etag);
   return response;
@@ -192,7 +192,7 @@ dcc.CellManager.prototype.del = function(cellName, etag) {
  * @param {String} name
  * @return {String} etag
  */
-dcc.CellManager.prototype.getEtag = function(name) {
+_pc.CellManager.prototype.getEtag = function(name) {
   var json = this.internalRetrieve(name);
   return json.__metadata.etag;
 };
@@ -202,7 +202,7 @@ dcc.CellManager.prototype.getEtag = function(name) {
  * @param cellName
  * @returns {String} responseCode
  */
-dcc.CellManager.prototype.getHttpResponseCode = function(cellName) {
+_pc.CellManager.prototype.getHttpResponseCode = function(cellName) {
   var responseCode = this.exists(cellName);
   return responseCode;
 };
@@ -217,16 +217,16 @@ dcc.CellManager.prototype.getHttpResponseCode = function(cellName) {
  * @param {Object} options.headers any extra HTTP request headers to send.
  * @returns {Object} response(sync) or promise(async) (TODO not implemented) depending on the sync/async model.
  */
-dcc.CellManager.prototype.recursiveDelete = function(cellName, options) {
+_pc.CellManager.prototype.recursiveDelete = function(cellName, options) {
   var url = this.getBaseUrl() + cellName;
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if(!options){
     options = {};
   }
   if(!options.headers){
     options.headers = {};
   }
-  options.headers["X-Dc-Recursive"] = "true";
+  options.headers["X-Personium-Recursive"] = "true";
   var response = restAdapter.del(url, options);
   return response;
 };

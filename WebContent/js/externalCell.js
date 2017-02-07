@@ -115,11 +115,11 @@ externalCell.prototype.getCellList = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objCellManager = new dcc.CellManager(accessor);
+	var objCellManager = new _pc.CellManager(accessor);
 	var uri = objCellManager.getUrl();
 	var count = objExtCell.retrieveCellCount();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -189,11 +189,11 @@ externalCell.prototype.showMessage = function(idModalWindow) {
 externalCell.prototype.registerExternalCell = function(body) {
 	var objExternalCell = new externalCell();
 	var accessor = objExternalCell.getAccessor();
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	try {
 		var idModalWindow = '#externalCellModalWindow';
 		var createdExtCellDetails = objExtCellManager.create(body);
-		if (createdExtCellDetails instanceof dcc.ExtCell) {
+		if (createdExtCellDetails instanceof _pc.ExtCell) {
 			if (($('#chkBoxCreateExtCell').is(':checked'))) {
 				var extCellURL = body.Url;
 				var multiKey = "(Name='" + encodeURIComponent(extCellURL) + "')";
@@ -309,7 +309,7 @@ externalCell.prototype.validateExternalCellName = function(cellName) {
 externalCell.prototype.initializeAbstractDataContext = function() { 
 	var objExternalCell = new externalCell();
 	var accessor = objExternalCell.getAccessor();
-	var objAbstractDataContext =  new dcc.AbstractODataContext(accessor);
+	var objAbstractDataContext =  new _pc.AbstractODataContext(accessor);
 	return objAbstractDataContext;
 };
 
@@ -467,7 +467,7 @@ externalCell.prototype.createRows = function(dynamicTable, externalCellURI, exte
 externalCell.prototype.createExternalCellManager = function(){
 	var objExternalCell = new externalCell();
 	var accessor = objExternalCell.getAccessor();
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	return objExtCellManager;
 };
 
@@ -541,10 +541,10 @@ externalCell.prototype.retrieveRecordCount = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -560,10 +560,10 @@ externalCell.prototype.retrieveChunkedData = function(lowerLimit, upperLimit) {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -688,7 +688,7 @@ externalCell.prototype.deleteExternalCell = function (id,count) {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var etag = objExtCellManager.getEtag(id);
 	
 	try {
@@ -848,10 +848,10 @@ externalCell.prototype.retrieveCellCount = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objCellManager = new dcc.CellManager(accessor);
+	var objCellManager = new _pc.CellManager(accessor);
 	var uri = objCellManager.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -909,11 +909,11 @@ externalCell.prototype.getRelationListForSelectedCell = function () {
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var count = retrieveRelationRecordCount();
 	var uri = objRelationManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -994,10 +994,10 @@ externalCell.prototype.retrieveAllExternalCellData = function () {
 	var cellName = sessionStorage.selectedcell;
 	var totalRecordCount = objExtCell.retrieveRecordCount();
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top="+ totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

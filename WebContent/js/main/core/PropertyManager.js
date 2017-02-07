@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Class for CRUD of Property.
@@ -23,25 +23,25 @@
 //* @augments jEntitySet
 //*/
 /**
- * It creates a new object dcc.PropertyManager.
+ * It creates a new object _pc.PropertyManager.
  * @class This Class is used for performing CRUD operations of Property.
  * @constructor
  * @augments jEntitySet
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} collection
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} collection
  */
-dcc.PropertyManager = function(as, collection) {
+_pc.PropertyManager = function(as, collection) {
   this.initializeProperties(this, as, collection);
 };
-dcc.DcClass.extend(dcc.PropertyManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.PropertyManager, _pc.ODataManager);
 
 /** The purpose of this function is to initialize properties.
  * @param {Object} self
- * @param {dcc.Accessor} as
- * @param {dcc.DcCollection} collection
+ * @param {_pc.Accessor} as
+ * @param {_pc.PersoniumCollection} collection
  */
-dcc.PropertyManager.prototype.initializeProperties = function(self, as, collection) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.PropertyManager.prototype.initializeProperties = function(self, as, collection) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as, collection);
 };
 
@@ -49,7 +49,7 @@ dcc.PropertyManager.prototype.initializeProperties = function(self, as, collecti
  * The purpose of this function is to create URL.
  * @returns {String} URL
  */
-dcc.PropertyManager.prototype.getUrl = function() {
+_pc.PropertyManager.prototype.getUrl = function() {
   var sb = "";
   sb = this.getBaseUrl();
   sb += this.accessor.cellName;
@@ -66,7 +66,7 @@ dcc.PropertyManager.prototype.getUrl = function() {
  * @param {String} entityTypeName
  * @returns {String} URL
  */
-dcc.PropertyManager.prototype.getPropertyUri = function (entityTypeName) {
+_pc.PropertyManager.prototype.getPropertyUri = function (entityTypeName) {
   var sb = "";
   sb = this.getBaseUrl();
   sb += this.accessor.cellName;
@@ -84,9 +84,9 @@ dcc.PropertyManager.prototype.getPropertyUri = function (entityTypeName) {
 /**
  * The purpose of this function is to create Property.
  * @param {Object} obj
- * @return {Object} json DcHttpClient
+ * @return {Object} json PersoniumHttpClient
  */
-dcc.PropertyManager.prototype.create = function (obj) {
+_pc.PropertyManager.prototype.create = function (obj) {
   var json = null;
   json = this.internalCreate(obj);
   if (json.response !== undefined) {
@@ -103,7 +103,7 @@ dcc.PropertyManager.prototype.create = function (obj) {
  * @param {String} entityTypeName
  * @return {Object} JSON response
  */
-dcc.PropertyManager.prototype.retrieve = function (propertyName, entityTypeName) {
+_pc.PropertyManager.prototype.retrieve = function (propertyName, entityTypeName) {
   var json = null;
   var key = null;
   key = "Name='"+propertyName+"',_EntityType.Name='"+entityTypeName+"'";
@@ -118,10 +118,10 @@ dcc.PropertyManager.prototype.retrieve = function (propertyName, entityTypeName)
  * @param {String} entityTypeName
  * @return {Object} JSON response
  */
-dcc.PropertyManager.prototype.retrievePropertyList = function (entityTypeName) {
+_pc.PropertyManager.prototype.retrievePropertyList = function (entityTypeName) {
   if(entityTypeName !== null || entityTypeName !== undefined) {
     var uri = this.getPropertyUri(entityTypeName);
-    var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+    var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
     var response = restAdapter.get(uri, "application/json");
     var json = response.bodyAsJson().d.results;
     return json;
@@ -134,7 +134,7 @@ dcc.PropertyManager.prototype.retrievePropertyList = function (entityTypeName) {
  * @param {String} etag
  * @returns {Object} response
  */
-dcc.PropertyManager.prototype.del = function(key, etag) {
+_pc.PropertyManager.prototype.del = function(key, etag) {
   if (typeof etag === "undefined") {
     etag = "*";
   }

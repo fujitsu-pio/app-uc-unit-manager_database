@@ -15,34 +15,34 @@
  * limitations under the License.
  */
 
-/*global dcc:false
+/*global _pc:false
  */
 
 ///**
 //* コマンドを$Batchフォーマットに生成する.
 //*/
 /**
- * It creates a new object dcc.Batch.
+ * It creates a new object _pc.Batch.
  * @class This class generates the $ Batch format command.
  * @constructor
  * @param {String} batchBoundary
  */
-dcc.Batch = function(batchBoundary) {
+_pc.Batch = function(batchBoundary) {
   this.initializeProperties(this, batchBoundary);
 };
 
 ///**
 //* オブジェクトを初期化.
-//* @param {dcc.EntityType} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.EntityType} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json サーバーから返却されたJSONオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.EntityType} self
+ * @param {_pc.EntityType} self
  * @param {String} as BatchBoundary
  */
-dcc.Batch.prototype.initializeProperties = function(self, batchBoundary) {
+_pc.Batch.prototype.initializeProperties = function(self, batchBoundary) {
   self.batch = "";
   self.batchBoundary = batchBoundary;
 };
@@ -51,7 +51,7 @@ dcc.Batch.prototype.initializeProperties = function(self, batchBoundary) {
  * This method appends the value to the Batch body.
  * @param {String} body to set.
  */
-dcc.Batch.prototype.append = function(value) {
+_pc.Batch.prototype.append = function(value) {
   if (this.batch.length > 0) {
     this.batch += "\r\n";
   }
@@ -62,7 +62,7 @@ dcc.Batch.prototype.append = function(value) {
  * This method gets the Batch in specified format.
  * @returns {String} Batch
  */
-dcc.Batch.prototype.get = function() {
+_pc.Batch.prototype.get = function() {
   this.batch += "\r\n";
   this.batch += ("--" + this.batchBoundary + "--");
   return this.batch;

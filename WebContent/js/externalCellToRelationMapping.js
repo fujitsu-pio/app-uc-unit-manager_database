@@ -29,14 +29,14 @@ externalCellToRelationMapping.prototype.retrieveLinkedRelationCount = function()
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	var extCellUrl = sessionStorage.extCellURL;
 	var key="";
 	key = "('"+encodeURIComponent(extCellUrl)+"')";
 	uri += key + "/"+"_Relation";
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -52,14 +52,14 @@ externalCellToRelationMapping.prototype.retrieveChunkedData = function(lowerLimi
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	var extCellUrl = sessionStorage.extCellURL;
 	var key="";
 	key = "('"+encodeURIComponent(extCellUrl)+"')";
 	uri += key + "/"+"_Relation";
 	uri = uri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -167,13 +167,13 @@ externalCellToRelationMapping.prototype.populateRelationBoxDD = function(){
 externalCellToRelationMapping.prototype.getRelationBoxAsJSON = function() {
 	var token = getClientStore().token;
 	var baseUrl  = getClientStore().baseURL;
-	var objJdcContext = new dcc.DcContext(baseUrl,sessionStorage.selectedcell.toString(), "", "");
+	var objJdcContext = new _pc.PersoniumContext(baseUrl,sessionStorage.selectedcell.toString(), "", "");
 	var accessor = objJdcContext.withToken(token);
 	var count = retrieveRelationRecordCount();
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var uri = objRelationManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	/*var json = objRelationManager.retrieve("");
@@ -199,7 +199,7 @@ externalCellToRelationMapping.prototype.getSelectedRelationAndBox = function(){
  * This method is accepting accessor as an input parameter.
  */
 externalCellToRelationMapping.prototype.initializeAbstractDataContext = function(accessor) {
-		var objAbstractDataContext =  new dcc.AbstractODataContext(accessor);
+		var objAbstractDataContext =  new _pc.AbstractODataContext(accessor);
 		return objAbstractDataContext;
 };
 
@@ -210,7 +210,7 @@ externalCellToRelationMapping.prototype.initializeAccessor = function() {
 	var token = getClientStore().token;
 	var baseUrl  = getClientStore().baseURL; 
 	var cellname = sessionStorage.selectedcell.toString();
-	var objJdcContext = new dcc.DcContext(baseUrl,cellname, "", "");
+	var objJdcContext = new _pc.PersoniumContext(baseUrl,cellname, "", "");
 	var accessor = objJdcContext.withToken(token);
 	return accessor;
 };
@@ -238,7 +238,7 @@ externalCellToRelationMapping.prototype.destination = "Relation";
 **/
 externalCellToRelationMapping.prototype.initializeLinkManager = function(){	
 	var objRelExtCellLink = new externalCellToRelationMapping();
-	var objLinkMgr = new dcc.LinkManager(objRelExtCellLink.initializeAccessor(), objRelExtCellLink.context);
+	var objLinkMgr = new _pc.LinkManager(objRelExtCellLink.initializeAccessor(), objRelExtCellLink.context);
 	return objLinkMgr;
 };
 
@@ -623,7 +623,7 @@ externalCellToRelationMapping.prototype.retrieveAllExtCellToRelationJsonData = f
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	var extCellUrl = sessionStorage.extCellURL;
 	var totalRecordCount = objExternalCellToRelationMapping.retrieveLinkedRelationCount();
@@ -631,7 +631,7 @@ externalCellToRelationMapping.prototype.retrieveAllExtCellToRelationJsonData = f
 	key = "('"+encodeURIComponent(extCellUrl)+"')";
 	uri += key + "/"+"_Relation";
 	uri = uri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

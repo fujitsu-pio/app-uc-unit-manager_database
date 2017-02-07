@@ -65,10 +65,10 @@ $(document).ready(function(){
 		var url =  getClientStore().baseURL; 
 		token = getClientStore().token;
 		var cellName = document.getElementById("textCellPopup").value;
-		var objJdcContext = new dcc.DcContext(url, cellName, "", "");
+		var objJdcContext = new _pc.PersoniumContext(url, cellName, "", "");
 		var accessor = objJdcContext.withToken(token);
-		var objCell = new dcc.Cell(accessor);
-		var objCellManager = new dcc.CellManager(accessor);
+		var objCell = new _pc.Cell(accessor);
+		var objCellManager = new _pc.CellManager(accessor);
 		document.getElementById("popupErrorMsg").innerHTML = null;
 		if (uCreateFirstCell.vaidateCellName(cellName)) {
 			//Gets the response as true if cell name is new.
@@ -107,8 +107,8 @@ createFirstCell.prototype.createRoleForFirstCell  = function(roleName,cellName) 
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl,cellName,"","");
 	json = {"Name" : roleName,"_Box.Name" : null};
-	var objJRole = new dcc.Role(accessor, json);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objJRole = new _pc.Role(accessor, json);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	objRoleManager.create(objJRole);
 	
 };

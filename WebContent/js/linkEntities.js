@@ -25,8 +25,8 @@ linkEntities.prototype.retrieveLinks = function(cx, source,
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);	
 	var context = objCommon.initializeAbstractDataContext();
-	var objLinkManager = new dcc.LinkManager(accessor, context);
-	 var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var objLinkManager = new _pc.LinkManager(accessor, context);
+	 var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	 var response = "";
 	 var uri = "";
 	 if (boxname === "" || rolename === "") {

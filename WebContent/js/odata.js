@@ -173,7 +173,7 @@ odata.prototype.getCollectionList = function(paracollectionURL) {
 		path = paracollectionURL;
 	}
 	var accessor = objOdata.getAccessor();
-	var objDavCollection = new dcc.DavCollection(accessor,path);
+	var objDavCollection = new _pc.DavCollection(accessor,path);
 	var collectionList  = objDavCollection.getResourceList(path);
 	var sortedCollectionByLastModifiedDate = objCommon.sortByKey(collectionList, 'Date');
 	return sortedCollectionByLastModifiedDate;
@@ -647,7 +647,7 @@ odata.prototype.createEngineServiceDetailsTable = function (selectedCount, colle
 	}
 	sessionStorage.selectedCollectionURL = path;
 	path += getUiProps().MSG0295;;
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
 	var serviceColList = objJDavCollection.getResourceList(path);
 	var sortedServiceCollectionData = objCommon.sortByKey(serviceColList, 'Date');
 	var recordSize = sortedServiceCollectionData.length;
@@ -725,7 +725,7 @@ odata.prototype.createEngineServiceDetailsTable = function (selectedCount, colle
 		$("#webDavTbody").empty();
 		$("#webDavTbody").append(emptyFolderMsg);
 		objOdata.setMarginForEmptyFolderMessage();
-		if (sessionStorage.selectedLanguage == 'jp') {
+		if (sessionStorage.selectedLanguage == 'ja') {
 			$("#dvemptyTableOdataMessageFile").css('width', "400px");
 			$("#dvemptyTableOdataMessageFile").addClass('japaneseFont');
 		}
@@ -1075,7 +1075,7 @@ odata.prototype.createTable = function(collectionURLValue) {
 		$("#wdchkSelectall").attr("disabled",true);
 		$("#dvemptyTableOdataMessageFile").css('margin-left', "auto");
 		$("#webDavTable tbody").removeClass('webDavTableTbody');
-		if (sessionStorage.selectedLanguage == 'jp') {
+		if (sessionStorage.selectedLanguage == 'ja') {
 			$("#dvemptyTableOdataMessageFile").addClass('japaneseFont');
 			if (!folderClicked) {
 				$("#dvemptyTableOdataMessageFile").css('width', "670px");
@@ -1444,7 +1444,7 @@ odata.prototype.retrieveResponse = function(id) {
 		path += pluginSource + "/";
 	}
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, boxName);
-	var objDav = new dcc.DavCollection(accessor, path);
+	var objDav = new _pc.DavCollection(accessor, path);
 	var response = objDav.del(id, "*");
 	var statusCode = objCommon.getStatusCode(response);
 	return statusCode;
@@ -1653,10 +1653,10 @@ odata.prototype.uploadFile = function (fileData) {
     if (type == "dc:service") {
     	var pluginPath = objOdata.getPath();
         flag = true;
-        var objJserviceCollection = new dcc.ServiceCollection(accessor, pluginPath);
+        var objJserviceCollection = new _pc.ServiceCollection(accessor, pluginPath);
         response = objJserviceCollection.put(objOdata.fileName, objOdata.contentType, fileData, "*");
     } else {
-        var objJDavCollection = new dcc.DavCollection(accessor, path);
+        var objJDavCollection = new _pc.DavCollection(accessor, path);
         response = objJDavCollection.put(objOdata.fileName, objOdata.contentType, fileData, "*");
         if (response.getBody() != undefined) {
         	response = response.getBody();
@@ -2015,7 +2015,7 @@ odata.prototype.activateDownloadLink = function () {
 	$("#dvDownLoadText").removeClass();
 	$("#dvDownLoadIcon").addClass("downloadWebDavIconEnabled");
 	$("#dvDownLoadText").addClass("downloadWebDavTextEnabled");
-	if (sessionStorage.selectedLanguage == 'jp') {
+	if (sessionStorage.selectedLanguage == 'ja') {
 		$("#dvDownLoadText").addClass("japaneseFont");
 	}
 	uBoxDetail.downloadHoverEffect();
@@ -2143,7 +2143,7 @@ odata.prototype.refreshCollectionCallback = function (refresh, callback) {
 odata.prototype.getProperties = function(url) {
     var folderList = [];
     var accessor = objOdata.getAccessor();
-    var restAdapter = dcc.RestAdapterFactory.create(accessor);
+    var restAdapter = _pc.RestAdapterFactory.create(accessor);
     var response = restAdapter.propfind(url);
     var doc = response.bodyAsXml();
     var nl = doc.getElementsByTagName("response");

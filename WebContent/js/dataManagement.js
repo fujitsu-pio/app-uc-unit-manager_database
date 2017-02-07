@@ -2281,7 +2281,7 @@ dataManagement.prototype.createEntityPopUp = function(edit, selectedEntity) {
     	$("#editEntityDialogBox").css('top', winH / 2 - $("#editEntityDialogBox").height() / 2);
     }
     $(".sectionContentCreateEntity").scrollTop(0);
-    if (sessionStorage.selectedLanguage == 'jp') {
+    if (sessionStorage.selectedLanguage == 'ja') {
     	$(".popupAlertmsg").addClass('japaneseFont');
     }
 };
@@ -3534,8 +3534,8 @@ dataManagement.prototype.createEntity = function() {
                 path += entityTypeName;
                 var accessor = objCommon.initializeAccessor(baseUrl,
                         cellName);
-                var objjEntity = new dcc.Entity(accessor, path);
-                var objEntityManager = new dcc.EntityManager(accessor, objjEntity);
+                var objjEntity = new _pc.Entity(accessor, path);
+                var objEntityManager = new _pc.EntityManager(accessor, objjEntity);
                 var json = uDataManagement.createJsonData(false);
                 	 var response = objEntityManager.create(json);
                      if (response != undefined && response.getStatusCode() == 201) {
@@ -3981,8 +3981,8 @@ dataManagement.prototype.initializeEntityManager = function(){
     var entityTypeName = uEntityTypeOperations.getSelectedEntityType();
     var path = collectionURL + entityTypeName;
     var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-    var objjEntity = new dcc.Entity(accessor, path);
-    var objEntityManager = new dcc.EntityManager(accessor, objjEntity);
+    var objjEntity = new _pc.Entity(accessor, path);
+    var objEntityManager = new _pc.EntityManager(accessor, objjEntity);
     return objEntityManager;
 };
 
@@ -4109,7 +4109,7 @@ dataManagement.prototype.getEntityList = function(propList,isDeleted) {
             + noOfCols
             + "'><div id='dvNoEntityCreated' class='noEntityCreated' style='line-height: 21px;'>"+getUiProps().MSG0366+"</div></td><td id='msg'></td></tr>";
         $("#entityTable tbody").html(noDataRow);
-        if (sessionStorage.selectedLanguage == 'jp') {
+        if (sessionStorage.selectedLanguage == 'ja') {
         	$("#dvNoEntityCreated").css('width', '150px');
         	$("#dvNoEntityCreated").addClass('japaneseFont');
         }
@@ -4186,8 +4186,8 @@ dataManagement.prototype.editEntity = function() {
             }
             path += entityTypeName;
             var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-            var objjEntity = new dcc.Entity(accessor, path);
-            var objEntityManager = new dcc.EntityManager(accessor, objjEntity);
+            var objjEntity = new _pc.Entity(accessor, path);
+            var objEntityManager = new _pc.EntityManager(accessor, objjEntity);
             var json = uDataManagement.createJsonData(true);
             var response = objEntityManager.update(entityId, json, "*");
             if (response.getStatusCode() == 204) {
@@ -4343,7 +4343,7 @@ dataManagement.prototype.getRawJSONView = function(callback) {
 		}else{
 			 var noDataRawView = "<div id='dvNoDataJsonView' class='dvNoDataJsonView' style='line-height: 21px;'>"+getUiProps().MSG0366+"</div>";
 		     $("#odataRaw").html(noDataRawView);
-		     if (sessionStorage.selectedLanguage == 'jp') {
+		     if (sessionStorage.selectedLanguage == 'ja') {
 				 $("#dvNoDataJsonView").css('width', '150px');
 				 $("#dvNoDataJsonView").addClass('japaneseFont');
 			 }
@@ -4660,8 +4660,8 @@ dataManagement.prototype.deleteEntity = function(entityTypeID) {
     var path = baseUrl + cellName + "/" + boxName + "/" + colName + "/"
     + entityTypeName;
     var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-    var objjEntity = new dcc.Entity(accessor, path);
-    var objEntityManager = new dcc.EntityManager(accessor, objjEntity);
+    var objjEntity = new _pc.Entity(accessor, path);
+    var objEntityManager = new _pc.EntityManager(accessor, objjEntity);
     var promise = objEntityManager.del(entityId, "*");
     if (promise.resolvedValue.status == 204) {
         uDataManagement.sbSuccessful += entityId + ",";
@@ -4763,8 +4763,8 @@ dataManagement.prototype.getEntityTypes = function() {
     var boxName = sessionStorage.boxName;
     var colName = sessionStorage.collectionName;
     var path = sessionStorage.selectedCollectionURL;//baseUrl + cellName + "/" + boxName + "/" + colName;
-    var objjDCCollection = new dcc.DcCollection(accessor, path);
-    var objEntityTypeManager = new dcc.EntityTypeManager(accessor,
+    var objjDCCollection = new _pc.PersoniumCollection(accessor, path);
+    var objEntityTypeManager = new _pc.EntityTypeManager(accessor,
             objjDCCollection);
     return objEntityTypeManager.retrieve('');
 };
@@ -4855,8 +4855,8 @@ dataManagement.prototype.createEntityLinkTable = function() {
     }
     var path = /*baseUrl + cellName + "/" + boxName + "/" + colName + "/"
     +*/ sessionCollectionURL + entityTypeName;
-    var objjEntity = new dcc.Entity(accessor, path);
-    var objEntityLinkManager = new dcc.EntityLinkManager(accessor, objjEntity);
+    var objjEntity = new _pc.Entity(accessor, path);
+    var objEntityLinkManager = new _pc.EntityLinkManager(accessor, objjEntity);
     var objDataMgmt = new dataManagement();
     var entityNames = objDataMgmt.fetchEntities();
     var entityLinksList = new Array();
@@ -4955,8 +4955,8 @@ dataManagement.prototype.addLink = function() {
         }
         var accessor = objCommon.initializeAccessor(baseUrl, cellName);
         var path = sessionCollectionURL + entityTypeName;//baseUrl + cellName + "/" + boxName + "/" + colName + "/" + entityTypeName;
-        var objjEntity = new dcc.Entity(accessor, path);
-        var objEntityLinkManager = new dcc.EntityLinkManager(accessor, objjEntity);
+        var objjEntity = new _pc.Entity(accessor, path);
+        var objEntityLinkManager = new _pc.EntityLinkManager(accessor, objjEntity);
         var body = {};
         
         var targetURI =/* baseUrl + cellName + "/" + boxName + "/" + colName
@@ -5206,8 +5206,8 @@ dataManagement.prototype.performPostEntityLinkDeleteOperations = function(
 dataManagement.prototype.deleteEntityLink = function(path, entityTypeNameLink,
         entityIDLink, accessor) {
     path = path + entityTypeNameLink;
-    var objjEntityLink = new dcc.EntityLink(accessor, path);
-    var objEntityLinkManager = new dcc.EntityLinkManager(accessor, objjEntityLink);
+    var objjEntityLink = new _pc.EntityLink(accessor, path);
+    var objEntityLinkManager = new _pc.EntityLinkManager(accessor, objjEntityLink);
     var promise = objEntityLinkManager.del(entityIDLink, "*");
     if (promise.resolvedValue.status == 204) {
         uDataManagement.linksDeleted += 1;

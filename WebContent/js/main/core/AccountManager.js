@@ -15,53 +15,53 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class AccountのCRUDを行うためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //* @property {Object} uber スーパークラスのプロトタイプへの参照.
 //*/
 /**
- * It creates a new object dcc.AccountManager.
+ * It creates a new object _pc.AccountManager.
  * @class This class is used for performing CRUD operations of Account.
  * @constructor
- * @augments dcc.ODataManager
+ * @augments _pc.ODataManager
  * @property {Object} uber A reference to the prototype of the superclass.
- * @param {dcc.Accessor} Accessor
+ * @param {_pc.Accessor} Accessor
  */
-dcc.AccountManager = function(as) {
+_pc.AccountManager = function(as) {
   this.initializeProperties(this, as);
 };
-dcc.DcClass.extend(dcc.AccountManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.AccountManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AccountManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.AccountManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AccountManager} self
- * @param {dcc.Accessor} as accessor
+ * @param {_pc.AccountManager} self
+ * @param {_pc.Accessor} as accessor
  */
-dcc.AccountManager.prototype.initializeProperties = function(self, as) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.AccountManager.prototype.initializeProperties = function(self, as) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 
 ///**
 //* パスワード用ヘッダーキー.
 //*/
   /** Password for header key. */
-  self.HEADER_KEY_CREDENTIAL = "X-Dc-Credential";
+  self.HEADER_KEY_CREDENTIAL = "X-Personium-Credential";
 };
 
 /**
  * This method returns the URL.
  * @returns {String} URL
  */
-dcc.AccountManager.prototype.getUrl = function() {
+_pc.AccountManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.getBaseUrl();
   sb += this.accessor.cellName;
@@ -72,19 +72,19 @@ dcc.AccountManager.prototype.getUrl = function() {
 
 ///**
 //* Accountを作成.
-//* @param {dcc.Account} obj Accountオブジェクト
+//* @param {_pc.Account} obj Accountオブジェクト
 //* @param {?} password パスワード
-//* @return {dcc.Account} Accountオブジェクト
+//* @return {_pc.Account} Accountオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method creates an account.
- * @param {dcc.Account} obj Account object
+ * @param {_pc.Account} obj Account object
  * @param {String} password password
- * @return {dcc.Account} Account object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Account} Account object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.AccountManager.prototype.create = function(obj, password) {
+_pc.AccountManager.prototype.create = function(obj, password) {
   var json = null;
   var headers = {};
   var responseJson = null;
@@ -130,10 +130,10 @@ dcc.AccountManager.prototype.create = function(obj, password) {
 		}*/
     if(json.getStatusCode() >= 400){
       var response = json.bodyAsJson();//throw exception with code
-      throw new dcc.DaoException(response.message.value, response.code);
+      throw new _pc.DaoException(response.message.value, response.code);
     }
     responseJson = json.bodyAsJson().d.results;
-    return new dcc.Account(this.accessor, responseJson);
+    return new _pc.Account(this.accessor, responseJson);
   }
 };
 
@@ -150,23 +150,23 @@ dcc.AccountManager.prototype.create = function(obj, password) {
 ///**
 //* Accountを取得.
 //* @param {String} name 取得対象のAccount名
-//* @return {dcc.Account} 取得したしたAccountオブジェクト
+//* @return {_pc.Account} 取得したしたAccountオブジェクト
 //* @throws DaoException DAO例外
 //*/
 /**
  * This method fetches the account information.
  * @param {String} name account name
- * @return {dcc.Account} Account objecct
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Account} Account objecct
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.AccountManager.prototype.retrieve = function(name) {
+_pc.AccountManager.prototype.retrieve = function(name) {
   var json = this.internalRetrieve(name);
   if (json === true) {
     return true;
   }
   else {
     // returns response in JSON format.
-    return new dcc.Account(this.accessor, json);
+    return new _pc.Account(this.accessor, json);
   }
 };
 
@@ -180,9 +180,9 @@ dcc.AccountManager.prototype.retrieve = function(name) {
  * This method changes the account password.
  * @param {String} name Account
  * @param {String} password Account
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.AccountManager.prototype.changePassword = function(name, password) {
+_pc.AccountManager.prototype.changePassword = function(name, password) {
   var headers = {};
   headers[this.HEADER_KEY_CREDENTIAL] = password;
 
@@ -201,9 +201,9 @@ dcc.AccountManager.prototype.changePassword = function(name, password) {
  * Delete the account.
  * @param {String} accountName account name
  * @return {Object} resposne
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.AccountManager.prototype.del = function(accountName) {
+_pc.AccountManager.prototype.del = function(accountName) {
 
   var key = "Name='" + accountName + "'";
 
@@ -216,7 +216,7 @@ dcc.AccountManager.prototype.del = function(accountName) {
  * @param {String} name
  * @returns {String} etag
  */
-dcc.AccountManager.prototype.getEtag = function(name) {
+_pc.AccountManager.prototype.getEtag = function(name) {
   var json = this.internalRetrieve(name);
   return json.__metadata.etag;
 };
@@ -228,9 +228,9 @@ dcc.AccountManager.prototype.getEtag = function(name) {
  * @param {Object} body
  * @param {String} etag
  * @param {String} password
- * @return {dcc.ODataResponse} response
+ * @return {_pc.ODataResponse} response
  */
-dcc.AccountManager.prototype.update = function(accountName, body, etag,password) {
+_pc.AccountManager.prototype.update = function(accountName, body, etag,password) {
   var response = "";
   if (password !=="") {
     var headers = {};

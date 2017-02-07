@@ -15,36 +15,36 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class OData関連の各機能を生成/削除するためのクラスの抽象クラス.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.MetadataLinkManager.
+ * It creates a new object _pc.MetadataLinkManager.
  * @class This class performs link/unlink operations on metadata.
  * @constructor
- * @param {dcc.Accessor} Accessor
- * @param {dcc.AbstractODataContext} cx
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.AbstractODataContext} cx
  */
-dcc.MetadataLinkManager = function(as, cx) {
+_pc.MetadataLinkManager = function(as, cx) {
   this.initializeProperties(this, as, cx);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.MetadataLinkManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.MetadataLinkManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {?} cx ターゲットオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.MetadataLinkManager} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.MetadataLinkManager} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} cx Target object
  */
-dcc.MetadataLinkManager.prototype.initializeProperties = function(self, as, cx) {
+_pc.MetadataLinkManager.prototype.initializeProperties = function(self, as, cx) {
 ///** アクセス主体. */
   /** Accessor. */
   self.accessor = as;
@@ -62,11 +62,11 @@ dcc.MetadataLinkManager.prototype.initializeProperties = function(self, as, cx) 
 /**
  * This method is used to remove a link.
  * @param {Object} cx Target object for removing the link.
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MetadataLinkManager.prototype.unlink = function(cx) {
+_pc.MetadataLinkManager.prototype.unlink = function(cx) {
   var uri = this.getLinkUrl(cx);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   restAdapter.del(uri + cx.getKey());
 };
 
@@ -78,15 +78,15 @@ dcc.MetadataLinkManager.prototype.unlink = function(cx) {
 /**
  * This method is used to create a link.
  * @param {Object} cx Target object for creating the link.
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.MetadataLinkManager.prototype.link = function(cx) {
+_pc.MetadataLinkManager.prototype.link = function(cx) {
   var uri = this.getLinkUrl(cx);
 
   var body = {};
   body.uri = cx.getODataLink();
 
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   restAdapter.post(uri, JSON.stringify(body), "application/json");
 };
 
@@ -100,7 +100,7 @@ dcc.MetadataLinkManager.prototype.link = function(cx) {
  * @param {Object} cx Target object
  * @return {String} Generated URL
  */
-dcc.MetadataLinkManager.prototype.getLinkUrl = function(cx) {
+_pc.MetadataLinkManager.prototype.getLinkUrl = function(cx) {
   var sb = "";
   sb += this.context.getODataLink();
   sb += "/$links/";

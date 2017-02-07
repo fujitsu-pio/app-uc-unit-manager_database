@@ -15,30 +15,30 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class ExtCellのアクセスクラス.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.Event.
+ * It creates a new object _pc.Event.
  * @class This class represents Event object.
  * @constructor
  */
-dcc.Event = function() {
+_pc.Event = function() {
   this.initializeProperties(this);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Event} self
+//* @param {_pc.Event} self
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Event} self
+ * @param {_pc.Event} self
  */
-dcc.Event.prototype.initializeProperties = function(self) {
+_pc.Event.prototype.initializeProperties = function(self) {
   self.action = "";
   self.level = "";
   self.object = "";
@@ -53,7 +53,7 @@ dcc.Event.prototype.initializeProperties = function(self) {
  * This method gets Action.
  * @return {String} action value
  */
-dcc.Event.prototype.getAction = function() {
+_pc.Event.prototype.getAction = function() {
   return this.action;
 };
 
@@ -65,7 +65,7 @@ dcc.Event.prototype.getAction = function() {
  * This method sets Action.
  * @param {String} value action value
  */
-dcc.Event.prototype.setAction = function(value) {
+_pc.Event.prototype.setAction = function(value) {
   this.action = value;
 };
 
@@ -77,7 +77,7 @@ dcc.Event.prototype.setAction = function(value) {
  * This method gets Level.
  * @return {String} level value
  */
-dcc.Event.prototype.getLevel = function() {
+_pc.Event.prototype.getLevel = function() {
   return this.level;
 };
 
@@ -89,7 +89,7 @@ dcc.Event.prototype.getLevel = function() {
  * This method sets Level.
  * @param {String} value level value
  */
-dcc.Event.prototype.setLevel = function(value) {
+_pc.Event.prototype.setLevel = function(value) {
   this.level = value;
 };
 
@@ -101,7 +101,7 @@ dcc.Event.prototype.setLevel = function(value) {
  * This method gets Object.
  * @return {String} object value
  */
-dcc.Event.prototype.getObject = function() {
+_pc.Event.prototype.getObject = function() {
   return this.object;
 };
 
@@ -113,7 +113,7 @@ dcc.Event.prototype.getObject = function() {
  * This method sets Object.
  * @param {String} value object value
  */
-dcc.Event.prototype.setObject = function(value) {
+_pc.Event.prototype.setObject = function(value) {
   this.object = value;
 };
 
@@ -125,7 +125,7 @@ dcc.Event.prototype.setObject = function(value) {
  * This method gets Result.
  * @return {String} result value
  */
-dcc.Event.prototype.getResult = function() {
+_pc.Event.prototype.getResult = function() {
   return this.result;
 };
 
@@ -137,7 +137,7 @@ dcc.Event.prototype.getResult = function() {
  * This method sets Result.
  * @param {String} value result value
  */
-dcc.Event.prototype.setResult = function(value) {
+_pc.Event.prototype.setResult = function(value) {
   this.result = value;
 };
 
@@ -149,7 +149,7 @@ dcc.Event.prototype.setResult = function(value) {
  * This method creates JSON of Event values.
  * @return {Object} JSON object
  */
-dcc.Event.prototype.toJSON = function() {
+_pc.Event.prototype.toJSON = function() {
   var json = {};
   json.action = this.action;
   json.level = this.level;

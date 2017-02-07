@@ -32,7 +32,7 @@ mainBoxAcl.prototype.createMainBoxACLRoleTable = function (cellName) {
 	$(".dynamicCellACLRole").remove();
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, "", "");
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var json = objRoleManager.retrieve("");
 	var JSONstring = json.rawData;
 	var sortJSONString = objCommon.sortByKey(JSONstring, '__updated');
@@ -92,13 +92,13 @@ mainBoxAcl.prototype.implementMainBoxACL = function (arrRolePrivilegeList) {
 	var cellName = sessionStorage.selectedcell;
 	var path = uBoxDetail.getCollectionLocation();
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
-	var objXmlBaseUrlRole = new dcc.Role(accessor);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
+	var objXmlBaseUrlRole = new _pc.Role(accessor);
 	objXmlBaseUrlRole.setBoxName(sessionStorage.boxName);
 	var resourceBaseUrl = objXmlBaseUrlRole.getResourceBaseUrl();
 	var objAce = null;
-	var objJAcl = new dcc.Acl();
-	var objPrincipal = new dcc.Principal();
+	var objJAcl = new _pc.Acl();
+	var objPrincipal = new _pc.Principal();
 	objJAcl.setRequireSchemaAuthz($('input[name="schemaAuth"]:checked').val());
 	objJAcl.setBase(resourceBaseUrl);
 	for ( var i = 0; i < arrRolePrivilegeList.length; i++) {
@@ -111,8 +111,8 @@ mainBoxAcl.prototype.implementMainBoxACL = function (arrRolePrivilegeList) {
 			"Name" : roleName,
 			"_Box.Name" : boxName
 		};
-		var objJRole = new dcc.Role(accessor, json);
-		objAce = new dcc.Ace();
+		var objJRole = new _pc.Role(accessor, json);
+		objAce = new _pc.Ace();
 		objAce.setRole(objJRole);
 		if (roleName == 'all (anyone)') {
 			objAce.setPrincipal('all');
@@ -129,7 +129,7 @@ mainBoxAcl.prototype.implementMainBoxACL = function (arrRolePrivilegeList) {
 			objJAcl.addAce(objAce);
 		}
 	}
-	var objJAclManager = new dcc.AclManager(accessor, objJDavCollection);
+	var objJAclManager = new _pc.AclManager(accessor, objJDavCollection);
 	var response = objJAclManager.setAsAcl(objJAcl);
 	return response;
 };

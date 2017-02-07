@@ -36,7 +36,7 @@ limitations under the License.
 <script type="text/javascript" src="../../js/jquery.modalbox.js"></script>
 
 <script type="text/javascript" src="../../js/main/core/DaoConfig.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/main/core/Principal.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
@@ -48,18 +48,18 @@ limitations under the License.
 <script type="text/javascript" src="../../js/main/util/StringUtils.js"></script>
 <script type="text/javascript" src="../../js/main/util/UrlUtils.js"></script>
 <script type="text/javascript"
-	src="../../js/main/http/DcRequestHeaderBuilder.js"></script>
+	src="../../js/main/http/PersoniumRequestHeaderBuilder.js"></script>
 <script type="text/javascript" src="../../js/main/http/RestAdapter.js"></script>
 <script type="text/javascript"
 	src="../../js/main/http/RestAdapterFactory.js"></script>
-<script type="text/javascript" src="../../js/main/http/DcResponse.js"></script>
+<script type="text/javascript" src="../../js/main/http/PersoniumResponse.js"></script>
 <!-- include core functions -->
 <script type="text/javascript" src="../../js/main/core/DaoException.js"></script>
 
-<!--script type="text/javascript" src="../../js/main/core/DcContext.js"></script-->
+<!--script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script-->
 <script type="text/javascript"
 	src="../../js/main/core/AbstractODataContext.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcCollection.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumCollection.js"></script>
 <script type="text/javascript" src="../../js/main/core/DavCollection.js"></script>
 <script type="text/javascript" src="../../js/main/core/ODataManager.js"></script>
 <script type="text/javascript" src="../../js/main/core/EntitySet.js"></script>
@@ -89,7 +89,7 @@ limitations under the License.
 <script type="text/javascript"
 	src="../../js/main/core/MetadataLinkManager.js"></script>
 <script type="text/javascript" src="../../js/main/core/OwnerAccessor.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcQuery.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumQuery.js"></script>
 <script type="text/javascript" src="../../js/main/core/Relation.js"></script>
 <script type="text/javascript" src="../../js/main/core/RelationManager.js"></script>
 <script type="text/javascript" src="../../js/main/core/Role.js"></script>
@@ -127,7 +127,7 @@ limitations under the License.
 <script type="text/javascript" src="../../js/boxAcl.js"></script>
 <script type="text/javascript" src="../../js/cellAcl.js"></script>
 <script type="text/javascript" src="../../js/mainBoxAcl.js"></script>
-<script type="text/javascript" src="../../js/main/http/DcHttpClient.js"></script>
+<script type="text/javascript" src="../../js/main/http/PersoniumHttpClient.js"></script>
 <script type="text/javascript" src="../../js/main/http/Promise.js"></script>
 <script type="text/javascript" src="../../js/home.js"></script>
 <script type="text/javascript" src="../../js/boxDetail.js"></script>

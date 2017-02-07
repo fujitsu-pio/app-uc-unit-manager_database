@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class アクセサクラス. データクラウドへアクセスするＡＰＩを呼び出す際のアクセス主体となります。
@@ -23,13 +23,13 @@
 //* @property {number} expiresIn トークンの有効期限.
 //*/
 /**
- * It creates a new object dcc.Accessor.
+ * It creates a new object _pc.Accessor.
  * @class This is the base class for setting the access parameters to access Cloud data.
  * @constructor
  * @property {number} expiresIn Expiration date of the token.
- * @param {dcc.DcContext} dcContext
+ * @param {_pc.PersoniumContext} dcContext
  */
-dcc.Accessor = function(dcContext) {
+_pc.Accessor = function(dcContext) {
   this.initializeProperties(this, dcContext);
 };
 
@@ -41,19 +41,19 @@ dcc.Accessor = function(dcContext) {
 //var ACCESSOR_KEY_CLIENT = "client";
 ///** asメソッドに利用する type. */
 /** @param {String} accessor token */
-dcc.Accessor.ACCESSOR_KEY_TOKEN = "token";
+_pc.Accessor.ACCESSOR_KEY_TOKEN = "token";
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Accessor} self
+//* @param {_pc.Accessor} self
 //* @param　{?} dcContext DCコンテキスト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Accessor} self
- * @param　{dcc.DcContext} DcContext
+ * @param {_pc.Accessor} self
+ * @param　{_pc.PersoniumContext} PersoniumContext
  */
-dcc.Accessor.prototype.initializeProperties = function(self, dcContext) {
+_pc.Accessor.prototype.initializeProperties = function(self, dcContext) {
 
 ///** トークンの有効期限. */
   /** Expiration date of the token. */
@@ -124,7 +124,7 @@ dcc.Accessor.prototype.initializeProperties = function(self, dcContext) {
   self.boxName = "";
 
 ///** DCコンテキスト. */
-  /** DcContext. */
+  /** PersoniumContext. */
   self.context = null;
   /** Cell. */
   self.currentCell = "";
@@ -144,7 +144,7 @@ dcc.Accessor.prototype.initializeProperties = function(self, dcContext) {
   /** Response headers that are retrieved from the server response. */
   self.resHeaders = {};
 
-  /** Variable to hold dc_cookie_peer key */
+  /** Variable to hold p_cookie_peer key */
   self.cookiePeer = "";
 
   if (dcContext !== undefined) {
@@ -164,7 +164,7 @@ dcc.Accessor.prototype.initializeProperties = function(self, dcContext) {
  * This method generates the clone of Accessor.
  * @return {Object} Copied accessor object
  */
-dcc.Accessor.prototype.clone = function() {
+_pc.Accessor.prototype.clone = function() {
   var dest = {};
   for (var prop in this) {
     dest[prop] = this[prop];
@@ -174,19 +174,19 @@ dcc.Accessor.prototype.clone = function() {
 
 ///**
 //* 他のCellを指定します.
-//* @param {dcc.Cell} 接続先Cell URL
+//* @param {_pc.Cell} 接続先Cell URL
 //* @param {Object} opts object with useCookie
-//* @return {dcc.Cell} CellへアクセスするためのCellインスタンス
+//* @return {_pc.Cell} CellへアクセスするためのCellインスタンス
 //* @throws DaoException DAO例外
 //*/
 /**
  * This method specifies the cell through accessor.
- * @param {dcc.Cell} Destination Cell URL
+ * @param {_pc.Cell} Destination Cell URL
  * @param {Object} opts object with useCookie
- * @return {dcc.Cell} Cell Instance
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Cell} Cell Instance
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.Accessor.prototype.cell = function(cell, opts) {
+_pc.Accessor.prototype.cell = function(cell, opts) {
   if (opts === undefined){
     opts = {};
   }
@@ -194,7 +194,7 @@ dcc.Accessor.prototype.cell = function(cell, opts) {
 
   if (typeof cell === "undefined") {
     this.authenticate(useCookie);
-    return new dcc.Cell(this);
+    return new _pc.Cell(this);
   }
 
   if (this.cellName !== cell) {
@@ -206,7 +206,7 @@ dcc.Accessor.prototype.cell = function(cell, opts) {
     this.authenticate(useCookie);
   }
   this.cellName = cell;
-  return new dcc.Cell(this, cell);
+  return new _pc.Cell(this, cell);
 };
 
 ///**
@@ -217,9 +217,9 @@ dcc.Accessor.prototype.cell = function(cell, opts) {
 /**
  * This method changes the current password.
  * @param {String} newPassword New Password
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.Accessor.prototype.changePassword = function(newPassword) {
+_pc.Accessor.prototype.changePassword = function(newPassword) {
   if (this.accessToken === null) {
     // accessTokenが無かったら自分で認証する
     /** if access token is not present then authenticate. */
@@ -229,13 +229,13 @@ dcc.Accessor.prototype.changePassword = function(newPassword) {
   // パスワード変更
   /** Password change. */
   var headers = {};
-  headers["X-Dc-Credential"] = newPassword;
+  headers["X-Personium-Credential"] = newPassword;
 
   // パスワード変更のURLを作成
   /** Create the URL for password change. */
-  var url = dcc.UrlUtils.append(this.getBaseUrl(), this.getCellName() + "/__mypassword");
+  var url = _pc.UrlUtils.append(this.getBaseUrl(), this.getCellName() + "/__mypassword");
 
-  var rest = dcc.RestAdapterFactory.create(this);
+  var rest = _pc.RestAdapterFactory.create(this);
   rest.put(url, "", "*", "application/json", headers);
   // password変更でエラーの場合は例外がthrowされるので例外で無い場合は、
   // Accessorのpasswordを新しいのに変えておく
@@ -251,7 +251,7 @@ dcc.Accessor.prototype.changePassword = function(newPassword) {
  * This method is used for Acquisition of $ Batch mode.
  * @return {Boolean} batch mode
  */
-dcc.Accessor.prototype.isBatchMode = function() {
+_pc.Accessor.prototype.isBatchMode = function() {
   return this.batch;
 };
 
@@ -263,25 +263,25 @@ dcc.Accessor.prototype.isBatchMode = function() {
  * THis method is used to set $ Batch mode.
  * @param {Boolean} batch $Batch mode
  */
-dcc.Accessor.prototype.setBatch = function(batch) {
+_pc.Accessor.prototype.setBatch = function(batch) {
   if (typeof batch !== "boolean") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
-  this.batchAdapter = new dcc.BatchAdapter(this);
+  this.batchAdapter = new _pc.BatchAdapter(this);
   this.batch = batch;
 };
 
 ///**
 //* BatchAdaptrの取得. インスタンスが生成されていない場合生成する
-//* @return {dcc.BatchAdapter} BatchAdapterオブジェクト
+//* @return {_pc.BatchAdapter} BatchAdapterオブジェクト
 //*/
 /**
  * This method creates an instance to batch adapter if it does not exists.
- * @return {dcc.BatchAdapter} BatchAdapter object
+ * @return {_pc.BatchAdapter} BatchAdapter object
  */
-dcc.Accessor.prototype.getBatchAdapter = function() {
+_pc.Accessor.prototype.getBatchAdapter = function() {
   if (this.batchAdapter === null) {
-    this.batchAdapter = new dcc.BatchAdapter(this);
+    this.batchAdapter = new _pc.BatchAdapter(this);
   }
   return this.batchAdapter;
 };
@@ -293,24 +293,24 @@ dcc.Accessor.prototype.getBatchAdapter = function() {
 //*/
 /**
  * This method returns instance of OwnerAccessor with default headers.
- * @return {dcc.OwnerAccesssor} Accessor after promotions(OwnerAccessor)
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.OwnerAccesssor} Accessor after promotions(OwnerAccessor)
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.Accessor.prototype.asCellOwner = function() {
-  var ownerAccessor = new dcc.OwnerAccessor(this.context, this);
+_pc.Accessor.prototype.asCellOwner = function() {
+  var ownerAccessor = new _pc.OwnerAccessor(this.context, this);
   ownerAccessor.defaultHeaders = this.defaultHeaders;
   return ownerAccessor;
 };
 
 ///**
 //* グローバルトークンの取得.
-//* @return {dcc.DaoException} グローバルトークン
+//* @return {_pc.DaoException} グローバルトークン
 //*/
 /**
  * It returns the access token.
- * @return {dcc.DaoException} access token
+ * @return {_pc.DaoException} access token
  */
-dcc.Accessor.prototype.getAccessToken = function() {
+_pc.Accessor.prototype.getAccessToken = function() {
   return this.accessToken;
 };
 
@@ -322,9 +322,9 @@ dcc.Accessor.prototype.getAccessToken = function() {
  * This method sets the default headers.
  * @param {Object} default header value
  */
-dcc.Accessor.prototype.setDefaultHeaders = function(value) {
+_pc.Accessor.prototype.setDefaultHeaders = function(value) {
   if (typeof value !== "object") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.defaultHeaders = value;
 };
@@ -337,7 +337,7 @@ dcc.Accessor.prototype.setDefaultHeaders = function(value) {
  * This method returns the default headers.
  * @return {Object} default header value
  */
-dcc.Accessor.prototype.getDefaultHeaders = function() {
+_pc.Accessor.prototype.getDefaultHeaders = function() {
   return this.defaultHeaders;
 };
 
@@ -349,22 +349,22 @@ dcc.Accessor.prototype.getDefaultHeaders = function() {
  * This method sets the access token value.
  * @param {String} token access token
  */
-dcc.Accessor.prototype.setAccessToken = function(token) {
+_pc.Accessor.prototype.setAccessToken = function(token) {
   if (typeof token !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.accessToken = token;
 };
 
 ///**
 //* DaoConfigオブジェクトを取得.
-//* @return {dcc.DaoConfig} DaoConfigオブジェクト
+//* @return {_pc.DaoConfig} DaoConfigオブジェクト
 //*/
 /**
  * This method gets the DaoConfig object.
- * @return {dcc.DaoConfig} DaoConfig object
+ * @return {_pc.DaoConfig} DaoConfig object
  */
-dcc.Accessor.prototype.getDaoConfig = function() {
+_pc.Accessor.prototype.getDaoConfig = function() {
   return this.context.getDaoConfig();
 };
 
@@ -373,10 +373,10 @@ dcc.Accessor.prototype.getDaoConfig = function() {
 //* @return {?} DCコンテキスト
 //*/
 /**
- * This method acquires the DcContext.
- * @return {dcc.DcContext} DCContext
+ * This method acquires the PersoniumContext.
+ * @return {_pc.PersoniumContext} DCContext
  */
-dcc.Accessor.prototype.getContext = function() {
+_pc.Accessor.prototype.getContext = function() {
   return this.context;
 };
 
@@ -385,12 +385,12 @@ dcc.Accessor.prototype.getContext = function() {
 //* @param {Object} dcContext DCコンテキスト
 //*/
 /**
- * This method sets the DcContext.
+ * This method sets the PersoniumContext.
  * @param {Object} dcContext DCContext
  */
-dcc.Accessor.prototype.setContext = function(dcContext) {
+_pc.Accessor.prototype.setContext = function(dcContext) {
   if (typeof dcContext !== "object") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.context = dcContext;
 };
@@ -401,9 +401,9 @@ dcc.Accessor.prototype.setContext = function(dcContext) {
 //*/
 /**
  * This method returns the cell currently being accessed.
- * @return {dcc.Cell} Cell instance
+ * @return {_pc.Cell} Cell instance
  */
-dcc.Accessor.prototype.getCurrentCell = function() {
+_pc.Accessor.prototype.getCurrentCell = function() {
   return this.currentCell;
 };
 
@@ -413,9 +413,9 @@ dcc.Accessor.prototype.getCurrentCell = function() {
 //*/
 /**
  * This method sets the current cell.
- * @param {dcc.Cell} Cell instance
+ * @param {_pc.Cell} Cell instance
  */
-dcc.Accessor.prototype.setCurrentCell = function(cell) {
+_pc.Accessor.prototype.setCurrentCell = function(cell) {
   this.currentCell = cell;
 };
 
@@ -427,7 +427,7 @@ dcc.Accessor.prototype.setCurrentCell = function(cell) {
  * This method returns the expiration value of token.
  * @return {String} token expiration value
  */
-dcc.Accessor.prototype.getExpiresIn = function() {
+_pc.Accessor.prototype.getExpiresIn = function() {
   return this.expiresIn;
 };
 
@@ -439,7 +439,7 @@ dcc.Accessor.prototype.getExpiresIn = function() {
  * This method returns the refresh token.
  * @return {String} refresh token
  */
-dcc.Accessor.prototype.getRefreshToken = function() {
+_pc.Accessor.prototype.getRefreshToken = function() {
   return this.refreshToken;
 };
 
@@ -451,7 +451,7 @@ dcc.Accessor.prototype.getRefreshToken = function() {
  * This method returns the token type.
  * @return {String} token type
  */
-dcc.Accessor.prototype.getTokenType = function() {
+_pc.Accessor.prototype.getTokenType = function() {
   return this.tokenType;
 };
 
@@ -463,7 +463,7 @@ dcc.Accessor.prototype.getTokenType = function() {
  * This method gets the refresh token expiration value.
  * @return {String} refresh token expiration value
  */
-dcc.Accessor.prototype.getRefreshExpiresIn = function() {
+_pc.Accessor.prototype.getRefreshExpiresIn = function() {
   return this.refreshExpiresIn;
 };
 
@@ -475,7 +475,7 @@ dcc.Accessor.prototype.getRefreshExpiresIn = function() {
  * This method gets the cell name.
  * @return {String} CellName value
  */
-dcc.Accessor.prototype.getCellName = function() {
+_pc.Accessor.prototype.getCellName = function() {
   return this.cellName;
 };
 
@@ -487,9 +487,9 @@ dcc.Accessor.prototype.getCellName = function() {
  * This method sets the cell name.
  * @param {String} name CellName value
  */
-dcc.Accessor.prototype.setCellName = function(name) {
+_pc.Accessor.prototype.setCellName = function(name) {
   if (typeof name !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.cellName = name;
 };
@@ -502,7 +502,7 @@ dcc.Accessor.prototype.setCellName = function(name) {
  * This method gets the box schema value.
  * @return {String} Box Schema value
  */
-dcc.Accessor.prototype.getBoxSchema = function() {
+_pc.Accessor.prototype.getBoxSchema = function() {
   return this.boxSchema;
 };
 
@@ -514,9 +514,9 @@ dcc.Accessor.prototype.getBoxSchema = function() {
  * This method sets the box schema value.
  * @param {String} uri Box Schema value
  */
-dcc.Accessor.prototype.setBoxSchema = function(uri) {
+_pc.Accessor.prototype.setBoxSchema = function(uri) {
   if (typeof uri !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.boxSchema = uri;
 };
@@ -529,7 +529,7 @@ dcc.Accessor.prototype.setBoxSchema = function(uri) {
  * This method returns the box name.
  * @return {String} Box Name
  */
-dcc.Accessor.prototype.getBoxName = function() {
+_pc.Accessor.prototype.getBoxName = function() {
   return this.boxName;
 };
 
@@ -541,9 +541,9 @@ dcc.Accessor.prototype.getBoxName = function() {
  * This method sets the box name.
  * @param {String} value Box Name
  */
-dcc.Accessor.prototype.setBoxName = function(value) {
+_pc.Accessor.prototype.setBoxName = function(value) {
   if (typeof value !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.boxName = value;
 };
@@ -556,7 +556,7 @@ dcc.Accessor.prototype.setBoxName = function(value) {
  * This method returns the base url value.
  * @return {String} Base URL value
  */
-dcc.Accessor.prototype.getBaseUrl = function() {
+_pc.Accessor.prototype.getBaseUrl = function() {
   return this.baseUrl;
 };
 
@@ -568,9 +568,9 @@ dcc.Accessor.prototype.getBaseUrl = function() {
  * This method sets the base url value.
  * @param {String} value base URL value
  */
-dcc.Accessor.prototype.setBaseUrl = function(value) {
+_pc.Accessor.prototype.setBaseUrl = function(value) {
   if (typeof value !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.baseUrl = value;
 };
@@ -583,7 +583,7 @@ dcc.Accessor.prototype.setBaseUrl = function(value) {
  * This method returns the user id.
  * @return {String} the userId
  */
-dcc.Accessor.prototype.getUserId = function() {
+_pc.Accessor.prototype.getUserId = function() {
   return this.userId;
 };
 
@@ -595,9 +595,9 @@ dcc.Accessor.prototype.getUserId = function() {
  * This method sets the user id.
  * @param {String} userId the userId to set
  */
-dcc.Accessor.prototype.setUserId = function(userId) {
+_pc.Accessor.prototype.setUserId = function(userId) {
   if (typeof userId !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.userId = userId;
 };
@@ -610,7 +610,7 @@ dcc.Accessor.prototype.setUserId = function(userId) {
  * This method gets the password.
  * @return {String} the password
  */
-dcc.Accessor.prototype.getPassword = function() {
+_pc.Accessor.prototype.getPassword = function() {
   return this.password;
 };
 
@@ -622,9 +622,9 @@ dcc.Accessor.prototype.getPassword = function() {
  * This method sets the password.
  * @param {String} password the password to set
  */
-dcc.Accessor.prototype.setPassword = function(password) {
+_pc.Accessor.prototype.setPassword = function(password) {
   if (typeof password !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.password = password;
 };
@@ -637,7 +637,7 @@ dcc.Accessor.prototype.setPassword = function(password) {
  * This method gets the schema.
  * @return {String} the schema
  */
-dcc.Accessor.prototype.getSchema = function() {
+_pc.Accessor.prototype.getSchema = function() {
   return this.schema;
 };
 
@@ -649,9 +649,9 @@ dcc.Accessor.prototype.getSchema = function() {
  * This method sets the schema.
  * @param {String} schema the schema to set
  */
-dcc.Accessor.prototype.setSchema = function(schema) {
+_pc.Accessor.prototype.setSchema = function(schema) {
   if (typeof schema !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.schema = schema;
 };
@@ -664,7 +664,7 @@ dcc.Accessor.prototype.setSchema = function(schema) {
  * This method returns the target cell name.
  * @return {String} the targetCellName
  */
-dcc.Accessor.prototype.getTargetCellName = function() {
+_pc.Accessor.prototype.getTargetCellName = function() {
   return this.targetCellName;
 };
 
@@ -676,9 +676,9 @@ dcc.Accessor.prototype.getTargetCellName = function() {
  * This method returns the target cell name.
  * @param {String} targetCellName the targetCellName to set
  */
-dcc.Accessor.prototype.setTargetCellName = function(targetCellName) {
+_pc.Accessor.prototype.setTargetCellName = function(targetCellName) {
   if (typeof targetCellName !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.targetCellName = targetCellName;
 };
@@ -691,9 +691,9 @@ dcc.Accessor.prototype.setTargetCellName = function(targetCellName) {
  * This method sets the type of client.
  * @param {String} accessType the accessType to set
  */
-dcc.Accessor.prototype.setAccessType = function(accessType) {
+_pc.Accessor.prototype.setAccessType = function(accessType) {
   if (typeof accessType !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.accessType = accessType;
 };
@@ -706,7 +706,7 @@ dcc.Accessor.prototype.setAccessType = function(accessType) {
  * This method gets the type of client.
  * @return {String} タイプ
  */
-dcc.Accessor.prototype.getAccessType = function() {
+_pc.Accessor.prototype.getAccessType = function() {
   return this.accessType;
 };
 
@@ -718,9 +718,9 @@ dcc.Accessor.prototype.getAccessType = function() {
  * This method sets the transformer cell token value.
  * @param {String} transCellToken the trancCellToken to set
  */
-dcc.Accessor.prototype.setTransCellToken = function(trancCellToken) {
+_pc.Accessor.prototype.setTransCellToken = function(trancCellToken) {
   if (typeof trancCellToken !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.transCellToken = trancCellToken;
 };
@@ -733,7 +733,7 @@ dcc.Accessor.prototype.setTransCellToken = function(trancCellToken) {
  * This method gets the transformer cell token value.
  * @returns {String} the transCellToken
  */
-dcc.Accessor.prototype.getTransCellToken = function() {
+_pc.Accessor.prototype.getTransCellToken = function() {
   return this.transCellToken;
 };
 
@@ -745,9 +745,9 @@ dcc.Accessor.prototype.getTransCellToken = function() {
  * This method sets the transformer cell refresh token value.
  * @param {String} trancCellRefreshToken the trancCellRefreshToken to set
  */
-dcc.Accessor.prototype.setTransCellRefreshToken = function(trancCellRefreshToken) {
+_pc.Accessor.prototype.setTransCellRefreshToken = function(trancCellRefreshToken) {
   if (typeof trancCellRefreshToken !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.transCellRefreshToken = trancCellRefreshToken;
 };
@@ -760,7 +760,7 @@ dcc.Accessor.prototype.setTransCellRefreshToken = function(trancCellRefreshToken
  * This method gets the transformer cell refresh token value.
  * @returns {String} the trancCellRefreshToken
  */
-dcc.Accessor.prototype.getTransCellRefreshToken = function() {
+_pc.Accessor.prototype.getTransCellRefreshToken = function() {
   return this.transCellRefreshToken;
 };
 
@@ -772,9 +772,9 @@ dcc.Accessor.prototype.getTransCellRefreshToken = function() {
  * This method sets the schema user ID.
  * @param {String} schemaUserId the schemaUserId to set
  */
-dcc.Accessor.prototype.setSchemaUserId = function(schemaUserId) {
+_pc.Accessor.prototype.setSchemaUserId = function(schemaUserId) {
   if (typeof schemaUserId !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.schemaUserId = schemaUserId;
 };
@@ -787,7 +787,7 @@ dcc.Accessor.prototype.setSchemaUserId = function(schemaUserId) {
  * This method gets the schema user ID.
  * @returns {String} the schemaUserId
  */
-dcc.Accessor.prototype.getSchemaUserId = function() {
+_pc.Accessor.prototype.getSchemaUserId = function() {
   return this.schemaUserId;
 };
 
@@ -799,9 +799,9 @@ dcc.Accessor.prototype.getSchemaUserId = function() {
  * This method sets the schema password.
  * @param {String} schemaPassword the schemaPassword to set
  */
-dcc.Accessor.prototype.setSchemaPassword = function(schemaPassword) {
+_pc.Accessor.prototype.setSchemaPassword = function(schemaPassword) {
   if (typeof schemaPassword !== "string") {
-    throw new dcc.DaoException("InvalidParameter");
+    throw new _pc.DaoException("InvalidParameter");
   }
   this.schemaPassword = schemaPassword;
 };
@@ -814,7 +814,7 @@ dcc.Accessor.prototype.setSchemaPassword = function(schemaPassword) {
  * This method gets the schema password.
  * @returns {String} the schemaPassword
  */
-dcc.Accessor.prototype.getSchemaPassword = function() {
+_pc.Accessor.prototype.getSchemaPassword = function() {
   return this.schemaPassword;
 };
 
@@ -826,7 +826,7 @@ dcc.Accessor.prototype.getSchemaPassword = function() {
  * This method sets the response header acquired from the server response.
  * @param {Object} headers response headers
  */
-dcc.Accessor.prototype.setResHeaders = function(headers) {
+_pc.Accessor.prototype.setResHeaders = function(headers) {
   this.resHeaders = headers;
 };
 
@@ -838,7 +838,7 @@ dcc.Accessor.prototype.setResHeaders = function(headers) {
  * This method gets the response header acquired from the server response.
  * @return {Object} response headers
  */
-dcc.Accessor.prototype.getResHeaders = function() {
+_pc.Accessor.prototype.getResHeaders = function() {
   return this.resHeaders;
 };
 
@@ -846,21 +846,21 @@ dcc.Accessor.prototype.getResHeaders = function() {
  * Get the cookie peer key.
  * @return {String} Cookie Peer Key
  */
-dcc.Accessor.prototype.getCookiePeer = function() {
+_pc.Accessor.prototype.getCookiePeer = function() {
   return this.cookiePeer;
 };
 
 ///**
 //* 認証を行う.
-//* @param {Boolean} useCookie to check dc_cookie
+//* @param {Boolean} useCookie to check p_cookie
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method performs authentication of current user based on token etc.
- * @param {Boolean} useCookie to check dc_cookie
- * @throws {dcc.DaoException} DAO exception
+ * @param {Boolean} useCookie to check p_cookie
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.Accessor.prototype.authenticate = function(useCookie) {
+_pc.Accessor.prototype.authenticate = function(useCookie) {
   if (this.accessType === "token") {
     return;
   }
@@ -894,11 +894,11 @@ dcc.Accessor.prototype.authenticate = function(useCookie) {
   // targetのURLを作る
   /** Create target URL */
   if (this.targetCellName !== null && this.targetCellName !== "") {
-    requestBody += "&dc_target=";
-    if (dcc.UrlUtils.isUrl(this.targetCellName)) {
+    requestBody += "&p_target=";
+    if (_pc.UrlUtils.isUrl(this.targetCellName)) {
       requestBody += this.targetCellName;
     } else {
-      requestBody += dcc.UrlUtils.append(this.baseUrl, this.targetCellName);
+      requestBody += _pc.UrlUtils.append(this.baseUrl, this.targetCellName);
     }
   }
 
@@ -913,19 +913,19 @@ dcc.Accessor.prototype.authenticate = function(useCookie) {
     schemaRequestBody += this.schemaUserId;
     schemaRequestBody += "&password=";
     schemaRequestBody += this.schemaPassword;
-    schemaRequestBody += "&dc_target=";
+    schemaRequestBody += "&p_target=";
     schemaRequestBody += authUrl;
     // Urlでない場合は、BaseURLにスキーマ名を足す
     /** If this is not the Url, and add the schema name to BaseURL */
-    if (!dcc.UrlUtils.isUrl(this.schema)) {
-      this.schema = dcc.UrlUtils.append(this.baseUrl, this.schema);
+    if (!_pc.UrlUtils.isUrl(this.schema)) {
+      this.schema = _pc.UrlUtils.append(this.baseUrl, this.schema);
     }
 
     if (!this.schema.endsWith("/")) {
       this.schema += "/";
     }
-    restAdapter = dcc.RestAdapterFactory.create(this);
-    restAdapter.post(dcc.UrlUtils.append(this.schema, "__auth"), schemaRequestBody,"application/x-www-form-urlencoded");
+    restAdapter = _pc.RestAdapterFactory.create(this);
+    restAdapter.post(_pc.UrlUtils.append(this.schema, "__auth"), schemaRequestBody,"application/x-www-form-urlencoded");
     this.schemaAuth = restAdapter.bodyAsJson();
 
     requestBody += "&client_id=";
@@ -934,27 +934,27 @@ dcc.Accessor.prototype.authenticate = function(useCookie) {
     requestBody += this.schemaAuth.access_token;
   }
 
-  //if cookie is set and dc_target is not specified
+  //if cookie is set and p_target is not specified
   if(useCookie !== undefined){
     if(useCookie && (this.targetCellName === null || this.targetCellName === "")){
-      requestBody += "&dc_cookie=true";
+      requestBody += "&p_cookie=true";
     }
   }
 
   if (this.owner) {
-    requestBody += "&dc_owner=true";
+    requestBody += "&p_owner=true";
   }
 
   // 認証してトークンを保持する
   /** To hold the token to authenticate */
-  var requestUrl = dcc.UrlUtils.append(authUrl, "__auth");
-  restAdapter = dcc.RestAdapterFactory.create(this);
+  var requestUrl = _pc.UrlUtils.append(authUrl, "__auth");
+  restAdapter = _pc.RestAdapterFactory.create(this);
   restAdapter.post(requestUrl, requestBody,"application/x-www-form-urlencoded");
 
   var responseJson = restAdapter.bodyAsJson();
   if(restAdapter.getStatusCode() >= 400){
     //invalid grant - authentication failed
-    throw new dcc.DaoException(responseJson.error, restAdapter.getStatusCode());
+    throw new _pc.DaoException(responseJson.error, restAdapter.getStatusCode());
   }
   this.accessToken = responseJson.access_token;
   this.expiresIn = responseJson.expires_in;
@@ -962,9 +962,9 @@ dcc.Accessor.prototype.authenticate = function(useCookie) {
   this.refreshExpiresIn = responseJson.refresh_token_expires_in;
   this.tokenType = responseJson.token_type;
 
-  //if dc_cookie_peer value is received in response
-  if(responseJson.dc_cookie_peer !== undefined && responseJson.dc_cookie_peer !== "" && responseJson.dc_cookie_peer !== null){
-    this.cookiePeer = responseJson.dc_cookie_peer;
+  //if p_cookie_peer value is received in response
+  if(responseJson.p_cookie_peer !== undefined && responseJson.p_cookie_peer !== "" && responseJson.p_cookie_peer !== null){
+    this.cookiePeer = responseJson.p_cookie_peer;
   }
 };
 
@@ -976,14 +976,14 @@ dcc.Accessor.prototype.authenticate = function(useCookie) {
 /**
  * This method creates certification URL.
  * @return {String} Url of authentication destination Cell
- * @throws {dcc.DaoException} DAOexception
+ * @throws {_pc.DaoException} DAOexception
  */
-dcc.Accessor.prototype.createCertificatUrl = function() {
+_pc.Accessor.prototype.createCertificatUrl = function() {
   var authUrl = "";
-  if (dcc.UrlUtils.isUrl(this.cellName)) {
+  if (_pc.UrlUtils.isUrl(this.cellName)) {
     authUrl = this.cellName;
   } else {
-    authUrl = dcc.UrlUtils.append(this.baseUrl, this.cellName);
+    authUrl = _pc.UrlUtils.append(this.baseUrl, this.cellName);
   }
   return authUrl;
 };
@@ -996,7 +996,7 @@ dcc.Accessor.prototype.createCertificatUrl = function() {
  * This method returns the global token of the cell.
  * @return {String} global token
  */
-dcc.Accessor.prototype.loadGlobalToken = function() {
+_pc.Accessor.prototype.loadGlobalToken = function() {
   return "";
 };
 
@@ -1008,7 +1008,7 @@ dcc.Accessor.prototype.loadGlobalToken = function() {
  * This method returns the local token of Box.
  * @return {String} local token
  */
-dcc.Accessor.prototype.loadClientToken = function() {
+_pc.Accessor.prototype.loadClientToken = function() {
   return "";
 };
 

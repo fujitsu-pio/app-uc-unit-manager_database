@@ -45,7 +45,7 @@ uBox.prototype.retrieveChunkedData = function(lowerLimit, upperLimit) {
 	var objboxMgr = createBoxManager();
 	var uri = objboxMgr.getUrl();
 	uri = uri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -64,7 +64,7 @@ uBox.prototype.retrieveRecordCount = function(pobjboxMgr) {
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
 	var uri = pobjboxMgr.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -336,9 +336,9 @@ function createNewBox() {
 	var fileData = null;
 	var check;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, schemaURL, boxName);
-	accessor.setCurrentCell(new dcc.Cell(accessor, cellName));
-	var objJBox = new dcc.Box(accessor);
-	var objJBoxManager = new dcc.BoxManager(accessor);
+	accessor.setCurrentCell(new _pc.Cell(accessor, cellName));
+	var objJBox = new _pc.Box(accessor);
+	var objJBoxManager = new _pc.BoxManager(accessor);
 	try {
 		objJBoxManager.retrieve(boxName);
 		check = false;
@@ -462,7 +462,7 @@ function deleteBox(boxName,count) {
 	cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objBoxManager = new dcc.BoxManager(accessor);
+	var objBoxManager = new _pc.BoxManager(accessor);
 	var etag = objBoxManager.getEtag(boxName);
 	var response = objBoxManager.del(boxName, etag);
 	var statusCode = objCommon.getStatusCode(response);
@@ -571,7 +571,7 @@ function updateBox() {
 	}
 	if (validate(newBoxName, newschemaUrl,"editPopupBoxErrorMsg","editPopupSchemaErrorMsg","#txtEditBoxSchema")) {
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objBoxManager=new dcc.BoxManager(accessor);
+	var objBoxManager=new _pc.BoxManager(accessor);
 	var etag = objBoxManager.getEtag(boxName);
 		if(boxName === newBoxName) {
 			editBox(boxName, body, etag,objBoxManager);
@@ -660,7 +660,7 @@ function createBoxManager(){
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objboxMgr = new dcc.BoxManager(accessor);
+	var objboxMgr = new _pc.BoxManager(accessor);
 	return objboxMgr;
 }
 
@@ -823,7 +823,7 @@ function getSelectedBoxDetails() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objbox = new dcc.BoxManager(accessor);
+	var objbox = new _pc.BoxManager(accessor);
 	var json = objbox.getBoxes(selectedBoxName);	
 	var jsonData = JSON.stringify(json);
 	var JSONstring = JSON.parse(jsonData);
@@ -1302,7 +1302,7 @@ function retrieveAllJsonData() {
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
 	var uri = objboxMgr.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

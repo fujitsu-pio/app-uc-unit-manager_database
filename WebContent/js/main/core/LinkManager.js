@@ -15,39 +15,39 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class OData関連の各機能を生成/削除するためのクラスの抽象クラス.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.LinkManager.
+ * It creates a new object _pc.LinkManager.
  * @class This class performs CRUD operations on link between two cell control objects.
  * @constructor
- * @param {dcc.Accessor} Accessor
- * @param {dcc.AbstractODataContext} cx
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.AbstractODataContext} cx
  * @param {String} classname
  */
-dcc.LinkManager = function(as, cx, className) {
+_pc.LinkManager = function(as, cx, className) {
   this.initializeProperties(this, as, cx, className);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.LinkManager} self
-//* @param {dcc.Accessor} as アクセス主体
-//* @param {dcc.DcContext} cx ターゲットオブジェクト
+//* @param {_pc.LinkManager} self
+//* @param {_pc.Accessor} as アクセス主体
+//* @param {_pc.PersoniumContext} cx ターゲットオブジェクト
 //* @param className
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.LinkManager} self
- * @param {dcc.Accessor} as Accessor
- * @param {dcc.DcContext} cx Target object
+ * @param {_pc.LinkManager} self
+ * @param {_pc.Accessor} as Accessor
+ * @param {_pc.PersoniumContext} cx Target object
  * @param {String} className
  */
-dcc.LinkManager.prototype.initializeProperties = function(self, as, cx, className) {
+_pc.LinkManager.prototype.initializeProperties = function(self, as, cx, className) {
 ///** アクセス主体. */
   /** Accessor object. */
   self.accessor = as;
@@ -69,15 +69,15 @@ dcc.LinkManager.prototype.initializeProperties = function(self, as, cx, classNam
 /**
  * This method creates a link between two cell control objects.
  * @param {Object} cx Target object to be linked
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.LinkManager.prototype.link = function(cx) {
+_pc.LinkManager.prototype.link = function(cx) {
   var uri = this.getLinkUrl(cx);
 
   var body = {};
   body.uri = cx.getODataLink();
 
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   restAdapter.post(uri, JSON.stringify(body), "application/json");
 };
 
@@ -92,11 +92,11 @@ dcc.LinkManager.prototype.link = function(cx) {
  * This method deletes the link between two cell control objects.
  * @param {Object} cx Target object for which link is to be deleted
  * @param {Object} callback parameter
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.LinkManager.prototype.unlink = function(cx,callback) {
+_pc.LinkManager.prototype.unlink = function(cx,callback) {
   var uri = this.getLinkUrl(cx);
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var optionsOrEtag = null;
   restAdapter.del(uri + cx.getKey(),optionsOrEtag,callback);
 };
@@ -104,17 +104,17 @@ dcc.LinkManager.prototype.unlink = function(cx,callback) {
 /**
  * This method performs Query search by appending query string to URL and
  * returns object.
- * @param {dcc.DcQuery} query
+ * @param {_pc.PersoniumQuery} query
  * @param {Object} callback object
  * @return {Object} json object
  */
-dcc.LinkManager.prototype.doSearch = function(query, callback) {
+_pc.LinkManager.prototype.doSearch = function(query, callback) {
   var url = this.getLinkUrl();
   var qry = query.makeQueryString();
   if ((qry !== null) && (qry !== "")) {
     url += "?" + qry;
   }
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
     restAdapter.get(url, "application/json", "*", function(resp) {
       var responseBody = resp.bodyAsJson();
@@ -131,40 +131,40 @@ dcc.LinkManager.prototype.doSearch = function(query, callback) {
 /**
  * This method performs Query search by appending query string to URL and
  * returns ODataResponse.
- * @param {dcc.DcQuery} query
- * @return {dcc.ODataResponse} Response
+ * @param {_pc.PersoniumQuery} query
+ * @return {_pc.ODataResponse} Response
  */
-dcc.LinkManager.prototype.doSearchAsResponse = function(query, callback) {
+_pc.LinkManager.prototype.doSearchAsResponse = function(query, callback) {
   var url = this.getLinkUrl();
   var qry = query.makeQueryString();
   if ((qry !== null) && (qry !== "")) {
     url += "?" + qry;
   }
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
     restAdapter.get(url, "application/json", "*", function(resp) {
       var responseBody = resp.bodyAsJson();
-      callback(new dcc.ODataResponse(this.accessor, "", responseBody));
+      callback(new _pc.ODataResponse(this.accessor, "", responseBody));
     });
   } else {
     restAdapter.get(url, "application/json", "*" );
-    return new dcc.ODataResponse(this.accessor, "", restAdapter.bodyAsJson());
+    return new _pc.ODataResponse(this.accessor, "", restAdapter.bodyAsJson());
   }
 };
 
 /**
  * This method generates a query.
- * @return {dcc.DcQuery} Query object
+ * @return {_pc.PersoniumQuery} Query object
  */
-dcc.LinkManager.prototype.query = function() {
-  return new dcc.DcQuery(this);
+_pc.LinkManager.prototype.query = function() {
+  return new _pc.PersoniumQuery(this);
 };
 
 /**
  * The purpose of this method is to create URL for calling link API's.
  * @param {Object} cx
  * @return {String} URL
- */dcc.LinkManager.prototype.getLinkUrl = function(cx) {
+ */_pc.LinkManager.prototype.getLinkUrl = function(cx) {
    var sb = this.accessor.getBaseUrl();
    var classNameForURL = null;
    sb += this.accessor.getCurrentCell().getName();
@@ -192,9 +192,9 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} key
   * @return {Object} response
   */
- dcc.LinkManager.prototype.retrieveBoxProfileLinks = function(cx, source,destination,key) {
+ _pc.LinkManager.prototype.retrieveBoxProfileLinks = function(cx, source,destination,key) {
    var uri = this.getLinkUrlWithKey(cx, source, destination, key);
-   var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+   var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
    var response = restAdapter.get(uri, "", "application/json");
    return response;
  };
@@ -207,7 +207,7 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} key
   * @return {String} URL
   */
- dcc.LinkManager.prototype.getLinkUrlWithKey = function(cx, source, destination, key) {
+ _pc.LinkManager.prototype.getLinkUrlWithKey = function(cx, source, destination, key) {
    var sb = this.accessor.getBaseUrl();
    sb += this.accessor.cellName;
    sb += "/__ctl/";
@@ -227,7 +227,7 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} rolename
   * @return {String} role URI
   */
- dcc.LinkManager.prototype.getRoleUri = function(cx, source, destination,
+ _pc.LinkManager.prototype.getRoleUri = function(cx, source, destination,
      boxname, rolename) {
    var cBoxName = boxname;
    if (cBoxName !== null) {
@@ -267,7 +267,7 @@ dcc.LinkManager.prototype.query = function() {
   * @param {Boolean} isMultiKey
   * @return {Object} response
   */
- dcc.LinkManager.prototype.establishLink = function(cx, source,
+ _pc.LinkManager.prototype.establishLink = function(cx, source,
      destination, key, boxname, rolename, isMultiKey) {
    var uri = this.getLinkUrlWithKey(cx, source, destination, key);
    if (isMultiKey === true) {
@@ -276,7 +276,7 @@ dcc.LinkManager.prototype.query = function() {
    }
    var roleuri = this.getRoleUri(cx, source, destination, boxname,
        rolename);
-   var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+   var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
    var response = restAdapter.post(uri, roleuri, "application/json");
    return response;
  };
@@ -291,9 +291,9 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} rolename
   * @return {Object} response
   */
- dcc.LinkManager.prototype.retrieveAccountRoleLinks = function(cx, source,
+ _pc.LinkManager.prototype.retrieveAccountRoleLinks = function(cx, source,
      destination, key, boxname, rolename) {
-   var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+   var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
    var response = "";
    var uri = "";
    if (boxname === "" || rolename === "") {
@@ -315,8 +315,8 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} key
   * @return {Object} response
   */
- dcc.LinkManager.prototype.retrieveRoleAccountLinks = function(cx, source,destination, key) {
-   var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+ _pc.LinkManager.prototype.retrieveRoleAccountLinks = function(cx, source,destination, key) {
+   var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
    var response;
    var uri = this.getLinkUrlWithMultiKey(cx, source, destination,key);
    response = restAdapter.get(uri, "", "application/json");
@@ -331,7 +331,7 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} key
   * @return {String} link URL
   */
- dcc.LinkManager.prototype.getLinkUrlWithMultiKey = function(cx, source, destination, key) {
+ _pc.LinkManager.prototype.getLinkUrlWithMultiKey = function(cx, source, destination, key) {
    var sb = this.accessor.getBaseUrl();
    sb += this.accessor.cellName;
    sb += "/__ctl/";
@@ -353,11 +353,11 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} roleName
   * @return {Object} response
   */
- dcc.LinkManager.prototype.delLink = function(cx, source,
+ _pc.LinkManager.prototype.delLink = function(cx, source,
 		 destination,key, boxName, roleName) {
 	 var uri = null;
 	 var response = "";
-	 var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+	 var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
 	 if(source == "Relation" || source == "ExtRole"){
 		uri = this.getLinkUrlWithMultiKey(cx, source, destination, key);
 		 if (destination == "ExtCell"){
@@ -404,7 +404,7 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} extCellURL
   * @return {String} URL
   */
- dcc.LinkManager.prototype.getLinkUrlForExtCell = function(cx, source, destination, extCellURL) {
+ _pc.LinkManager.prototype.getLinkUrlForExtCell = function(cx, source, destination, extCellURL) {
    var sb = this.accessor.getBaseUrl();
    sb += this.accessor.cellName;
    sb += "/__ctl/";
@@ -424,14 +424,14 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} extCellURL
   * @param {String} boxName
   * @param {String} relName
-  * @return {dcc.DcHttpClient} response
+  * @return {_pc.PersoniumHttpClient} response
   */
- dcc.LinkManager.prototype.externalCellRelationlink = function(cx, source,
+ _pc.LinkManager.prototype.externalCellRelationlink = function(cx, source,
      destination, extCellURL, boxName, relName) {
    var uri = this
    .getLinkUrlForExtCell(cx, source, destination, extCellURL, relName, boxName);
    var externalCellURI = this.getRoleUri(cx, source, destination, boxName, relName);
-   var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+   var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
    var response = restAdapter.post(uri, externalCellURI, "application/json");
    return response;
  };
@@ -444,11 +444,11 @@ dcc.LinkManager.prototype.query = function() {
   * @param {String} extCellURL
   * @param {String} boxName
   * @param {String] relName
-  * @return {dcc.DcHttpClient} response
+  * @return {_pc.PersoniumHttpClient} response
   */
- dcc.LinkManager.prototype.retrieveExtCellRelLinks = function(cx, source,
+ _pc.LinkManager.prototype.retrieveExtCellRelLinks = function(cx, source,
      destination, extCellURL, boxName, relName) {
-   var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+   var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
    var response;
    var uri = this.getLinkUrlForExtCell(cx, source, destination, extCellURL, relName, boxName);
    response = restAdapter.get(uri, "", "application/json");

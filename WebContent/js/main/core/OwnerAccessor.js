@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class ユニット昇格後のAccessor.
 //* @constructor
-//* @augments dcc.Accessor
+//* @augments _pc.Accessor
 //*/
 /**
- * It creates a new object dcc.OwnerAccessor.
+ * It creates a new object _pc.OwnerAccessor.
  * @class This class represents Accessor of the unit after promotion.
  * @constructor
- * @augments dcc.Accessor
- * @param {dcc.DcContext} dcContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.Accessor
+ * @param {_pc.PersoniumContext} dcContext
+ * @param {_pc.Accessor} Accessor
  */
-dcc.OwnerAccessor = function(dcContext, as) {
+_pc.OwnerAccessor = function(dcContext, as) {
   this.initializeProperties(this, dcContext, as);
 };
-dcc.DcClass.extend(dcc.OwnerAccessor, dcc.Accessor);
+_pc.PersoniumClass.extend(_pc.OwnerAccessor, _pc.Accessor);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.OwnerAccessor} self
+//* @param {_pc.OwnerAccessor} self
 //* @param {?} dcContext コンテキスト
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.OwnerAccessor} self
- * @param {dcc.DcContext} dcContext Context
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.OwnerAccessor} self
+ * @param {_pc.PersoniumContext} dcContext Context
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.OwnerAccessor.prototype.initializeProperties = function(self, dcContext, as) {
-  this.uber = dcc.Accessor.prototype;
+_pc.OwnerAccessor.prototype.initializeProperties = function(self, dcContext, as) {
+  this.uber = _pc.Accessor.prototype;
   this.uber.initializeProperties(self, dcContext);
 
   if (as !== undefined) {
@@ -77,7 +77,7 @@ dcc.OwnerAccessor.prototype.initializeProperties = function(self, dcContext, as)
 
   if (dcContext !== undefined && as !== undefined) {
     self.authenticate();
-    self.unit = new dcc.UnitManager(this);
+    self.unit = new _pc.UnitManager(this);
   }
 };
 

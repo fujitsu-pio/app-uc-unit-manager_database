@@ -15,75 +15,75 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class ODataへアクセスするためのクラス.
 //* @constructor
-//* @augments dcc.DcCollection
+//* @augments _pc.PersoniumCollection
 //*/
 /**
- * It creates a new object dcc.ODataCollection.
+ * It creates a new object _pc.ODataCollection.
  * @class This class represents the OData collections for performing OData related operations.
  * @constructor
- * @augments dcc.DcCollection
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.PersoniumCollection
+ * @param {_pc.Accessor} Accessor
  * @param {String} name
  */
-dcc.ODataCollection = function(as, name) {
+_pc.ODataCollection = function(as, name) {
   this.initializeProperties(this, as, name);
 };
-dcc.DcClass.extend(dcc.ODataCollection, dcc.DcCollection);
+_pc.PersoniumClass.extend(_pc.ODataCollection, _pc.PersoniumCollection);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.ODataCollection} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.ODataCollection} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {String} name コレクション名
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.ODataCollection} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.ODataCollection} self
+ * @param {_pc.Accessor} as Accessor
  * @param {String} name URL for path
  */
-dcc.ODataCollection.prototype.initializeProperties = function(self, as, name) {
-  this.uber = dcc.DcCollection.prototype;
+_pc.ODataCollection.prototype.initializeProperties = function(self, as, name) {
+  this.uber = _pc.PersoniumCollection.prototype;
   this.uber.initializeProperties(self, as, name);
 
   if (as !== undefined) {
 //  /** EntitySetアクセスするためのクラス. */
     /** Manager to access EntityType. */
-    self.entityType = new dcc.EntityTypeManager(as, this);
+    self.entityType = new _pc.EntityTypeManager(as, this);
 //  /** assosiationendアクセスのためのクラス. */
     /** Manager to access AssociationEnd. */
-    self.associationEnd = new dcc.AssociationEndManager(as, this);
+    self.associationEnd = new _pc.AssociationEndManager(as, this);
   }
 };
 
 ///**
 //* EntitySetの指定.
 //* @param {String} name EntitySet名
-//* @return {dcc.EntitySet} 生成したEntitySetオブジェクト
+//* @return {_pc.EntitySet} 生成したEntitySetオブジェクト
 //*/
 /**
  * This method returns an EntitySet.
  * @param {String} name EntitySet Name
- * @return {dcc.EntitySet} EntitySet object
+ * @return {_pc.EntitySet} EntitySet object
  */
-dcc.ODataCollection.prototype.entitySet = function(name) {
-  return new dcc.EntitySet(this.accessor, this, name);
+_pc.ODataCollection.prototype.entitySet = function(name) {
+  return new _pc.EntitySet(this.accessor, this, name);
 };
 
 ///**
 //* Batch生成.
-//* @return {dcc.ODataBatch} 生成したODataBatchオブジェクト
+//* @return {_pc.ODataBatch} 生成したODataBatchオブジェクト
 //*/
 /**
  * This method generates the ODataBatch.
- * @return {dcc.ODataBatch} ODataBatch object
+ * @return {_pc.ODataBatch} ODataBatch object
  */
-dcc.ODataCollection.prototype.makeODataBatch = function() {
-  return new dcc.ODataBatch(this.accessor, this.getPath());
+_pc.ODataCollection.prototype.makeODataBatch = function() {
+  return new _pc.ODataBatch(this.accessor, this.getPath());
 };
 

@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class EntityTypeのCRUDのためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.EntityTypeManager.
+ * It creates a new object _pc.EntityTypeManager.
  * @class This class performs The CRUD operations for EntityType.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} collection
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} collection
  */
-dcc.EntityTypeManager = function(as, collection) {
+_pc.EntityTypeManager = function(as, collection) {
   this.initializeProperties(this, as, collection);
 };
-dcc.DcClass.extend(dcc.EntityTypeManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.EntityTypeManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AbstractODataContext} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.AbstractODataContext} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {?} collection
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AbstractODataContext} self
- * @param {dcc.Accessor} as Accessor
- * @param {dcc.DcCollection} collection
+ * @param {_pc.AbstractODataContext} self
+ * @param {_pc.Accessor} as Accessor
+ * @param {_pc.PersoniumCollection} collection
  */
-dcc.EntityTypeManager.prototype.initializeProperties = function(self, as, collection) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.EntityTypeManager.prototype.initializeProperties = function(self, as, collection) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as, collection);
 };
 
@@ -60,7 +60,7 @@ dcc.EntityTypeManager.prototype.initializeProperties = function(self, as, collec
  * This method generates the URL for performing EntityType operations.
  * @returns {String} URL
  */
-dcc.EntityTypeManager.prototype.getUrl = function() {
+_pc.EntityTypeManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.collection.getPath();
   sb += "/$metadata/EntityType";
@@ -69,17 +69,17 @@ dcc.EntityTypeManager.prototype.getUrl = function() {
 
 ///**
 //* EntityTypeを作成.
-//* @param {dcc.EntityType} obj EntityTypeオブジェクト
-//* @return {dcc.EntityType} EntityTypeオブジェクト
+//* @param {_pc.EntityType} obj EntityTypeオブジェクト
+//* @return {_pc.EntityType} EntityTypeオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used for performing create operation on EntityType.
- * @param {dcc.EntityType} obj EntityType object
- * @return {dcc.EntityType} EntityType object
- * @throws {dcc.DaoException} DAO exception
+ * @param {_pc.EntityType} obj EntityType object
+ * @return {_pc.EntityType} EntityType object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.EntityTypeManager.prototype.create = function(obj) {
+_pc.EntityTypeManager.prototype.create = function(obj) {
   var json = null;
   var responseJson = null;
   if (obj.getClassName !== undefined && obj.getClassName() === "EntityType") {
@@ -93,28 +93,28 @@ dcc.EntityTypeManager.prototype.create = function(obj) {
     json = this.internalCreate(requestBody);
     if (json.getStatusCode() >= 400) {
       var response = json.bodyAsJson();
-      throw new dcc.DaoException(response.message.value, response.code);
+      throw new _pc.DaoException(response.message.value, response.code);
     }
     responseJson = json.bodyAsJson().d.results;
-    return new dcc.EntityType(this.accessor, responseJson);
+    return new _pc.EntityType(this.accessor, responseJson);
   }
 };
 
 ///**
 //* EntityTypeを取得.
 //* @param {String} name 取得対象のbox名
-//* @return {dcc.EntityType} 取得したしたEntityTypeオブジェクト
+//* @return {_pc.EntityType} 取得したしたEntityTypeオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method is used for retrieve operation for EntityType.
  * @param {String} name EntityType name
- * @return {dcc.EntityType} EntityType object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.EntityType} EntityType object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.EntityTypeManager.prototype.retrieve = function(name) {
+_pc.EntityTypeManager.prototype.retrieve = function(name) {
   var json = this.internalRetrieve(name);
-  return new dcc.EntityType(this.accessor, json);
+  return new _pc.EntityType(this.accessor, json);
 };
 
 /**
@@ -124,7 +124,7 @@ dcc.EntityTypeManager.prototype.retrieve = function(name) {
  * @param {String} name etag
  * @return {Object} response
  */
-dcc.EntityTypeManager.prototype.update = function(entityName, body, etag) {
+_pc.EntityTypeManager.prototype.update = function(entityName, body, etag) {
   var response = null;
   response = this.internalUpdate(entityName, body, etag);
   return response;
@@ -136,7 +136,7 @@ dcc.EntityTypeManager.prototype.update = function(entityName, body, etag) {
  * @param {String} name entityName
  * @return {String} etag
  */
-dcc.EntityTypeManager.prototype.getEtag = function(entityName) {
+_pc.EntityTypeManager.prototype.getEtag = function(entityName) {
   var json = this.internalRetrieve(entityName);
   return json.__metadata.etag;
 };
@@ -147,7 +147,7 @@ dcc.EntityTypeManager.prototype.getEtag = function(entityName) {
  * @param {String} etag
  * @return {Object} response
  */
-dcc.EntityTypeManager.prototype.del = function(entityTypeName, etag) {
+_pc.EntityTypeManager.prototype.del = function(entityTypeName, etag) {
   var key = "Name='" + entityTypeName + "'";
   var response = this.internalDelMultiKey(key, etag);
   return response;

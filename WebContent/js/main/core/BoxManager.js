@@ -15,37 +15,37 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class BoxのCRUDのためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.BoxManager.
+ * It creates a new object _pc.BoxManager.
  * @class This class performs CRUD operations for Box.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  */
-dcc.BoxManager = function(as) {
+_pc.BoxManager = function(as) {
   this.initializeProperties(this, as);
 };
-dcc.DcClass.extend(dcc.BoxManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.BoxManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.BoxManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.BoxManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.BoxManager} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.BoxManager} self
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.BoxManager.prototype.initializeProperties = function(self, as) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.BoxManager.prototype.initializeProperties = function(self, as) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 };
 
@@ -57,7 +57,7 @@ dcc.BoxManager.prototype.initializeProperties = function(self, as) {
  * This method generates the URL for performing operations on Box.
  * @returns {String} URL
  */
-dcc.BoxManager.prototype.getUrl = function() {
+_pc.BoxManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.getBaseUrl();
   sb += this.accessor.cellName;
@@ -67,17 +67,17 @@ dcc.BoxManager.prototype.getUrl = function() {
 
 ///**
 //* Boxを作成.
-//* @param {dcc.Box} obj Boxオブジェクト
+//* @param {_pc.Box} obj Boxオブジェクト
 //* @return responseJson
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method creates a new Box.
- * @param {dcc.Box} obj Box object
+ * @param {_pc.Box} obj Box object
  * @return {Object} responseJson
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.BoxManager.prototype.create = function(obj) {
+_pc.BoxManager.prototype.create = function(obj) {
   var body = {};
   body.Name = obj.accessor.boxName;
   //var boxName = body.Name;
@@ -91,7 +91,7 @@ dcc.BoxManager.prototype.create = function(obj) {
   var responseJson = null;
   if (response.getStatusCode() >= 400) {
     responseJson = response.bodyAsJson();
-    throw new dcc.DaoException(responseJson.message.value,responseJson.code);
+    throw new _pc.DaoException(responseJson.message.value,responseJson.code);
   }
   responseJson = response.bodyAsJson().d.results;
   return responseJson;
@@ -109,19 +109,19 @@ dcc.BoxManager.prototype.create = function(obj) {
   /*if(json.response !== undefined) {
 		return json;
 	}*/
-  /*var path = dcc.UrlUtils.append(accessor.getCurrentCell().getUrl(), body.Name);
+  /*var path = _pc.UrlUtils.append(accessor.getCurrentCell().getUrl(), body.Name);
 	obj.initialize(this.accessor, json, path);
 	return obj;*/
 //var body = {};
 //body.Name = obj.getName();
 //body.Schema = obj.getSchema();
 //var json = this.internalCreate(body);
-//var path = dcc.UrlUtils.append(accessor.getCurrentCell().getUrl(), body.Name);
+//var path = _pc.UrlUtils.append(accessor.getCurrentCell().getUrl(), body.Name);
 //obj.initialize(this.accessor, json, path);
 //return obj;
 //var requestBody = JSON.stringify(obj);
 //var json = this.internalCreate(requestBody);
-//return new dcc.Box(this.accessor, json, dcc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), obj.Name));
+//return new _pc.Box(this.accessor, json, _pc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), obj.Name));
 };
 
 ///**
@@ -140,38 +140,38 @@ dcc.BoxManager.prototype.create = function(obj) {
 ///**
 //* Boxを作成.
 //* @param {Object} body リクエストボディ
-//* @return {dcc.Box} 作成したBoxオブジェクト
+//* @return {_pc.Box} 作成したBoxオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
-//dcc.BoxManager.prototype.createAsMap = function(body) {
+//_pc.BoxManager.prototype.createAsMap = function(body) {
 //var requestBody = JSON.stringify(body);
 //var json = this.internalCreate(requestBody);
-//return new dcc.Box(this.accessor, json, dcc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), body.Name));
+//return new _pc.Box(this.accessor, json, _pc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), body.Name));
 //};
 
 ///**
 //* Boxを取得.
 //* @param {String} name 取得対象のbox名
-//* @return {dcc.Box} 取得したしたBoxオブジェクト
+//* @return {_pc.Box} 取得したしたBoxオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method fetches the box details.
  * @param {String} name Box name
- * @return {dcc.Box} Box object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Box} Box object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.BoxManager.prototype.retrieve = function(name) {
+_pc.BoxManager.prototype.retrieve = function(name) {
   var json = this.internalRetrieve(name);
   //box doesn't exist and can be created.
   /*if(json === true){
     return true;
   }else{*/
-    //return new dcc.Box(this.accessor, json);
-    return new dcc.Box(this.accessor, json,dcc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), name));
+    //return new _pc.Box(this.accessor, json);
+    return new _pc.Box(this.accessor, json,_pc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), name));
   //}
   //var json = this.internalRetrieve(name);
-  //return new dcc.Box(this.accessor, json, dcc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), name));
+  //return new _pc.Box(this.accessor, json, _pc.UrlUtils.append(this.accessor.getCurrentCell().getUrl(), name));
 };
 
 /**
@@ -179,7 +179,7 @@ dcc.BoxManager.prototype.retrieve = function(name) {
  * @param {String} name
  * @returns {Object] json
  */
-dcc.BoxManager.prototype.getBoxes = function(name) {
+_pc.BoxManager.prototype.getBoxes = function(name) {
   var json = this.internalRetrieve(name);
   return json;
 };
@@ -190,7 +190,7 @@ dcc.BoxManager.prototype.getBoxes = function(name) {
  * @param {String} etag
  * @returns {Object} json
  */
-dcc.BoxManager.prototype.del = function(cellName, etag) {
+_pc.BoxManager.prototype.del = function(cellName, etag) {
   var key = "Name='" + cellName + "'";
   var response = this.internalDelMultiKey(key, etag);
   return response;
@@ -201,7 +201,7 @@ dcc.BoxManager.prototype.del = function(cellName, etag) {
  * @param {String} name
  * @return {String} Etag
  */
-dcc.BoxManager.prototype.getEtag = function(name) {
+_pc.BoxManager.prototype.getEtag = function(name) {
   var json = this.internalRetrieve(name);
   return json.__metadata.etag;
 };
@@ -211,9 +211,9 @@ dcc.BoxManager.prototype.getEtag = function(name) {
  * @param {String} boxName name
  * @param {Object} request body
  * @param {String} etag value
- * @return {dcc.ODataResponse} response
+ * @return {_pc.ODataResponse} response
  */
-dcc.BoxManager.prototype.update = function(boxName, body, etag) {
+_pc.BoxManager.prototype.update = function(boxName, body, etag) {
   var response = this.internalUpdate(boxName, body, etag);
   return response;
 };

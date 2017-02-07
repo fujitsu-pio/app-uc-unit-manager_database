@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class コレクションの抽象クラス.
@@ -23,17 +23,17 @@
 //* @augments jAbstractODataContext
 //*/
 /**
- * It creates a new object dcc.Entity.
+ * It creates a new object _pc.Entity.
  * @class This is the abstract class for a collection.
  * @constructor
  * @augments jAbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @param {_pc.Accessor} Accessor
  * @param {String} path
  */
-dcc.Entity = function(as, path) {
+_pc.Entity = function(as, path) {
   this.initializeProperties(this, as, path);
 };
-dcc.DcClass.extend(dcc.Entity, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.Entity, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
@@ -41,8 +41,8 @@ dcc.DcClass.extend(dcc.Entity, dcc.AbstractODataContext);
 /**
  * This method initializes the properties of this class.
  */
-dcc.Entity.prototype.initializeProperties = function(self, as, path) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.Entity.prototype.initializeProperties = function(self, as, path) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
   if (as !== undefined) {
@@ -66,7 +66,7 @@ dcc.Entity.prototype.initializeProperties = function(self, as, path) {
  * This method gets the path.
  * @return {String} URL Path
  */
-dcc.Entity.prototype.getPath = function() {
+_pc.Entity.prototype.getPath = function() {
   return this.url;
 };
 
@@ -78,7 +78,7 @@ dcc.Entity.prototype.getPath = function() {
  * This method gets the Odata key.
  * @return {String} OData key.
  */
-dcc.Entity.prototype.getKey = function() {
+_pc.Entity.prototype.getKey = function() {
   return "";
 };
 
@@ -90,7 +90,7 @@ dcc.Entity.prototype.getKey = function() {
  * This method gets the odata class name.
  * @return {String} OData class name
  */
-dcc.Entity.prototype.getClassName = function() {
+_pc.Entity.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 

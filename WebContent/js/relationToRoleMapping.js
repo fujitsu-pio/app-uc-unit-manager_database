@@ -32,7 +32,7 @@ var isDeleted = false;
  */
 relationToRoleMapping.prototype.initializeAbstractDataContext = function(
 		accessor) {
-	return new dcc.AbstractODataContext(accessor);
+	return new _pc.AbstractODataContext(accessor);
 };
 
 /**
@@ -40,7 +40,7 @@ relationToRoleMapping.prototype.initializeAbstractDataContext = function(
  */
 relationToRoleMapping.prototype.initializeLinkManager = function(accessor,
 		context) {
-	return new dcc.LinkManager(accessor, context);
+	return new _pc.LinkManager(accessor, context);
 };
 
 /********* Start - Mapping Feature *********/
@@ -53,7 +53,7 @@ relationToRoleMapping.prototype.retrieveLinkedRoleCount = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var uri = objRelationManager.getUrl();
 	var key="";
 	var relationName = sessionStorage.relationName;
@@ -65,7 +65,7 @@ relationToRoleMapping.prototype.retrieveLinkedRoleCount = function() {
 	}
 	uri += key + "/"+"_Role";
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -82,7 +82,7 @@ relationToRoleMapping.prototype.retrieveChunkedData = function(lowerLimit, upper
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var uri = objRelationManager.getUrl();
 	var key="";
 	var relationName = sessionStorage.relationName;
@@ -95,7 +95,7 @@ relationToRoleMapping.prototype.retrieveChunkedData = function(lowerLimit, upper
 	uri += key + "/"+"_Role";
 	uri = uri + "?$orderby=__updated desc &$skip=" + lowerLimit + "&$top="
 			+ upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -204,11 +204,11 @@ relationToRoleMapping.prototype.getAllRoleBoxPair = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var count = retrieveRoleRecordCount();
 	var uri = objRoleManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	/*var json = objRoleManager.retrieve("");
@@ -295,7 +295,7 @@ relationToRoleMapping.prototype.createTable = function() {
 	if (totalRecordsize == 0) {
 		var emptyMessage = getUiProps().MSG0241;
 		objCommon.displayEmptyMessageInAssignGrid(emptyMessage, "assignRelationTab", "checkAllRelationRoleAssign");
-		if (sessionStorage.selectedLanguage == 'jp') {
+		if (sessionStorage.selectedLanguage == 'ja') {
 			$('.accountEmptyTableMessageWidth').css('width', '250px');
 		}
 	} else {
@@ -444,7 +444,7 @@ relationToRoleMapping.prototype.deleteSingleRelation=function(isSingleDelete,cou
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objLinkManager = new dcc.LinkManager(accessor);
+	var objLinkManager = new _pc.LinkManager(accessor);
 	var key="(Name='"+relationName+"'";
 	if (boxName !== undefined && boxName !== null && boxName !== mainBoxValue) {
 		key+=",_Box.Name='" + boxName + "'";
@@ -638,7 +638,7 @@ relationToRoleMapping.prototype.retrieveAllRelationToRoleJsonData = function () 
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var totalRecordCount = uRelationToRoleMapping.retrieveLinkedRoleCount(); 
 	var uri = objRelationManager.getUrl();
 	var key="";
@@ -652,7 +652,7 @@ relationToRoleMapping.prototype.retrieveAllRelationToRoleJsonData = function () 
 	uri += key + "/"+"_Role";
 	uri = uri + "?$orderby=__updated desc &$top="
 			+ totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

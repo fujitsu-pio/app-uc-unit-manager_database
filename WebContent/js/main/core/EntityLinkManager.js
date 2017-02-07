@@ -19,23 +19,23 @@
  * Prototype Constructor of EntityLinkManager
  * extends EntitySet
  * */
-dcc.EntityLinkManager = function(as, collection) {
+_pc.EntityLinkManager = function(as, collection) {
     this.initializeProperties(this, as, collection);
 };
-dcc.DcClass.extend(dcc.EntityLinkManager, dcc.EntitySet);
+_pc.PersoniumClass.extend(_pc.EntityLinkManager, _pc.EntitySet);
 
 /**Initialize properties
  * */
-dcc.EntityLinkManager.prototype.initializeProperties = function(self, as, collection) {
-    this.uber = dcc.EntitySet.prototype;
+_pc.EntityLinkManager.prototype.initializeProperties = function(self, as, collection) {
+    this.uber = _pc.EntitySet.prototype;
     this.uber.initializeProperties(self, as, collection);
 };
 
 /**
  * Create link between entities-property
  * */
-dcc.EntityLinkManager.prototype.create = function(uri,targetURI) {
-	var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+_pc.EntityLinkManager.prototype.create = function(uri,targetURI) {
+	var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
 	var response = restAdapter.post(uri, JSON.stringify(targetURI), "application/json");
 	return response;
 };
@@ -43,8 +43,8 @@ dcc.EntityLinkManager.prototype.create = function(uri,targetURI) {
 /**
  * retrieve link between entities-property
  * */
-dcc.EntityLinkManager.prototype.get = function(uri) {
-	var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+_pc.EntityLinkManager.prototype.get = function(uri) {
+	var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
 	var response = restAdapter.get(uri, "", "application/json");
 	return response;
 };
@@ -54,7 +54,7 @@ dcc.EntityLinkManager.prototype.get = function(uri) {
  * @param entityIDLink
  * @returns {String}
  */
-dcc.EntityLinkManager.prototype.getUrl = function(entityLinkID) {
+_pc.EntityLinkManager.prototype.getUrl = function(entityLinkID) {
     var sb = "";
     sb += this.collection.getPath() + "('" + entityLinkID + "')";
     return sb;
@@ -66,12 +66,12 @@ dcc.EntityLinkManager.prototype.getUrl = function(entityLinkID) {
  * @param etag
  * @returns
  */
-dcc.EntityLinkManager.prototype.del = function(entityLinkID, etag) {
+_pc.EntityLinkManager.prototype.del = function(entityLinkID, etag) {
 	if (typeof etag == undefined) {
 		etag = "*";
 	}
 	var url = this.getUrl(entityLinkID);
-	var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
 	var response = restAdapter.del(url, etag,"");
 	return response;
 };

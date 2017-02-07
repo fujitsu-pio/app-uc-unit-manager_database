@@ -34,7 +34,7 @@ roleToAccountMapping.prototype.retrieveChunkedData = function(lowerLimit, upperL
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var uri = objRoleManager.getUrl();
 	var mainBoxValue = getUiProps().MSG0039;
 	var key="";
@@ -45,7 +45,7 @@ roleToAccountMapping.prototype.retrieveChunkedData = function(lowerLimit, upperL
 	uri += key + "/"+"_Account";
 	uri = uri + "?$orderby=__updated desc&$skip=" + lowerLimit + "&$top="
 			+ upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -59,7 +59,7 @@ roleToAccountMapping.prototype.retrieveRoleAccountAssignRecordCount = function (
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var uri = objRoleManager.getUrl();
 	var mainBoxValue = getUiProps().MSG0039;
 	var key="";
@@ -70,7 +70,7 @@ roleToAccountMapping.prototype.retrieveRoleAccountAssignRecordCount = function (
 	
 	uri += key + "/"+"_Account";
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -218,11 +218,11 @@ function refreshAssignRoleToAccountDropDown() {
 function getAccountDetails() {
 	var baseUrl  = getClientStore().baseURL; 
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objAccountManager = new dcc.AccountManager(accessor);
+	var objAccountManager = new _pc.AccountManager(accessor);
 	var count = retrieveAccountRecordCount();
 	var uri = objAccountManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -416,7 +416,7 @@ function deleteMapping(accountName){
 	var baseUrl  = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objLinkManager = new dcc.LinkManager(accessor);
+	var objLinkManager = new _pc.LinkManager(accessor);
 	var context	= objCommon.initializeAbstractDataContext(accessor);
 	var key="(Name='"+roleName+"'";
 	var mainBoxValue = getUiProps().MSG0039;
@@ -481,7 +481,7 @@ function retrieveAllRoleToAccountMappingJsonData() {
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var uri = objRoleManager.getUrl();
 	var mainBoxValue = getUiProps().MSG0039;
 	var totalRecordCount = objRoleToAccountMapping.retrieveRoleAccountAssignRecordCount();
@@ -493,7 +493,7 @@ function retrieveAllRoleToAccountMappingJsonData() {
 	uri += key + "/"+"_Account";
 	uri = uri + "?$orderby=__updated desc &$top="
 			+ totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

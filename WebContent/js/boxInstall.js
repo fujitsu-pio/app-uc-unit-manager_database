@@ -237,7 +237,7 @@ installBox.prototype.isBoxAlreadyCreated = function(boxName) {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJBoxManager = new dcc.BoxManager(accessor);
+	var objJBoxManager = new _pc.BoxManager(accessor);
 	try {
 		var b = objJBoxManager.retrieve(boxName); 
 		document.getElementById('popupImportBoxErrorMsg').innerHTML = getUiProps().MSG0399;
@@ -281,7 +281,7 @@ installBox.prototype.doBoxInstallation = function() {
 				var cellName = sessionStorage.selectedcell;
 				var path = uInstallBox.getPath(baseUrl, cellName, boxName);
 				var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-				var builder = new dcc.DcRequestHeaderBuilder();
+				var builder = new _pc.PersoniumRequestHeaderBuilder();
 				builder.contentType("application/zip");
 				builder.accept("application/zip");
 				builder.token(accessor.accessToken);
@@ -433,7 +433,7 @@ installBox.prototype.openInstallationStatusPopUp = function(boxName,isOpenedDire
  * @returns response
  */
 installBox.prototype.getInstallationStatus = function(url, accessor) {
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(url, "application/json", "*");
 	return response;
 };

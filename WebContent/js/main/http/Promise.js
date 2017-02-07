@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 /**
- * It creates a new object dcc.Promise.
+ * It creates a new object _pc.Promise.
  * @class Promise class to implement the concept of Promise for Async requests
  * @constructor
  */
-dcc.Promise = function() {
+_pc.Promise = function() {
   this.resolvedValue = null;
   this.errorMessage = null;
 };
@@ -32,7 +32,7 @@ dcc.Promise = function() {
  * @param {String} value
  * @returns {object} value
  */
-dcc.Promise.prototype.resolve = function (value) {
+_pc.Promise.prototype.resolve = function (value) {
   this.resolvedValue = value;
   return value;// This might not be required when 'then' method will be called
 };
@@ -41,13 +41,13 @@ dcc.Promise.prototype.resolve = function (value) {
  * Reject method called when a promise transitions from unfulfilled to failed state.
  * @param {String} response object
  */
-dcc.Promise.prototype.reject = function (response) {
+_pc.Promise.prototype.reject = function (response) {
   if(typeof response === "string"){
     this.errorMessage = response;
   }else{
     this.errorMessage = response;
   }
-  //  throw new dcc.DaoException("Error occured", this.errorMessage);// This might not be required when 'then' method will be called
+  //  throw new _pc.DaoException("Error occured", this.errorMessage);// This might not be required when 'then' method will be called
 };
 
 /**
@@ -55,7 +55,7 @@ dcc.Promise.prototype.reject = function (response) {
  * @param {Function} onResolved callback
  * @param {Function} onRejected callback
  */
-dcc.Promise.prototype.then = function (onResolved, onRejected) {
+_pc.Promise.prototype.then = function (onResolved, onRejected) {
   if(this.resolvedValue){
     onResolved(this.resolvedValue);
   }else if(this.errorMessage){

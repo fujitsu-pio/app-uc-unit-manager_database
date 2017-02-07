@@ -68,10 +68,10 @@ uRelation.prototype.retrieveChunkedData = function (lowerLimit, upperLimit) {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var uri = objRelationManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -144,8 +144,8 @@ uRelation.prototype.createRelation = function () {
 			"Name" : relationName,
 			"_Box.Name" : boxName
 		};
-		var objDccRelation = new dcc.Relation(accessor, json);
-		var objRelationManager = new dcc.RelationManager(accessor);
+		var objpRelation = new _pc.Relation(accessor, json);
+		var objRelationManager = new _pc.RelationManager(accessor);
 		var success = false;
 		try {
 			objRelationManager.retrieve(relationName, boxName);
@@ -154,8 +154,8 @@ uRelation.prototype.createRelation = function () {
 				createAllowed = true;
 		}
 		if (createAllowed) {
-			var createRelationResponse = objRelationManager.create(objDccRelation);
-			if (createRelationResponse instanceof dcc.Relation) {
+			var createRelationResponse = objRelationManager.create(objpRelation);
+			if (createRelationResponse instanceof _pc.Relation) {
 				success = true;
 			}
 		} else {
@@ -257,8 +257,8 @@ uRelation.prototype.validateRelationName = function() {
 uRelation.prototype.initializeAccessor = function() {
 	var token = getClientStore().token;
 	var url = getClientStore().baseURL;
-	var objJDcContext = new dcc.DcContext(url, cellName, "", "");
-	var accessor = objJDcContext.withToken(token);
+	var objJPersoniumContext = new _pc.PersoniumContext(url, cellName, "", "");
+	var accessor = objJPersoniumContext.withToken(token);
 	return accessor;
 };
 
@@ -297,11 +297,11 @@ uRelation.prototype.bindBoxDropDown = function(JSONstring) {
  */
 uRelation.prototype.retrieveBox = function(isEditRelation) {
 	var accessor = objRelation.initializeAccessor();
-	var objBoxManager = new dcc.BoxManager(accessor);
+	var objBoxManager = new _pc.BoxManager(accessor);
 	var totalRecordCount = objBox.retrieveRecordCount(objBoxManager);
 	var dataUri = objBoxManager.getUrl();
 	dataUri = dataUri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var dataResponse = restAdapter.get(dataUri, "application/json");
 	var dataJson = dataResponse.bodyAsJson().d.results;
 	var select = document.getElementById("dropDownBox");
@@ -408,10 +408,10 @@ function retrieveRelationRecordCount() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var uri = objRelationManager.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -546,7 +546,7 @@ uRelation.prototype.removeRelation = function(relationName,boxName,count) {
 	$("#iconEditRelation").addClass('editIconDisabled');
 	$("#iconEditRelation").attr("disabled", true);
 	var accessor = objRelation.initializeAccessor();
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var promise = objRelationManager.del(relationName, boxName);
 	try {
 		if (promise.resolvedValue.status == 204) {
@@ -718,7 +718,7 @@ uRelation.prototype.updateRelation = function() {
 		}
 		var baseUrl = getClientStore().baseURL;
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName, "", "");
-		var objJRelationManager = new dcc.RelationManager(accessor);
+		var objJRelationManager = new _pc.RelationManager(accessor);
 		this.editRelation(oldRelationName, oldBoxName, body,
 					objJRelationManager);
 		}
@@ -793,10 +793,10 @@ uRelation.prototype.retrieveAllRelationData = function() {
 	var cellName = sessionStorage.selectedcell;
 	var totalRecordCount = retrieveRelationRecordCount();
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var uri = objRelationManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top="+ totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

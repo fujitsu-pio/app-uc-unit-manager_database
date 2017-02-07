@@ -101,7 +101,7 @@ fileDownload.prototype.getFilePath = function(baseUrl, cellName, collectionName)
  * @param collectionName
  */
 fileDownload.prototype.get = function(requestUrl, accept, etag, accessor, collectionName) {
-	var builder = new dcc.DcRequestHeaderBuilder();
+	var builder = new _pc.PersoniumRequestHeaderBuilder();
 	builder.acceptEncoding("gzip");
 	builder.accept(accept);
 	builder.token(accessor.accessToken);
@@ -130,7 +130,7 @@ fileDownload.prototype.get = function(requestUrl, accept, etag, accessor, collec
 fileDownload.prototype.fileDownloadSuccess = function(xhr, fileName) {
 	fileDownloadSpinner.stop();
 	document.getElementById("dvGreyOut").style.display = 'none';
-	new dcc.DcResponse(xhr);
+	new _pc.PersoniumResponse(xhr);
 	var blob = xhr.response;
 	var blobURLref = URL.createObjectURL(blob);
 	arrBlobUrls.push(blobURLref);
@@ -151,7 +151,7 @@ fileDownload.prototype.fileDownloadSuccess = function(xhr, fileName) {
 fileDownload.prototype.fileDownloadError = function(xhr, fileName) {
 	fileDownloadSpinner.stop();
 	document.getElementById("dvGreyOut").style.display = 'none';
-	new dcc.DcResponse(xhr);
+	new _pc.PersoniumResponse(xhr);
 	if (xhr.status == 404) {
 		alert(getUiProps().MSG0206);
 	} else if (xhr.status == 400) {

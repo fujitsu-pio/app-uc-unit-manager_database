@@ -37,14 +37,14 @@ externalCellToRoleMapping.prototype.retrieveLinkedRoleCount = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	var extCellUrl = sessionStorage.extCellURL;
 	var key="";
 	key = "('"+encodeURIComponent(extCellUrl)+"')";
 	uri += key + "/"+"_Role";
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -61,14 +61,14 @@ externalCellToRoleMapping.prototype.retrieveChunkedData = function(lowerLimit, u
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	var extCellUrl = sessionStorage.extCellURL;
 	var key="";
 	key = "('"+encodeURIComponent(extCellUrl)+"')";
 	uri += key + "/"+"_Role";
 	uri = uri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -95,11 +95,11 @@ externalCellToRoleMapping.prototype.getRoleBox = function() {
 externalCellToRoleMapping.prototype.cellName = sessionStorage.selectedcell;	
 var objExternalCellToRoleMapping =  new externalCellToRoleMapping();
 var accessor = objCommon.initializeAccessor(objExternalCellToRoleMapping.baseUrl, objExternalCellToRoleMapping.cellName, "", "");
-var objRoleManager = new dcc.RoleManager(accessor);
+var objRoleManager = new _pc.RoleManager(accessor);
 var count = retrieveRoleRecordCount();
 var uri = objRoleManager.getUrl();
 uri = uri + "?$orderby=__updated desc &$top=" + count;
-var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 var response = restAdapter.get(uri, "application/json");
 var json = response.bodyAsJson().d.results;
 /*var json = objRoleManager.retrieve("");
@@ -167,7 +167,7 @@ return accessor;
 externalCellToRoleMapping.prototype.initializeAbstractDataContext = function() { 
 var objExternalCellToRoleMapping =  new externalCellToRoleMapping();
 var accessor = objExternalCellToRoleMapping.getAccessor();
-var objAbstractDataContext =  new dcc.AbstractODataContext(accessor);
+var objAbstractDataContext =  new _pc.AbstractODataContext(accessor);
 return objAbstractDataContext;
 };
 
@@ -178,7 +178,7 @@ return objAbstractDataContext;
 externalCellToRoleMapping.prototype.initializeLinkManager = function(context) {
 var objExternalCellToRoleMapping =  new externalCellToRoleMapping();
 var accessor = objExternalCellToRoleMapping.getAccessor();
-var objLinkMgr = new dcc.LinkManager(accessor, context);
+var objLinkMgr = new _pc.LinkManager(accessor, context);
 return objLinkMgr;
 };
 /**
@@ -542,7 +542,7 @@ externalCellToRoleMapping.prototype.retrieveAllExtCellToRoleJsonData = function 
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtCellManager = new dcc.ExtCellManager(accessor);
+	var objExtCellManager = new _pc.ExtCellManager(accessor);
 	var uri = objExtCellManager.getUrl();
 	var extCellUrl = sessionStorage.extCellURL;
 	var totalRecordCount = objExternalCellToRoleMapping.retrieveLinkedRoleCount();
@@ -550,7 +550,7 @@ externalCellToRoleMapping.prototype.retrieveAllExtCellToRoleJsonData = function 
 	key = "('"+encodeURIComponent(extCellUrl)+"')";
 	uri += key + "/"+"_Role";
 	uri = uri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

@@ -802,7 +802,7 @@ function clickcell(cellName) {
 
 function getCellList() {
 	var baseUrl			= sessionStorage.selectedUnitUrl;
-	var objJdcContext	= new dcc.DcContext(baseUrl, "", "", "");
+	var objJdcContext	= new _pc.PersoniumContext(baseUrl, "", "", "");
 	var accessor		= objJdcContext.withToken(token);
 	var results			= accessor.asCellOwner().unit.cell.query().top(1002).run();
 	var cellList		= JSON.stringify(results);
@@ -813,9 +813,9 @@ function getCellList() {
 function retrieveExternalList(cellname) {
 	var baseUrl				= sessionStorage.selectedUnitUrl;
 	var externalCellURI 	= new Array();
-	var objJdcContext		= new dcc.DcContext(baseUrl, cellname, "", "");
+	var objJdcContext		= new _pc.PersoniumContext(baseUrl, cellname, "", "");
 	var accessor			= objJdcContext.withToken(token);
-	var objExtCellManager	= new dcc.ExtCellManager(accessor);
+	var objExtCellManager	= new _pc.ExtCellManager(accessor);
 	var json				= objExtCellManager.retrieve("");
 
 	return json;
@@ -835,9 +835,9 @@ function getCellInfo (cellName) {
 		baseUrl += "/";
 	}
 	var path				= baseUrl+cellName+"/__/";
-	var objJDcContext		= new dcc.DcContext(baseUrl, cellName);
-	var accessor			= objJDcContext.withToken(token);
-	var objJDavCollection	= new dcc.DavCollection(accessor, path);
+	var objJPersoniumContext		= new _pc.PersoniumContext(baseUrl, cellName);
+	var accessor			= objJPersoniumContext.withToken(token);
+	var objJDavCollection	= new _pc.DavCollection(accessor, path);
 	response				= objJDavCollection.getJSON(profileFileName);
 	return response.bodyAsJson();
 }

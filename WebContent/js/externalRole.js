@@ -70,11 +70,11 @@ externalRole.prototype.getAllRelationBoxPair = function () {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objRelationManager = new dcc.RelationManager(accessor);
+	var objRelationManager = new _pc.RelationManager(accessor);
 	var count = retrieveRelationRecordCount();
 	var uri = objRelationManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -239,7 +239,7 @@ externalRole.prototype.createExternalRole = function() {
 					var cellName = sessionStorage.selectedcell;
 					var accessor = objCommon.initializeAccessor(baseUrl,
 							cellName);
-					var objExtRoleManager = new dcc.ExtRoleManager(accessor);
+					var objExtRoleManager = new _pc.ExtRoleManager(accessor);
 					var body = {
 						"ExtRoleURL" : extRoleURL,
 						"RelationName" : selectedRelationName,
@@ -352,7 +352,7 @@ externalRole.prototype.createExternalRoleManager = function(){
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtRoleMgr = new dcc.ExtRoleManager(accessor);
+	var objExtRoleMgr = new _pc.ExtRoleManager(accessor);
 	return objExtRoleMgr;
 };
 
@@ -477,7 +477,7 @@ externalRole.prototype.deleteSingleExtRole = function(extRoleName, relationName,
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtRoleManager = new dcc.ExtRoleManager(accessor);
+	var objExtRoleManager = new _pc.ExtRoleManager(accessor);
 	var key = "ExtRole='" + encodeURIComponent(extRoleName) + "',_Relation.Name='" + relationName + "',_Relation._Box.Name='" + boxName + "'";
 	var result = false;
 	var etag = "";
@@ -627,7 +627,7 @@ externalRole.prototype.loadExternalRolePage = function () {
  */
 externalRole.prototype.initializeAbstractDataContext = function() { 
 	var accessor = uExternalRole.getAccessor();
-	var objAbstractDataContext =  new dcc.AbstractODataContext(accessor);
+	var objAbstractDataContext =  new _pc.AbstractODataContext(accessor);
 	return objAbstractDataContext;
 };
 
@@ -657,7 +657,7 @@ externalRole.prototype.getExternalRoleCount = function(externalRoleURI,relationN
 			+ relationName + ",_Relation._Box.Name=" + relationBoxName + ")";
 	var accessor = uExternalRole.getAccessor();
 	var context = uExternalRole.initializeAbstractDataContext();
-	var objLinkManager = new dcc.LinkManager(accessor, context);
+	var objLinkManager = new _pc.LinkManager(accessor, context);
 	var response = objLinkManager.retrieveRoleAccountLinks(context, SOURCE,
 			DESTINATION, key);
 	if (response.getStatusCode() == 200) {
@@ -690,7 +690,7 @@ externalRole.prototype.getRoleDetailsLinkedToExternalRole = function(externalRol
 	var key = "(ExtRole="+encodedExternalRoleURI+",_Relation.Name="+relationName+",_Relation._Box.Name="+relationBoxName+")";
 	var accessor = uExternalRole.getAccessor();
 	var context = uExternalRole.initializeAbstractDataContext();
-	var objLinkManager = new dcc.LinkManager(accessor, context); 
+	var objLinkManager = new _pc.LinkManager(accessor, context); 
 	var response = objLinkManager.retrieveRoleAccountLinks(context,SOURCE,	DESTINATION, key);
 	try {
 		if (response.getStatusCode() == 200) {
@@ -764,10 +764,10 @@ externalRole.prototype.retrieveChunkedData = function (lowerLimit, upperLimit) {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtRoleMgr = new dcc.ExtRoleManager(accessor);
+	var objExtRoleMgr = new _pc.ExtRoleManager(accessor);
 	var uri = objExtRoleMgr.getUrl();	
 	uri = uri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -780,10 +780,10 @@ externalRole.prototype.retrieveRecordCount = function () {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtRoleMgr = new dcc.ExtRoleManager(accessor);
+	var objExtRoleMgr = new _pc.ExtRoleManager(accessor);
 	var uri = objExtRoleMgr.getUrl(); 
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -896,11 +896,11 @@ externalRole.prototype.retrieveAllExternalRoleData = function() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objExtRoleMgr = new dcc.ExtRoleManager(accessor);
+	var objExtRoleMgr = new _pc.ExtRoleManager(accessor);
 	var totalRecordCount = uExternalRole.retrieveRecordCount();
 	var uri = objExtRoleMgr.getUrl();	
 	uri = uri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

@@ -79,7 +79,7 @@ uAccount.prototype.retrieveChunkedData = function(lowerLimit, upperLimit) {
 	var uri = objAccountMgr.getUrl();
 	uri = uri + "?$orderby=__updated desc &$skip=" + lowerLimit + "&$top="
 			+ upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -137,7 +137,7 @@ function deleteAccount(accName,count) {
 	objCommon.disableButton('#btnDeleteAccount');
 	var cellname = sessionStorage.selectedcell.toString();
 	var accessor = objCommon.initializeAccessor(baseUrl, cellname, "", "");
-	var objAccountManager = new dcc.AccountManager(accessor);
+	var objAccountManager = new _pc.AccountManager(accessor);
 	var etag = objAccountManager.getEtag(accName);
 	var promise = objAccountManager.del(accName, etag);
 	try {
@@ -528,11 +528,11 @@ function accountNewCreate() {
 		var baseUrl = getClientStore().baseURL;
 		var cellname = sessionStorage.selectedcell.toString();
 		var accessor = objCommon.initializeAccessor(baseUrl, cellname, "", "");
-		var objAccount = new dcc.Account(accessor, body);
-		var objAccountManager = new dcc.AccountManager(accessor);
+		var objAccount = new _pc.Account(accessor, body);
+		var objAccountManager = new _pc.AccountManager(accessor);
 		try {
 			var accountResponse = objAccountManager.retrieve(accNameToCreate);
-			createAllowed = !(accountResponse instanceof dcc.Account);
+			createAllowed = !(accountResponse instanceof _pc.Account);
 		} catch (exception) {
 			createAllowed = true;
 		}
@@ -552,7 +552,7 @@ function accountNewCreate() {
 function createAccount(accessor, objAccount, objAccountManager, pwd, accNameToCreate) {
 	var objCommon = new common();
 	var accountRes = objAccountManager.create(objAccount, pwd);
-	if (accountRes instanceof dcc.Account) {
+	if (accountRes instanceof _pc.Account) {
 		var objAccount = new uAccount();
 		if (($('#checkBoxAccountCreate').is(':checked'))) {
 			var createdAccountName = accNameToCreate;
@@ -635,7 +635,7 @@ function updateAccount() {
 			var cellname = sessionStorage.selectedcell.toString();
 			var accessor = objCommon.initializeAccessor(baseUrl, cellname, "",
 					"");
-			var objAccountManager = new dcc.AccountManager(accessor);
+			var objAccountManager = new _pc.AccountManager(accessor);
 			var isAccountNotExist = false;
 			var etag = objAccountManager.getEtag(existingAccountName);
 			var body = {
@@ -721,9 +721,9 @@ function createAccountManager() {
 	var token = getClientStore().token;
 	var url = getClientStore().baseURL;
 	var cellname = sessionStorage.selectedcell.toString();
-	var objJdcContext = new dcc.DcContext(url, cellname, "", "");
+	var objJdcContext = new _pc.PersoniumContext(url, cellname, "", "");
 	var accessor = objJdcContext.withToken(token);
-	var objAccountManager = new dcc.AccountManager(accessor);
+	var objAccountManager = new _pc.AccountManager(accessor);
 	return objAccountManager;
 }
 
@@ -735,10 +735,10 @@ function retrieveAccountRecordCount() {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objAccountManager = new dcc.AccountManager(accessor);
+	var objAccountManager = new _pc.AccountManager(accessor);
 	var uri = objAccountManager.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -767,9 +767,9 @@ function createChunkedAccountTable(json, recordSize, spinnerCallback) {
 	var dynamicTable = "";
 	var url = getClientStore().baseURL;
 	var cellname = sessionStorage.selectedcell.toString();
-	var objJdcContext = new dcc.DcContext(url, cellname, "", "");
+	var objJdcContext = new _pc.PersoniumContext(url, cellname, "", "");
 	var accessor = objJdcContext.withToken(token);
-	var objLinkMgr = new dcc.LinkManager(accessor, objJdcContext);
+	var objLinkMgr = new _pc.LinkManager(accessor, objJdcContext);
 	var rolecount = 0;
 	if (typeof json === "string") {
 		json = JSON.parse(json);
@@ -1183,7 +1183,7 @@ function retrieveAllAccountData() {
 	var uri = objAccountMgr.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top="
 			+ totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

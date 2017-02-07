@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class RESTアクセスのためのクラス.
@@ -23,20 +23,20 @@
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.RestAdapter.
+ * It creates a new object _pc.RestAdapter.
  * @class This class is used for REST access.
- * @param {dcc.Accessor} as ACCESSOR object
+ * @param {_pc.Accessor} as ACCESSOR object
  * @constructor
- * @param {dcc.Accessor} Accessor
+ * @param {_pc.Accessor} Accessor
  */
-dcc.RestAdapter = function(as) {
+_pc.RestAdapter = function(as) {
   this.initializeProperties(as);
 };
 
 if (typeof exports === "undefined") {
   exports = {};
 }
-exports.RestAdapter = dcc.RestAdapter;
+exports.RestAdapter = _pc.RestAdapter;
 
 ///**
 //* プロパティを初期化する.
@@ -44,9 +44,9 @@ exports.RestAdapter = dcc.RestAdapter;
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Accessor} as ACCESSOR object
+ * @param {_pc.Accessor} as ACCESSOR object
  */
-dcc.RestAdapter.prototype.initializeProperties = function(as) {
+_pc.RestAdapter.prototype.initializeProperties = function(as) {
 ///** アクセス主体. */
   /** Accessor object. */
   this.accessor = as;
@@ -64,11 +64,11 @@ dcc.RestAdapter.prototype.initializeProperties = function(as) {
 //*/
 /**
  * This method returns an instance of the HTTP client.
- * @return {dcc.DcHttpClient} HTTP Client object
+ * @return {_pc.PersoniumHttpClient} HTTP Client object
  */
-dcc.RestAdapter.prototype.createHttpClient = function() {
+_pc.RestAdapter.prototype.createHttpClient = function() {
   // TODO ファクトリクラス化する
-  return new dcc.DcHttpClient();
+  return new _pc.PersoniumHttpClient();
 };
 
 ///**
@@ -77,7 +77,7 @@ dcc.RestAdapter.prototype.createHttpClient = function() {
 //* @param accept Acceptヘッダ値
 //* @param etag 取得するEtag
 //* @param callback object
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
@@ -86,11 +86,11 @@ dcc.RestAdapter.prototype.createHttpClient = function() {
  * @param {String} accept
  * @param {String} etag
  * @param {Object} callback object
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.get = function(requestUrl, accept, etag, callback) {
-  var builder = new dcc.DcRequestHeaderBuilder();
+_pc.RestAdapter.prototype.get = function(requestUrl, accept, etag, callback) {
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.accept(accept);
   builder.token(this.accessor.accessToken);
   builder.ifNoneMatch(etag);
@@ -109,7 +109,7 @@ dcc.RestAdapter.prototype.get = function(requestUrl, accept, etag, callback) {
 //* @param requestUrl リクエスト対象URL
 //* @param etag 取得するEtag
 //* @param callback object
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
@@ -117,11 +117,11 @@ dcc.RestAdapter.prototype.get = function(requestUrl, accept, etag, callback) {
  * @param {String} requestUrl
  * @param {String} etag
  * @param {Object} callback object
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.getBinary = function(requestUrl, etag, callback) {
-  var builder = new dcc.DcRequestHeaderBuilder();
+_pc.RestAdapter.prototype.getBinary = function(requestUrl, etag, callback) {
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.token(this.accessor.accessToken);
   builder.ifNoneMatch(etag);
   builder.defaultHeaders(this.accessor.getDefaultHeaders());
@@ -139,17 +139,17 @@ dcc.RestAdapter.prototype.getBinary = function(requestUrl, etag, callback) {
 //* HEADメソッド.
 //* @param requestUrl リクエスト対象URL
 //* @param {string} etag Used for if-none-match condition
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
  * This method uses default headers to fetch the data.
  * @param {String} requestUrl
  * @param {string} etag Used for if-none-match condition
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.head = function(requestUrl, etag) {
+_pc.RestAdapter.prototype.head = function(requestUrl, etag) {
   return this.get(requestUrl, "application/json", etag);
 };
 
@@ -161,7 +161,7 @@ dcc.RestAdapter.prototype.head = function(requestUrl, etag) {
 //* @param contentType CONTENT-TYPE値
 //* @param headers header object
 //* @param callback object
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
@@ -172,11 +172,11 @@ dcc.RestAdapter.prototype.head = function(requestUrl, etag) {
  * @param {String} CONTENT-TYPE value
  * @param {Object} header object
  * @param {Object} callback object
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.put = function(requestUrl, requestBody, etag, contentType, headers, callback) {
-  var builder = new dcc.DcRequestHeaderBuilder();
+_pc.RestAdapter.prototype.put = function(requestUrl, requestBody, etag, contentType, headers, callback) {
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType(contentType);
   builder.ifMatch(etag);
   builder.token(this.accessor.accessToken);
@@ -197,7 +197,7 @@ dcc.RestAdapter.prototype.put = function(requestUrl, requestBody, etag, contentT
 //* @param contentType CONTENT-TYPE値
 //* @param headers header object
 //* @param callback object
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
@@ -207,11 +207,11 @@ dcc.RestAdapter.prototype.put = function(requestUrl, requestBody, etag, contentT
  * @param {String} CONTENT-TYPE value
  * @param {Object} header object
  * @param {Object} callback object
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exceptionn
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exceptionn
  */
-dcc.RestAdapter.prototype.post = function(requestUrl, requestBody, contentType, headers, callback) {
-  var builder = new dcc.DcRequestHeaderBuilder();
+_pc.RestAdapter.prototype.post = function(requestUrl, requestBody, contentType, headers, callback) {
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType(contentType);
   builder.token(this.accessor.accessToken);
   builder.defaultHeaders(this.accessor.getDefaultHeaders());
@@ -231,7 +231,7 @@ dcc.RestAdapter.prototype.post = function(requestUrl, requestBody, contentType, 
 //* @param etag ETag
 //* @param contentType CONTENT-TYPE値
 //* @param callback object
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
@@ -241,11 +241,11 @@ dcc.RestAdapter.prototype.post = function(requestUrl, requestBody, contentType, 
  * @param {String} ETag
  * @param {String} CONTENT-TYPE value
  * @param {Object} callback object
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.merge = function(requestUrl, requestBody, etag, contentType, callback) {
-  var builder = new dcc.DcRequestHeaderBuilder();
+_pc.RestAdapter.prototype.merge = function(requestUrl, requestBody, etag, contentType, callback) {
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType(contentType);
   builder.ifMatch(etag);
   builder.token(this.accessor.accessToken);
@@ -268,10 +268,10 @@ dcc.RestAdapter.prototype.merge = function(requestUrl, requestBody, etag, conten
  * @param {Function} options.error Callback function for error response.
  * @param {Function} options.complete Callback function for any response, either successful or error.
  * @param {Object} callback (deprecated) for backward compatibility.
- * @return {dcc.Promise} Promise
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Promise} Promise
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.del = function(requestUrl, optionsOrEtag, callback) {
+_pc.RestAdapter.prototype.del = function(requestUrl, optionsOrEtag, callback) {
   var options = {};
   if(!optionsOrEtag){
     optionsOrEtag = {};
@@ -302,7 +302,7 @@ dcc.RestAdapter.prototype.del = function(requestUrl, optionsOrEtag, callback) {
 //* @param requestUrl リクエスト対象URL
 //* @param requestBody リクエストボディ
 //* @param callback (deprecated) for backward compatibility.
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
@@ -310,11 +310,11 @@ dcc.RestAdapter.prototype.del = function(requestUrl, optionsOrEtag, callback) {
  * @param {String} requestUrl
  * @param {Object} requestBody
  * @param {Object} callback (deprecated) for backward compatibility.
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.acl = function(requestUrl, requestBody, callback) {
-  var builder = new dcc.DcRequestHeaderBuilder();
+_pc.RestAdapter.prototype.acl = function(requestUrl, requestBody, callback) {
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType("application/xml");
   builder.accept("application/xml");
   builder.token(this.accessor.accessToken);
@@ -332,23 +332,23 @@ dcc.RestAdapter.prototype.acl = function(requestUrl, requestBody, callback) {
 //* MKCOLメソッド.
 //* @param requestUrl リクエスト対象URL
 //* @param callback (deprecated) for backward compatibility.
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
  * MKCOL method for creating collections.
  * @param {String} requestUrl
  * @param {Object} callback (deprecated) for backward compatibility.
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.mkcol = function(requestUrl, callback) {
+_pc.RestAdapter.prototype.mkcol = function(requestUrl, callback) {
   /** MKCol用リクエストボディ. */
   var REQUEST_BODY_MKCOL_XML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
   "<D:mkcol xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-dc1:xmlns\"><D:set><D:prop><D:resourcetype><D:collection/>" +
   "</D:resourcetype></D:prop></D:set></D:mkcol>";
 
-  var builder = new dcc.DcRequestHeaderBuilder();
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType("application/xml");
   builder.accept("application/xml");
   builder.token(this.accessor.accessToken);
@@ -366,23 +366,23 @@ dcc.RestAdapter.prototype.mkcol = function(requestUrl, callback) {
 //* MKCOL拡張メソッド(ODataコレクション作成).
 //* @param requestUrl リクエスト対象URL
 //* @param callback (deprecated) for backward compatibility.
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
  * MKCOL method for creating odata collections.
  * @param {String} requestUrl
  * @param {Object} callback (deprecated) for backward compatibility.
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.mkOData = function(requestUrl, callback) {
+_pc.RestAdapter.prototype.mkOData = function(requestUrl, callback) {
   /** MKOData用リクエストボディ. */
   var REQUEST_BODYMKODATA_XML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
   "<D:mkcol xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-dc1:xmlns\"><D:set><D:prop><D:resourcetype><D:collection/>" +
-  "<dc:odata/></D:resourcetype></D:prop></D:set></D:mkcol>";
+  "<p:odata/></D:resourcetype></D:prop></D:set></D:mkcol>";
 
-  var builder = new dcc.DcRequestHeaderBuilder();
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType("application/xml");
   builder.accept("application/xml");
   builder.token(this.accessor.accessToken);
@@ -400,23 +400,23 @@ dcc.RestAdapter.prototype.mkOData = function(requestUrl, callback) {
 //* MKCOL拡張メソッド(Serviceコレクション作成).
 //* @param requestUrl リクエスト対象URL
 //* @param callback (deprecated) for backward compatibility.
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
  * MKCOL method for creating service collections.
  * @param {String} requestUrl
  * @param {Object} callback (deprecated) for backward compatibility.
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.mkService = function(requestUrl, callback) {
+_pc.RestAdapter.prototype.mkService = function(requestUrl, callback) {
   /** サービスコレクション用リクエストボディ. */
   var REQUEST_BODY_SERVICE_XML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
   "<D:mkcol xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-dc1:xmlns\"><D:set><D:prop><D:resourcetype>" +
-  "<D:collection/><dc:service/></D:resourcetype></D:prop></D:set></D:mkcol>";
+  "<D:collection/><p:service/></D:resourcetype></D:prop></D:set></D:mkcol>";
 
-  var builder = new dcc.DcRequestHeaderBuilder();
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType("application/xml");
   builder.accept("application/xml");
   builder.token(this.accessor.accessToken);
@@ -437,7 +437,7 @@ dcc.RestAdapter.prototype.mkService = function(requestUrl, callback) {
 //* @param value プロパティの値
 //* @param subject サービスサブジェクトの値
 //* @param callback (deprecated) for backward compatibility.
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
@@ -447,18 +447,18 @@ dcc.RestAdapter.prototype.mkService = function(requestUrl, callback) {
  * @param {String} value
  * @param {String} subject
  * @param {Object} callback (deprecated) for backward compatibility.
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.setService = function(requestUrl, key, value, subject, callback) {
+_pc.RestAdapter.prototype.setService = function(requestUrl, key, value, subject, callback) {
   var sb = "";
   sb += "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
   sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-dc1:xmlns\" xmlns:Z=\"http://www.w3.com/standards/z39.50/\"><D:set><D:prop>";
-  sb += "<dc:service language=\"JavaScript\" subject=\"" + subject + "\">";
-  sb += "<dc:path name=\"" + key + "\" src=\"" + value + "\"/>";
-  sb += "</dc:service></D:prop></D:set></D:propertyupdate>";
+  sb += "<p:service language=\"JavaScript\" subject=\"" + subject + "\">";
+  sb += "<p:path name=\"" + key + "\" src=\"" + value + "\"/>";
+  sb += "</p:service></D:prop></D:set></D:propertyupdate>";
 
-  var builder = new dcc.DcRequestHeaderBuilder();
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType("application/xml");
   builder.accept("application/xml");
   builder.token(this.accessor.accessToken);
@@ -479,24 +479,24 @@ dcc.RestAdapter.prototype.setService = function(requestUrl, key, value, subject,
  * @param arrServiceNameAndSrcFile service list in combination of service name and source file
  * @param subject Service
  * @param callback (deprecated) for backward compatibility.
- * @return DcHttpClient
+ * @return PersoniumHttpClient
  * @throws DaoException DAO
  */
-dcc.RestAdapter.prototype.setMultipleService = function(requestUrl, arrServiceNameAndSrcFile, subject, callback) {
+_pc.RestAdapter.prototype.setMultipleService = function(requestUrl, arrServiceNameAndSrcFile, subject, callback) {
 	var key = null;
 	var value = null;
 	var sb = "";
 	sb += "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 	sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-dc1:xmlns\" xmlns:Z=\"http://www.w3.com/standards/z39.50/\"><D:set><D:prop>";
-	sb += "<dc:service language=\"JavaScript\" subject=\"" + subject + "\">";
+	sb += "<p:service language=\"JavaScript\" subject=\"" + subject + "\">";
 	var len = arrServiceNameAndSrcFile.length;
 	for (var i = 0; i < len; i++) {
 		key = arrServiceNameAndSrcFile[i].serviceName;
 		value = arrServiceNameAndSrcFile[i].sourceFileName;
-		sb += "<dc:path name=\"" + key + "\" src=\"" + value + "\"/>";
+		sb += "<p:path name=\"" + key + "\" src=\"" + value + "\"/>";
 	}
-	sb += "</dc:service></D:prop></D:set></D:propertyupdate>";
-	var builder = new dcc.DcRequestHeaderBuilder();
+	sb += "</p:service></D:prop></D:set></D:propertyupdate>";
+	var builder = new _pc.PersoniumRequestHeaderBuilder();
 	builder.contentType("application/xml");
 	builder.accept("application/xml");
 	builder.token(this.accessor.accessToken);
@@ -516,7 +516,7 @@ dcc.RestAdapter.prototype.setMultipleService = function(requestUrl, arrServiceNa
 //* @param key プロパティ名
 //* @param value プロパティの値
 //* @param callback (deprecated) for backward compatibility.
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
@@ -525,10 +525,10 @@ dcc.RestAdapter.prototype.setMultipleService = function(requestUrl, arrServiceNa
  * @param {String} key
  * @param {String} value
  * @param {Object} callback (deprecated) for backward compatibility.
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.proppatch = function(requestUrl, key, value, callback) {
+_pc.RestAdapter.prototype.proppatch = function(requestUrl, key, value, callback) {
   var sb = "";
   sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-dc1:xmlns\"><D:set><D:prop>";
   sb += "<" + key + ">";
@@ -536,7 +536,7 @@ dcc.RestAdapter.prototype.proppatch = function(requestUrl, key, value, callback)
   sb += "</" + key + ">";
   sb += "</D:prop></D:set></D:propertyupdate>";
 
-  var builder = new dcc.DcRequestHeaderBuilder();
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType("application/xml");
   builder.accept("application/xml");
   builder.token(this.accessor.accessToken);
@@ -557,10 +557,10 @@ dcc.RestAdapter.prototype.proppatch = function(requestUrl, key, value, callback)
  * @param setPropertyList Property List in the form of key and value
  * @param removedPropertyList Property List in the form of key and value
  * @param callback (deprecated) for backward compatibility.
- * @return DcHttpClient
+ * @return PersoniumHttpClient
  * @throws DaoException DAO??
  */
-dcc.RestAdapter.prototype.multiProppatch = function(requestUrl, setPropertyList, removedPropertyList, callback) {
+_pc.RestAdapter.prototype.multiProppatch = function(requestUrl, setPropertyList, removedPropertyList, callback) {
 	var sb = "";
 	var key = null;
 	var value = null;
@@ -581,7 +581,7 @@ dcc.RestAdapter.prototype.multiProppatch = function(requestUrl, setPropertyList,
 		sb += "</" + key + ">";
 	}
 	sb += "</D:prop></D:remove></D:propertyupdate>";
-	var builder = new dcc.DcRequestHeaderBuilder();
+	var builder = new _pc.PersoniumRequestHeaderBuilder();
 	builder.contentType("application/xml");
 	builder.accept("application/xml");
 	builder.token(this.accessor.accessToken);
@@ -599,18 +599,18 @@ dcc.RestAdapter.prototype.multiProppatch = function(requestUrl, setPropertyList,
 //* PROPFINDメソッド.
 //* @param requestUrl リクエスト対象URL
 //* @param callback (deprecated) for backward compatibility.
-//* @return DcHttpClient
+//* @return PersoniumHttpClient
 //* @throws DaoException DAO例外
 //*/
 /**
  * PROPFind method.
  * @param {String} requestUrl
  * @param {Object} callback (deprecated) for backward compatibility.
- * @return {dcc.DcHttpClient} DcHttpClient
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.PersoniumHttpClient} PersoniumHttpClient
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.propfind = function(requestUrl, callback) {
-  var builder = new dcc.DcRequestHeaderBuilder();
+_pc.RestAdapter.prototype.propfind = function(requestUrl, callback) {
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.contentType("application/xml");
   builder.accept("application/xml");
   builder.token(this.accessor.accessToken);
@@ -631,23 +631,23 @@ dcc.RestAdapter.prototype.propfind = function(requestUrl, callback) {
 //* @param method Http request method
 //* @param requestUrl リクエスト対象URL
 //* @param requestBody data request body
-//* @param builder DcRequestHeaderBuilder
+//* @param builder PersoniumRequestHeaderBuilder
 //* @param headers headers parameters for request
 //* @param callback (deprecated) for backward compatibility.
 //* @throws DaoException DAO例外
 //*/
 /**
  * This method is used to make HTTP requests may be subject to Response body.
- * @param {dcc.DcHttpClient} xhr
+ * @param {_pc.PersoniumHttpClient} xhr
  * @param {String} Http request method
  * @param {String} requestUrl
  * @param {Object} data request body
- * @param {dcc.DcRequestHeadreBuilder} builder DcRequestHeaderBuilder
+ * @param {_pc.PersoniumRequestHeadreBuilder} builder PersoniumRequestHeaderBuilder
  * @param {Object} headers parameters for request
  * @param {Object} callback (deprecated) for backward compatibility.
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.RestAdapter.prototype.request = function(xhr, method, requestUrl, requestBody, builder, headers, callback) {
+_pc.RestAdapter.prototype.request = function(xhr, method, requestUrl, requestBody, builder, headers, callback) {
   var self = this;
   builder.build(xhr, headers);
 
@@ -665,9 +665,9 @@ dcc.RestAdapter.prototype.request = function(xhr, method, requestUrl, requestBod
       var response = JSON.parse(xhr.bodyAsString());
       if(xhr.getStatusCode() === 401){
         //authentication error case,when response does not contain response.message instead contains response.error
-        throw new dcc.DaoException(response.error, response.error_description);
+        throw new _pc.DaoException(response.error, response.error_description);
       }else{
-        throw new dcc.DaoException(response.message.value, response.code);
+        throw new _pc.DaoException(response.message.value, response.code);
       }
     }
   }
@@ -676,7 +676,7 @@ dcc.RestAdapter.prototype.request = function(xhr, method, requestUrl, requestBod
 /**
  * This is the new version of internal request method to send HTTP request.
  * @private
- * @param {dcc.DcHttpClient} http client.
+ * @param {_pc.PersoniumHttpClient} http client.
  * @param {String} HTTP request method.
  * @param {String} HTTP request url.
  * @param {Object} options
@@ -685,12 +685,12 @@ dcc.RestAdapter.prototype.request = function(xhr, method, requestUrl, requestBod
  * @param {Function} options.success Callback function for successful result.
  * @param {Function} options.error Callback function for error response.
  * @param {Function} options.complete Callback function for any response, either successful or error.
- * @return {dcc.Promise} response or promise
- * @throws {dcc.DaoException} ClientException
+ * @return {_pc.Promise} response or promise
+ * @throws {_pc.DaoException} ClientException
  */
-dcc.RestAdapter.prototype._request = function(client, method, requestUrl, options) {
+_pc.RestAdapter.prototype._request = function(client, method, requestUrl, options) {
   var self = this;
-  var builder = new dcc.DcRequestHeaderBuilder();
+  var builder = new _pc.PersoniumRequestHeaderBuilder();
   builder.token(this.accessor.accessToken);
   builder.defaultHeaders(this.accessor.getDefaultHeaders());
 
@@ -715,7 +715,7 @@ dcc.RestAdapter.prototype._request = function(client, method, requestUrl, option
     //self.accessor.setResHeaders(client.getAllResponseHeaders());
     if (400 > client.getStatusCode() >= 300) {
       var response = JSON.parse(client.bodyAsString());
-      throw new dcc.DaoException(response.message.value, response.code);
+      throw new _pc.DaoException(response.message.value, response.code);
     }
     return res;
   }
@@ -729,7 +729,7 @@ dcc.RestAdapter.prototype._request = function(client, method, requestUrl, option
  * This method returns HHTP status code.
  * @returns {String} status code
  */
-dcc.RestAdapter.prototype.getStatusCode = function() {
+_pc.RestAdapter.prototype.getStatusCode = function() {
   return this.httpClient.getStatusCode();
 };
 
@@ -742,7 +742,7 @@ dcc.RestAdapter.prototype.getStatusCode = function() {
  * @param {String} key
  * @returns {String} responseHeader against the key
  */
-dcc.RestAdapter.prototype.getResponseHeader = function(key) {
+_pc.RestAdapter.prototype.getResponseHeader = function(key) {
   return this.httpClient.getResponseHeader(key);
 };
 
@@ -754,7 +754,7 @@ dcc.RestAdapter.prototype.getResponseHeader = function(key) {
  * This method returns the response body in string format.
  * @return {String} bodyAsString
  */
-dcc.RestAdapter.prototype.bodyAsString = function() {
+_pc.RestAdapter.prototype.bodyAsString = function() {
   return this.httpClient.bodyAsString();
 };
 
@@ -766,7 +766,7 @@ dcc.RestAdapter.prototype.bodyAsString = function() {
  * This method returns the response body in JSON format.
  * @return {Object} bodyAsJson
  */
-dcc.RestAdapter.prototype.bodyAsJson = function() {
+_pc.RestAdapter.prototype.bodyAsJson = function() {
   return this.httpClient.bodyAsJson();
 };
 
@@ -778,6 +778,6 @@ dcc.RestAdapter.prototype.bodyAsJson = function() {
  * This method returns the response body in XML format.
  * @returns {String} XML response
  */
-dcc.RestAdapter.prototype.bodyAsXml = function() {
+_pc.RestAdapter.prototype.bodyAsXml = function() {
   return this.httpClient.bodyAsXml();
 };

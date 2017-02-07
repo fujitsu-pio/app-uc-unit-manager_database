@@ -15,27 +15,27 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 /**
- * It creates a new object dcc.ExtRoleManager.
+ * It creates a new object _pc.ExtRoleManager.
  * @class This class performs CRUD operations for External Role.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  */
-dcc.ExtRoleManager = function(as) {
+_pc.ExtRoleManager = function(as) {
   this.initializeProperties(this, as);
 };
-dcc.DcClass.extend(dcc.ExtRoleManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.ExtRoleManager, _pc.ODataManager);
 
 /**
  * This method initializes the properties of this class.
- * @param {dcc.ExtRoleManager} self
- * @param {dcc.Accessor} as
+ * @param {_pc.ExtRoleManager} self
+ * @param {_pc.Accessor} as
  */
-dcc.ExtRoleManager.prototype.initializeProperties = function(self, as) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.ExtRoleManager.prototype.initializeProperties = function(self, as) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
 };
 
@@ -45,7 +45,7 @@ dcc.ExtRoleManager.prototype.initializeProperties = function(self, as) {
  * creating External Role.
  * @return {String} URL
  */
-dcc.ExtRoleManager.prototype.getUrl = function() {
+_pc.ExtRoleManager.prototype.getUrl = function() {
   var sb = this.getBaseUrl();
   sb += this.accessor.cellName;
   sb += "/__ctl/ExtRole";
@@ -56,10 +56,10 @@ dcc.ExtRoleManager.prototype.getUrl = function() {
  * The purpose of this function is to create External Role.
  * @param {String} extCellName
  * @param {String} extRoleName
- * @return {dcc.DcHttpClient} response
- * @throws {dcc.DaoException} Exception thrown
+ * @return {_pc.PersoniumHttpClient} response
+ * @throws {_pc.DaoException} Exception thrown
  */
-dcc.ExtRoleManager.prototype.create = function(obj) {
+_pc.ExtRoleManager.prototype.create = function(obj) {
   var body = {};
   body.ExtRole = obj.ExtRoleURL;
   body["_Relation.Name"] = obj.RelationName;
@@ -68,7 +68,7 @@ dcc.ExtRoleManager.prototype.create = function(obj) {
   var json = this.internalCreate(requestBody);
   if (json.getStatusCode() >= 400) {
 	var response = json.bodyAsJson();// throw exception with code
-	throw new dcc.DaoException(response.message.value, response.code);
+	throw new _pc.DaoException(response.message.value, response.code);
   }
   return json;
 };
@@ -79,7 +79,7 @@ dcc.ExtRoleManager.prototype.create = function(obj) {
  * @param {String} id
  * @return {Object} JSON response
  */
-dcc.ExtRoleManager.prototype.retrieve = function(id) {
+_pc.ExtRoleManager.prototype.retrieve = function(id) {
   var json = this.internalRetrieve(id);
   return json;
 };
@@ -88,9 +88,9 @@ dcc.ExtRoleManager.prototype.retrieve = function(id) {
 * The purpose of this function is to delete external role on the basis of key.
 * @param {String} key
 * @param {String} etag
-* @returns {dcc.Promise} response
+* @returns {_pc.Promise} response
 */
-dcc.ExtRoleManager.prototype.del = function(key,etag) {
+_pc.ExtRoleManager.prototype.del = function(key,etag) {
 	var response = this.internalDelMultiKey(key, etag);
 	return response;
 };
@@ -101,7 +101,7 @@ dcc.ExtRoleManager.prototype.del = function(key,etag) {
  * @param {String} key
  * @returns {String} etag
  */
-dcc.ExtRoleManager.prototype.getEtag = function(key) {
+_pc.ExtRoleManager.prototype.getEtag = function(key) {
 	var json = this.internalRetrieveMultikey(key);
 	return json.__metadata.etag;
 };

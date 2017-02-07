@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false
+/*global _pc:false
  */
 
 ///**
@@ -26,7 +26,7 @@
  * Class to manipulate the URL string.
  * @constructor
  */
-dcc.UrlUtils = function() {
+_pc.UrlUtils = function() {
 };
 
 ///**
@@ -43,7 +43,7 @@ dcc.UrlUtils = function() {
  * @param {String} path Path
  * @return {String} Complete URL
  */
-dcc.UrlUtils.append = function(baseUrl, path) {
+_pc.UrlUtils.append = function(baseUrl, path) {
   var url = baseUrl;
   if (!baseUrl.endsWith("/")) {
     url += "/";
@@ -64,7 +64,7 @@ dcc.UrlUtils.append = function(baseUrl, path) {
  * @param {String} url Target URL
  * @return {Boolean} true： Enable/false: Disable
  */
-dcc.UrlUtils.isUrl = function(url) {
+_pc.UrlUtils.isUrl = function(url) {
   if (url.match(/^(http|https):\/\//i)) {
     return true;
   }

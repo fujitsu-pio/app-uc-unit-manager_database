@@ -41,14 +41,14 @@ roleAccountLink.prototype.retrieveRecordCount = function () {
 	var baseUrl = getClientStore().baseURL;
 	var cellName = sessionStorage.selectedcell;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objAccountManager = new dcc.AccountManager(accessor);
+	var objAccountManager = new _pc.AccountManager(accessor);
 	var uri = objAccountManager.getUrl();
 	var accountName = sessionStorage.accountname;
 	var key="";
 	key = "('"+accountName+"')";
 	uri += key + "/"+"_Role";
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count; 
@@ -65,14 +65,14 @@ roleAccountLink.prototype.retrieveChunkedData = function (lowerLimit, upperLimit
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objAccountManager = new dcc.AccountManager(accessor);
+	var objAccountManager = new _pc.AccountManager(accessor);
 	var uri = objAccountManager.getUrl();
 	var accountName = sessionStorage.accountname;
 	var key="";
 	key = "('"+accountName+"')";
 	uri += key + "/"+"_Role";
 	uri = uri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -162,7 +162,7 @@ function loadAccountRoleAssignationPage() {
  * This method is accepting accessor as an input parameter.
  */
 function initializeAbstractDataContext(accessor) {
-		var objAbstractDataContext =  new dcc.AbstractODataContext(accessor);
+		var objAbstractDataContext =  new _pc.AbstractODataContext(accessor);
 		return objAbstractDataContext;
 }
 	
@@ -273,7 +273,7 @@ function initializeAccessor() {
 	var token = getClientStore().token;
 	var baseUrl  = getClientStore().baseURL; 
 	var cellname = sessionStorage.selectedcell.toString();
-	var objJdcContext = new dcc.DcContext(baseUrl,cellname, "", "");
+	var objJdcContext = new _pc.PersoniumContext(baseUrl,cellname, "", "");
 	var accessor	=	objJdcContext.withToken(token);
 	return accessor;
 }
@@ -285,7 +285,7 @@ function initializeAccessor() {
 function initializeLinkManager() {
 	var accessor = initializeAccessor();
 	var context	= initializeAbstractDataContext(accessor);
-	var objLinkMgr = new dcc.LinkManager(accessor, context);
+	var objLinkMgr = new _pc.LinkManager(accessor, context);
 	return objLinkMgr;
 }
 	
@@ -431,11 +431,11 @@ function refreshRoleBoxDropDown() {
 */
 function getRoleBox() {
 	var accessor = initializeAccessor();
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var count = retrieveRoleRecordCount();
 	var uri = objRoleManager.getUrl();
 	uri = uri + "?$orderby=__updated desc &$top=" + count;
-	var restAdapter =  new dcc.RestAdapterFactory.create(accessor);
+	var restAdapter =  new _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;
@@ -590,7 +590,7 @@ function deleteMapping(roleName,count) {
 	accountName = sessionStorage.accountname;
 	var accessor = initializeAccessor();
 	var context = initializeAbstractDataContext(accessor);
-	var objLinkManager = new dcc.LinkManager(accessor);
+	var objLinkManager = new _pc.LinkManager(accessor);
 	// split role Name in to role and Box.
 	var response = objLinkManager.delLink(context, SOURCE, DESTINATION,
 			accountName, box, role);
@@ -680,7 +680,7 @@ function retrieveAllRoleAccountLinkJsonData() {
 	var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objAccountManager = new dcc.AccountManager(accessor);
+	var objAccountManager = new _pc.AccountManager(accessor);
 	var totalRecordCount = objRoleAccountLink.retrieveRecordCount();
 	var uri = objAccountManager.getUrl();
 	var accountName = sessionStorage.accountname;
@@ -688,7 +688,7 @@ function retrieveAllRoleAccountLinkJsonData() {
 	key = "('"+accountName+"')";
 	uri += key + "/"+"_Role";
 	uri = uri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d.results;
 	return json;

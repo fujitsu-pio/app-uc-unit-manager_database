@@ -15,29 +15,29 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 /**
- * It creates a new object dcc.ComplexTypePropertyManager.
+ * It creates a new object _pc.ComplexTypePropertyManager.
  * @class This class is used for performing CRUD operations on ComplexTypeProperty.
  * @constructor
  * @augments jEntitySet
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} Collection
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} Collection
  */
-dcc.ComplexTypePropertyManager = function(as, collection) {
+_pc.ComplexTypePropertyManager = function(as, collection) {
   this.initializeProperties(this, as, collection);
 };
-dcc.DcClass.extend(dcc.ComplexTypePropertyManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.ComplexTypePropertyManager, _pc.ODataManager);
 
 /** The purpose of this function is to initialize properties.
  * @param {Object} self
- * @param {dcc.Accessor} as
- * @param {dcc.DcCollection} collection
+ * @param {_pc.Accessor} as
+ * @param {_pc.PersoniumCollection} collection
  */
-dcc.ComplexTypePropertyManager.prototype.initializeProperties = function(self, as,
+_pc.ComplexTypePropertyManager.prototype.initializeProperties = function(self, as,
     collection) {
-  this.uber = dcc.ODataManager.prototype;
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as, collection);
 };
 
@@ -45,7 +45,7 @@ dcc.ComplexTypePropertyManager.prototype.initializeProperties = function(self, a
  * The purpose of this function is to create URL.
  * @return {String} URL
  */
-dcc.ComplexTypePropertyManager.prototype.getUrl = function() {
+_pc.ComplexTypePropertyManager.prototype.getUrl = function() {
   var sb = "";
   sb = this.getBaseUrl();
   sb += this.accessor.cellName;
@@ -62,7 +62,7 @@ dcc.ComplexTypePropertyManager.prototype.getUrl = function() {
  * @param {String} complexTypeName
  * @return {String} URL
  */
-dcc.ComplexTypePropertyManager.prototype.getComplexTypeUri = function (complexTypeName) {
+_pc.ComplexTypePropertyManager.prototype.getComplexTypeUri = function (complexTypeName) {
   var sb = "";
   sb = this.getBaseUrl();
   sb += this.accessor.cellName;
@@ -82,7 +82,7 @@ dcc.ComplexTypePropertyManager.prototype.getComplexTypeUri = function (complexTy
  * @param {Object} obj
  * @return {Object} JSON
  */
-dcc.ComplexTypePropertyManager.prototype.create = function (obj) {
+_pc.ComplexTypePropertyManager.prototype.create = function (obj) {
   var json = null;
   json = this.internalCreate(obj);
   return json;
@@ -94,7 +94,7 @@ dcc.ComplexTypePropertyManager.prototype.create = function (obj) {
  * @param {String} complexTypePropertyName
  * @return {Object} JSON
  */
-dcc.ComplexTypePropertyManager.prototype.retrieve = function (complextypeName, complexTypePropertyName) {
+_pc.ComplexTypePropertyManager.prototype.retrieve = function (complextypeName, complexTypePropertyName) {
   var json = null;
   var key = null;
   key = "Name='"+complexTypePropertyName+"',_ComplexType.Name='"+complextypeName+"'";
@@ -109,10 +109,10 @@ dcc.ComplexTypePropertyManager.prototype.retrieve = function (complextypeName, c
  * @param {String} complextypeName
  * @return {Object} JSON
  */
-dcc.ComplexTypePropertyManager.prototype.retrieveComplexTypePropertyList = function (complextypeName) {
+_pc.ComplexTypePropertyManager.prototype.retrieveComplexTypePropertyList = function (complextypeName) {
   if(complextypeName !== null || complextypeName !== undefined) {
     var uri = this.getComplexTypeUri(complextypeName);
-    var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+    var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
     var response = restAdapter.get(uri, "application/json");
     var json = response.bodyAsJson().d.results;
     return json;
@@ -123,9 +123,9 @@ dcc.ComplexTypePropertyManager.prototype.retrieveComplexTypePropertyList = funct
  * The purpose of this function is to delete ComplexTypeProperty
  * @param {String} key
  * @param {String} etag
- * @returns {dcc.Promise} response
+ * @returns {_pc.Promise} response
  */
-dcc.ComplexTypePropertyManager.prototype.del = function(key, etag) {
+_pc.ComplexTypePropertyManager.prototype.del = function(key, etag) {
   if (typeof etag === "undefined") {
     etag = "*";
   }

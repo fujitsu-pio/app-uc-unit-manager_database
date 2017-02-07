@@ -38,7 +38,7 @@ uCollectionOdata.prototype.createFolder = function() {
 	var folderName = $("#txtFolderName").val();
 	if (objCollectionOdata.validateFolderName(folderName)) {
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objJDavCollection = new dcc.DavCollection(accessor,
+		var objJDavCollection = new _pc.DavCollection(accessor,
 				objOdata.currentCollectionPath);
 		try {
 			response = objJDavCollection.mkCol(folderName);
@@ -116,7 +116,7 @@ uCollectionOdata.prototype.createOdataCollection = function() {
 	var odataName = document.getElementById("txtOdataName").value;
 	if (objCollectionOdata.validateOdataName(odataName)) {
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objJDavCollection = new dcc.DavCollection(accessor,
+		var objJDavCollection = new _pc.DavCollection(accessor,
 				objOdata.currentCollectionPath);
 		try {
 			response = objJDavCollection.mkOData(odataName);
@@ -199,7 +199,7 @@ uCollectionOdata.prototype.createEngineService = function () {
 	var engineServiceName = $("#txtEngineServiceName").val();
 	if (objCollectionOdata.validateEngineServiceName(engineServiceName)) {
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objJDavCollection = new dcc.DavCollection(accessor,objOdata.currentCollectionPath);
+		var objJDavCollection = new _pc.DavCollection(accessor,objOdata.currentCollectionPath);
 		try {
 			response =  objJDavCollection.mkService(engineServiceName);
 			if (response.httpClient.status == 201)

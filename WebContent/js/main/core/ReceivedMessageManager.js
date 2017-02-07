@@ -15,25 +15,25 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class メッセージの送受信のためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.ReceivedMessageManager.
+ * It creates a new object _pc.ReceivedMessageManager.
  * @class This class is used for sending and receiving messages.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
  * @param {String} message
  */
-dcc.ReceivedMessageManager = function(as, message) {
+_pc.ReceivedMessageManager = function(as, message) {
   this.initializeProperties(this, as, message);
 };
-dcc.DcClass.extend(dcc.ReceivedMessageManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.ReceivedMessageManager, _pc.ODataManager);
 
 ///**
 //* クラス名をキャメル型で取得する.
@@ -43,7 +43,7 @@ dcc.DcClass.extend(dcc.ReceivedMessageManager, dcc.ODataManager);
  * This method gets the class name.
  * @return {String} OData Class name
  */
-dcc.ReceivedMessageManager.prototype.getClassName = function() {
+_pc.ReceivedMessageManager.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 
@@ -55,31 +55,31 @@ dcc.ReceivedMessageManager.prototype.getClassName = function() {
  * This method returns the key.
  * @return {String} OData Key
  */
-dcc.ReceivedMessageManager.prototype.getKey = function() {
+_pc.ReceivedMessageManager.prototype.getKey = function() {
   return "('" + this.message.messageId + "')";
 };
 
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.ReceivedMessageManager} self
-//* @param {dcc.Accessor} as アクセス主体
-//* @param {dcc.Message} メッセージオブジェクト
+//* @param {_pc.ReceivedMessageManager} self
+//* @param {_pc.Accessor} as アクセス主体
+//* @param {_pc.Message} メッセージオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.ReceivedMessageManager} self
- * @param {dcc.Accessor} as Accessor
- * @param {dcc.Message} Message object
+ * @param {_pc.ReceivedMessageManager} self
+ * @param {_pc.Accessor} as Accessor
+ * @param {_pc.Message} Message object
  */
-dcc.ReceivedMessageManager.prototype.initializeProperties = function(self, as, message) {
+_pc.ReceivedMessageManager.prototype.initializeProperties = function(self, as, message) {
 
 ///** クラス名. */
   /** Class name in camel case. */
   self.CLASSNAME = "ReceivedMessage";
 
 
-  this.uber = dcc.ODataManager.prototype;
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as);
   this.message = message;
 };
@@ -92,7 +92,7 @@ dcc.ReceivedMessageManager.prototype.initializeProperties = function(self, as, m
  * This method returns the URL.
  * @returns {String} URL
  */
-dcc.ReceivedMessageManager.prototype.getUrl = function() {
+_pc.ReceivedMessageManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.getBaseUrl();
   sb += this.accessor.getCurrentCell().getName();
@@ -103,41 +103,41 @@ dcc.ReceivedMessageManager.prototype.getUrl = function() {
 ///**
 //* 受信メッセージを取得.
 //* @param {String} messageId メッセージID
-//* @return {dcc.Message} 取得したメッセージオブジェクト
+//* @return {_pc.Message} 取得したメッセージオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method gets the received message.
  * @param {String} messageId MessageID
- * @return {dcc.Message} Message object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Message} Message object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ReceivedMessageManager.prototype.retrieve = function(messageId) {
+_pc.ReceivedMessageManager.prototype.retrieve = function(messageId) {
   var json = this.internalRetrieve(messageId);
-  return new dcc.Message(this.accessor, json);
+  return new _pc.Message(this.accessor, json);
 };
 
 ///**
 //* ReceivedMessageManager Accountに紐づく受信メッセージ一覧または受信メッセージに紐付くAccount一覧.
-//* @param {dcc.Account} account メッセージを取得するAccount
+//* @param {_pc.Account} account メッセージを取得するAccount
 //* accountがundefinedの場合は受信メッセージに紐付くAccount一覧を取得
-//* @return {dcc.ODataResponse} 一覧取得のレスポンス
+//* @return {_pc.ODataResponse} 一覧取得のレスポンス
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * Account list associated with their incoming messages or incoming message
  * list brute string to ReceivedMessageManager Account.
- * @param {dcc.Account} account Message Account
+ * @param {_pc.Account} account Message Account
  * Get the Account list tied with the received message if account is undefined
- * @return {dcc.ODataResponse} Response List
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.ODataResponse} Response List
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ReceivedMessageManager.prototype.listOfReadStatus = function(account) {
+_pc.ReceivedMessageManager.prototype.listOfReadStatus = function(account) {
   var linkManager;
   if(account === undefined){
-    linkManager = new dcc.LinkManager(this.accessor, this, "AccountRead");
+    linkManager = new _pc.LinkManager(this.accessor, this, "AccountRead");
   }else{
-    linkManager = new dcc.LinkManager(account.accessor, account, "ReceivedMessageRead");
+    linkManager = new _pc.LinkManager(account.accessor, account, "ReceivedMessageRead");
   }
 
   // $linksのinlinecountは取得できない(coreで対応していないため)
@@ -147,31 +147,31 @@ dcc.ReceivedMessageManager.prototype.listOfReadStatus = function(account) {
 
 ///**
 //* changeMailStatusForRead Account毎の既読.
-//* @param {dcc.Account} account 既読にするAccount
+//* @param {_pc.Account} account 既読にするAccount
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method reads each of changeMailStatusForRead Account.
- * @param {dcc.Account} account Account object
- * @throws {dcc.DaoException} DAO exception
+ * @param {_pc.Account} account Account object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ReceivedMessageManager.prototype.changeMailStatusForRead = function(account) {
-  var linkManager = new dcc.LinkManager(this.accessor, this, "AccountRead");
+_pc.ReceivedMessageManager.prototype.changeMailStatusForRead = function(account) {
+  var linkManager = new _pc.LinkManager(this.accessor, this, "AccountRead");
   linkManager.link(account);
 };
 
 ///**
 //* changeMailStatusForUnRead Account毎の未読.
-//* @param {dcc.Account} account 既読にするAccount
+//* @param {_pc.Account} account 既読にするAccount
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method unreads each of changeMailStatusForRead Account.
- * @param {dcc.Account} account Account object
- * @throws {dcc.DaoException} DAO exception
+ * @param {_pc.Account} account Account object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.ReceivedMessageManager.prototype.changeMailStatusForUnRead = function(account) {
-  var linkManager = new dcc.LinkManager(this.accessor, this, "AccountRead");
+_pc.ReceivedMessageManager.prototype.changeMailStatusForUnRead = function(account) {
+  var linkManager = new _pc.LinkManager(this.accessor, this, "AccountRead");
   linkManager.unlink(account);
 };
 
@@ -179,9 +179,9 @@ dcc.ReceivedMessageManager.prototype.changeMailStatusForUnRead = function(accoun
  * This method delete message on the basis of messageID.
  * @param {String} MessageID
  * @param {String} etag
- * @returns {dcc.Promise} response
+ * @returns {_pc.Promise} response
  */
-dcc.ReceivedMessageManager.prototype.del = function(messageId, etag) {
+_pc.ReceivedMessageManager.prototype.del = function(messageId, etag) {
 	var key = "'" + messageId + "'";
 	var response = this.internalDelMultiKey(key, etag);
 	return response;

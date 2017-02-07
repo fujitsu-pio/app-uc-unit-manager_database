@@ -22,11 +22,11 @@ describe(
 			});
 			//Test case for pass condition.
 			it("getExternalRoleNameFromURIPass",function() {
-				expect(objexternalRole.getExternalRoleNameFromURI("https://fj.baas.jp.fujitsu.com/testrel1/__role/__/testrole1")).toEqual("testrole1");
+				expect(objexternalRole.getExternalRoleNameFromURI("https://demo.personium.io/testrel1/__role/__/testrole1")).toEqual("testrole1");
 			});
 			//Test case for fail condition.
 			it("getExternalRoleNameFromURIFail",function() {
-				expect(objexternalRole.getExternalRoleNameFromURI("https://fj.baas.jp.fujitsu.com/testrel1/__role/__/testrole1")).not.toEqual("testrole123");
+				expect(objexternalRole.getExternalRoleNameFromURI("https://demo.personium.io/testrel1/__role/__/testrole1")).not.toEqual("testrole123");
 			});
 			
 			//Test case for pass condition.

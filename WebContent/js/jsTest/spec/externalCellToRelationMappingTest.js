@@ -25,19 +25,19 @@ describe(
 			});
 			// Test case for getBoxName() valid scenaio
 			it("getBoxNameValid", function() {
-				expect(objRelExtCellLink.getBoxName("https://fj.baas.jp.fujitsu.com/testCell/_ctl/Relation(Name='testRel',_Box.Name='testBox')")).toBe("testBox");
+				expect(objRelExtCellLink.getBoxName("https://demo.personium.io/testCell/_ctl/Relation(Name='testRel',_Box.Name='testBox')")).toBe("testBox");
 			});
 			// Test case for getBoxName() invalid scenaio
 			it("getBoxNameNull", function() {
-				expect(objRelExtCellLink.getBoxName("https://fj.baas.jp.fujitsu.com/testCell/_ctl/Relation(Name='testRel',_Box.Name=null)")).toBe('null');
+				expect(objRelExtCellLink.getBoxName("https://demo.personium.io/testCell/_ctl/Relation(Name='testRel',_Box.Name=null)")).toBe('null');
 			});
 			// Test case for getRelationName() valid scenaio
 			it("getRelationNameValid",function() {
-				expect(objRelExtCellLink.getRelationName("https://fj.baas.jp.fujitsu.com/testCell/_ctl/Relation(Name='testRel',_Box.Name='testBox')")).toEqual("testRel");
+				expect(objRelExtCellLink.getRelationName("https://demo.personium.io/testCell/_ctl/Relation(Name='testRel',_Box.Name='testBox')")).toEqual("testRel");
 			});
 			// Test case for getRelationName() invalid scenaio
 			it("getRelationNameInvalid", function() {
-				expect(objRelExtCellLink.getRelationName("https://fj.baas.jp.fujitsu.com/testCell/_ctl/Relation(Name='testRel',_Box.Name=null)")).not.toBe('invalidRelName');
+				expect(objRelExtCellLink.getRelationName("https://demo.personium.io/testCell/_ctl/Relation(Name='testRel',_Box.Name=null)")).not.toBe('invalidRelName');
 			});
 			it("getSuccessMessageValid", function() {
 				expect(objRelExtCellLink.getSuccessMessage("testRelation","testBoxName")).toBe("Configuration with Relation testRelation -- testBoxName deleted successfully!");

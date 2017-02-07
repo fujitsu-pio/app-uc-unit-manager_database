@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-/*global dcc:false
+/*global _pc:false
  */
 
-/*function dcc(){}*/
+/*function _pc(){}*/
 /**
- * It initializes dcc.DcClass.
+ * It initializes _pc.PersoniumClass.
  * @class This class represents namespace for all other classes.
  * @constructor
  */
-dcc.DcClass = function() {
+_pc.PersoniumClass = function() {
 };
 
 /**
@@ -32,7 +32,7 @@ dcc.DcClass = function() {
  * @param {Object} Child
  * @param {Object} Parent
  */
-dcc.DcClass.extend = function(Child, Parent) {
+_pc.PersoniumClass.extend = function(Child, Parent) {
   var F = function(){};
   F.prototype = Parent.prototype;
   Child.prototype = new F();

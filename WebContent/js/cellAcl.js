@@ -32,7 +32,7 @@ var uCellAcl = new cellAcl();
 	$(".trCellRolesBodyEmptyMsg").remove();
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, "", "");
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var json = objRoleManager.retrieve("");
 	var JSONstring = json.rawData;
 	var sortJSONString = objCommon.sortByKey(JSONstring, '__updated');
@@ -104,10 +104,10 @@ cellAcl.prototype.implementCellACL = function (arrCellACLRolePrivilegeList) {
 	var cellName = sessionStorage.selectedcell;
 	var path = baseUrl + cellName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
 	var objAce = null;
-	var objJAcl = new dcc.Acl();
-	var objPrincipal = new dcc.Principal();
+	var objJAcl = new _pc.Acl();
+	var objPrincipal = new _pc.Principal();
 	objJAcl.setRequireSchemaAuthz("public");
 
 	for ( var i = 0; i < arrCellACLRolePrivilegeList.length; i++) {
@@ -120,8 +120,8 @@ cellAcl.prototype.implementCellACL = function (arrCellACLRolePrivilegeList) {
 			"Name" : roleName,
 			"_Box.Name" : boxName
 		};
-		var objJRole = new dcc.Role(accessor, json);
-		objAce = new dcc.Ace();
+		var objJRole = new _pc.Role(accessor, json);
+		objAce = new _pc.Ace();
 		objAce.setRole(objJRole);
 		if (privilegeList != null) {
 			var arrprivilegeList = privilegeList.split(',');
@@ -134,7 +134,7 @@ cellAcl.prototype.implementCellACL = function (arrCellACLRolePrivilegeList) {
 		}
 		//objJAcl.addAce(objAce);
 	}
-	var objJAclManager = new dcc.AclManager(accessor, objJDavCollection);
+	var objJAclManager = new _pc.AclManager(accessor, objJDavCollection);
 	var response = objJAclManager.setAsAcl(objJAcl);
 	return response;
 };
@@ -295,8 +295,8 @@ cellAcl.prototype.getCellACLSettings = function () {
 	var cellName = sessionStorage.selectedcell;
 	var path = baseUrl + cellName;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objJDavCollection = new dcc.DavCollection(accessor, path);
-	var objJAclManager = new dcc.AclManager(accessor, objJDavCollection);
+	var objJDavCollection = new _pc.DavCollection(accessor, path);
+	var objJAclManager = new _pc.AclManager(accessor, objJDavCollection);
 	var response = uBoxAcl.getAclList(accessor, objJDavCollection);
 	return response;
 };
@@ -405,7 +405,7 @@ cellAcl.prototype.createCellACLRoleTable = function () {
 	/*var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, "", "");
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var json = objRoleManager.retrieve("");
 	var JSONstring = json.rawData;*/
 	var roleCount = retrieveRoleRecordCount();
@@ -767,7 +767,7 @@ cellAcl.prototype.populateCellACLSettings = function () {
 	/*var cellName = sessionStorage.selectedcell;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, "", "");
-	var objRoleManager = new dcc.RoleManager(accessor);
+	var objRoleManager = new _pc.RoleManager(accessor);
 	var json = objRoleManager.retrieve("");
 	var JSONstring = json.rawData;*/
 	var sortJSONString = objCommon.sortByKey(JSONstring, '__updated');

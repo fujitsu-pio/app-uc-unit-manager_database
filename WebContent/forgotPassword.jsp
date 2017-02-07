@@ -32,10 +32,8 @@ var forgotPassContextRoot = '<%=application.getContextPath()%>';
 <body>
 	<div class="navigationBarService borderBottom ">
 		<header class="topHeader">
-			<div class="leftSection" style="cursor: default;">Fujitsu Cloud
-				PaaS Persona Container</div>
+			<div class="leftSection" style="cursor: default;">Personium Unit Manager</div>
 			<div class="rightSection positionUserName">
-				<div class="fujitsuIcon"></div>
 			</div>
 		</header>
 	</div>

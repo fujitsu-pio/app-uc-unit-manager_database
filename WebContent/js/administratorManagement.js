@@ -991,7 +991,7 @@ administratorManagement.prototype.createUserDetailsTable = function(jsonData, is
 				$("#dvemptyTableMessage").text(getUiProps().MSG0407);
 			}
 			$("#dvemptyTableMessage").css("width",187 + "px");
-			if (sessionStorage.selectedLanguage == 'jp') {
+			if (sessionStorage.selectedLanguage == 'ja') {
 				$("#dvemptyTableMessage").addClass('japaneseFont');
 				$("#dvemptyTableMessage").css('width', '278px');
 				$("#dvemptyTableMessage").css('line-height', '24px');

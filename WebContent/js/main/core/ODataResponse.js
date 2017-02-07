@@ -15,43 +15,43 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Entityへアクセスするためのクラス.
 //* @constructor
-//* @augments dcc.DavCollection
+//* @augments _pc.DavCollection
 //*/
 /**
- * It creates a new object dcc.ODataResponse.
+ * It creates a new object _pc.ODataResponse.
  * @class This class represents Response object.
  * @constructor
- * @augments dcc.DavCollection
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.DavCollection
+ * @param {_pc.Accessor} Accessor
  * @param {Object} json
  * @param {Object} odataJson
  */
-dcc.ODataResponse = function(as, json, odataJson) {
+_pc.ODataResponse = function(as, json, odataJson) {
   this.initializeProperties(this, as, json, odataJson);
 };
-dcc.DcClass.extend(dcc.ODataResponse, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.ODataResponse, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.ODataResponse} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.ODataResponse} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json JSONオブジェクト
 //* @param {?} path
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.ODataResponse} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.ODataResponse} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} json JSON object
  * @param {Object} odataJson
  */
-dcc.ODataResponse.prototype.initializeProperties = function(self, as, json, odataJson) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.ODataResponse.prototype.initializeProperties = function(self, as, json, odataJson) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
   if ((odataJson !== undefined) && (odataJson !== null)) {
@@ -73,7 +73,7 @@ dcc.ODataResponse.prototype.initializeProperties = function(self, as, json, odat
  * This method gets the response body.
  * @return {Object} Body
  */
-dcc.ODataResponse.prototype.getBody = function() {
+_pc.ODataResponse.prototype.getBody = function() {
   if (this.body !== null) {
     return this.body;
   }
@@ -88,7 +88,7 @@ dcc.ODataResponse.prototype.getBody = function() {
  * This method gets the whole body response.
  * @return {Object} Body
  */
-dcc.ODataResponse.prototype.getOData = function() {
+_pc.ODataResponse.prototype.getOData = function() {
   return this.odataJson;
 };
 

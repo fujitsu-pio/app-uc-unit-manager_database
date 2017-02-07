@@ -15,25 +15,25 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class ExtCellのアクセスクラス.
 //* @constructor
-//* @augments dcc.AbstractODataContext
+//* @augments _pc.AbstractODataContext
 //*/
 /**
- * It creates a new object dcc.ExtCell.
+ * It creates a new object _pc.ExtCell.
  * @class This class represents External Cell to access its related fields.
  * @constructor
- * @augments dcc.AbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.AbstractODataContext
+ * @param {_pc.Accessor} Accessor
  * @param {Object} body
  */
-dcc.ExtCell = function(as, body) {
+_pc.ExtCell = function(as, body) {
   this.initializeProperties(this, as, body);
 };
-dcc.DcClass.extend(dcc.ExtCell, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.ExtCell, _pc.AbstractODataContext);
 
 ///**
 //* コンストラクタ.
@@ -68,18 +68,18 @@ dcc.DcClass.extend(dcc.ExtCell, dcc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.ExtCell} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.ExtCell} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {?} json
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.ExtCell} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.ExtCell} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} json
  */
-dcc.ExtCell.prototype.initializeProperties = function(self, as, json) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.ExtCell.prototype.initializeProperties = function(self, as, json) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
   /** クラス名. */
@@ -98,8 +98,8 @@ dcc.ExtCell.prototype.initializeProperties = function(self, as, json) {
     self.url = json.Url;
   }
   if (as !== undefined) {
-    self.role = new dcc.LinkManager(as, this, "Role");
-    self.relation = new dcc.LinkManager(as, this, "Relation");
+    self.role = new _pc.LinkManager(as, this, "Role");
+    self.relation = new _pc.LinkManager(as, this, "Relation");
   }
 };
 
@@ -111,7 +111,7 @@ dcc.ExtCell.prototype.initializeProperties = function(self, as, json) {
  * This method sets the URL to perform operations on External Cell.
  * @param {String} value URL value
  */
-dcc.ExtCell.prototype.setUrl = function(value) {
+_pc.ExtCell.prototype.setUrl = function(value) {
   this.url = value;
 };
 
@@ -123,7 +123,7 @@ dcc.ExtCell.prototype.setUrl = function(value) {
  * This method gets the URL to perform operations on External Cell.
  * @return {String} URL value
  */
-dcc.ExtCell.prototype.getUrl = function() {
+_pc.ExtCell.prototype.getUrl = function() {
   return this.url;
 };
 
@@ -135,7 +135,7 @@ dcc.ExtCell.prototype.getUrl = function() {
  * This method returns the Odata key.
  * @return {String} Key information of OData
  */
-dcc.ExtCell.prototype.getKey = function() {
+_pc.ExtCell.prototype.getKey = function() {
   return "('" + encodeURIComponent(this.url) +"')";
 };
 
@@ -147,7 +147,7 @@ dcc.ExtCell.prototype.getKey = function() {
  * This method returns the class name.
  * @return {String} OData class name
  */
-dcc.ExtCell.prototype.getClassName = function() {
+_pc.ExtCell.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 

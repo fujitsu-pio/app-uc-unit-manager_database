@@ -50,7 +50,7 @@ receivedMessage.prototype.createReceivedMessageManager = function(){
 	//var boxName = collectionPath;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objReceivedMessageManager = new dcc.ReceivedMessageManager(accessor);
+	var objReceivedMessageManager = new _pc.ReceivedMessageManager(accessor);
 	return objReceivedMessageManager;
 };
 
@@ -63,7 +63,7 @@ receivedMessage.prototype.retrieveRecordCount = function() {
 	var objReceivedMessageManager = this.createReceivedMessageManager();
 	var uri = objReceivedMessageManager.getUrl();
 	uri = uri + "?$top=0&$inlinecount=allpages";
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.get(uri, "application/json");
 	var json = response.bodyAsJson().d;
 	var count = json.__count;
@@ -80,7 +80,7 @@ receivedMessage.prototype.retrieveChunkedData = function(lowerLimit, upperLimit)
 	var objReceivedMessageManager = this.createReceivedMessageManager();
 	var dataUri = objReceivedMessageManager.getUrl();
 	dataUri = dataUri + "?$orderby=__updated desc &$skip="+ lowerLimit +"&$top=" + upperLimit;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var dataResponse = restAdapter.get(dataUri, "application/json");
 	var dataJson = dataResponse.bodyAsJson().d.results;
 	return dataJson;
@@ -291,7 +291,7 @@ receivedMessage.prototype.retrieveAllReceivedMessages = function () {
 	var objReceivedMessageManager = this.createReceivedMessageManager();
 	var dataUri = objReceivedMessageManager.getUrl();
 	dataUri = dataUri + "?$orderby=__updated desc &$top=" + totalRecordCount;
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var dataResponse = restAdapter.get(dataUri, "application/json");
 	var dataJson = dataResponse.bodyAsJson().d.results;
 	return dataJson;
@@ -380,7 +380,7 @@ receivedMessage.prototype.getReceivedMessageDetail = function (messageID) {
 	//var boxName = sessionStorage.boxName;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objReceivedMessageManager = new dcc.ReceivedMessageManager(accessor);
+	var objReceivedMessageManager = new _pc.ReceivedMessageManager(accessor);
 	var json = objReceivedMessageManager.retrieve(messageID);
 	json = json.body;
 	return json;
@@ -488,7 +488,7 @@ receivedMessage.prototype.deleteMessage = function(messageID, etag,count) {
 	var boxName = collectionPath;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, boxName);
-	var objReceivedMessageManager = new dcc.ReceivedMessageManager(accessor);
+	var objReceivedMessageManager = new _pc.ReceivedMessageManager(accessor);
 	var response = objReceivedMessageManager.del(messageID, etag);
 	if (response.resolvedValue.status == 204) {
 		isDeleted = true;
@@ -999,7 +999,7 @@ receivedMessage.prototype.retrieveAPIResponse = function (queryString) {
 	var path = baseUrl + cellName + "/__ctl";
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
 	path += queryString; 
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = null;
 	try {
 		response = restAdapter.get(path, "application/json", "*");

@@ -34,7 +34,7 @@ boxProperties.prototype.getXmlData = function () {
 	var boxName = collectionPath;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, boxName);
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.propfind(path);
 	var xmlContent = response.httpClient.responseText;
 	if (response.httpClient.status == 207) {
@@ -147,7 +147,7 @@ boxProperties.prototype.setPropatch = function (setProptachList, removedProperty
 	var boxName = collectionPath;
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName, boxName);
-	var restAdapter = dcc.RestAdapterFactory.create(accessor);
+	var restAdapter = _pc.RestAdapterFactory.create(accessor);
 	var response = restAdapter.multiProppatch(path, setProptachList, removedPropertyList);
 	return response;
 };

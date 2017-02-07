@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* $Batchのレスポンスを解析するクラス.
@@ -25,34 +25,34 @@
  * This class is used to analyze the response of $ Batch.
  * @class Represents ODataBatchResponseParser.
  */
-dcc.ODataBatchResponseParser = function() {
+_pc.ODataBatchResponseParser = function() {
   this.initializeProperties(this);
 };
 
 /** Variable BOUNDARY_KEY. */
-dcc.ODataBatchResponseParser.BOUNDARY_KEY = "--batch_";
+_pc.ODataBatchResponseParser.BOUNDARY_KEY = "--batch_";
 /** Variable CHARSET_KEY. */
-dcc.ODataBatchResponseParser.CHARSET_KEY = "--changeset_";
+_pc.ODataBatchResponseParser.CHARSET_KEY = "--changeset_";
 /** Variable HTTP. */
-dcc.ODataBatchResponseParser.HTTP = "HTTP/1.1";
+_pc.ODataBatchResponseParser.HTTP = "HTTP/1.1";
 /** Variable CRLF. */
-dcc.ODataBatchResponseParser.CRLF = "\n";
+_pc.ODataBatchResponseParser.CRLF = "\n";
 /** Variable BLANK_LINE. */
-dcc.ODataBatchResponseParser.BLANK_LINE = "\n\n";
+_pc.ODataBatchResponseParser.BLANK_LINE = "\n\n";
 /** Variable CONTENTTYPE_HTTP. */
-dcc.ODataBatchResponseParser.CONTENTTYPE_HTTP = "application/http";
+_pc.ODataBatchResponseParser.CONTENTTYPE_HTTP = "application/http";
 /** Variable CONTENTTYPE_MULTIPART. */
-dcc.ODataBatchResponseParser.CONTENTTYPE_MULTIPART = "application/http";
+_pc.ODataBatchResponseParser.CONTENTTYPE_MULTIPART = "application/http";
 
 ///**
 //* オブジェクトを初期化.
-//* @param {dcc.ODataBatchResponseParser} self
+//* @param {_pc.ODataBatchResponseParser} self
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.ODataBatchResponseParser} self
+ * @param {_pc.ODataBatchResponseParser} self
  */
-dcc.ODataBatchResponseParser.prototype.initializeProperties = function(self) {
+_pc.ODataBatchResponseParser.prototype.initializeProperties = function(self) {
 //  /** レスポンス情報の一覧. */
     /** List of response information. */
   self.resList = [];
@@ -68,8 +68,8 @@ dcc.ODataBatchResponseParser.prototype.initializeProperties = function(self) {
  * @param {String} reader Reader response body
  * @return {Array} Array of ODataResponse
  */
-dcc.ODataBatchResponseParser.prototype.parse = function(reader) {
-  this.parseBoundary(reader, dcc.ODataBatchResponseParser.BOUNDARY_KEY);
+_pc.ODataBatchResponseParser.prototype.parse = function(reader) {
+  this.parseBoundary(reader, _pc.ODataBatchResponseParser.BOUNDARY_KEY);
   return this.resList;
 };
 
@@ -78,8 +78,8 @@ dcc.ODataBatchResponseParser.prototype.parse = function(reader) {
  * @param {String} reader
  * @param {String} boudaryKey
  */
-dcc.ODataBatchResponseParser.prototype.parseBoundary = function(reader, boudaryKey) {
-  var br = reader.split(dcc.ODataBatchResponseParser.CRLF);
+_pc.ODataBatchResponseParser.prototype.parseBoundary = function(reader, boudaryKey) {
+  var br = reader.split(_pc.ODataBatchResponseParser.CRLF);
   var lineCnt = 0;
   var sb = "";
   try {
@@ -94,7 +94,7 @@ dcc.ODataBatchResponseParser.prototype.parseBoundary = function(reader, boudaryK
         continue;
       }
       sb += str;
-      sb += dcc.ODataBatchResponseParser.CRLF;
+      sb += _pc.ODataBatchResponseParser.CRLF;
       str = br[lineCnt++];
     }
   } catch (e) {
@@ -106,10 +106,10 @@ dcc.ODataBatchResponseParser.prototype.parseBoundary = function(reader, boudaryK
  * This method parses the body.
  * @param {String} body
  */
-dcc.ODataBatchResponseParser.prototype.parseBodyBlock = function(body) {
+_pc.ODataBatchResponseParser.prototype.parseBodyBlock = function(body) {
   // 空行で分割する
   /** Splitting it by a blank line. */
-  var blocks = body.split(dcc.ODataBatchResponseParser.BLANK_LINE);
+  var blocks = body.split(_pc.ODataBatchResponseParser.BLANK_LINE);
 
   // ブロックが2個以上存在しなければHttpレスポンス型ではない
   /** It is not a Http response type block unless there are two or more. */
@@ -126,7 +126,7 @@ dcc.ODataBatchResponseParser.prototype.parseBodyBlock = function(body) {
   var contentType = boundaryHeaders["Content-Type"];
 
   if ((contentType !== null) && (typeof contentType !== "undefined")) {
-    if (contentType.startsWith(dcc.ODataBatchResponseParser.CONTENTTYPE_HTTP)) {
+    if (contentType.startsWith(_pc.ODataBatchResponseParser.CONTENTTYPE_HTTP)) {
       // application/http ならば １つのリクエスト
       /** one request if application / http. */
       var responseBody = "";
@@ -135,11 +135,11 @@ dcc.ODataBatchResponseParser.prototype.parseBodyBlock = function(body) {
       for (var i = 2; i < blocks.length; i++) {
         responseBody += blocks[i];
       }
-      this.resList.push(new dcc.ODataBatchResponse(blocks[1], responseBody));
+      this.resList.push(new _pc.ODataBatchResponse(blocks[1], responseBody));
     } else {
       // multipart/mixed ばらばマルチパート(複数のブロックで構成)
       /** (consist of blocks) multipart / mixed multipart Barabbas. */
-      this.parseBoundary(body, dcc.ODataBatchResponseParser.CHARSET_KEY);
+      this.parseBoundary(body, _pc.ODataBatchResponseParser.CHARSET_KEY);
     }
   }
 };
@@ -154,10 +154,10 @@ dcc.ODataBatchResponseParser.prototype.parseBodyBlock = function(body) {
  * @param {String} value Response header string
  * @return {Array} map
  */
-dcc.ODataBatchResponseParser.prototype.parseHeaders = function(value) {
+_pc.ODataBatchResponseParser.prototype.parseHeaders = function(value) {
   // 改行コードで分解する
   /** Decompose with a new line code. */
-  var lines = value.split(dcc.ODataBatchResponseParser.CRLF);
+  var lines = value.split(_pc.ODataBatchResponseParser.CRLF);
   var map = [];
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i];

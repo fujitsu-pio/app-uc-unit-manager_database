@@ -31,14 +31,14 @@
 		<property name="hibernate.c3p0.idle_test_period">300</property>
 		
 		<!-- List of XML mapping files <mapping resource=".hbm.xml"/> -->
-		<mapping class="com.fujitsu.dc.gui.portal.model.User" />
-		<mapping class="com.fujitsu.dc.gui.portal.model.UserEnvironment" />
-		<mapping class="com.fujitsu.dc.gui.portal.model.Unit" />
-		<mapping class="com.fujitsu.dc.gui.portal.model.OrgUnit" />
-		<mapping class="com.fujitsu.dc.gui.portal.model.Organization" />
-		<mapping class="com.fujitsu.dc.gui.portal.model.Environment" />
-		<mapping class="com.fujitsu.dc.gui.portal.model.UserEnvironmentId" />
-		<mapping class="com.fujitsu.dc.gui.portal.model.Message" />
-		<mapping class="com.fujitsu.dc.gui.portal.model.UnitMessage" />
+		<mapping class="io.personium.gui.portal.model.User" />
+		<mapping class="io.personium.gui.portal.model.UserEnvironment" />
+		<mapping class="io.personium.gui.portal.model.Unit" />
+		<mapping class="io.personium.gui.portal.model.OrgUnit" />
+		<mapping class="io.personium.gui.portal.model.Organization" />
+		<mapping class="io.personium.gui.portal.model.Environment" />
+		<mapping class="io.personium.gui.portal.model.UserEnvironmentId" />
+		<mapping class="io.personium.gui.portal.model.Message" />
+		<mapping class="io.personium.gui.portal.model.UnitMessage" />
 	</session-factory>
 </hibernate-configuration>

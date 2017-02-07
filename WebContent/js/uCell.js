@@ -87,7 +87,7 @@ function fullTextCellSearch(){
 	if(cellName != undefined && cellName != ""){
 		var baseUrl = getClientStore().baseURL;
 		var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-		var objCellManager = new dcc.CellManager(accessor);
+		var objCellManager = new _pc.CellManager(accessor);
 		var result = false;
 		var searchedCellName = "";
 		try{
@@ -126,7 +126,7 @@ function fullTextCellSearch(){
 			var noCellFound = getUiProps().MSG0322;
 			var noRow = '<div id="noCell" class="noCell" style="margin-top:'+ marginTop +'px">'+noCellFound+'</div>';
 			$("#tableDiv").prepend(noRow);
-			if (sessionStorage.selectedLanguage == 'jp') {
+			if (sessionStorage.selectedLanguage == 'ja') {
 				$("#noCell").addClass('japaneseFont');
 			}
 		}
@@ -518,7 +518,7 @@ function validateCapchaText() {
  */
 function getCellInfo(selectedIndex){
 	var url = getClientStore().baseURL;
-	var objJdcContext = new dcc.DcContext(url, "", "", "");
+	var objJdcContext = new _pc.PersoniumContext(url, "", "", "");
 	var ac = objJdcContext.withToken(token);
 	var res = ac.asCellOwner().unit.cell.query().orderby('__updated desc').top(
 			500).skip(0).run();
@@ -547,7 +547,7 @@ function deleteCell() {
 		var baseUrl  = getClientStore().baseURL; 
 		var cellname = sessionStorage.selectedcell;
 		var accessor = objCommon.initializeAccessor(baseUrl, cellname,"","");
-		var objCellManager = new dcc.CellManager(accessor);	
+		var objCellManager = new _pc.CellManager(accessor);	
 		var response = objCellManager.recursiveDelete(cellName);
 		if(response.resolvedValue.status === 204) {
 			sessionStorage.isScrollMove = 1;
@@ -644,7 +644,7 @@ function createCellManager(){
 	var cellName = sessionStorage.selectedcell.toString();
 	var baseUrl = getClientStore().baseURL;
 	var accessor = objCommon.initializeAccessor(baseUrl, cellName);
-	var objCellMgr = new dcc.CellManager(accessor);
+	var objCellMgr = new _pc.CellManager(accessor);
 	return objCellMgr;
 }
 

@@ -19,7 +19,7 @@ limitations under the License.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%@ page import="com.fujitsu.dc.gui.PCSEnvironment"%>
+<%@ page import="io.personium.gui.PersoniumEnvironment"%>
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/main/validation/login_validation.js"></script>
 <link href="../../css/homeStylesheet.css" rel="stylesheet" type="text/css">

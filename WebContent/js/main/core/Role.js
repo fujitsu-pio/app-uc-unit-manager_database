@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class Roleのアクセスクラス.
 //* @constructor
-//* @augments dcc.AbstractODataContext
+//* @augments _pc.AbstractODataContext
 //*/
 /**
- * It creates a new object dcc.Role.
+ * It creates a new object _pc.Role.
  * @class This class represents Role object.
  * @constructor
- * @augments dcc.AbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.AbstractODataContext
+ * @param {_pc.Accessor} Accessor
  * @param {Object} json
  */
-dcc.Role = function(as, json) {
+_pc.Role = function(as, json) {
   this.initializeProperties(this, as, json);
 };
-dcc.DcClass.extend(dcc.Role, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.Role, _pc.AbstractODataContext);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Role} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.Role} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json JSONオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Role} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.Role} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} json JSON object
  */
-dcc.Role.prototype.initializeProperties = function(self, as, json) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.Role.prototype.initializeProperties = function(self, as, json) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
 ///** クラス名. */
@@ -78,9 +78,9 @@ dcc.Role.prototype.initializeProperties = function(self, as, json) {
     self.boxname = json["_Box.Name"];
   }
   if (as !== undefined) {
-    self.account = new dcc.LinkManager(as, this, "Account");
-    self.relation = new dcc.LinkManager(as, this, "Relation");
-    self.extCell = new dcc.LinkManager(as, this, "ExtCell");
+    self.account = new _pc.LinkManager(as, this, "Account");
+    self.relation = new _pc.LinkManager(as, this, "Relation");
+    self.extCell = new _pc.LinkManager(as, this, "ExtCell");
   }
 };
 
@@ -92,7 +92,7 @@ dcc.Role.prototype.initializeProperties = function(self, as, json) {
  * This method gets the class name.
  * @return {String} Class name
  */
-dcc.Role.prototype.getClassName = function() {
+_pc.Role.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 
@@ -104,7 +104,7 @@ dcc.Role.prototype.getClassName = function() {
  * This method sets Role name.
  * @param {String} value Role name
  */
-dcc.Role.prototype.setName = function(value) {
+_pc.Role.prototype.setName = function(value) {
   this.name = value;
 };
 
@@ -116,7 +116,7 @@ dcc.Role.prototype.setName = function(value) {
  * This method gets Role Name.
  * @return {String} Role name
  */
-dcc.Role.prototype.getName = function() {
+_pc.Role.prototype.getName = function() {
   return this.name;
 };
 
@@ -128,7 +128,7 @@ dcc.Role.prototype.getName = function() {
  * This method sets Box Name.
  * @param {String} value _box.name value
  */
-dcc.Role.prototype.setBoxName = function(value) {
+_pc.Role.prototype.setBoxName = function(value) {
   this.boxname = value;
 };
 
@@ -140,7 +140,7 @@ dcc.Role.prototype.setBoxName = function(value) {
  * This method gets Box Name.
  * @return {String} _box.name value
  */
-dcc.Role.prototype.getBoxName = function() {
+_pc.Role.prototype.getBoxName = function() {
   return this.boxname;
 };
 
@@ -152,7 +152,7 @@ dcc.Role.prototype.getBoxName = function() {
  * This method generates key for Role operations.
  * @return {String} Key
  */
-dcc.Role.prototype.getKey = function() {
+_pc.Role.prototype.getKey = function() {
   if (this.boxname !== null) {
     return "(_Box.Name='" + this.boxname + "',Name='" + this.name + "')";
   } else {
@@ -168,7 +168,7 @@ dcc.Role.prototype.getKey = function() {
  * This method gets the URL of the RoleResource.
  * @return {String} RoleResouceURL
  */
-dcc.Role.prototype.getResourceBaseUrl = function() {
+_pc.Role.prototype.getResourceBaseUrl = function() {
   var sb = "";
   sb += this.accessor.getCurrentCell().getUrl();
   sb += "__role/";

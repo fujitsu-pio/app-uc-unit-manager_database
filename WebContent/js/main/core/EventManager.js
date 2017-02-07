@@ -15,33 +15,33 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class EventのCRUDためのクラス.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.EventManager.
+ * It creates a new object _pc.EventManager.
  * @class This class performs the CRUD operations for Event object.
  * @constructor
- * @param {dcc.Accessor} Accessor
+ * @param {_pc.Accessor} Accessor
  */
-dcc.EventManager = function(as) {
+_pc.EventManager = function(as) {
   this.initializeProperties(this, as);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.EventManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.EventManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.EventManager} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.EventManager} self
+ * @param {_pc.Accessor} as Accessor
  */
-dcc.EventManager.prototype.initializeProperties = function(self, as) {
+_pc.EventManager.prototype.initializeProperties = function(self, as) {
   if (as !== undefined) {
 //  /** アクセス主体. */
     /** Access subject. */
@@ -59,15 +59,15 @@ dcc.EventManager.prototype.initializeProperties = function(self, as) {
  * This method is used to register the event.
  * @param {Object} body JSON object to be registered
  * @param {String} requestKey RequestKey object
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.EventManager.prototype.post = function(body, requestKey) {
+_pc.EventManager.prototype.post = function(body, requestKey) {
   var url = this.getUrl();
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   if ((requestKey === undefined) || (requestKey === null)) {
     restAdapter.post(url, JSON.stringify(body), "application/json");
   } else {
-    restAdapter.post(url, JSON.stringify(body), "application/json", {"X-Dc-RequestKey": requestKey});
+    restAdapter.post(url, JSON.stringify(body), "application/json", {"X-Personium-RequestKey": requestKey});
   }
 };
 
@@ -79,7 +79,7 @@ dcc.EventManager.prototype.post = function(body, requestKey) {
  * This method generates the URL for performing Event related operations.
  * @return {String} URL
  */
-dcc.EventManager.prototype.getUrl = function() {
+_pc.EventManager.prototype.getUrl = function() {
   var sb = this.accessor.getCurrentCell().getUrl();
   sb += "__event";
   return sb;

@@ -170,8 +170,8 @@ odataCommon.prototype.refreshTokenForOdata = function(paramOldRefreshToken) {
 	var paramTargetURL = sessionStorage.selectedUnitUrl;
 	var paramEnvironmentID = sessionStorage.selectedEnvID ;
 	var CSRFTokenDisplayEnvironment = sessionStorage.requestId;
-	var refreshtokenURL = "__auth?dc_target=" + paramTargetURL
-		+ "&dc_env=" + paramEnvironmentID + "&grant_type=refresh_token"+"&refresh_token=" + paramOldRefreshToken;
+	var refreshtokenURL = "__auth?p_target=" + paramTargetURL
+		+ "&p_env=" + paramEnvironmentID + "&grant_type=refresh_token"+"&refresh_token=" + paramOldRefreshToken;
 		$.ajax({
 		dataType : 'json',
 		url : '../'+refreshtokenURL,
@@ -221,8 +221,8 @@ odataCommon.prototype.opts = {
 odataCommon.prototype.initializeAccessor = function(baseUrl, cellName, schemaURL, boxName){
 	if (getOdataClientStore() != undefined) {
 		var token = getOdataClientStore().token;
-		var objJDcContext = new dcc.DcContext(baseUrl, cellName, schemaURL, boxName);
-		var accessor = objJDcContext.withToken(token);
+		var objJPersoniumContext = new _pc.PersoniumContext(baseUrl, cellName, schemaURL, boxName);
+		var accessor = objJPersoniumContext.withToken(token);
 		return accessor;
 	}
 };

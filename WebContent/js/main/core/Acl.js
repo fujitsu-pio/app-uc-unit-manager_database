@@ -15,30 +15,30 @@
  * limitations under the License.
  */
 
-/*global dcc:false,window:false,DOMParser:false */
+/*global _pc:false,window:false,DOMParser:false */
 
 ///**
 //* @class Aceのアクセスクラス.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.Acl.
+ * It creates a new object _pc.Acl.
  * @class Acl class for setting access control information.
  * @constructor
  */
-dcc.Acl = function() {
+_pc.Acl = function() {
   this.initializeProperties(this);
 };
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.Acl} self
+//* @param {_pc.Acl} self
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.Acl} self
+ * @param {_pc.Acl} self
  */
-dcc.Acl.prototype.initializeProperties = function(self) {
+_pc.Acl.prototype.initializeProperties = function(self) {
   /** ACE. */
   self.aceList = [];
 ///** base属性値. */
@@ -57,7 +57,7 @@ dcc.Acl.prototype.initializeProperties = function(self) {
  * This method sets the base attribute value.
  * @param {String} value base URL
  */
-dcc.Acl.prototype.setBase = function(value) {
+_pc.Acl.prototype.setBase = function(value) {
   this.roleBaseUrl = value;
 };
 
@@ -69,7 +69,7 @@ dcc.Acl.prototype.setBase = function(value) {
  * This method gets the base attribute value.
  * @return {String} base URL
  */
-dcc.Acl.prototype.getBase = function() {
+_pc.Acl.prototype.getBase = function() {
   return this.roleBaseUrl;
 };
 
@@ -81,7 +81,7 @@ dcc.Acl.prototype.getBase = function() {
  * This method sets the requireSchemaAuthz attribute value.
  * @param {String} value requireSchemaAuthz attribute value
  */
-dcc.Acl.prototype.setRequireSchemaAuthz = function(value) {
+_pc.Acl.prototype.setRequireSchemaAuthz = function(value) {
   this.requireSchemaAuthz = value;
 };
 
@@ -93,7 +93,7 @@ dcc.Acl.prototype.setRequireSchemaAuthz = function(value) {
  * This method gets the requireSchemaAuthz attribute value.
  * @return {String} requireSchemaAuthz attribute value
  */
-dcc.Acl.prototype.getRequireSchemaAuthz = function() {
+_pc.Acl.prototype.getRequireSchemaAuthz = function() {
   return this.requireSchemaAuthz;
 };
 
@@ -105,19 +105,19 @@ dcc.Acl.prototype.getRequireSchemaAuthz = function() {
  * This method adds the Ace object in the list.
  * @param {String} value ACE object
  */
-dcc.Acl.prototype.addAce = function(value) {
+_pc.Acl.prototype.addAce = function(value) {
   this.aceList.push(value);
 };
 
 ///**
 //* Aceオブジェクトの一覧を返却.
-//* @return {dcc.Ace} Aceオブジェクト一覧
+//* @return {_pc.Ace} Aceオブジェクト一覧
 //*/
 /**
  * This method fetches the Ace object from the list.
- * @return {dcc.Ace} Ace object
+ * @return {_pc.Ace} Ace object
  */
-dcc.Acl.prototype.getAceList = function() {
+_pc.Acl.prototype.getAceList = function() {
   return this.aceList;
 };
 
@@ -129,10 +129,10 @@ dcc.Acl.prototype.getAceList = function() {
 /**
  * This methods gets the ACL information as a string of XML format.
  * @return {String} XML string
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
 //public String toXmlString() throws DaoException {
-dcc.Acl.prototype.toXmlString = function() {
+_pc.Acl.prototype.toXmlString = function() {
   var arr = [];
 
   var roleBaseUrlStr = this.roleBaseUrl;
@@ -158,7 +158,7 @@ dcc.Acl.prototype.toXmlString = function() {
   }
   // root element created
   arr.push("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
-  arr.push("<D:acl xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-dc1:xmlns\"  dc:requireSchemaAuthz=\""+ schemaAuth +"\" xml:base=\"");
+  arr.push("<D:acl xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\"  p:requireSchemaAuthz=\""+ schemaAuth +"\" xml:base=\"");
   //arr.push("<D:acl xmlns:D=\"DAV:\" xml:base=\"");
   arr.push(roleBaseUrlStr);
 
@@ -171,8 +171,8 @@ dcc.Acl.prototype.toXmlString = function() {
 
     // acl/ace/principal
     arr.push("<D:principal>");
-    //if (dcc.Principal !== undefined) {
-      if (dcc.Principal !== undefined && ace.getPrincipal() === dcc.Principal.ALL) {
+    //if (_pc.Principal !== undefined) {
+      if (_pc.Principal !== undefined && ace.getPrincipal() === _pc.Principal.ALL) {
         // acl/ace/principal/all
         arr.push("<D:all>");
         arr.push("</D:all>");
@@ -254,7 +254,7 @@ dcc.Acl.prototype.toXmlString = function() {
   //    Attr attrBase = document.createAttributeNS(nsDefault, "xml:base");
   //    attrBase.setValue(roleBaseUrlStr);
   //    acl.setAttributeNodeNS(attrBase);
-  //    Attr attrRequireSchemaAuthz = document.createAttributeNS("urn:x-dc1:xmlns", "dc:requireSchemaAuthz");
+  //    Attr attrRequireSchemaAuthz = document.createAttributeNS("urn:x-personium:xmlns", "p:requireSchemaAuthz");
   //    attrRequireSchemaAuthz.setValue(requireSchemaAuthz);
   //    acl.setAttributeNodeNS(attrRequireSchemaAuthz);
   //
@@ -331,10 +331,10 @@ dcc.Acl.prototype.toXmlString = function() {
 /**
  * Parse the WebDAV ACL XML String and generate Acl object.
  * @param {String} String representation of WebDAV ACL XML
- * @returns {dcc.Acl} Acl class instance
- * @throws {dcc.DaoException} ClientException
+ * @returns {_pc.Acl} Acl class instance
+ * @throws {_pc.DaoException} ClientException
  */
-dcc.Acl.prototype.parse = function(xmlStr) {
+_pc.Acl.prototype.parse = function(xmlStr) {
   var grant = "";
   var privilegeNodeList = "";
   var roleName = null;
@@ -346,9 +346,9 @@ dcc.Acl.prototype.parse = function(xmlStr) {
     var parser = new DOMParser();
     xmlDoc = parser.parseFromString(xmlStr, "text/xml");
   }
-  var objAcl = new dcc.Acl();
+  var objAcl = new _pc.Acl();
   if (xmlDoc === null || xmlDoc === undefined) {
-    throw new dcc.DaoException("DOM Parser is unavailable");
+    throw new _pc.DaoException("DOM Parser is unavailable");
   }
   var nl = xmlDoc.getElementsByTagName("response");
   var elm = nl[0];
@@ -360,17 +360,17 @@ dcc.Acl.prototype.parse = function(xmlStr) {
   for ( var aceCount = 0; aceCount < ace.length; aceCount++) {
 
     // Ace object creation
-    objAce = new dcc.Ace();
+    objAce = new _pc.Ace();
     objAcl.addAce(objAce);
     if (ace[aceCount].firstElementChild !== null) {
       if (ace[aceCount].firstElementChild.childNodes[1] === "all") {
-        objAce.setPrincipal(dcc.Principal.ALL);
+        objAce.setPrincipal(_pc.Principal.ALL);
       } else {
 
         // Get Role name (href attribute value), and sets the object Ace
         // The principal is a Role.
         roleName = ace[aceCount].firstElementChild.childNodes[1].firstChild.data;
-        var objRole = new dcc.Role();
+        var objRole = new _pc.Role();
         objRole.setName(roleName);
         objAce.setPrincipal(objRole);
       }
@@ -395,7 +395,7 @@ dcc.Acl.prototype.parse = function(xmlStr) {
 //* @return {jACL} Aclオブジェクト
 //*/
 //public static Acl parse(String xmlStr) {
-//dcc.Acl.prototype.parse = function(xmlStr) {
+//_pc.Acl.prototype.parse = function(xmlStr) {
 //String nsD = "DAV:";
 //String roleBaseUrl = "";
 //String requireSchemaAuthz = "";
@@ -459,7 +459,7 @@ dcc.Acl.prototype.parse = function(xmlStr) {
 //return acl;
 //};
 //static String getChildElementName(Node elm) {
-//dcc.Acl.prototype.getChildElementName = function(elm) {
+//_pc.Acl.prototype.getChildElementName = function(elm) {
 //NodeList nl = elm.getChildNodes();
 //String name = "";
 //for (int i = 0; i < nl.getLength(); i++) {

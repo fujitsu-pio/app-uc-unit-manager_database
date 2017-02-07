@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class OData関連の各機能を生成/削除するためのクラスの抽象クラス.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.EntitySet.
+ * It creates a new object _pc.EntitySet.
  * @class This is the abstract class for performing the merge functions.
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} collection
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} collection
  * @param {String} name
  */
-dcc.EntitySet = function(as, col, name) {
+_pc.EntitySet = function(as, col, name) {
   this.initializeProperties(this, as, col, name);
 };
-dcc.DcClass.extend(dcc.EntitySet, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.EntitySet, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AbstractODataContext} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.AbstractODataContext} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {?} col
 //* @param {?} name
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AbstractODataContext} self
- * @param {dcc.Accessor} as Accessor
- * @param {dcc.DcCollection} col
+ * @param {_pc.AbstractODataContext} self
+ * @param {_pc.Accessor} as Accessor
+ * @param {_pc.PersoniumCollection} col
  * @param {String} name
  */
-dcc.EntitySet.prototype.initializeProperties = function(self, as, col, name) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.EntitySet.prototype.initializeProperties = function(self, as, col, name) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as, col, name);
 };
 
@@ -64,11 +64,11 @@ dcc.EntitySet.prototype.initializeProperties = function(self, as, col, name) {
  * @param {String} id ID value of the data
  * @param {Object} body Request body
  * @param {String} etag Etag value
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.EntitySet.prototype.internalMerge = function(id, body, etag, callback) {
+_pc.EntitySet.prototype.internalMerge = function(id, body, etag, callback) {
   var url = this.getUrl() + "('" + id + "')";
-  var rest = dcc.RestAdapterFactory.create(this.accessor);
+  var rest = _pc.RestAdapterFactory.create(this.accessor);
   if (callback !== undefined) {
     rest.merge(url, JSON.stringify(body), etag, "application/json", function(resp) {
       callback(resp);
@@ -90,9 +90,9 @@ dcc.EntitySet.prototype.internalMerge = function(id, body, etag, callback) {
  * @param {String} id ID value of the data
  * @param {Object} body Request body
  * @param {String} etag ETag value
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.EntitySet.prototype.merge = function(id, body, etag, callback) {
+_pc.EntitySet.prototype.merge = function(id, body, etag, callback) {
   if (callback !== undefined) {
     this.internalMerge(id, body, etag, function(resp) {
       if (resp.getStatusCode() >= 300) {
@@ -100,7 +100,7 @@ dcc.EntitySet.prototype.merge = function(id, body, etag, callback) {
           callback.error(resp);
         }
       } else {
-        var odataResponse = new dcc.ODataResponse(resp.accessor, "");
+        var odataResponse = new _pc.ODataResponse(resp.accessor, "");
         if (callback.success !== undefined) {
           callback.success(odataResponse);
         }
@@ -111,7 +111,7 @@ dcc.EntitySet.prototype.merge = function(id, body, etag, callback) {
     });
   } else {
     this.internalMerge(id, body, etag);
-    return new dcc.ODataResponse(this.accessor, "");
+    return new _pc.ODataResponse(this.accessor, "");
   }
 };
 
@@ -123,9 +123,9 @@ dcc.EntitySet.prototype.merge = function(id, body, etag, callback) {
 /**
  * This method gets Odata as response.
  * @param {String} id ID value
- * @throws {dcc.DaoException} DAO exception
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.EntitySet.prototype.retrieveAsResponse = function(id, callback) {
+_pc.EntitySet.prototype.retrieveAsResponse = function(id, callback) {
   if (callback !== undefined) {
     this.internalRetrieve(id, function(resp) {
       if (resp.getStatusCode() >= 300) {
@@ -135,7 +135,7 @@ dcc.EntitySet.prototype.retrieveAsResponse = function(id, callback) {
       } else {
         var responseBody = resp.bodyAsJson();
         var json = responseBody.d.results;
-        var odataResponse = new dcc.ODataResponse(resp.accessor, json);
+        var odataResponse = new _pc.ODataResponse(resp.accessor, json);
         if (callback.success !== undefined) {
           callback.success(odataResponse);
         }
@@ -146,6 +146,6 @@ dcc.EntitySet.prototype.retrieveAsResponse = function(id, callback) {
     });
   } else {
     var body = this.internalRetrieve(id);
-    return new dcc.ODataResponse(this.accessor, body);
+    return new _pc.ODataResponse(this.accessor, body);
   }
 };

@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class EntityTypeのアクセスクラス.
 //* @constructor
-//* @augments dcc.AbstractODataContext
+//* @augments _pc.AbstractODataContext
 //*/
 /**
- * It creates a new object dcc.EntityType.
+ * It creates a new object _pc.EntityType.
  * @class This class represents the EntityType object.
  * @constructor
- * @augments dcc.AbstractODataContext
- * @param {dcc.Accessor} Accessor
+ * @augments _pc.AbstractODataContext
+ * @param {_pc.Accessor} Accessor
  * @param {Object} body
  */
-dcc.EntityType = function(as, body) {
+_pc.EntityType = function(as, body) {
   this.initializeProperties(this, as, body);
 };
-dcc.DcClass.extend(dcc.EntityType, dcc.AbstractODataContext);
+_pc.PersoniumClass.extend(_pc.EntityType, _pc.AbstractODataContext);
 
 ///**
 //* オブジェクトを初期化.
-//* @param {dcc.EntityType} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.EntityType} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {Object} json サーバーから返却されたJSONオブジェクト
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.EntityType} self
- * @param {dcc.Accessor} as Accessor
+ * @param {_pc.EntityType} self
+ * @param {_pc.Accessor} as Accessor
  * @param {Object} json JSON object returned from server
  */
-dcc.EntityType.prototype.initializeProperties = function(self, as, json) {
-  this.uber = dcc.AbstractODataContext.prototype;
+_pc.EntityType.prototype.initializeProperties = function(self, as, json) {
+  this.uber = _pc.AbstractODataContext.prototype;
   this.uber.initializeProperties(self, as);
 
 ///** キャメル方で表現したクラス名. */
@@ -73,7 +73,7 @@ dcc.EntityType.prototype.initializeProperties = function(self, as, json) {
  * This method sets the EntityType name.
  * @param {String} value EntityType name
  */
-dcc.EntityType.prototype.setName = function(value) {
+_pc.EntityType.prototype.setName = function(value) {
   this.name = value;
 };
 
@@ -85,7 +85,7 @@ dcc.EntityType.prototype.setName = function(value) {
  * This method gets the EntityType name.
  * @return {String} EntityType name
  */
-dcc.EntityType.prototype.getName = function() {
+_pc.EntityType.prototype.getName = function() {
   return this.name;
 };
 
@@ -97,7 +97,7 @@ dcc.EntityType.prototype.getName = function() {
  * This method gets the Odata key.
  * @return {String} OData key
  */
-dcc.EntityType.prototype.getKey = function() {
+_pc.EntityType.prototype.getKey = function() {
   return "('" + this.name + "')";
 };
 
@@ -109,7 +109,7 @@ dcc.EntityType.prototype.getKey = function() {
  * This method gets the class name.
  * @return {String} OData class name
  */
-dcc.EntityType.prototype.getClassName = function() {
+_pc.EntityType.prototype.getClassName = function() {
   return this.CLASSNAME;
 };
 

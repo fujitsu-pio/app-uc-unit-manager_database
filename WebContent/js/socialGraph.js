@@ -42,7 +42,7 @@ $.ajax({
 socialGraph.prototype.getAccessor = function() {
 
 var baseUrl			= sessionStorage.selectedUnitUrl; 
-var objJdcContext	= new dcc.DcContext(baseUrl, "", "", "");
+var objJdcContext	= new _pc.PersoniumContext(baseUrl, "", "", "");
 var accessor		= objJdcContext.withToken(sessionStorage.TokenForGraph);
 
 return accessor;

@@ -20,7 +20,7 @@
 describe("getExternalCellNamePass(uri) function", function() {
 	var objExternalCell = new externalCell();
 	it("getExternalCellNamePASS", function() {
-		expect(objExternalCell.getExternalCellName("https://fj.baas.jp.fujitsu.com/testURL")).toBe("testURL");
+		expect(objExternalCell.getExternalCellName("https://demo.personium.io/testURL")).toBe("testURL");
 	});
 });
 
@@ -30,6 +30,6 @@ describe("getExternalCellNamePass(uri) function", function() {
 describe("getExternalCellNameFail(uri) function", function() {
 	var objExternalCell = new externalCell();
 	it("getExternalCellNameFAIL", function() {
-		expect(objExternalCell.getExternalCellName("https://fj.baas.jp.fujitsu.com/testURL")).not.toBe("wrongCellName");
+		expect(objExternalCell.getExternalCellName("https://demo.personium.io/testURL")).not.toBe("wrongCellName");
 	});
 });

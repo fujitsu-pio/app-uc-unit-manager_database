@@ -19,7 +19,7 @@
  */
 describe("getBoxNamePass(uri) function", function() {
 	it("getBoxNamePass", function() {
-		expect(getBoxName("https://fj.baas.jp.fujitsu.com/01test12March/__ctl/Role(Name='testRoleName',_Box.Name='testBoxName')")).toBe("testBoxName");
+		expect(getBoxName("https://demo.personium.io/01test12March/__ctl/Role(Name='testRoleName',_Box.Name='testBoxName')")).toBe("testBoxName");
 	});
 });
 
@@ -28,7 +28,7 @@ describe("getBoxNamePass(uri) function", function() {
  */
 describe("getBoxNameFail(uri) function", function() {
 	it("getBoxNameFail", function() {
-		expect(getBoxName("https://fj.baas.jp.fujitsu.com/01test12March/__ctl/Role(Name='testRoleName',_Box.Name='testBoxName')")).not.toBe("testBox");
+		expect(getBoxName("https://demo.personium.io/01test12March/__ctl/Role(Name='testRoleName',_Box.Name='testBoxName')")).not.toBe("testBox");
 	});
 });
 
@@ -38,7 +38,7 @@ describe("getBoxNameFail(uri) function", function() {
 
 describe("getRoleNamePass(uri) function", function() {
 	it("getRoleNamePass", function() {
-		expect(getRoleName("https://fj.baas.jp.fujitsu.com/01test12March/__ctl/Role(Name='testRoleName',_Box.Name='testBoxName')")).toBe("testRoleName");
+		expect(getRoleName("https://demo.personium.io/01test12March/__ctl/Role(Name='testRoleName',_Box.Name='testBoxName')")).toBe("testRoleName");
 	});
 });
 
@@ -47,7 +47,7 @@ describe("getRoleNamePass(uri) function", function() {
  */
 describe("getRoleNameFail(uri) function", function() {
 	it("getRoleNameFail", function() {
-		expect(getRoleName("https://fj.baas.jp.fujitsu.com/01test12March/__ctl/Role(Name='testRoleName',_Box.Name='testBoxName')")).not.toBe("testRole");
+		expect(getRoleName("https://demo.personium.io/01test12March/__ctl/Role(Name='testRoleName',_Box.Name='testBoxName')")).not.toBe("testRole");
 	});
 });
 

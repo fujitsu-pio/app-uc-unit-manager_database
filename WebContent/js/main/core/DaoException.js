@@ -15,44 +15,44 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class DAOで発生するException.
 //* @constructor
 //*/
 /**
- * It creates a new object dcc.DaoException.
+ * It creates a new object _pc.DaoException.
  * @class This class represents the exceptions that occur in DAO.
  * @constructor
  * @param {String} msg
  * @param {String} code
  */
-dcc.DaoException = function(msg, code) {
+_pc.DaoException = function(msg, code) {
   this.uber = Error.prototype;
   this.initializeProperties(this, msg, code);
 };
-dcc.DcClass.extend(dcc.DaoException, Error);
+_pc.PersoniumClass.extend(_pc.DaoException, Error);
 
 if (typeof exports === "undefined") {
   exports = {};
 }
-exports.DaoException = dcc.DaoException;
+exports.DaoException = _pc.DaoException;
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.DaoException} self
+//* @param {_pc.DaoException} self
 //* @param {String} msg エラーメッセージ
 //* @param {String} code エラーコード
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.DaoException} self
+ * @param {_pc.DaoException} self
  * @param {String} msg Error message
  * @param {String} code Status code
  */
-dcc.DaoException.prototype.initializeProperties = function(self, msg, code) {
-  self.name = "DcDaoException";
+_pc.DaoException.prototype.initializeProperties = function(self, msg, code) {
+  self.name = "PersoniumDaoException";
   self.message = msg;
   /** Status Code. */
   self.code = code;
@@ -66,7 +66,7 @@ dcc.DaoException.prototype.initializeProperties = function(self, msg, code) {
  * This method is used to get the status code at the time of the exception.
  * @return {String} Status code
  */
-dcc.DaoException.prototype.getCode = function() {
+_pc.DaoException.prototype.getCode = function() {
   return this.code;
 };
 

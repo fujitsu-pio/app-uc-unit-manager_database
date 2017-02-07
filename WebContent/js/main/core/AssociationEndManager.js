@@ -15,40 +15,40 @@
  * limitations under the License.
  */
 
-/*global dcc:false */
+/*global _pc:false */
 
 ///**
 //* @class AssociationEndのCRUDのためのクラス.
 //* @constructor
-//* @augments dcc.ODataManager
+//* @augments _pc.ODataManager
 //*/
 /**
- * It creates a new object dcc.AssociationEndManager.
+ * It creates a new object _pc.AssociationEndManager.
  * @class This class performs the CRUD operations for Association End.
  * @constructor
- * @augments dcc.ODataManager
- * @param {dcc.Accessor} Accessor
- * @param {dcc.DcCollection} col
+ * @augments _pc.ODataManager
+ * @param {_pc.Accessor} Accessor
+ * @param {_pc.PersoniumCollection} col
  */
-dcc.AssociationEndManager = function(as, col) {
+_pc.AssociationEndManager = function(as, col) {
   this.initializeProperties(this, as, col);
 };
-dcc.DcClass.extend(dcc.AssociationEndManager, dcc.ODataManager);
+_pc.PersoniumClass.extend(_pc.AssociationEndManager, _pc.ODataManager);
 
 ///**
 //* プロパティを初期化する.
-//* @param {dcc.AssociationEndManager} self
-//* @param {dcc.Accessor} as アクセス主体
+//* @param {_pc.AssociationEndManager} self
+//* @param {_pc.Accessor} as アクセス主体
 //* @param {?} col ?
 //*/
 /**
  * This method initializes the properties of this class.
- * @param {dcc.AssociationEndManager} self
- * @param {dcc.Accessor} as accessor
- * @param {dcc.DavCollection} col 
+ * @param {_pc.AssociationEndManager} self
+ * @param {_pc.Accessor} as accessor
+ * @param {_pc.DavCollection} col 
  */
-dcc.AssociationEndManager.prototype.initializeProperties = function(self, as, col) {
-  this.uber = dcc.ODataManager.prototype;
+_pc.AssociationEndManager.prototype.initializeProperties = function(self, as, col) {
+  this.uber = _pc.ODataManager.prototype;
   this.uber.initializeProperties(self, as, col);
 };
 
@@ -60,7 +60,7 @@ dcc.AssociationEndManager.prototype.initializeProperties = function(self, as, co
  * This method returns the URL.
  * @returns {String} URL
  */
-dcc.AssociationEndManager.prototype.getUrl = function() {
+_pc.AssociationEndManager.prototype.getUrl = function() {
   var sb = "";
   sb += this.collection.getPath();
   sb += "/$metadata/AssociationEnd";
@@ -69,17 +69,17 @@ dcc.AssociationEndManager.prototype.getUrl = function() {
 
 ///**
 //* AssociationEndを作成.
-//* @param {dcc.AssociationEnd} obj AssociationEndオブジェクト
-//* @return {dcc.AssociationEnd} AssociationEndオブジェクト
+//* @param {_pc.AssociationEnd} obj AssociationEndオブジェクト
+//* @return {_pc.AssociationEnd} AssociationEndオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method creates an AssociationEnd.
- * @param {dcc.AssociationEnd} obj AssociationEnd object
- * @return {dcc.AssociationEnd} AssociationEnd object
- * @throws {dcc.DaoException} DAO exception
+ * @param {_pc.AssociationEnd} obj AssociationEnd object
+ * @return {_pc.AssociationEnd} AssociationEnd object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.AssociationEndManager.prototype.create = function(obj) {
+_pc.AssociationEndManager.prototype.create = function(obj) {
   var json = null;
   var responseJson = null;
   if (obj.getClassName !== undefined && obj.getClassName() === "AssociationEnd") {
@@ -92,24 +92,24 @@ dcc.AssociationEndManager.prototype.create = function(obj) {
     return obj;
   } else {
     if (!("Name" in obj)) {
-      throw new dcc.DaoException("Name is required.", "PR400-OD-0009");
+      throw new _pc.DaoException("Name is required.", "PR400-OD-0009");
     }
     if (!("Multiplicity" in obj)) {
-      throw new dcc.DaoException("Multiplicity is required.",
+      throw new _pc.DaoException("Multiplicity is required.",
       "PR400-OD-0009");
     }
     if (!("_EntityType.Name" in obj)) {
-      throw new dcc.DaoException("_EntityType.Name is required.",
+      throw new _pc.DaoException("_EntityType.Name is required.",
       "PR400-OD-0009");
     }
     var requestBody = JSON.stringify(obj);
     json = this.internalCreate(requestBody);
     if (json.getStatusCode() >= 400) {
       var response = json.bodyAsJson();
-      throw new dcc.DaoException(response.message.value, response.code);
+      throw new _pc.DaoException(response.message.value, response.code);
     }
     responseJson = json.bodyAsJson().d.results;
-    return new dcc.AssociationEnd(this.accessor, responseJson);
+    return new _pc.AssociationEnd(this.accessor, responseJson);
   }
 };
 
@@ -117,20 +117,20 @@ dcc.AssociationEndManager.prototype.create = function(obj) {
 //* AssociationEndを取得.
 //* @param {String} name 取得対象のAssociation名
 //* @param {String} entityTypeName EntityType名
-//* @return {dcc.AssociationEnd} 取得したしたAssociationEndオブジェクト
+//* @return {_pc.AssociationEnd} 取得したしたAssociationEndオブジェクト
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method fetches the AssociationEnd.
  * @param {String} AssociationEnd name
  * @param {String} entityTypeName EntityType name
- * @return {dcc.AssociationEnd} AssociationEnd object
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.AssociationEnd} AssociationEnd object
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.AssociationEndManager.prototype.retrieve = function(name, entityTypeName) {
+_pc.AssociationEndManager.prototype.retrieve = function(name, entityTypeName) {
   var key = "Name='" + name + "',_EntityType.Name='" + entityTypeName + "'";
   var json = this.internalRetrieveMultikey(key);
-  return new dcc.AssociationEnd(this.accessor, json);
+  return new _pc.AssociationEnd(this.accessor, json);
 };
 
 /**
@@ -139,7 +139,7 @@ dcc.AssociationEndManager.prototype.retrieve = function(name, entityTypeName) {
  * @param {String} entityTypeName
  * @returns {String} URL
  */
-dcc.AssociationEndManager.prototype.getNavProListUrl = function(ascName,
+_pc.AssociationEndManager.prototype.getNavProListUrl = function(ascName,
     entityTypeName, associationEndView) {
   var sb = "";
   sb += this.collection.getPath();
@@ -157,17 +157,17 @@ dcc.AssociationEndManager.prototype.getNavProListUrl = function(ascName,
 //* AssociationEndを削除.
 //* @param {String} name 取得対象のAssociation名
 //* @param {String} entityTypeName EntityType名
-//* @return {dcc.Promise} promise
+//* @return {_pc.Promise} promise
 //* @throws {DaoException} DAO例外
 //*/
 /**
  * This method deletes the AssociationEnd.
  * @param {String} AssociationEnd name
  * @param {String} entityTypeName EntityType name
- * @return {dcc.Promise} promise
- * @throws {dcc.DaoException} DAO exception
+ * @return {_pc.Promise} promise
+ * @throws {_pc.DaoException} DAO exception
  */
-dcc.AssociationEndManager.prototype.del = function(name, entityTypeName) {
+_pc.AssociationEndManager.prototype.del = function(name, entityTypeName) {
   var key = "Name='" + name + "',_EntityType.Name='" + entityTypeName + "'";
   var response = this.internalDelMultiKey(key, "*");
   return response;
@@ -175,18 +175,18 @@ dcc.AssociationEndManager.prototype.del = function(name, entityTypeName) {
 
 /**
  * To create assocend_navpro_list
- * @param {dcc.AssociationEnd} obj
+ * @param {_pc.AssociationEnd} obj
  * @param {String} fromEntityTypeName
  * @param {String} fromAssEnd
- * @return {dcc.DcHttpClient} response
+ * @return {_pc.PersoniumHttpClient} response
  */
-dcc.AssociationEndManager.prototype.createNavProList = function(obj, fromEntityTypeName, fromAssEnd) {
+_pc.AssociationEndManager.prototype.createNavProList = function(obj, fromEntityTypeName, fromAssEnd) {
   if (obj.getClassName !== undefined && obj.getClassName() === "AssociationEnd") {
     var body = {};
     body.Name = obj.getName();
     body.Multiplicity = obj.getMultiplicity();
     body["_EntityType.Name"] = obj.getEntityTypeName();
-    var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+    var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
     var url = this.getNavProListUrl(fromAssEnd, fromEntityTypeName);
     var response = restAdapter.post(url, JSON.stringify(body), "application/json");
     return response;
@@ -199,7 +199,7 @@ dcc.AssociationEndManager.prototype.createNavProList = function(obj, fromEntityT
  * @param {String} entityTypeName
  * @return {String} URL
  */
-dcc.AssociationEndManager.prototype.getAssociationUri = function (entityTypeName) {
+_pc.AssociationEndManager.prototype.getAssociationUri = function (entityTypeName) {
   var sb = "";
   sb += this.collection.getPath();
   sb += "/$metadata/EntityType(";
@@ -215,7 +215,7 @@ dcc.AssociationEndManager.prototype.getAssociationUri = function (entityTypeName
  * @param {String} associationEndName
  * @return {Object} JSON
  */
-dcc.AssociationEndManager.prototype.retrieveAssociationList = function (entityTypeName, associationEndName) {
+_pc.AssociationEndManager.prototype.retrieveAssociationList = function (entityTypeName, associationEndName) {
   var uri = null;
   if(entityTypeName !== null && entityTypeName !== undefined) {
     uri = this.getAssociationUri(entityTypeName);
@@ -223,7 +223,7 @@ dcc.AssociationEndManager.prototype.retrieveAssociationList = function (entityTy
       uri = this.getNavProListUrl(associationEndName, entityTypeName, true);
     }
   }
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = restAdapter.get(uri, "application/json");
   var json = response.bodyAsJson().d.results;
   return json;
@@ -235,13 +235,13 @@ dcc.AssociationEndManager.prototype.retrieveAssociationList = function (entityTy
  * @param {String} fromEntityTypeName
  * @param {String} toAssociationName
  * @param {String} toEntityTypeName
- * @return {dcc.Promise} promise
+ * @return {_pc.Promise} promise
  */
-dcc.AssociationEndManager.prototype.delAssociationLink = function(fromAssociationName, fromEntityTypeName, toAssociationName, toEntityTypeName) {
+_pc.AssociationEndManager.prototype.delAssociationLink = function(fromAssociationName, fromEntityTypeName, toAssociationName, toEntityTypeName) {
   var uri = this.getNavProListUrl(fromAssociationName, fromEntityTypeName, true);
   uri += "(Name='" + toAssociationName + "'";
   uri += ",_EntityType.Name='" + toEntityTypeName + "')";
-  var restAdapter = dcc.RestAdapterFactory.create(this.accessor);
+  var restAdapter = _pc.RestAdapterFactory.create(this.accessor);
   var response = restAdapter.del(uri, "*","");
   return response;
 };

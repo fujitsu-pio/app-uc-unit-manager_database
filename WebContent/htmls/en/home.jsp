@@ -21,8 +21,8 @@ limitations under the License.
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
-<%@ page import="com.fujitsu.dc.gui.PCSEnvironment"%>
-<title>FUJITSU: Persona Container Portal</title>
+<%@ page import="io.personium.gui.PersoniumEnvironment"%>
+<title>Personium Unit Manager</title>
 <script type="text/javascript" src="../../js/jquery-1.9.0.min.js"></script>
 <script type="text/javascript">
 var jquery1_9_0 = jQuery.noConflict();
@@ -38,7 +38,7 @@ var jquery1_9_0 = jQuery.noConflict();
 <link href="../../css/homeStylesheet.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../../js/spin.js"></script>
 <script type="text/javascript" src="../../js/main/core/DaoConfig.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
 <!-- <script type="text/javascript" src="../../js/odataCommon.js"></script> -->
