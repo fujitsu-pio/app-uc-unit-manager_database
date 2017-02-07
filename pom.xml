@@ -39,7 +39,11 @@
 							<goal>run</goal>
 						</goals>
 						<configuration>
-							<target>
+								<delete>
+									<fileset file="${project.build.outputDirectory}/*-hibernate.cfg.xml">
+										<exclude name="${environment.type}-hibernate.cfg.xml" />
+									</fileset>
+								</delete>
 								<delete>
 									<fileset
 										file="${project.build.outputDirectory}/*-environment.properties">
@@ -52,7 +56,11 @@
 										<exclude name="${certificate.type}_certificate.key" />
 										<exclude name="${certificate.type}_certificate.crt" />
 									</fileset>
-								</delete>
+								</delete>								
+							<target>
+								<move
+									file="${project.build.outputDirectory}/${environment.type}-hibernate.cfg.xml"
+									tofile="${project.build.outputDirectory}/hibernate.cfg.xml" />
 								<move
 									file="${project.build.outputDirectory}/${environment.type}-environment.properties"
 									tofile="${project.build.outputDirectory}/environment.properties" />
@@ -62,14 +70,6 @@
 								<move
 									file="${project.build.outputDirectory}/x509/${certificate.type}_certificate.crt"
 									tofile="${project.build.outputDirectory}/x509/certificate.crt" />
-								<delete>
-									<fileset file="${project.build.outputDirectory}/*-hibernate.cfg.xml">
-										<exclude name="${environment.type}-hibernate.cfg.xml" />
-									</fileset>
-								</delete>
-								<move
-									file="${project.build.outputDirectory}/${environment.type}-hibernate.cfg.xml"
-									tofile="${project.build.outputDirectory}/hibernate.cfg.xml" />
 							</target>
 						</configuration>
 					</execution>
