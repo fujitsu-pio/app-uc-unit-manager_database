@@ -245,8 +245,8 @@ public class TokenGeneration extends HttpServlet {
             // when parameter p_env is missing or wrongly formed.
         else if (environmentName == null) {
             displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_400,
-                    refPropertiesUtil.getProperty("dcEnvironmentMalFormed"),
-                    refPropertiesUtil.getProperty("dcEnvironmentMalFormedCode"));
+                    refPropertiesUtil.getProperty("pEnvironmentMalFormed"),
+                    refPropertiesUtil.getProperty("pEnvironmentMalFormedCode"));
             return;
         }
             // when value of p_env is Blank
@@ -256,14 +256,14 @@ public class TokenGeneration extends HttpServlet {
                 displayErrorMessage(
                         response,
                         PersoniumConstants.EXCEPTIONCODE_401,
-                        refPropertiesUtil.getProperty("dcEnvironmentInvalid"),
+                        refPropertiesUtil.getProperty("pEnvironmentInvalid"),
                         refPropertiesUtil
                                 .getProperty("refreshTokenInvalidEnvironmentCode"));
             } else {
                 displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_401,
-                        refPropertiesUtil.getProperty("dcEnvironmentInvalid"),
+                        refPropertiesUtil.getProperty("pEnvironmentInvalid"),
                         refPropertiesUtil
-                                .getProperty("dcEnvironmentInvalidCode"));
+                                .getProperty("pEnvironmentInvalidCode"));
                 return;
             }
             }
@@ -426,7 +426,7 @@ public class TokenGeneration extends HttpServlet {
                     //Does environment exist.
                     if (isEnvironmentExist == false) {
                     displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_401,
-                            refPropertiesUtil.getProperty("dcEnvironmentInvalid"),
+                            refPropertiesUtil.getProperty("pEnvironmentInvalid"),
                             refPropertiesUtil.getProperty("invalidEnvironmentRefTokenCode"));
                          return;
                     }

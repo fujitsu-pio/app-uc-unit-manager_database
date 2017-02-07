@@ -206,9 +206,6 @@ $(function() {
 
 <body>
 	<div class="fjIcon">
-	<h1>
-Personium Unit Manager Demo App
-	</h1>
 	</div>
 	<div id="loginContainer" style="min-width: 530px">
 		<!-- Login Content Starts -->
