@@ -224,21 +224,21 @@ public class TokenGeneration extends HttpServlet {
             // formed or empty.
         if (targetURL == null) {
             displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_400,
-                    refPropertiesUtil.getProperty("dcTargetMalFormed"),
-                    refPropertiesUtil.getProperty("dcTargetMalFormedCode"));
+                    refPropertiesUtil.getProperty("pTargetMalFormed"),
+                    refPropertiesUtil.getProperty("pTargetMalFormedCode"));
             return;
         }
             // when value of p_target is Blank
             else if (targetURL.trim().length() == 0) {
                 if (grantType.toLowerCase().equals("refresh_token")) {
                     displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_401,
-                            refPropertiesUtil.getProperty("dcTargetInvalid"),
-                            refPropertiesUtil.getProperty("refreshTokendcTargetInvalidCode"));
+                            refPropertiesUtil.getProperty("pTargetInvalid"),
+                            refPropertiesUtil.getProperty("refreshTokenpTargetInvalidCode"));
                     return;
                 } else {
                     displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_401,
-                            refPropertiesUtil.getProperty("dcTargetInvalid"),
-                            refPropertiesUtil.getProperty("dcTargetInvalidCode"));
+                            refPropertiesUtil.getProperty("pTargetInvalid"),
+                            refPropertiesUtil.getProperty("pTargetInvalidCode"));
                     return;
                 }
             }
@@ -433,7 +433,7 @@ public class TokenGeneration extends HttpServlet {
                }
                else {
                     displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_401,
-                            refPropertiesUtil.getProperty("dcTargetInvalid"),
+                            refPropertiesUtil.getProperty("pTargetInvalid"),
                             refPropertiesUtil.getProperty("invalidTargetRefTokenCode"));
                     return;
                }
@@ -538,13 +538,13 @@ public class TokenGeneration extends HttpServlet {
                                    username);
                     } else {
                     displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_401,
-                            refPropertiesUtil.getProperty("dcEnvironmentInvalid"),
-                            refPropertiesUtil.getProperty("dcEnvironmentInvalidCode"));
+                            refPropertiesUtil.getProperty("pEnvironmentInvalid"),
+                            refPropertiesUtil.getProperty("pEnvironmentInvalidCode"));
                     }
                } else {
                    displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_401,
-                           refPropertiesUtil.getProperty("dcTargetInvalid"),
-                           refPropertiesUtil.getProperty("dcTargetInvalidCode"));
+                           refPropertiesUtil.getProperty("pTargetInvalid"),
+                           refPropertiesUtil.getProperty("pTargetInvalidCode"));
                }
           } else {
                displayErrorMessage(response, PersoniumConstants.EXCEPTIONCODE_401,

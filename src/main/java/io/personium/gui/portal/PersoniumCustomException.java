@@ -17,7 +17,7 @@
 package io.personium.gui.portal;
 
 /**
- * Custom Exception Class for PCS_Portal.
+ * Custom Exception Class for Personium_Unit_Manager.
  */
 public class PersoniumCustomException extends Exception {
     private static final long serialVersionUID = 1L;
@@ -51,10 +51,10 @@ public class PersoniumCustomException extends Exception {
     }
 
     /**
-     * Generate PCSCustomException.
+     * Generate PersoniumCustomException.
      * @param msg Message
      * @param statusCode Status Code
-     * @return PCSCustomException object
+     * @return PersoniumCustomException object
      */
     public static PersoniumCustomException create(final String msg, final int statusCode) {
         return new PersoniumCustomException(String.format("%s,%s", Integer.toString(statusCode), msg), statusCode);

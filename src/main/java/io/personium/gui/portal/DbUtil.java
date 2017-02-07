@@ -73,7 +73,7 @@ public class DbUtil {
                     throw new PersoniumCustomException("FileNotFoundException" + exe);
                } catch (IOException exe) {
                     exe.printStackTrace();
-                    throw new PersoniumCustomException("PCSCustomException" + exe);
+                    throw new PersoniumCustomException("PersoniumCustomException" + exe);
                } catch (RuntimeException exe) {
                     exe.printStackTrace();
                     throw new PersoniumCustomException("RuntimeException" + exe);

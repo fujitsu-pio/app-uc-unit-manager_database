@@ -80,7 +80,7 @@ public class PersoniumConstants {
      /**
       * Constant LOG_OUTPUT_CLASS_NAME.
       */
-     public static final String LOG_OUTPUT_CLASS_NAME = "PCSPortalLog";
+     public static final String LOG_OUTPUT_CLASS_NAME = "PersoniumUnitMgrLog";
      /**
       * Constant EXCEPTIONCODE_400.
       */
