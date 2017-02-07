@@ -12,4 +12,4 @@
 hs_err_pid*
 /target/
 src/main/resources/K5*
-src/main/resources/x509/
+src/main/resources/x509/portal.*
