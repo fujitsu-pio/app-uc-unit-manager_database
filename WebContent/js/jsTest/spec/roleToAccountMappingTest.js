@@ -23,27 +23,27 @@ describe(
 			});
 			//Test case for pass condition.
 			it("getAccountNameFromURIPass",function() {
-				expect(objCommon.getAccountNameFromURI("https://fj.bass.jp.fujitsu.com/01test12March/_ctl/Account('test121212')")).toEqual("test121212");
+				expect(objCommon.getAccountNameFromURI("https://demo.personium.io/01test12March/_ctl/Account('test121212')")).toEqual("test121212");
 			});
 			//Test case for fail condition.
 			it("getAccountNameFromURIFail",	function() {
-				expect(objCommon.getAccountNameFromURI("https://fj.bass.jp.fujitsu.com/01test12March/_ctl/Account('test121212')")).not.toEqual("test121212def");
+				expect(objCommon.getAccountNameFromURI("https://demo.personium.io/01test12March/_ctl/Account('test121212')")).not.toEqual("test121212def");
 			});
 			//Test case for pass condition.
 			it("getBoxNameFromURIPass",function() {
-				expect(objCommon.getBoxNameFromURI("https://sample.jp.fujitsu.com/cellname/__ctl/Role (Name = 'rolename', _Box.Name = 'test123')")).toEqual("test123");
+				expect(objCommon.getBoxNameFromURI("https://test.personium.io/cellname/__ctl/Role (Name = 'rolename', _Box.Name = 'test123')")).toEqual("test123");
 				});
 			//Test case for fail condition
 			it("getBoxNameFromURIFail",function() {
-				expect(objCommon.getBoxNameFromURI("https://sample.jp.fujitsu.com/cellname/__ctl/Role (Name = 'rolename', _Box.Name = null)")).not.toEqual("test123");
+				expect(objCommon.getBoxNameFromURI("https://test.personium.io/cellname/__ctl/Role (Name = 'rolename', _Box.Name = null)")).not.toEqual("test123");
 			});
 			//Test case for pass condition.
 			it("getRoleNameFromURIPass",function() {
-				expect(objCommon.getRoleNameFromURI("https://sample.jp.fujitsu.com/cellname/__ctl/Role (Name = 'test123', _Box.Name = null)")).toEqual("test123");
+				expect(objCommon.getRoleNameFromURI("https://test.personium.io/cellname/__ctl/Role (Name = 'test123', _Box.Name = null)")).toEqual("test123");
 			});
 			//Test case for fail condition.
 			it("getRoleNameFromURIFail",function() {
-				expect(objCommon.getRoleNameFromURI("https://sample.jp.fujitsu.com/cellname/__ctl/Role (Name = 'test123', _Box.Name = null)")).not.toEqual("test1234");
+				expect(objCommon.getRoleNameFromURI("https://test.personium.io/cellname/__ctl/Role (Name = 'test123', _Box.Name = null)")).not.toEqual("test1234");
 			});
 			
 			

@@ -21,8 +21,8 @@ import java.util.ResourceBundle;
 /**
  * This class is responsible for providing the resource bundle content based on
  * packaging profile - Development, Production, Staging. Only one instance of
- * class will serve the PCS Portal application i.e. Resource Bundle is loaded
- * one time only - at the time of creation of PCSEnvironment instance.
+ * class will serve the Personium Portal application i.e. Resource Bundle is loaded
+ * one time only - at the time of creation of PersoniumEnvironment instance.
  */
   public class PersoniumEnvironment {
      private static PersoniumEnvironment environment = null;;

@@ -207,7 +207,6 @@ $(function() {
 <body>
 	<div class="fjIcon">
 	<h1>
-<!-- 	<img alt="" src="./images/fujitsu.gif"> -->
 Personium Unit Manager Demo App
 	</h1>
 	</div>

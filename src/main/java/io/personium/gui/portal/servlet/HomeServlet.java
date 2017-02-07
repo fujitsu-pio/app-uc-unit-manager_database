@@ -175,7 +175,7 @@ public class HomeServlet extends HttpServlet {
                      URLConnection con = url.openConnection();
                      con.setConnectTimeout(TIME_OUT);
                      con.setReadTimeout(TIME_OUT);
-                     con.setRequestProperty("X-Dc-Version", "0");
+                     con.setRequestProperty("X-Personium-Version", "0");
                      try {
                          final Reader reader = new InputStreamReader(con.getInputStream());
                          final BufferedReader br = new BufferedReader(reader);

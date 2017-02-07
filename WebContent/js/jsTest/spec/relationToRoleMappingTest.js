@@ -45,7 +45,7 @@ describe(
 					function() {
 						expect(
 								objCommon
-										.getBoxNameFromURI("https://sample.jp.fujitsu.com/cellname/__ctl/Role (Name = 'rolename', _Box.Name = 'box1')"))
+										.getBoxNameFromURI("https://test.personium.io/cellname/__ctl/Role (Name = 'rolename', _Box.Name = 'box1')"))
 								.toEqual("box1");
 					});
 			// Test case for fail condition
@@ -53,7 +53,7 @@ describe(
 					"getBoxNameFromURIFail",
 					function() {
 						expect(objCommon
-								.getBoxNameFromURI("https://sample.jp.fujitsu.com/cellname/__ctl/Role (Name = 'rolename', _Box.Name = 'box1')")).not
+								.getBoxNameFromURI("https://test.personium.io/cellname/__ctl/Role (Name = 'rolename', _Box.Name = 'box1')")).not
 								.toEqual("box2");
 					});
 			// Test case for pass condition.
@@ -62,7 +62,7 @@ describe(
 					function() {
 						expect(
 								objCommon
-										.getRoleNameFromURI("https://sample.jp.fujitsu.com/cellname/__ctl/Role (Name = 'role1', _Box.Name = null)"))
+										.getRoleNameFromURI("https://test.personium.io/cellname/__ctl/Role (Name = 'role1', _Box.Name = null)"))
 								.toEqual("role1");
 					});
 			// Test case for fail condition.
@@ -70,7 +70,7 @@ describe(
 					"getRoleNameFromURIFail",
 					function() {
 						expect(objCommon
-								.getRoleNameFromURI("https://sample.jp.fujitsu.com/cellname/__ctl/Role (Name = 'role1', _Box.Name = null)")).not
+								.getRoleNameFromURI("https://test.personium.io/cellname/__ctl/Role (Name = 'role1', _Box.Name = null)")).not
 								.toEqual("role2");
 					});
 

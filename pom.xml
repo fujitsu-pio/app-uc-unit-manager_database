@@ -6,13 +6,12 @@
 	<packaging>war</packaging>
 	<version>1.4.1</version>
 	<url>http://maven.apache.org</url>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
-
 	<build>
+		<finalName>personium-unit-mgr</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -139,13 +138,10 @@
 					<specIncludes>
 						<include>**/WebContent/js/jsTest/spec/*.js</include>
 					</specIncludes>
-				</configuration>
--->
+				</configuration>-->
 			</plugin>
 		</plugins>
-		<finalName>personium-unit-mgr</finalName>
 	</build>
-
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -408,7 +404,6 @@
 			</plugin>
 		</plugins>
 	</reporting>
-
 	<profiles>
       <profile>
          <id>jscoverage</id>

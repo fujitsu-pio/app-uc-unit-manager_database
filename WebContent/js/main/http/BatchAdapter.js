@@ -97,7 +97,7 @@ _pc.BatchAdapter.prototype.insertBoundary = function() {
 };
 
 /**
- * This method appends the ChangeSet and returns DCBatchResponse.
+ * This method appends the ChangeSet and returns BatchResponse.
  * @param {String} url
  * @param {String} accept
  * @param {String} etag

@@ -754,29 +754,6 @@ home.prototype.displayUnitURLList1 = function(jsonData) {
  */
 home.prototype.getAPIVersion = function(requestURL){
 	var unitUrl = requestURL + "__ctl/Cell";
-	/*var unitUrl = "https://shinoda.vpdc.sg.soft.fujitsu.com/__ctl/Cell";
-$.ajax({
-		dataType : 'json',
-		beforeSend: function (request)
-		{
-			request.setRequestHeader("Accept", 'application/json');
-			request.setRequestHeader("X-Personium-Version", 0);
-		},
-		url		: unitUrl,//url needs to be changed.
-		type	: 'GET',
-		async	: true,
-		cache	: false,
-		success	: function(jsonData) {
-			uHome.apiVersion ='0';
-			//Get value of API Version from jsonData 
-			return true;
-		},
-		error : function(jsonData) {
-			alert('1------>'+JSON.stringify(jsonData));
-			uHome.apiVersion ='';
-			return false;
-		}
-	});*/
 	var CSRFTokenAPIVersion = sessionStorage.requestId;
 	$.ajax({
 		dataType	: 'json',
@@ -793,7 +770,6 @@ $.ajax({
 			uHome.apiVersion ='0';
 		},
 		error : function(response) {
-			//alert('1------>'+JSON.stringify(response));
 			uHome.apiVersion ='';
 		}
 	});
@@ -816,10 +792,6 @@ function getElasticSearchDavResponse(json) {
 	for (var i = 0; i< volumeStatus.length; i++) {
 		uHome.resElasticSearch	= 1;
 		var volume				= volumeStatus[i].volume;
-/*		var allocatedDiskSize	= volumeStatus[i].allocatedDiskSize;
-		var usedDiskSize		= volumeStatus[i].usedDiskSize;
-		var volumeDiskSize		= volumeStatus[i].volumeDiskSize;*/
-
 		if (volume == 'elasticsearch1') {
 			if(volumeStatus[i].allocatedDiskSize!==undefined){
 				uHome.dataStorageAvailable	= volumeStatus[i].allocatedDiskSize;
@@ -841,7 +813,6 @@ function getElasticSearchDavResponse(json) {
  * The purpose of this function to get the Dav/Disc data from unit.
  */
 home.prototype.getStatusData = function(requestURL) {
-	//var unitUrl = "https://shinoda.vpdc.sg.soft.fujitsu.com/__mx/stats";
 	var unitUrl = requestURL + "__mx/stats";
 	var CSRFTokenDiscSpace = sessionStorage.requestId;
 	$.ajax({
@@ -859,7 +830,6 @@ home.prototype.getStatusData = function(requestURL) {
 			if (response.sessionTimeOut != "sessionTimeOut") {
 				getElasticSearchDavResponse(response);
 		}
-			//alert(JSON.stringify(response));
 		},
 		error : function(response) {
 			uHome.resElasticSearch = 0;

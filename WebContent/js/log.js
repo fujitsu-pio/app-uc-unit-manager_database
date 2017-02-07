@@ -110,7 +110,7 @@ log.prototype.createEventLogDetailsTable = function (logFolderName) {
 		$("#logchkSelectall").attr('disabled', true);
 		var emptyBoxMsg = '<tr id="msg"><td id="msg" colspan="4"><div id="dvEmptyTableLogsArchive" style="margin-left: 33%;margin-top:15%;width:230px;" class="emptyBoxMessage">'+getUiProps().MSG0381+'</div></td></tr>';
 		$("#logTable tbody").append(emptyBoxMsg);
-		if (sessionStorage.selectedLanguage == 'jp') {
+		if (sessionStorage.selectedLanguage == 'ja') {
 			$("#dvEmptyTableLogsArchive").addClass('japaneseFont');
 			$("#dvEmptyTableLogsArchive").css('width', '342px');
 		}

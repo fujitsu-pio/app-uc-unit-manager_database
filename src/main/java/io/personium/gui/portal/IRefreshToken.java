@@ -21,7 +21,7 @@ import java.util.List;
 
 
 /**
- *  DC1で用いるOAuth2.0リフレッシュトークンのインターフェース.
+ *  Personiumで用いるOAuth2.0リフレッシュトークンのインターフェース.
  */
 public interface IRefreshToken {
     /**

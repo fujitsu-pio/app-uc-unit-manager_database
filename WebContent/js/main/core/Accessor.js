@@ -27,10 +27,10 @@
  * @class This is the base class for setting the access parameters to access Cloud data.
  * @constructor
  * @property {number} expiresIn Expiration date of the token.
- * @param {_pc.PersoniumContext} dcContext
+ * @param {_pc.PersoniumContext} pContext
  */
-_pc.Accessor = function(dcContext) {
-  this.initializeProperties(this, dcContext);
+_pc.Accessor = function(pContext) {
+  this.initializeProperties(this, pContext);
 };
 
 ///** asメソッドに利用する type. */
@@ -46,14 +46,14 @@ _pc.Accessor.ACCESSOR_KEY_TOKEN = "token";
 ///**
 //* プロパティを初期化する.
 //* @param {_pc.Accessor} self
-//* @param　{?} dcContext DCコンテキスト
+//* @param　{?} pContext Personiumコンテキスト
 //*/
 /**
  * This method initializes the properties of this class.
  * @param {_pc.Accessor} self
  * @param　{_pc.PersoniumContext} PersoniumContext
  */
-_pc.Accessor.prototype.initializeProperties = function(self, dcContext) {
+_pc.Accessor.prototype.initializeProperties = function(self, pContext) {
 
 ///** トークンの有効期限. */
   /** Expiration date of the token. */
@@ -123,7 +123,6 @@ _pc.Accessor.prototype.initializeProperties = function(self, dcContext) {
   /** current box name. */
   self.boxName = "";
 
-///** DCコンテキスト. */
   /** PersoniumContext. */
   self.context = null;
   /** Cell. */
@@ -147,12 +146,12 @@ _pc.Accessor.prototype.initializeProperties = function(self, dcContext) {
   /** Variable to hold p_cookie_peer key */
   self.cookiePeer = "";
 
-  if (dcContext !== undefined) {
-    self.context = dcContext;
-    self.baseUrl = dcContext.getBaseUrl();
-    self.cellName = dcContext.getCellName();
-    self.boxSchema = dcContext.getBoxSchema();
-    self.boxName = dcContext.getBoxName();
+  if (pContext !== undefined) {
+    self.context = pContext;
+    self.baseUrl = pContext.getBaseUrl();
+    self.cellName = pContext.getCellName();
+    self.boxSchema = pContext.getBoxSchema();
+    self.boxName = pContext.getBoxName();
   }
 };
 
@@ -368,31 +367,23 @@ _pc.Accessor.prototype.getDaoConfig = function() {
   return this.context.getDaoConfig();
 };
 
-///**
-//* DCコンテキストの取得.
-//* @return {?} DCコンテキスト
-//*/
 /**
  * This method acquires the PersoniumContext.
- * @return {_pc.PersoniumContext} DCContext
+ * @return {_pc.PersoniumContext} PersoniumContext
  */
 _pc.Accessor.prototype.getContext = function() {
   return this.context;
 };
 
-///**
-//* DCコンテキストの設定.
-//* @param {Object} dcContext DCコンテキスト
-//*/
 /**
  * This method sets the PersoniumContext.
- * @param {Object} dcContext DCContext
+ * @param {Object} pContext pContext
  */
-_pc.Accessor.prototype.setContext = function(dcContext) {
-  if (typeof dcContext !== "object") {
+_pc.Accessor.prototype.setContext = function(pContext) {
+  if (typeof pContext !== "object") {
     throw new _pc.DaoException("InvalidParameter");
   }
-  this.context = dcContext;
+  this.context = pContext;
 };
 
 ///**

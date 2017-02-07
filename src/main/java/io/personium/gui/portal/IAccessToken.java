@@ -17,7 +17,7 @@
 package io.personium.gui.portal;
 
 /**
- *  DC1で用いるOAuth2.0アクセストークンのインターフェース.
+ *  Personiumで用いるOAuth2.0アクセストークンのインターフェース.
  */
 public interface IAccessToken {
     /**

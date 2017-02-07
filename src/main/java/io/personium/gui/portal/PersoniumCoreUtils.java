@@ -71,7 +71,7 @@ public final class PersoniumCoreUtils {
          */
         public static final String X_PERSONIUM_CREDENTIAL = "X-Personium-Credential";
         /**
-         * X-Dc-Unit-Userヘッダ.
+         * X-Personium-Unit-Userヘッダ.
          * MasterTokenでのアクセス時に、このヘッダがある場合は、
          * ヘッダ値で指定された任意のユニットユーザとして振る舞う。
          */
@@ -101,11 +101,11 @@ public final class PersoniumCoreUtils {
          */
         public static final String X_FORWARDED_PATH = "X-Forwarded-Path";
         /**
-         * X-Dc-Unit-Hostヘッダ.
+         * X-Personium-Unit-Hostヘッダ.
          */
         public static final String X_PERSONIUM_UNIT_HOST = "X-Personium-Unit-Host";
         /**
-         * X-Dc-Versionヘッダ.
+         * X-Personium-Versionヘッダ.
          */
         public static final String X_PERSONIUM_VERSION = "X-Personium-Version";
         /**
@@ -447,7 +447,7 @@ public final class PersoniumCoreUtils {
      * @return UriInfo
      */
     public static UriInfo createUriInfo(final UriInfo uriInfo, final int baseLevelsAbove) {
-        DcUriInfo ret = new DcUriInfo(uriInfo, baseLevelsAbove);
+        PersoniumUriInfo ret = new PersoniumUriInfo(uriInfo, baseLevelsAbove);
         return ret;
     }
 
@@ -483,7 +483,7 @@ public final class PersoniumCoreUtils {
     /**
      * 指定階層上のパスをBaseUri(ルート)とするUriInfoとして振る舞うUriInfoのWrapper.
      */
-    public static final class DcUriInfo implements UriInfo {
+    public static final class PersoniumUriInfo implements UriInfo {
         UriBuilder baseUriBuilder;
         UriInfo core;
 
@@ -492,7 +492,7 @@ public final class PersoniumCoreUtils {
          * @param uriInfo UriInfo
          * @param baseLevelsAbove 何階層上のパスをルートとするか
          */
-        public DcUriInfo(final UriInfo uriInfo, final int baseLevelsAbove) {
+        public PersoniumUriInfo(final UriInfo uriInfo, final int baseLevelsAbove) {
             this.core = uriInfo;
             String reqUrl = uriInfo.getRequestUri().toASCIIString();
             if (reqUrl.endsWith("/")) {

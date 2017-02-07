@@ -54,7 +54,7 @@ exports.PersoniumContext = _pc.PersoniumContext;
 //* バージョン情報を指定するヘッダ.
 //*/
 /** Header that specifies the version information. */
-var DC_VERSION = "X-Personium-Version";
+var PERSONIUM_VERSION = "X-Personium-Version";
 
 ///**
 //* プロパティを初期化する.
@@ -315,11 +315,11 @@ _pc.PersoniumContext.prototype.removeDefaultHeader = function(key) {
  */
 //public final void setPersoniumVersion(final String value) {
 _pc.PersoniumContext.prototype.setPersoniumVersion = function(value) {
-  this.defaultHeaders.put(DC_VERSION, value);
+  this.defaultHeaders.put(PESONIUM_VERSION, value);
 };
 
 ///**
-//* DCの利用バージョンを取得.
+//* Personiumの利用バージョンを取得.
 //* @return {?} データクラウドバージョン
 //*/
 /**
@@ -328,7 +328,7 @@ _pc.PersoniumContext.prototype.setPersoniumVersion = function(value) {
  */
 //public final String getPersoniumVersion() {
 _pc.PersoniumContext.prototype.getPersoniumVersion = function() {
-  return this.defaultHeaders.get(DC_VERSION);
+  return this.defaultHeaders.get(PESONIUM_VERSION);
 };
 
 ///**
