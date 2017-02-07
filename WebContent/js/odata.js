@@ -235,7 +235,7 @@ odata.prototype.checkCollectionType = function(type, collectionName,
 		collectionURL, count) {
 	var token = getClientStore().token;
 	sessionStorage.tempToken = token;
-	if (type == "dc:odata") {
+	if (type == "p:odata") {
 		sessionStorage.collectionName = collectionName;
 		sessionStorage.selectedCollectionURL = collectionURL;
 		objOdata.selectedView = "odata";
@@ -252,11 +252,11 @@ odata.prototype.checkCollectionType = function(type, collectionName,
 	if (type == "file") {
 		uFileDownload.downloadFileOnClick(collectionName, collectionURL);
 	}
-	if (type == "dc:service") {
-		sessionStorage.resourcetype = 'dc:service';
+	if (type == "p:service") {
+		sessionStorage.resourcetype = 'p:service';
 		this.clickFolder(collectionName, collectionURL, type);
 		objOdata.displayPluginSource(collectionName);
-		uBoxDetail.populatePropertiesList(collectionURL, collectionURL, collectionName, false, "dc:service");
+		uBoxDetail.populatePropertiesList(collectionURL, collectionURL, collectionName, false, "p:service");
 		uBoxAcl.getAclSetting(collectionURL, sessionStorage.boxName);
 	}
 };
@@ -302,13 +302,13 @@ odata.prototype.createRows = function(dynamicTable, collectionName,
 	if(type=="folder"){
 		icon = "wdFolderIcon";
 		engineServiceArrow = "";
-	}else if(type=="dc:odata"){
+	}else if(type=="p:odata"){
 		icon = "wdOdataIcon";
 		engineServiceArrow = "";
 	}else if (type == "file"){
 		icon = "wdFileIcon";
 		engineServiceArrow = "";
-	}else if (type == "dc:service"){
+	}else if (type == "p:service"){
 		icon = "wdEngineServiceIcon";
 		engineServiceArrow = "";
 }
@@ -575,7 +575,7 @@ odata.prototype.getEngineServiceCollectionType = function() {
 	//var noOfCollectionRows = $("#webDavTable tbody tr").length;
 	//for ( var index = 0; index < noOfCollectionRows; index++) {
 		if ($("#dvSrc").hasClass("selectSrcRow")) {
-			serviceType = "dc:service";
+			serviceType = "p:service";
 			//break;
 		}
 	//}
@@ -738,7 +738,7 @@ odata.prototype.createEngineServiceDetailsTable = function (selectedCount, colle
 };
 
 odata.prototype.displayPluginSource = function (pluginName) {
-	objOdata.selectedView = 'dc:service';
+	objOdata.selectedView = 'p:service';
 	$("#dvDownLoadIcon").css("background","url(../../images/newSprite.png) no-repeat -16px -856px");
 	$("#dvDownLoadText").css("color"," #e8e8e8");
 	$("#wdchkSelectall").attr('checked', false);
@@ -826,7 +826,7 @@ odata.prototype.addRemoveSelectRowClass = function (count) {
 	$("#webDavDetailMessageBody").hide();
 	var pluginSource = getUiProps().MSG0295;
 	var colName = sessionStorage.rowSelectCollectionName;
-	sessionStorage.resourcetype = 'dc:service';
+	sessionStorage.resourcetype = 'p:service';
 	sessionStorage.selectedSvCol = colName;
 	var path = sessionStorage.selectedCollectionURL;
 	if (path != undefined) {
@@ -1648,9 +1648,9 @@ odata.prototype.uploadFile = function (fileData) {
    try {
 	   var lastBreadCrumTitle = $("#tblBoxBreadCrum tbody tr:last td:first").attr('title');
 	   if (lastBreadCrumTitle == getUiProps().MSG0295) {
-		   type = "dc:service"; 
+		   type = "p:service"; 
 	   }
-    if (type == "dc:service") {
+    if (type == "p:service") {
     	var pluginPath = objOdata.getPath();
         flag = true;
         var objJserviceCollection = new _pc.ServiceCollection(accessor, pluginPath);
@@ -1663,7 +1663,7 @@ odata.prototype.uploadFile = function (fileData) {
         }
     } 
     if (response.httpClient.status == 201 || response.httpClient.status == 204) {
-    	if (type == "dc:service") {
+    	if (type == "p:service") {
     		var count = 0;
     		objOdata.createEngineServiceDetailsTable(count, sessionStorage.rowSelectCollectionName);
     		var folderName = $("#currentDirectoryName").text();
@@ -1811,15 +1811,15 @@ odata.prototype.clickFolder = function (collectionName, collectionURL, type) {
 	this.persistBreadCrumPath(collectionName);
 	boxHeirarchyPath = document.getElementById("dvBreadCrumBrowse").title;
 	this.selectedBreadCrum(rowCount);
-	if (type != 'dc:service') {
+	if (type != 'p:service') {
 		this.createTable(collectionURL);
 		uFileDownload.disableDownloadArea();
 		uBoxDetail.populatePropertiesList(collectionURL, collectionURL, collectionName, false, "folder");
 		uBoxAcl.getAclSetting(collectionURL, sessionStorage.boxName);
 		$("#webDavDetailBody").show();
 		$("#webDavDetailMessageBody").hide();
-	} else if (type == 'dc:service') {
-		uBoxDetail.populatePropertiesList(collectionURL, collectionURL, collectionName, false, "dc:service");
+	} else if (type == 'p:service') {
+		uBoxDetail.populatePropertiesList(collectionURL, collectionURL, collectionName, false, "p:service");
 		$("#webDavDetailBody").show();
 		$("#webDavDetailMessageBody").hide();
 	}
@@ -1902,9 +1902,9 @@ odata.prototype.deleteBreadCrum = function (id,title,pcollectionURL, mType) {
 						objOdata.selectedView = "";
 						spinner.stop();
 			});
-		} else if (mType == "dc:service") {
+		} else if (mType == "p:service") {
 			objOdata.displayPluginSource(sessionStorage.rowSelectCollectionName);
-			uBoxDetail.populatePropertiesList(objOdata.currentCollectionPath, objOdata.currentCollectionPath, title, false, "dc:service");
+			uBoxDetail.populatePropertiesList(objOdata.currentCollectionPath, objOdata.currentCollectionPath, title, false, "p:service");
 			uBoxAcl.getAclSetting(sessionStorage.Path, sessionStorage.boxName);
 			objOdata.selectedView = "";
 			$("#boxEditAclSettings").removeClass("disabledEditIconACLSettings");
@@ -2093,12 +2093,12 @@ odata.prototype.refreshCollection = function () {
 	} else {
 		type = "box";
 		folderClicked = false;
-	}//sessionStorage.resourcetype = 'dc:service';
+	}//sessionStorage.resourcetype = 'p:service';
 	var lastBreadCrumTitle = $("#tblBoxBreadCrum tbody tr:last td:first").attr('title');
 	if (lastBreadCrumTitle == pluginSource) {
-		sessionStorage.resourcetype = 'dc:service';
+		sessionStorage.resourcetype = 'p:service';
 	}
-	if (sessionStorage.resourcetype != 'dc:service') {
+	if (sessionStorage.resourcetype != 'p:service') {
 		objOdata.refreshCollectionCallback(objOdata.createTable(refreshPath),
 				function() {
 					uBoxDetail.populatePropertiesList(refreshPath, refreshPath, heirarchyLevelName, false, type);
@@ -2108,7 +2108,7 @@ odata.prototype.refreshCollection = function () {
 					$("#dvRefreshIcon").css("pointer-events","auto");
 					objOdata.spinner.stop();
 				});
-	} else if (sessionStorage.resourcetype == 'dc:service') {
+	} else if (sessionStorage.resourcetype == 'p:service') {
 		$("#dvDownLoadIcon").css("background","url(../../images/newSprite.png) no-repeat -16px -856px");
 		$("#dvDownLoadText").css("color"," #e8e8e8");
 		$('#wdchkSelectall').attr('checked', false);
@@ -2152,7 +2152,7 @@ odata.prototype.getProperties = function(url) {
     var elm = nl[0];
     var propChildNodes = elm.getElementsByTagName("prop")[0].childNodes;
     for ( var i = 0; i < propChildNodes.length; i++) {
-        if (propChildNodes[i].nodeName!= "#text" && propChildNodes[i].nodeName!= "acl" && propChildNodes[i].nodeName!= "resourcetype" && propChildNodes[i].nodeName!= "dc:service"){ 
+        if (propChildNodes[i].nodeName!= "#text" && propChildNodes[i].nodeName!= "acl" && propChildNodes[i].nodeName!= "resourcetype" && propChildNodes[i].nodeName!= "p:service"){ 
             name = {"id" : i,"Name" :  propChildNodes[i],"Value" : propChildNodes[i].textContent};
             folderList.push(name);
         }

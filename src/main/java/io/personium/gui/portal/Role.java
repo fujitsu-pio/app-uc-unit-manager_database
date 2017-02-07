@@ -53,7 +53,6 @@ public class Role {
      */
     public Role(URL url) {
         // ロールリソースのURL↓
-        // https://localhost:8080/dc1-core/testcell1/__role/box1/rolename
         Pattern pattern = Pattern.compile("(.+/)__role/([^/]+)/(.+)");
         Matcher matcher = pattern.matcher(url.toString());
         if (!matcher.find()) {

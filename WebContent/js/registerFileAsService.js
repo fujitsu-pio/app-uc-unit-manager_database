@@ -492,13 +492,13 @@ registerFileAsService.prototype.getRegisteredServices = function(response) {
 			break;
 		}
 		var prop = propstat[count].getElementsByTagName("prop");
-		var dcService = prop[count].lastElementChild;
-		var dcPath = dcService.children;
-		var lenPersoniumPath = dcPath.length;
+		var pService = prop[count].lastElementChild;
+		var chPath = pService.children;
+		var lenPersoniumPath = chPath.length;
 		for ( var serviceCount = 0; serviceCount < lenPersoniumPath; serviceCount++) {
-			if (dcPath[serviceCount].attributes[0] != undefined) {
-				serviceName = dcPath[serviceCount].attributes[0].value;
-				sourceFileName = dcPath[serviceCount].attributes[1].value;
+			if (chPath[serviceCount].attributes[0] != undefined) {
+				serviceName = chPath[serviceCount].attributes[0].value;
+				sourceFileName = chPath[serviceCount].attributes[1].value;
 				serviceSourceFilePair = {
 						"serviceName" : serviceName,
 						"sourceFileName" : sourceFileName

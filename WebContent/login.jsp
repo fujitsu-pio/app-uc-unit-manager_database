@@ -418,9 +418,6 @@ Personium Unit Manager Demo App
 				</form>
 			</div>
 		</div>
-
 	</div>
-	
 </body>
-
 </html>

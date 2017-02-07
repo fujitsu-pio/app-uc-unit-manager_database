@@ -500,13 +500,13 @@ boxDetail.prototype.populatePropertiesList = function(collectionPathName, collec
 		if(type == "folder"){
 			$(".propsHeadWebDavIcon").css("background","url(../../images/newSprite.png) no-repeat 54% -918px");
 			$(".propsHeadWebDavIcon").css("margin-left","18px");
-		}else if(type=="dc:odata"){
+		}else if(type=="p:odata"){
 			$(".propsHeadWebDavIcon").css("background","url(../../images/newSprite.png) no-repeat 54% -949px");
 			$(".propsHeadWebDavIcon").css("margin-left","15px");
 		}else if (type == "file"){
 			$(".propsHeadWebDavIcon").css("background","url(../../images/newSprite.png) no-repeat 47% -1625px");
 			$(".propsHeadWebDavIcon").css("margin-left","18px");
-		}else if (type == "dc:service"){
+		}else if (type == "p:service"){
 			$(".propsHeadWebDavIcon").css("background","url(../../images/sprite3.png) no-repeat 54% -165px");
 			$(".propsHeadWebDavIcon").css("margin-left","20px");
 			//$("#boxEditAclSettings").removeClass("editIconACLSettings");

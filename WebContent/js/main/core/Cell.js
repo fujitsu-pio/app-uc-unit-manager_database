@@ -261,7 +261,7 @@ _pc.Cell.prototype.getLocation = function() {
 //sb.append("</p:account>");
 //}
 //RestAdapter rest = (RestAdapter) RestAdapterFactory.create(this.accessor);
-//rest.proppatch(this.getUrl(), "dc:ownerRepresentativeAccounts", sb.toString());
+//rest.proppatch(this.getUrl(), "p:ownerRepresentativeAccounts", sb.toString());
 //};
 
 ///**

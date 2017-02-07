@@ -83,7 +83,7 @@ fileDownload.prototype.getFilePath = function(baseUrl, cellName, collectionName)
 	if (!path.endsWith("/")) {
 		path += "/";
 	}
-	if (sessionStorage.resourcetype == 'dc:service') {
+	if (sessionStorage.resourcetype == 'p:service') {
 		//path += sessionStorage.selectedSvCol;
 		path += "__src/";
 	}
@@ -215,7 +215,7 @@ fileDownload.prototype.getSelectedFileInsideServiceCollection = function() {
 			if($("#rowsrc_" + index+"_"+i).hasClass("selectSrcColRow")){
 				fileName = document.getElementById("chkBox1_"+index+"_"+i).value;
 				sessionStorage.selectedSvCol = sessionStorage.rowSelectCollectionName;//document.getElementById("wdchkBox"+index).value;
-				var resourceType = "dc:service";//document.getElementById("fileTypeId" + index).value;
+				var resourceType = "p:service";//document.getElementById("fileTypeId" + index).value;
 				//resourceType = resourceType.replace(/'/g, "");
 				sessionStorage.resourcetype = resourceType;
 				break;

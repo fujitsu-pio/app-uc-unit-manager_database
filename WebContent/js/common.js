@@ -525,7 +525,7 @@ common.prototype.rowSelect = function(objRow, rowID, chkBoxID, colID, delButID,
 		chkAllID, count, totalRecordsize, editButID, collectionName, isAcl,
 		fileType, tableID, collectionURL) {
 	var targetID = event.target.id.indexOf("Link");
-	if (fileType == "dc:service") {
+	if (fileType == "p:service") {
 		sessionStorage.rowSelectCollectionName = collectionName;
 	}
 	if(targetID == -1){
@@ -795,11 +795,11 @@ common.prototype.checkEditButton = function(noOfSelectedRows, editButID,
 			// objOdata.toggleUploadLink();
 			var uFileDownload = new fileDownload();
 			uFileDownload.clearBlobStorage();
-		} else if (fileType == 'dc:odata' || fileType == 'folder') {
+		} else if (fileType == 'p:odata' || fileType == 'folder') {
 			var objOdata = new odata();
 			objOdata.hidePluginIcons();
 			// objOdata.toggleDownloadLink();
-		} else if (fileType == 'dc:service') {
+		} else if (fileType == 'p:service') {
 			// $("#submenu").hide();
 			var objOdata = new odata();
 			objOdata.displayPluginIcons();
@@ -815,8 +815,8 @@ common.prototype.checkEditButton = function(noOfSelectedRows, editButID,
 		var objOdata = new odata();
 		objOdata.hidePluginIcons();
 		this.disableEditButton('#' + editButID);
-		if (fileType == 'file' || fileType == 'dc:odata'
-				|| fileType == 'folder' || fileType == 'dc:service') {
+		if (fileType == 'file' || fileType == 'p:odata'
+				|| fileType == 'folder' || fileType == 'p:service') {
 			var objOdata = new odata();
 			objOdata.showHideButtons();
 			// objOdata .toggleDownloadLink();

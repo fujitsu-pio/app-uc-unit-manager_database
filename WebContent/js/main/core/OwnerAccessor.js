@@ -27,29 +27,29 @@
  * @class This class represents Accessor of the unit after promotion.
  * @constructor
  * @augments _pc.Accessor
- * @param {_pc.PersoniumContext} dcContext
+ * @param {_pc.PersoniumContext} personiumContext
  * @param {_pc.Accessor} Accessor
  */
-_pc.OwnerAccessor = function(dcContext, as) {
-  this.initializeProperties(this, dcContext, as);
+_pc.OwnerAccessor = function(personiumContext, as) {
+  this.initializeProperties(this, personiumContext, as);
 };
 _pc.PersoniumClass.extend(_pc.OwnerAccessor, _pc.Accessor);
 
 ///**
 //* プロパティを初期化する.
 //* @param {_pc.OwnerAccessor} self
-//* @param {?} dcContext コンテキスト
+//* @param {?} personiumContext コンテキスト
 //* @param {_pc.Accessor} as アクセス主体
 //*/
 /**
  * This method initializes the properties of this class.
  * @param {_pc.OwnerAccessor} self
- * @param {_pc.PersoniumContext} dcContext Context
+ * @param {_pc.PersoniumContext} personiumContext Context
  * @param {_pc.Accessor} as Accessor
  */
-_pc.OwnerAccessor.prototype.initializeProperties = function(self, dcContext, as) {
+_pc.OwnerAccessor.prototype.initializeProperties = function(self, personiumContext, as) {
   this.uber = _pc.Accessor.prototype;
-  this.uber.initializeProperties(self, dcContext);
+  this.uber.initializeProperties(self, personiumContext);
 
   if (as !== undefined) {
     self.setAccessToken(as.getAccessToken());
@@ -75,7 +75,7 @@ _pc.OwnerAccessor.prototype.initializeProperties = function(self, dcContext, as)
   /** Unit promotion. */
   self.owner = true;
 
-  if (dcContext !== undefined && as !== undefined) {
+  if (personiumContext !== undefined && as !== undefined) {
     self.authenticate();
     self.unit = new _pc.UnitManager(this);
   }

@@ -173,7 +173,7 @@ boxProperties.prototype.getPath = function (){
 	if (!path.endsWith("/")) {
 		path += "/";
 	}
-	if (sessionStorage.resourcetype == 'dc:service') {
+	if (sessionStorage.resourcetype == 'p:service') {
 		//path += sessionStorage.rowSelectCollectionName;
 		path += "__src/";
 	}

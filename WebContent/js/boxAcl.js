@@ -388,7 +388,7 @@ boxAcl.prototype.getAclList = function(accessor, objJDavCollection) {
 				if (acl[aclCount].attributes != undefined) {
 					var noOfAttributes = acl[aclCount].attributes.length;
 					for (var attributeCount = 0; attributeCount < noOfAttributes; attributeCount++) {
-						if (acl[aclCount].attributes[attributeCount].name === "dc:requireSchemaAuthz" ) {
+						if (acl[aclCount].attributes[attributeCount].name === "p:requireSchemaAuthz" ) {
 							schemaAuthz = acl[aclCount].attributes[attributeCount].value;
 							break;
 						}

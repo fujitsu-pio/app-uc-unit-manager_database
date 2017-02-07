@@ -159,7 +159,6 @@ _pc.Acl.prototype.toXmlString = function() {
   // root element created
   arr.push("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
   arr.push("<D:acl xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\"  p:requireSchemaAuthz=\""+ schemaAuth +"\" xml:base=\"");
-  //arr.push("<D:acl xmlns:D=\"DAV:\" xml:base=\"");
   arr.push(roleBaseUrlStr);
 
   arr.push("\">");
@@ -363,7 +362,7 @@ _pc.Acl.prototype.parse = function(xmlStr) {
     objAce = new _pc.Ace();
     objAcl.addAce(objAce);
     if (ace[aceCount].firstElementChild !== null) {
-      if (ace[aceCount].firstElementChild.childNodes[1] === "all") {
+      if (ace[aceCount].firstElementChild.childNodes[1] === "root") {
         objAce.setPrincipal(_pc.Principal.ALL);
       } else {
 
@@ -429,7 +428,7 @@ _pc.Acl.prototype.parse = function(xmlStr) {
 //acl.setBase(roleBaseUrl);
 
 //// requireSchemaAuthz属性値を取得し、Aclオブジェクトにセット
-//requireSchemaAuthz = elmAcl.getAttributeNS("urn:x-dc1:xmlns", "requireSchemaAuthz");
+//requireSchemaAuthz = elmAcl.getAttributeNS("urn:x-personium:xmlns", "requireSchemaAuthz");
 //acl.setRequireSchemaAuthz(requireSchemaAuthz);
 
 //// 子Aceのリストを取得
