@@ -431,7 +431,7 @@ cellAcl.prototype.createCellACLRoleTable = function () {
 			}
 			var sRoleName = objCommon.getShorterName(roleName, 25);
 			var sBoxName = objCommon.getShorterName(boxName, 30);
-			if (sRoleName.length>=25 && sRoleName.length>=13) {
+			if (sRoleName.length>=25 && sBoxName.length>=13) {
 				sRoleName = objCommon.getShorterName(roleName, 18);
 				sBoxName = objCommon.getShorterName(boxName, 13);
 			}
