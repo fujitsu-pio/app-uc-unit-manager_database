@@ -22,7 +22,7 @@ limitations under the License.
 <script type="text/javascript" src="../../js/commonFunctions.js"></script>
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/jquery.modalbox.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/externalCell.js"></script>
 <script type="text/javascript" src="../../js/roleToExtCell.js"></script>
@@ -33,16 +33,16 @@ limitations under the License.
 
 			<div class="divAssignEntityTxtBox">
 			<select id="ExtCellDropDown" class="dropDownBig" onclick="uRoleExtCellMapping.enableDisableAssignExtCellBtn();" tabindex="-1">
-							<option>外部のセルを選択</option>
+							<option>螟夜Κ縺ｮ繧ｻ繝ｫ繧帝∈謚�/option>
 						</select>
 				<!-- <input type="text" class="bigTextBox assignEntityTxtBox"
 					id="txtAssignEntity"> -->
 			</div>
 			<div class="divAssignEntityBtn">
-				<input type="button" class="assignBtn assignBtnDisabled japaneseFont" value="割り当てる" style="margin-left: -25px;line-height: 23px;width: 108px;" onclick="uRoleExtCellMapping.linkRoleAndECell();" id="assignExtCellBtn" disabled="disabled" tabindex="-1">
+				<input type="button" class="assignBtn assignBtnDisabled japaneseFont" value="蜑ｲ繧雁ｽ薙※繧� style="margin-left: -25px;line-height: 23px;width: 108px;" onclick="uRoleExtCellMapping.linkRoleAndECell();" id="assignExtCellBtn" disabled="disabled" tabindex="-1">
 			</div>
 			<div class="divDeleteIcon divDeleteAssignEntityIcon">
-				<input type="button" class="deleteIconDisabled" id="btnDeleteAssignRoleExtCell" onclick="uRoleExtCellMapping.showRoleExtCellMapPopUp();" tabindex="-1" title="削除">
+				<input type="button" class="deleteIconDisabled" id="btnDeleteAssignRoleExtCell" onclick="uRoleExtCellMapping.showRoleExtCellMapPopUp();" tabindex="-1" title="蜑企勁">
 			</div>
 
 		</div>
@@ -54,19 +54,19 @@ limitations under the License.
 		</div>
 		<div class="rightSubHeading">
 			<div class="sortWrapper">
-				<label class="sortText japaneseFont" style="margin-top: 5px;">日付で並べ替え</label>
+				<label class="sortText japaneseFont" style="margin-top: 5px;">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/label>
 				<div id="arrow" class="downArrow assignEntityDownArrow"></div>
 			</div>
 			<div class="paginationWrapper" style="margin-top: 3px;">
 				<div class="recordCount" id="recordCount_assignRoleTab"></div>
 				<div class="paginationIcons">
 					<div class="leftPagination">
-						<div class="firstPageDisabled" id="firstPage_assignRoleTab" title="最初"></div>
-						<div class="prevPageDisabled" id="prevPage_assignRoleTab" title="前"></div>
+						<div class="firstPageDisabled" id="firstPage_assignRoleTab" title="譛��"></div>
+						<div class="prevPageDisabled" id="prevPage_assignRoleTab" title="蜑�></div>
 					</div>
 					<div class="rightPagination">
-						<div class="nextPageDisabled" id="nextPage_assignRoleTab" title="次"></div>
-						<div class="lastPageDisabled" id="lastPage_assignRoleTab" title="ラスト"></div>
+						<div class="nextPageDisabled" id="nextPage_assignRoleTab" title="谺｡"></div>
+						<div class="lastPageDisabled" id="lastPage_assignRoleTab" title="繝ｩ繧ｹ繝�></div>
 					</div>
 					<div class="rightPagination"></div>
 				</div>
@@ -84,8 +84,8 @@ limitations under the License.
 						onclick='uRoleExtCellMapping.checkAllSelect(this)'
 						class='checkBox cursorHand regular-checkbox big-checkbox' /><label
 							for='checkAllRoleExtCellAssign' class='checkBoxLabel'></label></th>
-					<th class="col2 japaneseFont">外部セル</th>
-					<th class="col3 japaneseFont">外部セルのURL</th>
+					<th class="col2 japaneseFont">螟夜Κ繧ｻ繝ｫ</th>
+					<th class="col3 japaneseFont">螟夜Κ繧ｻ繝ｫ縺ｮURL</th>
 				</tr>
 				</thead>
 				<tbody id='assignEntityGridTbody' class='entityGridTbody'></tbody>
@@ -115,19 +115,19 @@ limitations under the License.
 			style="display: block; height: 258px; width: 604px; background: #ffffff"
 			id="roleExtCellMultipleDeleteDialogBox">
 			<div id="dvCloseIcon" class="crossDeletePropIcon"
-				onclick="closeEntityModal('#roleExtCellMultipleDeleteModalWindow');" tabindex="3" title="クローズ"></div>
+				onclick="closeEntityModal('#roleExtCellMultipleDeleteModalWindow');" tabindex="3" title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 			<div class="sessionExpiryDiv" id="dvAccessheader">
 				<label class="sessionExpiredPopUpHeading japaneseFont">
-					外部セルの割り当てを削除する（S）</label>
+					螟夜Κ繧ｻ繝ｫ縺ｮ蜑ｲ繧雁ｽ薙※繧貞炎髯､縺吶ｋ����/label>
 			</div>
 			<div class="sessionExpiredLabel" style="margin-top: 32px;margin-bottom: 74px;">
-				<label class="japaneseFont">あなたが選択した外部セル割り当て（複数可）を削除しますか？</label>
+				<label class="japaneseFont">縺ゅ↑縺溘′驕ｸ謚槭＠縺溷､夜Κ繧ｻ繝ｫ蜑ｲ繧雁ｽ薙※�郁､�焚蜿ｯ�峨ｒ蜑企勁縺励∪縺吶°��/label>
 			</div>
 			<div id="dvClose" class="sessionPopUpCloseSection">
-				<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont" id="btnCancelDeleteRoleToExtCellAssign"
+				<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont" id="btnCancelDeleteRoleToExtCellAssign"
 					onclick="closeEntityModal('#roleExtCellMultipleDeleteModalWindow');" tabindex="1">
 				<input type="button" class="btnSavePopup japaneseFont"
-					onclick="uRoleExtCellMapping.delRoleExtCellMapping(true);" value="削除"
+					onclick="uRoleExtCellMapping.delRoleExtCellMapping(true);" value="蜑企勁"
 					style="margin-right: 0px;" tabindex="2">
 			</div>
 		</div>

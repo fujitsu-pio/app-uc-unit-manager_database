@@ -27,7 +27,7 @@ var jquery1_9_0 = jQuery.noConflict();
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/commonFunctions.js"></script>
 <script type="text/javascript" src="../../js/main/core/DaoConfig.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/main/core/Principal.js"></script>
 <script type="text/javascript" src="../../js/uCellPopup.js"></script>
@@ -36,18 +36,18 @@ var jquery1_9_0 = jQuery.noConflict();
 <script type="text/javascript" src="../../js/main/util/StringUtils.js"></script>
 <script type="text/javascript" src="../../js/main/util/UrlUtils.js"></script>
 <script type="text/javascript"
-	src="../../js/main/http/DcRequestHeaderBuilder.js"></script>
+	src="../../js/main/http/PersoniumRequestHeaderBuilder.js"></script>
 <script type="text/javascript" src="../../js/main/http/RestAdapter.js"></script>
 <script type="text/javascript"
 	src="../../js/main/http/RestAdapterFactory.js"></script>
-<script type="text/javascript" src="../../js/main/http/DcResponse.js"></script>
+<script type="text/javascript" src="../../js/main/http/PersoniumResponse.js"></script>
 <!-- include core functions -->
 <script type="text/javascript" src="../../js/main/core/DaoException.js"></script>
 
-<!--  script type="text/javascript" src="../../js/main/core/DcContext.js"></script-->
+<!--  script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script-->
 <script type="text/javascript"
 	src="../../js/main/core/AbstractODataContext.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcCollection.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumCollection.js"></script>
 <script type="text/javascript" src="../../js/main/core/DavCollection.js"></script>
 <script type="text/javascript" src="../../js/main/core/ODataManager.js"></script>
 <script type="text/javascript" src="../../js/main/core/EntitySet.js"></script>
@@ -77,7 +77,7 @@ var jquery1_9_0 = jQuery.noConflict();
 <script type="text/javascript"
 	src="../../js/main/core/MetadataLinkManager.js"></script>
 <script type="text/javascript" src="../../js/main/core/OwnerAccessor.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcQuery.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumQuery.js"></script>
 <script type="text/javascript" src="../../js/main/core/Relation.js"></script>
 <script type="text/javascript" src="../../js/main/core/RelationManager.js"></script>
 <script type="text/javascript" src="../../js/main/core/Role.js"></script>
@@ -92,7 +92,7 @@ var jquery1_9_0 = jQuery.noConflict();
 	src="../../js/main/core/SentMessageManager.js"></script>
 <script type="text/javascript"
 	src="../../js/main/core/ReceivedMessageManager.js"></script>
-<script type="text/javascript" src="../../js/main/http/DcHttpClient.js"></script>
+<script type="text/javascript" src="../../js/main/http/PersoniumHttpClient.js"></script>
 <script type="text/javascript" src="../../js/main/http/Promise.js"></script>
 <script type="text/javascript" src="../../js/cellProfile.js"></script>
 
@@ -142,7 +142,7 @@ function newCellCreate() {
 		var url =  getClientStore().baseURL; 
 		token = getClientStore().token;
 		var cellName = document.getElementById("textCellPopup").value;
-		var objJdcContext = new _pc.DcContext(url, cellName, "", "");
+		var objJdcContext = new _pc.PersoniumContext(url, cellName, "", "");
 		var ac = objJdcContext.withToken(token);
 		var objCell = new _pc.Cell(ac);
 		var objCellManager = new _pc.CellManager(ac);

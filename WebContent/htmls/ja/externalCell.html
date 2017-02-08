@@ -21,7 +21,7 @@ limitations under the License.
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/uCell.js"></script>
 <script type="text/javascript" src="../../js/externalCell.js"></script>
@@ -33,20 +33,20 @@ limitations under the License.
 	<div class="boxOperationSection">
 		<div class="leftSubHeading">
 			<div class="divList">
-				<label class="lblList japaneseFont">外部セルリスト</label>
+				<label class="lblList japaneseFont">螟夜Κ繧ｻ繝ｫ繝ｪ繧ｹ繝�/label>
 			</div>
 
 			<div id="createEntityWrapper" class="createExternalCellWrapper" style="width: 132px!important;" onclick="openCreateEntityModal('#externalCellModalWindow','#externalCellDialogBox', 'lblThisRadioExtCell');">
 				<div id="createIcon" class="createIcon"></div>
-				<div id="createText" class="createText japaneseFont">外部セルを登録</div>
+				<div id="createText" class="createText japaneseFont">螟夜Κ繧ｻ繝ｫ繧堤匳骭ｲ</div>
 			</div>
 
 			<div class="divEditIcon">
-				<input type="button"  title="編集" class="editIconDisabled" >
+				<input type="button"  title="邱ｨ髮� class="editIconDisabled" >
 			</div>
 
 			<div class="divDeleteIcon">
-				<input type="button" class="deleteIconDisabled" id = "btnDeleteExternalCell"  onclick="openCreateEntityModal('#multipleExternalCellDeleteModalWindow', '#multipleExternalCellDeleteDialogBox', 'btnCancelDeleteExtCell');" title="削除">
+				<input type="button" class="deleteIconDisabled" id = "btnDeleteExternalCell"  onclick="openCreateEntityModal('#multipleExternalCellDeleteModalWindow', '#multipleExternalCellDeleteDialogBox', 'btnCancelDeleteExtCell');" title="蜑企勁">
 			</div>
 		</div>
 		<div id="extCellMessageBlock" class="crudOperationSuccessWrapper" style="display:none;float: left;position:absolute;">
@@ -57,20 +57,20 @@ limitations under the License.
 		</div>
 		<div class="rightSubHeading">
 			<div class="sortWrapper">
-				<label class="sortText japaneseFont">日付で並べ替え</label>
+				<label class="sortText japaneseFont">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/label>
 				<div class="downArrow"></div>
 			</div>
 			<div class="paginationWrapper">
 				<div class="recordCount" id="recordCount_ExtCell"></div>
 				<div class="paginationIcons">
 					<div class="leftPagination">
-						<div class="firstPageDisabled" id="firstPage_ExtCell" title="最初"></div>
-						<div class="prevPageDisabled" id="prevPage_ExtCell" title="前"></div>
+						<div class="firstPageDisabled" id="firstPage_ExtCell" title="譛��"></div>
+						<div class="prevPageDisabled" id="prevPage_ExtCell" title="蜑�></div>
 					</div>
 					<div class="rightPagination">
-						<div class="nextPageDisabled" id="nextPage_ExtCell" title="次"></div>
+						<div class="nextPageDisabled" id="nextPage_ExtCell" title="谺｡"></div>
 						<div class="lastPageDisabled" id="lastPage_ExtCell" title="
-ラスト"></div>
+繝ｩ繧ｹ繝�></div>
 					</div>
 					<div class="rightPagination"></div>
 				</div>
@@ -86,11 +86,11 @@ limitations under the License.
 						<th class='col1'><input type='checkbox' 
 						id='chkSelectall' onclick='checkAll(this)'
 						class='checkBox cursorHand regular-checkbox big-checkbox'/><label for="chkSelectall" class="checkBoxLabel"></label></th>
-						<th class='col2 japaneseFont'>名前</th>
+						<th class='col2 japaneseFont'>蜷榊燕</th>
 						<th class='col3 japaneseFont'>URL</th>
-						<th class='col4 japaneseFont'>作成された</th>
-						<th class='col5 japaneseFont'>更新日時</th>
-						<th class='col6 japaneseFont'>関係</th>
+						<th class='col4 japaneseFont'>菴懈�縺輔ｌ縺�/th>
+						<th class='col5 japaneseFont'>譖ｴ譁ｰ譌･譎�/th>
+						<th class='col6 japaneseFont'>髢｢菫�/th>
 					</tr>
 				</thead>
 				<tbody id='entityGridTbody' class='entityGridTbody'></tbody>
@@ -107,41 +107,41 @@ limitations under the License.
 	<div class="modal-window block-border"
 		style="display: block; height: 305px; width: 706px; background: #ffffff"
 		id="externalCellDialogBox">
-		<div id="closeModalbox" class="crossDeletePropIcon" onclick="objExtCell.closeExternalPopUpWindow();" tabindex="9" title="クローズ"></div>
+		<div id="closeModalbox" class="crossDeletePropIcon" onclick="objExtCell.closeExternalPopUpWindow();" tabindex="9" title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 		<div class="accessTokenDiv" style="padding-bottom: 15px"
 			id="dvAccessheader">
-			<label class="AccessTokenHeading japaneseFont"> 登録 外部 セル</label>
+			<label class="AccessTokenHeading japaneseFont"> 逋ｻ骭ｲ 螟夜Κ 繧ｻ繝ｫ</label>
 		</div>
 		<div>
 			<table cellpadding='0' cellspacing='0' border='0'
 				class="popupcreatePropertyTable">
 				<tr>
 					<td style="width: 336px"><div style="margin-bottom: 10px;">
-							<label class="lblElement japaneseFont">外部 セル 場所</label>
+							<label class="lblElement japaneseFont">螟夜Κ 繧ｻ繝ｫ 蝣ｴ謇�/label>
 						</div>
 						<div class="lblElement radio" style="height: 40px">
 							<input id="rdMyCell" type="radio" name="externalCell" value="This Unit" style="display: inline-block;opacity: 0" tabindex="1" onfocus="radioBtnThisFocusOnExternalCell();" onblur="radioBtnThisBlurOnExternalCell();">
-							<label for="rdMyCell" style="margin-right: 6px; margin-left: -16px;height: 18px;padding-top: 2px;padding-right: 2px;" id= "lblThisRadioExtCell">このユニット</label> 
+							<label for="rdMyCell" style="margin-right: 6px; margin-left: -16px;height: 18px;padding-top: 2px;padding-right: 2px;" id= "lblThisRadioExtCell">縺薙�繝ｦ繝九ャ繝�/label> 
 							<input id="rdExternalCell" type="radio" name="externalCell" value="Other" style="display: inline-block;opacity: 0" tabindex="2" onfocus="radioBtnOthereFocusOnExternalCell();" onblur="radioBtnOtherBlurOnExternalCell();">
-							<label for="rdExternalCell" style="margin-right: 6px; margin-left: 44px;height: 18px;padding-top: 2px;padding-right: 2px;" id="lblOtherRadioExtCell">その他</label>
+							<label for="rdExternalCell" style="margin-right: 6px; margin-left: 44px;height: 18px;padding-top: 2px;padding-right: 2px;" id="lblOtherRadioExtCell">縺昴�莉�/label>
 						</div></td>
 					<td><div style="margin-bottom: 10px; margin-top: -12px;">
 							<input type='checkbox' id='chkBoxCreateExtCell'
 								class='checkBox cursorHand regular-checkbox big-checkbox'
 								onclick="objCommon.clickAssignChkBoxCreatePopup('chkBoxCreateExtCell', 'dropDownAssignRelationCreateExtCell', true, 'selectRelationDropDownError');" style="display: inline-block;opacity: 0" tabindex="5" onfocus="checkboxFocusOnExtCell();" onblur="checkboxBlurOnExtCell();"/><label
 								for="chkBoxCreateExtCell" class="checkBoxLabel" style="margin-left: -13px" id="lblAssignrelationExtCell"></label><label
-								class="lblElement assignChkBoxLabel japaneseFont">割り当てる 関係</label>
+								class="lblElement assignChkBoxLabel japaneseFont">蜑ｲ繧雁ｽ薙※繧�髢｢菫�/label>
 						</div></td>
 				</tr>
 				<tr>
 					<td style="width: 336px" id="rowMyCell"><div
 							style="margin-bottom: 10px;">
-							<label class="lblElement japaneseFont">選択する セル</label>
+							<label class="lblElement japaneseFont">驕ｸ謚槭☆繧�繧ｻ繝ｫ</label>
 						</div>
 						<div class="customSelectIconAssociation"
 							style="background-position-x: 81.5%">
 							<select name="" id="ddlCellList" class="selectMenuPopup japaneseFont" tabindex="3">
-								<option>セルを選択</option>
+								<option>繧ｻ繝ｫ繧帝∈謚�/option>
 							</select>
 
 						</div> <span class="spanPopupErrorMessageCommon">
@@ -150,7 +150,7 @@ limitations under the License.
 
 					<td style="width: 336px; display: none" id="rowCellURL">
 						<div style="margin-bottom: 10px;">
-							<label class="lblElement japaneseFont">携帯URL</label>
+							<label class="lblElement japaneseFont">謳ｺ蟶ｯURL</label>
 						</div>
 						<div>
 							<input type="text" class="bigTextBox propertyPopUpTextBox"
@@ -162,14 +162,14 @@ limitations under the License.
 					</td>
 
 					<td><div style="margin-bottom: 10px; margin-top: -70px;">
-							<label class="lblElement japaneseFont">関係</label>
+							<label class="lblElement japaneseFont">髢｢菫�/label>
 						</div>
 						<div>
 							<div class="customSelectIconAssociation"
 								style="background-position-x: 106.5%">
 								<select name="" id="dropDownAssignRelationCreateExtCell"
 									class="selectMenuPopup" disabled="disabled" tabindex="6">
-									<option class="japaneseFont">セレクトの関係（BOX）</option>
+									<option class="japaneseFont">繧ｻ繝ｬ繧ｯ繝医�髢｢菫ゑｼ�OX��/option>
 								</select>
 
 							</div>
@@ -186,11 +186,11 @@ limitations under the License.
 		<section class="positionButtons">
 			<div id="dvCreate" class="dvCreate">
 				<input type="button" id="btnRegister" class="btnClose japaneseFont"
-					value="作る" onclick="" tabindex="8">
+					value="菴懊ｋ" onclick="" tabindex="8">
 			</div>
 			<div id="dvCancel" class="dvCreate">
 				<input type="button" id="btnCancel" onclick="objExtCell.closeExternalPopUpWindow();" class="cancelBtn japaneseFont"
-					value="キャンセル" tabindex="7">
+					value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="7">
 			</div>
 		</section>
 		<!-- Button Section Ends -->
@@ -243,21 +243,21 @@ limitations under the License.
 			id="multipleExternalCellDeleteDialogBox">
 			<div class="boxPopupWrapper" id="deleteAccountpopup">
 				<div id="dvCloseIcon" class="popupCloseIcon"
-				onclick="closeEntityModal('#multipleExternalCellDeleteModalWindow');" tabindex="3" title="クローズ"></div>
+				onclick="closeEntityModal('#multipleExternalCellDeleteModalWindow');" tabindex="3" title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 
 			<div class="sessionExpiryDiv"  style="padding-top:30px">
 				<label class="sessionExpiredPopUpHeading japaneseFont" >
-					外部セルを削除する（S）</label>
+					螟夜Κ繧ｻ繝ｫ繧貞炎髯､縺吶ｋ����/label>
 			</div>
 
 			<div class="sessionExpiredLabel japaneseFont" style="margin-top: 44px;height:34px">
-				<div style="text-align:left;">あなたは外部セルを削除しますか ?</div>
+				<div style="text-align:left;">縺ゅ↑縺溘�螟夜Κ繧ｻ繝ｫ繧貞炎髯､縺励∪縺吶° ?</div>
 			</div>
 			<div id="externalCellDivClose" class="sessionPopUpCloseSection">
-						<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+						<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 					onclick="closeEntityModal('#multipleExternalCellDeleteModalWindow');" tabindex="1" id ="btnCancelDeleteExtCell">
 				<input type="button"  class="btnSavePopup japaneseFont" id="deleteMultipleExternalCellId"
-									value="削除" style="margin-right: 0px;" onclick="objExtCell.deleteMultipleExternalCell();" tabindex="2">
+									value="蜑企勁" style="margin-right: 0px;" onclick="objExtCell.deleteMultipleExternalCell();" tabindex="2">
 			</div>
 		</div>
 		</div>

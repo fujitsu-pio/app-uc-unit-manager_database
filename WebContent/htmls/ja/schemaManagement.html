@@ -17,7 +17,7 @@ limitations under the License.
 --><head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <script type="text/javascript" src="../../js/spin.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/main/core/PropertyManager.js"></script>
 <script type="text/javascript" src="../../js/schemaManagement.js"></script>
@@ -45,24 +45,24 @@ limitations under the License.
 	<div class="entityTypeList" id="entityTypeList">
 		<div>
 			<div class="entityTypeHeader" style="border-bottom: 1px solid #e6e6e6;">
-				<div class="entityTypeTab japaneseFont typeTabSelected" onclick="uSchemaManagement.clickEntityTypeTab();">エンティティタイプ</div>
-				<div class="complexTypeTab japaneseFont" onclick="uSchemaManagement.clickComplexTypeTab();">複合型</div>
+				<div class="entityTypeTab japaneseFont typeTabSelected" onclick="uSchemaManagement.clickEntityTypeTab();">繧ｨ繝ｳ繝�ぅ繝�ぅ繧ｿ繧､繝�/div>
+				<div class="complexTypeTab japaneseFont" onclick="uSchemaManagement.clickComplexTypeTab();">隍�粋蝙�/div>
 			</div>
 			<div style="width: 100%;height: 35px;">
-			<div class="schemaRefreshIcon disableRefreshEntityType"  id="entityTypeRefreshIcon" title="リフレッシュ"></div>
-			<div class="schemaCreateIcon" id="entityTypeCreateIcon" title="作る" onclick=""></div>
+			<div class="schemaRefreshIcon disableRefreshEntityType"  id="entityTypeRefreshIcon" title="繝ｪ繝輔Ξ繝�す繝･"></div>
+			<div class="schemaCreateIcon" id="entityTypeCreateIcon" title="菴懊ｋ" onclick=""></div>
 			<div class="schemaRawIconUnselected" id="entityTypeRawIcon"></div>
 			</div>
 		</div>
 		<div style="display: none;width: 238px;margin-left: 0px;height: 61px;" id="dvemptyTableMessageOdata" class="emptyTableMessageForEType">
-				<div class="japaneseFont">いいえエンティティタイプがまだ作成されません。</div><div class="createETypeLink japaneseFont" 
-				onclick="openCreateEntityModal('#createETypeModal','#createETypeDialog', 'txtETypeName');">エンティティタイプを作成します。</div>
+				<div class="japaneseFont">縺�＞縺医お繝ｳ繝�ぅ繝�ぅ繧ｿ繧､繝励′縺ｾ縺�ｽ懈�縺輔ｌ縺ｾ縺帙ｓ縲�/div><div class="createETypeLink japaneseFont" 
+				onclick="openCreateEntityModal('#createETypeModal','#createETypeDialog', 'txtETypeName');">繧ｨ繝ｳ繝�ぅ繝�ぅ繧ｿ繧､繝励ｒ菴懈�縺励∪縺吶�</div>
 		</div>
 		<table class="entityTypeBody" id="entityTypeBody" cellpadding='0' cellspacing='0' border='0'>
 		<tbody id="entityTypeTbody" class="entityGridTbody"></tbody>
 		</table>
 		<div id="dvemptyComplexTypeMessageOdata" class="emptyTableMessage dvNoComplexType" style="display: none;width: 225px !important; height: 47px !important">
-		<label class="japaneseFont">複雑なタイプはまだ作成されません</label><br><a class="noComplexTypeAnchor japaneseFont" onclick="openCreateEntityModal('#createCTypeModal','#createCTypeDialog', 'txtCTypeName');">複合型を作成します。</a></div>
+		<label class="japaneseFont">隍�尅縺ｪ繧ｿ繧､繝励�縺ｾ縺�ｽ懈�縺輔ｌ縺ｾ縺帙ｓ</label><br><a class="noComplexTypeAnchor japaneseFont" onclick="openCreateEntityModal('#createCTypeModal','#createCTypeDialog', 'txtCTypeName');">隍�粋蝙九ｒ菴懈�縺励∪縺吶�</a></div>
 		<table class="entityTypeBody" id="complexTypeList" cellpadding='0' cellspacing='0' border='0'>
 					<tbody id="complexTypeTbody" class="entityGridTbody"></tbody>
 				</table>
@@ -73,19 +73,19 @@ limitations under the License.
 				<div id="propertyToolBarLeft" class="propertyToolBarLeft">
 					<div id="tabEntityName" class="PTBAREntityLabel cursorDefault"></div>
 					<div id="createPropertyIcon" class="createPropertyIcon"
-						onclick="uEntityTypeOperations.getEditEntityTypeName();" title="編集"></div>
+						onclick="uEntityTypeOperations.getEditEntityTypeName();" title="邱ｨ髮�></div>
 					<div id="deletePropertyIcon" class="deletePropertyIcon"
-						onclick="openCreateEntityModal('#entityTypeDeleteModalWindow','#entityTypeDeleteDialogBox', 'btnCancelDeleteEntityType');" title="削除"></div>
+						onclick="openCreateEntityModal('#entityTypeDeleteModalWindow','#entityTypeDeleteDialogBox', 'btnCancelDeleteEntityType');" title="蜑企勁"></div>
 				</div>
 				<div id="propertyToolBarRight" class="propertyToolBarRight mainTableEllipsis"></div>
 			</div>
 			<div id="propertySubNav" class="propertySubNav">
 				<div id="propertyToolBarLeft" class="propertyToolBarLeft" style="width: 69px;"
 					style="float: left">
-					<div id="PropertyTab" class="genericSelectRed japaneseFont" onClick="displayPropDetails();">プロパティ</div>
+					<div id="PropertyTab" class="genericSelectRed japaneseFont" onClick="displayPropDetails();">繝励Ο繝代ユ繧｣</div>
 				</div>
 				<div id="AssociationTab" class="propertyToolBarRight japaneseFont"
-					onClick="uSchemaManagement.loadAssociationEndViewMode();">協会</div>
+					onClick="uSchemaManagement.loadAssociationEndViewMode();">蜊比ｼ�/div>
 			</div>
 			<div id="propertyTerNav" class="propertyTerNav">
 				<div id="propertyTerNavHeader"
@@ -94,10 +94,10 @@ limitations under the License.
 						style="float: left; min-width: 272px; width: 28%; height: 35px; border-right: 1px solid #e6e6e6; font-family: Segoe UI; font-size: 10pt; color: #1b1b1b;">
 						<div
 							style="margin-left: 10px; margin-top: 10px; font-family: Segoe UI; font-size: 10pt; color: #1b1b1b;">
-							<div style="width: 26%; float: left" class="japaneseFont">プロパティ</div>
+							<div style="width: 26%; float: left" class="japaneseFont">繝励Ο繝代ユ繧｣</div>
 							<div id="createPropertyDiv"
 								style="width: 13%; float: left; margin-left: -13px;">
-								<div class="createBlackGenericIcon totalPropCount" id="btnAddEntityTypeProp" onclick="openCreateEntityModal('#propertyModalWindow', '#propertyDialogBox', 'txtBoxPropertyName');" title="作る"></div>
+								<div class="createBlackGenericIcon totalPropCount" id="btnAddEntityTypeProp" onclick="openCreateEntityModal('#propertyModalWindow', '#propertyDialogBox', 'txtBoxPropertyName');" title="菴懊ｋ"></div>
 							</div>
 						</div>
 						<div style="float: right; width: 63%;">
@@ -110,7 +110,7 @@ limitations under the License.
 							</div>
 						<div id="terNavIcons" style="float: left; margin-left: 20px;">
 							<!-- <div id="createPropertyIcon" class="createGenericPropertyIcon"></div> -->
-							<div id="deletePropertyIcon" class="deleteGenericPropertyIcon" onclick="openCreateEntityModal('#propertyDeleteModalWindow','#propertyDeleteDialogBox', 'btnCancelDeleteProperty');" title="削除"></div>
+							<div id="deletePropertyIcon" class="deleteGenericPropertyIcon" onclick="openCreateEntityModal('#propertyDeleteModalWindow','#propertyDeleteDialogBox', 'btnCancelDeleteProperty');" title="蜑企勁"></div>
 						</div>
 					</div>
 				</div>
@@ -119,7 +119,7 @@ limitations under the License.
 				<div id="propertyListLHSEmpty"
 					style="width: 28%;min-width: 272px;float: left;height: 100%;border-right: 1px solid #e6e6e6;">
 					<div style="font-family: Segoe UI;cursor: default;font-size: 10pt;color: #1b1b1b;background: #fff1f1;border: 1px solid #d2d2d2;height: 23px;min-width: 245px;width: 245px;margin-top: 40%!important;padding-left: 11px;margin: 0 auto;line-height: 24px;" class="japaneseFont">
-						いいえプロパティはまだ追加されません
+						縺�＞縺医�繝ｭ繝代ユ繧｣縺ｯ縺ｾ縺�ｿｽ蜉�＆繧後∪縺帙ｓ
 					</div>
 				</div>
 			</div>
@@ -147,14 +147,14 @@ limitations under the License.
 				<div class="propertyToolBarLeft" style="width: 99.8%;" id="complexTypeTopSection">
 					<div id="tabComplexTypeName" class="PTBAREntityLabel cursorDefault"></div>
 					<!-- <div id="editComplexTypeIcon" class="createPropertyIcon"></div> -->
-					<div id="deleteComplexTypeIcon" class="deletePropertyIcon" style="margin-right: 10px;margin-left: 10px;" onclick="openCreateEntityModal('#compTypeDeleteModalWindow','#compTypeDeleteDialogBox', 'btnCancelComplexTypeDelete');" title="削除"></div>
+					<div id="deleteComplexTypeIcon" class="deletePropertyIcon" style="margin-right: 10px;margin-left: 10px;" onclick="openCreateEntityModal('#compTypeDeleteModalWindow','#compTypeDeleteDialogBox', 'btnCancelComplexTypeDelete');" title="蜑企勁"></div>
 				</div>
 			</div>
 			<div id="propertyTerNav" class="propertyTerNav">
 				<div id="propertyTerNavHeader" class="ctpTerNavHeader">
 					<div id="propertyTerNavLeft" class="ctpTerNavLeft">
 						<div class="ctpLeftHeading">
-							<div class="ctpText japaneseFont" style="width: 120px">複合型プロパティ</div>
+							<div class="ctpText japaneseFont" style="width: 120px">隍�粋蝙九�繝ｭ繝代ユ繧｣</div>
 							<div class="createComplexTypePropertyIcon" style="margin-left: 120px" onclick="openCreateEntityModal('#complexTypePropertyModalWindow', '#complexTypePropertyDialogBox', 'txtBoxComplexTypePropName');"></div>
 						</div>
 					</div>
@@ -162,7 +162,7 @@ limitations under the License.
 						<div id="complexTypePropLabel" class="mainTableEllipsis ctpLabel"></div>
 						<div style="float: left; margin-left: 20px;">
 							<!-- <div id="editComplexTypePropertyIcon" class="createGenericPropertyIcon"></div> -->
-							<div id="deleteComplexTypePropertyIcon" class="deleteGenericPropertyIcon" onclick="openCreateEntityModal('#complexTypePropertyDeleteModalWindow','#complexTypePropertyDeleteDialogBox', 'btnCancelDeleteComplexTypeProperty');" title="削除"></div>
+							<div id="deleteComplexTypePropertyIcon" class="deleteGenericPropertyIcon" onclick="openCreateEntityModal('#complexTypePropertyDeleteModalWindow','#complexTypePropertyDeleteDialogBox', 'btnCancelDeleteComplexTypeProperty');" title="蜑企勁"></div>
 						</div>
 					</div>
 				</div>
@@ -172,7 +172,7 @@ limitations under the License.
 					<div style="border-right: 1px solid #e6e6e6;width: 100%;" id="parentDivNoCTPMessage" style="display: none;">
 					<div id="innerDivNoCTPMessage"></div>
 						<div id="dvNoCompTypeProp" class="emptyTableMessage japaneseFont"
-							style="display: none; width: 245px;margin: 0 auto;cursor: default;height: 40px">いいえ複合型プロパティには、まだ作成されません</div>
+							style="display: none; width: 245px;margin: 0 auto;cursor: default;height: 40px">縺�＞縺郁､�粋蝙九�繝ｭ繝代ユ繧｣縺ｫ縺ｯ縲√∪縺�ｽ懈�縺輔ｌ縺ｾ縺帙ｓ</div>
 							</div>
 						<div style="border-right: 1px solid #e6e6e6;width: 100%;" id="divCTPTable">
 						<table id="complexTypePropertyList" class="propertyList"
@@ -207,17 +207,17 @@ limitations under the License.
 			style="display: block; height: 468px; width: 706px; background: #ffffff"
 			id="propertyDialogBox">
 			<div id="dvCloseIcon" class="crossDeletePropIcon"
-				onclick="closeEntityModal('#propertyModalWindow');" tabindex="8" title="クローズ"></div>
+				onclick="closeEntityModal('#propertyModalWindow');" tabindex="8" title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 			<div class="accessTokenDiv" style="padding-bottom: 15px"
 				id="dvAccessheader">
 				<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
-					プロパティの追加</label>
+					繝励Ο繝代ユ繧｣縺ｮ霑ｽ蜉�/label>
 			</div>
 			<div>
 				<table cellpadding='0' cellspacing='0' border='0' class="popupcreatePropertyTable">
 					<tr>
 						<td id="idPropertyName" style="width: 336px"><div style="margin-bottom: 10px;">
-								<label class="lblElement japaneseFont">* 名前</label>
+								<label class="lblElement japaneseFont">* 蜷榊燕</label>
 							</div>
 							<div>
 								<input type="text" class="bigTextBox propertyPopUpTextBox" id = "txtBoxPropertyName" tabindex="1"> <span
@@ -227,7 +227,7 @@ limitations under the License.
 								</span>
 							</div></td>
 						<td id="idPropDefaultValue"><div id="defaultValueLabel" style="margin-bottom: 9px;">
-								<label class="lblElement japaneseFont">デフォルト値</label>
+								<label class="lblElement japaneseFont">繝�ヵ繧ｩ繝ｫ繝亥�</label>
 							</div>
 							<div id="defaultValueDiv" >
 								<input type="text" class="bigTextBox propertyPopUpTextBox" id = "txtBoxPropDefaultValue" tabindex="4"> <span
@@ -238,7 +238,7 @@ limitations under the License.
 							</div></td>
 							
 							<td id = "idPropStringType" style="display: none"><div style="margin-bottom: 9px;">
-								<label class="lblElement japaneseFont">デフォルト値</label>
+								<label class="lblElement japaneseFont">繝�ヵ繧ｩ繝ｫ繝亥�</label>
 							</div>
 							<div>
 								<div style="height: 29px">
@@ -251,7 +251,7 @@ limitations under the License.
 							</div></td>
 							
 							<td id = "idPropBooleanType" style="display: none"><div style="margin-bottom: 9px;">
-								<label class="lblElement japaneseFont">デフォルト値</label>
+								<label class="lblElement japaneseFont">繝�ヵ繧ｩ繝ｫ繝亥�</label>
 							</div>
 							<div>
 							<div class="customSelectIcon" style="background-position-x: 106.5%">
@@ -267,7 +267,7 @@ limitations under the License.
 					</tr>
 					<tr>
 						<td id ="idEntityTypeName" style="width: 336px"><div style="margin-bottom: 10px;">
-								<label class="lblElement japaneseFont">* エンティティタイプ名</label>
+								<label class="lblElement japaneseFont">* 繧ｨ繝ｳ繝�ぅ繝�ぅ繧ｿ繧､繝怜錐</label>
 							</div>
 							<div>
 								<input type="text" class="bigTextBox propertyPopUpTextBox" id = "txtBoxEntityTypeName" disabled="disabled"> <span
@@ -275,7 +275,7 @@ limitations under the License.
 								</span>
 							</div></td>
 						<td id="idPropCollectionKind"><div style="margin-bottom: 10px;">
-								<label class="lblElement japaneseFont">コレクションカインド</label>
+								<label class="lblElement japaneseFont">繧ｳ繝ｬ繧ｯ繧ｷ繝ｧ繝ｳ繧ｫ繧､繝ｳ繝�/label>
 							</div>
 							<div class="customSelectIcon" style="background-position-x: 106.5%">
 								<select name="" id="dropDownPropCollectionKind"
@@ -291,7 +291,7 @@ limitations under the License.
 					</tr>
 					<tr>
 						<td id="idPropType" style="width: 336px"><div style="margin-bottom: 10px;">
-								<label class="lblElement japaneseFont">* タイプ</label>
+								<label class="lblElement japaneseFont">* 繧ｿ繧､繝�/label>
 							</div>
 							<div class="customSelectIcon">
 								<select name="" id="dropDownPropType" class="selectMenuPopup"
@@ -330,7 +330,7 @@ limitations under the License.
 					</tr>
 					<tr>
 						<td id="idPropNullable" style="width: 336px"><div style="margin-bottom: 10px;">
-								<label class="lblElement japaneseFont">NULL可</label>
+								<label class="lblElement japaneseFont">NULL蜿ｯ</label>
 							</div>
 							<div class="customSelectIcon">
 								<select name="" id="dropDownPropNullable"
@@ -345,7 +345,7 @@ limitations under the License.
 									id="nullablePropDDErrorMsg"></aside>
 						</span></td>
 						<td id="idPropUniqueKey"><div style="margin-bottom: 10px;">
-								<label class="lblElement japaneseFont">固有キー</label>
+								<label class="lblElement japaneseFont">蝗ｺ譛峨く繝ｼ</label>
 							</div>
 							<div>
 								<input type="text" class="bigTextBox propertyPopUpTextBox" id = "txtBoxPropUniqueKey" disabled="disabled" tabindex="4"> <span
@@ -364,12 +364,12 @@ limitations under the License.
 			<section class="positionButtons">
 				<div id="dvCreate" class="dvCreate">
 					<input type="button" id="btnAddProperty" class="btnClose japaneseFont"
-						value="作る" tabindex="7">
+						value="菴懊ｋ" tabindex="7">
 				</div>
 				<div id="dvCancel" class="dvCreate">
 					<input type="button" id="btnCancel"
 						onclick="closeEntityModal('#propertyModalWindow')"
-						class="cancelBtn japaneseFont" value="キャンセル" tabindex="6">
+						class="cancelBtn japaneseFont" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="6">
 				</div>
 			</section>
 			<!-- Button Section Ends -->
@@ -398,21 +398,21 @@ limitations under the License.
 			id="propertyDeleteDialogBox">
 
 			<div id="dvCloseIcon" class="crossDeletePropIcon"
-				onclick="closeEntityModal('#propertyDeleteModalWindow');" tabindex="3" title="クローズ"></div>
+				onclick="closeEntityModal('#propertyDeleteModalWindow');" tabindex="3" title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 
 			<div class="sessionExpiryDiv" id="dvAccessheader">
 				<label class="sessionExpiredPopUpHeading japaneseFont" id="lblHeadingAccessToken">
-					プロパティを削除</label>
+					繝励Ο繝代ユ繧｣繧貞炎髯､</label>
 			</div>
 
 			<div class="sessionExpiredLabel" style="margin-top: 26px;">
-				<label class="japaneseFont">あなたが選択したプロパティを削除しますか？</label>
+				<label class="japaneseFont">縺ゅ↑縺溘′驕ｸ謚槭＠縺溘�繝ｭ繝代ユ繧｣繧貞炎髯､縺励∪縺吶°��/label>
 			</div>
 			<div id="dvClose" class="sessionPopUpCloseSection">
-				<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont" id="btnCancelDeleteProperty"
+				<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont" id="btnCancelDeleteProperty"
 					onclick="closeEntityModal('#propertyDeleteModalWindow');" tabindex="1">
 				<input type="button" id="btnDeleteProperty" class="btnSavePopup japaneseFont"
-					onclick="" value="削除" style="margin-right: 0px;" tabindex="2">
+					onclick="" value="蜑企勁" style="margin-right: 0px;" tabindex="2">
 			</div>
 		</div>
 	</div>

@@ -22,7 +22,7 @@ limitations under the License.
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../js/boxInstall.js"></script>
@@ -35,34 +35,34 @@ limitations under the License.
 	<div class="boxOperationSection">
 		<div class="leftSubHeading">
 			<div class="divList">
-				<label class="lblList japaneseFont">ボックスリスト</label>
+				<label class="lblList japaneseFont">繝懊ャ繧ｯ繧ｹ繝ｪ繧ｹ繝�/label>
 			</div>
 			<div id="createEntityWrapper" style="width: 190px;">
 				<div id="createIcon" class="createIcon"></div>
-				<div id="createText" class="createText japaneseFont">ボックスを作成する</div>
+				<div id="createText" class="createText japaneseFont">繝懊ャ繧ｯ繧ｹ繧剃ｽ懈�縺吶ｋ</div>
 				<div id="arrow" class="downArrowCreate"></div>
 				<div ><ul class="createBoxSubMenu">
 					<li style="width: 190px;"><a href="#" class="createBoxItem japaneseFont" style="padding: 9px 60px 8px 8px;"
 						onclick="openCreateEntityModal('#createBoxPopUpModalWindow','#createBoxPopUpDialogBox', 'txtBoxName');">
-							ボックスを作成する</a></li>
+							繝懊ャ繧ｯ繧ｹ繧剃ｽ懈�縺吶ｋ</a></li>
 					<li class="importBoxWrapper"><a href="#" class="importBoxItem japaneseFont" onclick="uInstallBox.openImportBoxPopUp();" style="padding: 9px 60px 8px 8px;">
-							インポートボックス</a></li> 
+							繧､繝ｳ繝昴�繝医�繝�け繧ｹ</a></li> 
 							<!-- <li class="importBoxWrapper"><a href="#" class="importBoxItem" onclick="openCreateEntityModal('#progressBarModalWindow','#progressBarDialogBox');">
 							Import Box</a></li> -->
 				</ul></div>
 			</div>
 			<div class="divEditIcon">
-				<input id="btnEditBoxIcon" onclick="getSelectedBoxDetails();" type="button" class="editIconDisabled" tabindex="-1" title="編集" disabled="disabled">
+				<input id="btnEditBoxIcon" onclick="getSelectedBoxDetails();" type="button" class="editIconDisabled" tabindex="-1" title="邱ｨ髮� disabled="disabled">
 			</div>
 
 			<div class="divDeleteIcon">
-				<input type="button" class="deleteIconDisabled" id="btnDeleteBox" disabled="disabled" onclick="openPopUpWindow('#singleDeleteDialogBox','#deleteModalWindow');" tabindex="-1" title="削除">
+				<input type="button" class="deleteIconDisabled" id="btnDeleteBox" disabled="disabled" onclick="openPopUpWindow('#singleDeleteDialogBox','#deleteModalWindow');" tabindex="-1" title="蜑企勁">
 			</div>
 		</div>
 			<div id="boxMessageBlock" class="crudOperationSuccessWrapper" style="display: none;float:left;position:absolute;margin-top: 6px;width:0px;">
 				<div class="crudOperationMsgWrapper operationMsgDynamicWidth">
 					<span class="crudOperationSuccessIcon" id="boxMessageIcon">&nbsp;</span>
-					<div id="successmsg" class="crudOperationSuccessMsg japaneseFont">ボックスが正常に作成！</div>
+					<div id="successmsg" class="crudOperationSuccessMsg japaneseFont">繝懊ャ繧ｯ繧ｹ縺梧ｭ｣蟶ｸ縺ｫ菴懈���/div>
 				</div>
 			</div>
 			<div id="deleteBoxMessageBlock" class="crudOperationSuccessWrapper" style="position:absolute;display:none;float: left;margin-top: 6px;">
@@ -73,19 +73,19 @@ limitations under the License.
 		</div>
 		<div class="rightSubHeading">
 			<div class="sortWrapper">
-				<label class="sortText japaneseFont">日付で並べ替え</label>
+				<label class="sortText japaneseFont">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/label>
 				<div id="arrow" class="downArrow"></div>
 			</div>
 			<div class="paginationWrapper">
 				<div class="recordCount" id="recordCount_Box"></div>
 				<div class="paginationIcons">
 					<div class="leftPagination">
-						<div class="firstPageDisabled" id="firstPage_Box" title="最初"></div>
-						<div class="prevPageDisabled" id="prevPage_Box" title="前"></div>
+						<div class="firstPageDisabled" id="firstPage_Box" title="譛��"></div>
+						<div class="prevPageDisabled" id="prevPage_Box" title="蜑�></div>
 					</div>
 					<div class="rightPagination">
-						<div class="nextPageDisabled" id="nextPage_Box" title="次"></div>
-						<div class="lastPageDisabled" id="lastPage_Box" title="ラスト"></div>
+						<div class="nextPageDisabled" id="nextPage_Box" title="谺｡"></div>
+						<div class="lastPageDisabled" id="lastPage_Box" title="繝ｩ繧ｹ繝�></div>
 					</div>
 					<div class="rightPagination"></div>
 				</div>
@@ -104,8 +104,8 @@ limitations under the License.
 							class='checkBox cursorHand regular-checkbox big-checkbox'/><label for="chkSelectall" class="checkBoxLabel"></label></th>
 						<th class='col2 japaneseFont'>Box</th>
 						<th class="col3 japaneseFont">URL</th>
-						<th class='col4 japaneseFont'>更新日時</th>
-						<th class='col5 japaneseFont'>インストールステータス</th>
+						<th class='col4 japaneseFont'>譖ｴ譁ｰ譌･譎�/th>
+						<th class='col5 japaneseFont'>繧､繝ｳ繧ｹ繝医�繝ｫ繧ｹ繝��繧ｿ繧ｹ</th>
 					</tr>
 				</thead>
 				<tbody id='entityGridTbody' class="entityGridTbody"></tbody>
@@ -215,23 +215,23 @@ limitations under the License.
 			id="singleDeleteDialogBox">
 			<div class="boxPopupWrapper" id="deleteBoxpopup">
 				<div id="dvCloseIcon" class="popupCloseIcon"
-				onclick="closeEntityModal('#deleteModalWindow');" tabindex="3" title="クローズ"></div>
+				onclick="closeEntityModal('#deleteModalWindow');" tabindex="3" title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 
 			<div class="sessionExpiryDiv" id="boxDeleteDivAccessheader" style="padding-top:30px">
 				<label class="sessionExpiredPopUpHeading japaneseFont" >
-					ボックスを削除する（ S）</label>
+					繝懊ャ繧ｯ繧ｹ繧貞炎髯､縺吶ｋ��S��/label>
 			</div>
 
 			<div class="sessionExpiredLabel japaneseFont" style="margin-top: 44px;height:34px">
-				<div style="text-align:left;">あなたが削除してもよろしいですか選択したボックス ?</div>
-							<div style="text-align:left;">削除された後は、復元することはできません。</div>
+				<div style="text-align:left;">縺ゅ↑縺溘′蜑企勁縺励※繧ゅｈ繧阪＠縺�〒縺吶°驕ｸ謚槭＠縺溘�繝�け繧ｹ ?</div>
+							<div style="text-align:left;">蜑企勁縺輔ｌ縺溷ｾ後�縲∝ｾｩ蜈�☆繧九％縺ｨ縺ｯ縺ｧ縺阪∪縺帙ｓ縲�/div>
 				</div>
 			<div id="boxDivClose" class="sessionPopUpCloseSection">
-						<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+						<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 					onclick="closeEntityModal('#deleteModalWindow');" tabindex="1" id ="btnCloseBoxCreate">
 				<input type="button" id="boxDeletebtnDeleteProperty" class="btnSavePopup japaneseFont"
 					onclick="deleteMultipleBoxes();"
-					value="削除" style="margin-right: 0px;" tabindex="2">
+					value="蜑企勁" style="margin-right: 0px;" tabindex="2">
 			</div>
 		</div>
 		</div>
@@ -270,15 +270,15 @@ limitations under the License.
 		<div class="modal-window block-border" style="display: block; height: 320px; width: 474px; background: #ffffff" id="boxEditDialogBox">
 			<div style="height: 300px; width: 474px;">
 				<div style="height: 34px; width: 474px">
-					<a class="popupCloseIcon" onclick="closeEntityModal('#boxEditModalWindow');" tabindex="5" title="クローズ"></a>
+					<a class="popupCloseIcon" onclick="closeEntityModal('#boxEditModalWindow');" tabindex="5" title="繧ｯ繝ｭ繝ｼ繧ｺ"></a>
 				</div>
 				<div class="divPopupInner">
-					<label class="AccessTokenHeading japaneseFont">編集ボックス</label>
+					<label class="AccessTokenHeading japaneseFont">邱ｨ髮��繝�け繧ｹ</label>
 					<section class="sectionContent" style="height: 170px; width: 320px; margin-left: 58px;">
 						<form onsubmit="return false;">
 							<table>
 								<tr>
-									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">*ボックス名</label></td>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">*繝懊ャ繧ｯ繧ｹ蜷�/label></td>
 								</tr>
 								<tr>
 									<td  id="editBoxId">
@@ -289,7 +289,7 @@ limitations under the License.
 									</td>
 								</tr>
 								<tr>
-									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">スキーマURL</label></td>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">繧ｹ繧ｭ繝ｼ繝朸RL</label></td>
 								</tr>
 								<tr>
 									<td  id="editSchemaId">
@@ -303,8 +303,8 @@ limitations under the License.
 						</form>
 					</section>
 					<section style="float: right; margin: 15px 0px 0px 0px;" class="divLogoutBtn">
-						<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont" onclick="closeEntityModal('#boxEditModalWindow');" tabindex="3">
-						<input type="button" value="保存" class="btnSavePopup japaneseFont" id="btnEditRole" onclick="updateBox();" tabindex="4">
+						<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont" onclick="closeEntityModal('#boxEditModalWindow');" tabindex="3">
+						<input type="button" value="菫晏ｭ� class="btnSavePopup japaneseFont" id="btnEditRole" onclick="updateBox();" tabindex="4">
 					</section>
 				</div>
 			</div>
@@ -367,16 +367,16 @@ limitations under the License.
 				<div style="height: 34px; width: 474px">
 					<a class="popupCloseIcon"
 						onclick="uInstallBox.closeImportBoxPopUp('#importBoxModal');" tabindex="5" 
-						title="クローズ"></a>
+						title="繧ｯ繝ｭ繝ｼ繧ｺ"></a>
 				</div>
 				<div class="divPopupInner">
-					<label class="AccessTokenHeading japaneseFont">インポートボックス</label>
+					<label class="AccessTokenHeading japaneseFont">繧､繝ｳ繝昴�繝医�繝�け繧ｹ</label>
 					<section  class="sectionContent"
 						style="height: 173px; width: 320px; margin-left: 58px;">
 						<form onsubmit="return false;">
 							<table>
 								<tr>
-									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">*ボックス名</label></td>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">*繝懊ャ繧ｯ繧ｹ蜷�/label></td>
 								</tr>
 								<tr>
 									<td><input type="text" id="importBoxName"
@@ -389,14 +389,14 @@ limitations under the License.
 								</tr>
 								<tr>
 									<td id="idselectBox"><div style="margin-bottom: 10px;">
-											<label class="lblElement japaneseFont">*[ファイル]</label>
+											<label class="lblElement japaneseFont">*[繝輔ぃ繧､繝ｫ]</label>
 										</div>
 										<div id="dvBrowseButtonSection" class="">
 											<div class="">
 												<div id="dvBrowse"
 													class="file-input-wrapper browseEditBoxProfile">
 													<button title="" id="btnBarFileBrowse"
-														class="btn-file-input btnClose japaneseFont">ブラウズ</button>
+														class="btn-file-input btnClose japaneseFont">繝悶Λ繧ｦ繧ｺ</button>
 													<input tabindex="2" type="file" id="idBarFileInstallation"
 														class="fileUpload" multiple="multiple"
 														onfocus="divOnFocusBrowse();" onblur="divOnBlurBrowse();"
@@ -406,7 +406,7 @@ limitations under the License.
 										</div>
 										<div class="itemInfo japaneseFont"
 											style="margin-left: 95px; margin-top: -23px;">
-											<label id="lblImportBoxNoFileSelected">選択されていませんファイル </label>
+											<label id="lblImportBoxNoFileSelected">驕ｸ謚槭＆繧後※縺�∪縺帙ｓ繝輔ぃ繧､繝ｫ </label>
 										</div> <span class="spanPopupErrorMessageCommon"
 										style="padding-top: 10px;">
 											<aside class="asidePopupErrorMessageCommon japaneseFont"
@@ -418,10 +418,10 @@ limitations under the License.
 					</section>
 					<section style="float: right; margin: 15px 0px 0px 0px;"
 						class="divLogoutBtn">
-						<input type="button" id="btnCancelImportBox" value="キャンセル"
+						<input type="button" id="btnCancelImportBox" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ"
 							class="btnCancelPopup japaneseFont"
 							onclick="uInstallBox.closeImportBoxPopUp('#importBoxModal');" tabindex="3">
-						<input type="button" value="作る" class="btnSavePopup japaneseFont"
+						<input type="button" value="菴懊ｋ" class="btnSavePopup japaneseFont"
 							id="btnImportBox" tabindex="4">
 					</section>
 				</div>
@@ -439,7 +439,7 @@ limitations under the License.
 				<div style="height: 34px; width: 474px">
 					<a class="popupCloseIcon"
 						onclick="uInstallBox.closeInstallationPopUpModal('#progressBarModalWindow')"
-						tabindex="5" title="クローズ"></a>
+						tabindex="5" title="繧ｯ繝ｭ繝ｼ繧ｺ"></a>
 				</div>
 				<div class="divPopupInner">
 					<label id="lblProgressBar" class="AccessTokenHeading japaneseFont"></label>
@@ -451,7 +451,7 @@ limitations under the License.
 								<label id="lblStartingInstallation"
 									style="font-family: Segoe UI Light;color: #1b1b1b;margin-left: 83px;margin-top: 88px;position: absolute;"
 									class="progressBarPercentage lblInstallComplete japaneseFont">
-									インストールの開始 </label>
+									繧､繝ｳ繧ｹ繝医�繝ｫ縺ｮ髢句ｧ�</label>
 							</div>
 							<!-- End -->
 							<div id="dvProgressBar">
@@ -478,7 +478,7 @@ limitations under the License.
 					</section>
 					<section style="float: right; margin: 19px 7px 0px 0px;"
 						class="divLogoutBtn">
-						<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+						<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 							onclick="uInstallBox.closeInstallationPopUpModal('#progressBarModalWindow');"
 							tabindex="3">
 					</section>
@@ -494,18 +494,18 @@ limitations under the License.
 			style="display: block; height: 548px; width: 746px; background: #ffffff"
 			id="createBoxPopUpDialogBox">
 			<div id="dvCloseIcon" class="closeIconDiv">
-				<a style="margin:0px;" href="#" title="クローズ" id="modalbox-close" class="popupCloseIcon"
+				<a style="margin:0px;" href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close" class="popupCloseIcon"
 					onclick="closeCreateBoxPopUp('#createBoxPopUpModalWindow')" tabindex="9"></a>
 			</div>
 			<div class="accessTokenDiv" style="padding-bottom: 15px"
 				id="dvAccessheader">
 				<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
-					新しいボックスを作成します。</label>
+					譁ｰ縺励＞繝懊ャ繧ｯ繧ｹ繧剃ｽ懈�縺励∪縺吶�</label>
 			</div>
 			<section  class="popupContent">
 				<!-- LHS Block Start -->
 				<div id="dvLHSElements" class="positionLeftHandElements">
-					<div id="dvBoxName" class="lblElement japaneseFont">* ボックス名</div>
+					<div id="dvBoxName" class="lblElement japaneseFont">* 繝懊ャ繧ｯ繧ｹ蜷�/div>
 					<div class="positionTopDiv">
 						<div id="dvTextBoxName" class=" ">
 							<input id="txtBoxName" type="text" class="bigTextBox  " tabindex="1">
@@ -514,7 +514,7 @@ limitations under the License.
 							<aside class="popupAlertmsg japaneseFont" id="popupBoxErrorMsg"></aside>
 						</span>
 					</div>
-					<div id="dvBoxName" class="lblElement japaneseFont"> URLは、識別するためにスキーマ</div>
+					<div id="dvBoxName" class="lblElement japaneseFont"> URL縺ｯ縲∬ｭ伜挨縺吶ｋ縺溘ａ縺ｫ繧ｹ繧ｭ繝ｼ繝�/div>
 					<div class="positionTopDiv">
 						<div id="dvTextSchemaURL" class=" ">
 							<input id="txtSchemaURL" type="text" class="bigTextBox " tabindex="2">
@@ -534,10 +534,10 @@ limitations under the License.
 							<label style="cursor:pointer;margin-left: -16px" for="chkCreateProfileBox"
 								class="customChkbox checkBoxLabel" id="customLblChkBox"></label>
 						</div>
-						<div class="chkBoxCreateElement checkBoxElementLabel japaneseFont">プロファイルの作成</div>
+						<div class="chkBoxCreateElement checkBoxElementLabel japaneseFont">繝励Ο繝輔ぃ繧､繝ｫ縺ｮ菴懈�</div>
 					</section>
 					<section id="sectionRHSMainElements">
-					<div id="dvDisplayName" class="lblElement japaneseFont">表示名</div>
+					<div id="dvDisplayName" class="lblElement japaneseFont">陦ｨ遉ｺ蜷�/div>
 					<div class="positionTopDiv">
 						<div id="dvTextDisplayName" class=" ">
 							<input id="txtDisplayNameBox" type="text" class="bigTextBox " tabindex="4">
@@ -546,7 +546,7 @@ limitations under the License.
 							<aside class="popupAlertmsg RHSAlertMsg japaneseFont" id="boxDisplayNameErrorMsg"></aside>
 						</span>
 					</div>
-					<div id="dvDescription" class="lblElement japaneseFont">説明</div>
+					<div id="dvDescription" class="lblElement japaneseFont">隱ｬ譏�/div>
 					<div class="positionTopDiv">
 						<div id="dvTextDisplayName" class="">
 						<textarea name="" cols="" rows="" class="bigTextBox bigTextBoxHeight entityGridTbody" id="txtDescriptionBox" tabindex="5"></textarea>
@@ -556,7 +556,7 @@ limitations under the License.
 						</span>
 					</div>
 					<div id="dvApplicationImage"
-						class="widthApplicationImage lblElement japaneseFont">アプリケーションイメージ</div>
+						class="widthApplicationImage lblElement japaneseFont">繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ繧､繝｡繝ｼ繧ｸ</div>
 					<section class="positionImageSection" id="imgSection">
 						<div class="floatLeft" id="dvBoxProfileImage">
 								<table >
@@ -573,11 +573,11 @@ limitations under the License.
 							<div id="dvBrowseButtonSection" class="browseButtonSection" >
 								<div>
 									<label class="itemInfo positionImageInfo"
-										id="lblNoFileSelected japaneseFont">選択されていませんファイル </label>
+										id="lblNoFileSelected japaneseFont">驕ｸ謚槭＆繧後※縺�∪縺帙ｓ繝輔ぃ繧､繝ｫ </label>
 								</div>
 								<div class="browseButton">
 									<div id="dvBrowse" class="file-input-wrapper">
-										<button title="" id="btnBrowse" style="cursor: pointer" class="btn-file-input btnDisabled japaneseFont">ブラウズ</button>
+										<button title="" id="btnBrowse" style="cursor: pointer" class="btn-file-input btnDisabled japaneseFont">繝悶Λ繧ｦ繧ｺ</button>
 										<input style="cursor: default" title=" " onfocus="divOnFocusBrowse();" onblur="divOnBlurBrowse();"
 											onchange="selectFile(this,'popupBoxImageErrorMsg','idImgFileBox','#imgBoxProfile','#lblNoFileSelected','#figBoxProfile');"
 											id="idImgFileBox" type="file" name="file" tabindex="6"/>
@@ -587,7 +587,7 @@ limitations under the License.
 						</section>
 					<section class="positionTopDiv positionApplicationImageSection">
 						<div>
-							<label class="floatLeft itemInfo japaneseFont" id="imageInfo" style="width: 294px"> あなたは、サイズmaxの任意の画像をアップロードすることができます。JPEG / PNG形式の50キロバイト、次元180px X180 PX
+							<label class="floatLeft itemInfo japaneseFont" id="imageInfo" style="width: 294px"> 縺ゅ↑縺溘�縲√し繧､繧ｺmax縺ｮ莉ｻ諢上�逕ｻ蜒上ｒ繧｢繝��繝ｭ繝ｼ繝峨☆繧九％縺ｨ縺後〒縺阪∪縺吶�JPEG / PNG蠖｢蠑上�50繧ｭ繝ｭ繝舌う繝医�谺｡蜈�80px X180 PX
 							</label>
 						</div>
 						<span class="popupAlertArea">
@@ -603,12 +603,12 @@ limitations under the License.
 			<section class="positionButtons">
 				<div id="dvCreate" class="dvCreate japaneseFont">
 					<input type="button" id="btnCreateInstallBox" class="btnClose japaneseFont"
-						value="作る" tabindex="8">
+						value="菴懊ｋ" tabindex="8">
 				</div>
 				<div id="dvCancel" class="dvCreate japaneseFont">
 					<input type="button" id="btnCancel"
 						onclick="closeCreateBoxPopUp('#createBoxPopUpModalWindow')"
-						class="cancelBtn japaneseFont" value="キャンセル" tabindex="7">
+						class="cancelBtn japaneseFont" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="7">
 				</div>
 			</section>
 			<!-- Button Section Ends -->

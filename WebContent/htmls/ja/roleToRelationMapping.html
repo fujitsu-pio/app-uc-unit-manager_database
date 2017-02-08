@@ -22,7 +22,7 @@ limitations under the License.
 <script type="text/javascript" src="../../js/commonFunctions.js"></script>
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/jquery.modalbox.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/roleToRelationMapping.js"></script>
 </head>
@@ -32,16 +32,16 @@ limitations under the License.
 
 			<div class="divAssignEntityTxtBox" style="width: 241px;">
 			<select id="ddlRelation" class="dropDownBig" onclick="objRoleToRelationMapping.enableDisableAssignBtn();" tabindex="-1">
-							<option>セレクトの関係（BOX）</option>
+							<option>繧ｻ繝ｬ繧ｯ繝医�髢｢菫ゑｼ�OX��/option>
 						</select>
 				<!-- <input type="text" class="bigTextBox assignEntityTxtBox"
 					id="txtAssignEntity"> -->
 			</div>
 			<div class="divAssignEntityBtn" style="margin-left: 16px;">
-				<input type="button" class="assignBtn assignBtnDisabled japaneseFont" id="assignRelationBtn" value="割り当てる" style="margin-left: -25px;line-height: 23px;width: 108px;" onclick="uRelRoleMapping.linkRoleAndRelation();" tabindex="-1" disabled="disabled">
+				<input type="button" class="assignBtn assignBtnDisabled japaneseFont" id="assignRelationBtn" value="蜑ｲ繧雁ｽ薙※繧� style="margin-left: -25px;line-height: 23px;width: 108px;" onclick="uRelRoleMapping.linkRoleAndRelation();" tabindex="-1" disabled="disabled">
 			</div>
 			<div class="divDeleteIcon divDeleteAssignEntityIcon">
-				<input type="button" class="deleteIconDisabled" id="btnDeleteAssignRoleRelation" onclick="uRelRoleMapping.openMappingPopUp();" tabindex="-1" title="削除">
+				<input type="button" class="deleteIconDisabled" id="btnDeleteAssignRoleRelation" onclick="uRelRoleMapping.openMappingPopUp();" tabindex="-1" title="蜑企勁">
 			</div>
 
 		</div>
@@ -53,19 +53,19 @@ limitations under the License.
 		</div>
 		<div class="rightSubHeading">
 			<div class="sortWrapper">
-				<label class="sortText japaneseFont" style="margin-top: 5px;">日付で並べ替え</label>
+				<label class="sortText japaneseFont" style="margin-top: 5px;">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/label>
 				<div id="arrow" class="downArrow assignEntityDownArrow"></div>
 			</div>
 			<div class="paginationWrapper" style="margin-top: 3px;">
 				<div class="recordCount" id="recordCount_assignRoleTab"></div>
 				<div class="paginationIcons">
 					<div class="leftPagination">
-						<div class="firstPageDisabled" id="firstPage_assignRoleTab" title="最初"></div>
-						<div class="prevPageDisabled" id="prevPage_assignRoleTab" title="前"></div>
+						<div class="firstPageDisabled" id="firstPage_assignRoleTab" title="譛��"></div>
+						<div class="prevPageDisabled" id="prevPage_assignRoleTab" title="蜑�></div>
 					</div>
 					<div class="rightPagination">
-						<div class="nextPageDisabled" id="nextPage_assignRoleTab" title="次"></div>
-						<div class="lastPageDisabled" id="lastPage_assignRoleTab" title="ラスト"></div>
+						<div class="nextPageDisabled" id="nextPage_assignRoleTab" title="谺｡"></div>
+						<div class="lastPageDisabled" id="lastPage_assignRoleTab" title="繝ｩ繧ｹ繝�></div>
 					</div>
 					<div class="rightPagination"></div>
 				</div>
@@ -80,7 +80,7 @@ limitations under the License.
 				<tr>
 					<th class="col1"><input type='checkbox'  id='checkAllRoleRelationAssign' onclick='uRelRoleMapping.checkAllSelect(this)' class='checkBox cursorHand regular-checkbox big-checkbox'/><label
 							for='checkAllRoleRelationAssign' class='checkBoxLabel'></label></th>
-					<th class="col2 japaneseFont">関係</th>
+					<th class="col2 japaneseFont">髢｢菫�/th>
 					<th class="col3 japaneseFont">Box</th>
 				</tr>
 				</thead>
@@ -107,19 +107,19 @@ limitations under the License.
 			style="display: block; height: 238px; width: 528px; background: #ffffff"
 			id="roleRelationMultipleDeleteDialogBox">
 			<div id="dvCloseIcon" class="crossDeletePropIcon"
-				onclick="closeEntityModal('#roleRelationMultipleDeleteModalWindow');" tabindex="3" title="クローズ"></div>
+				onclick="closeEntityModal('#roleRelationMultipleDeleteModalWindow');" tabindex="3" title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 			<div class="sessionExpiryDiv" id="dvAccessheader">
 				<label class="sessionExpiredPopUpHeading japaneseFont">
-					削除関係割り当て（S）</label>
+					蜑企勁髢｢菫ょ牡繧雁ｽ薙※����/label>
 			</div>
 			<div class="sessionExpiredLabel" style="margin-top: 32px;margin-bottom: 54px;">
-				<label class="japaneseFont">選択したリレーション割り当て（複数可）を削除しますか？</label>
+				<label class="japaneseFont">驕ｸ謚槭＠縺溘Μ繝ｬ繝ｼ繧ｷ繝ｧ繝ｳ蜑ｲ繧雁ｽ薙※�郁､�焚蜿ｯ�峨ｒ蜑企勁縺励∪縺吶°��/label>
 			</div>
 			<div id="dvClose" class="sessionPopUpCloseSection">
-				<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont" id="btnCancelRoleToRelationAssign"
+				<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont" id="btnCancelRoleToRelationAssign"
 					onclick="closeEntityModal('#roleRelationMultipleDeleteModalWindow');" tabindex="1">
 				<input type="button" class="btnSavePopup japaneseFont"
-					onclick="uRelRoleMapping.delRoleRelationMapping();" value="削除"
+					onclick="uRelRoleMapping.delRoleRelationMapping();" value="蜑企勁"
 					style="margin-right: 0px;" tabindex="2">
 			</div>
 		</div>

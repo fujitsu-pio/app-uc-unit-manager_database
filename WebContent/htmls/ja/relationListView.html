@@ -18,7 +18,7 @@ limitations under the License.
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script src="../../js/uRelation.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
@@ -27,26 +27,26 @@ limitations under the License.
 	<div class="boxOperationSection">
 		<div class="leftSubHeading">
 			<div class="divList">
-				<label class="lblList japaneseFont">関係リスト</label>
+				<label class="lblList japaneseFont">髢｢菫ゅΜ繧ｹ繝�/label>
 			</div>
 
 			<div id="createEntityWrapper" class="createRelationWrapper"
 				style="width: 157px !important;"
 				onclick="openCreateEntityModal('#modalCreateRel','#dialogCreateRel', 'txtRelName');">
 				<div id="createIcon" class="createIcon"></div>
-				<div id="createText" class="createText japaneseFont">リレーションを作成</div>
+				<div id="createText" class="createText japaneseFont">繝ｪ繝ｬ繝ｼ繧ｷ繝ｧ繝ｳ繧剃ｽ懈�</div>
 			</div>
 
 			<div class="divEditIcon">
 				<input type="button" id="iconEditRelation"
 					onclick="openCreateEntityModal('#relationEditModalWindow','#relationEditDialogBox', 'txtEditRelationName');"
-					class="editIconDisabled" tabindex="-1" title="編集"
+					class="editIconDisabled" tabindex="-1" title="邱ｨ髮�
 					disabled="disabled">
 			</div>
 
 			<div class="divDeleteIcon">
 				<input type="button" class="deleteIconDisabled"
-					id="btnDeleteRelation" tabindex="-1" title="削除">
+					id="btnDeleteRelation" tabindex="-1" title="蜑企勁">
 			</div>
 		</div>
 		<div id="relationMessageBlock" class="crudOperationSuccessWrapper"
@@ -58,7 +58,7 @@ limitations under the License.
 		</div>
 		<div class="rightSubHeading">
 			<div class="sortWrapper">
-				<label class="sortText japaneseFont">日付で並べ替え</label>
+				<label class="sortText japaneseFont">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/label>
 				<div class="downArrow"></div>
 			</div>
 			<div class="paginationWrapper">
@@ -66,13 +66,13 @@ limitations under the License.
 				<div class="paginationIcons">
 					<div class="leftPagination">
 						<div class="firstPageDisabled" id="firstPage_Relation"
-							title="最初"></div>
+							title="譛��"></div>
 						<div class="prevPageDisabled" id="prevPage_Relation"
-							title="前"></div>
+							title="蜑�></div>
 					</div>
 					<div class="rightPagination">
-						<div class="nextPageDisabled" id="nextPage_Relation" title="次"></div>
-						<div class="lastPageDisabled" id="lastPage_Relation" title="ラスト"></div>
+						<div class="nextPageDisabled" id="nextPage_Relation" title="谺｡"></div>
+						<div class="lastPageDisabled" id="lastPage_Relation" title="繝ｩ繧ｹ繝�></div>
 					</div>
 					<div class="rightPagination"></div>
 				</div>
@@ -89,11 +89,11 @@ limitations under the License.
 						onclick='objRelation.checkAllSelect(this);'
 						class='checkBox cursorHand regular-checkbox big-checkbox' /><label
 						for="chkSelectall" class="checkBoxLabel"></label></th>
-					<th class="col2 japaneseFont">名前</th>
+					<th class="col2 japaneseFont">蜷榊燕</th>
 					<th class="col3 japaneseFont">Box</th>
-					<th class="col4 japaneseFont">作成された</th>
-					<th class="col5 japaneseFont">更新日時</th>
-					<th class="col6 japaneseFont">役割</th>
+					<th class="col4 japaneseFont">菴懈�縺輔ｌ縺�/th>
+					<th class="col5 japaneseFont">譖ｴ譁ｰ譌･譎�/th>
+					<th class="col6 japaneseFont">蠖ｹ蜑ｲ</th>
 					<!-- <th class="col6"></th> -->
 				</tr>
 			</thead>
@@ -108,17 +108,17 @@ limitations under the License.
 			id="dialogCreateRel">
 			<div id="dvCloseIcon" class="crossDeletePropIcon"
 				onclick="closeEntityModal('#modalCreateRel');" tabindex="7"
-				title="クローズ"></div>
+				title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 			<div class="accessTokenDiv" style="padding-bottom: 15px"
 				id="dvAccessheader">
-				<label class="AccessTokenHeading japaneseFont">作る 関係</label>
+				<label class="AccessTokenHeading japaneseFont">菴懊ｋ 髢｢菫�/label>
 			</div>
 			<div>
 				<table cellpadding='0' cellspacing='0' border='0'
 					class="popupcreatePropertyTable">
 					<tr>
 						<td style="width: 336px"><div style="margin-bottom: 10px;">
-								<label class="lblElement japaneseFont">* 名前</label>
+								<label class="lblElement japaneseFont">* 蜷榊燕</label>
 							</div>
 							<div>
 								<input type="text" class="bigTextBox propertyPopUpTextBox"
@@ -137,13 +137,13 @@ limitations under the License.
 									onblur="checkboxBlurOnRelation();" /><label
 									for="chkBoxAssignRoleToRelation" class="checkBoxLabel"
 									style="margin-left: -13px" id="lblAssignCreateRelation"></label><label
-									class="lblElement assignChkBoxLabel japaneseFont">割り当てる 役割</label>
+									class="lblElement assignChkBoxLabel japaneseFont">蜑ｲ繧雁ｽ薙※繧�蠖ｹ蜑ｲ</label>
 							</div></td>
 					</tr>
 					<tr>
 						<td style="width: 336px"><div style="margin-bottom: 10px;">
-								<label class="lblElement japaneseFont">* ボックス どこに この 関係 ある
-									中古</label>
+								<label class="lblElement japaneseFont">* 繝懊ャ繧ｯ繧ｹ 縺ｩ縺薙↓ 縺薙� 髢｢菫�縺ゅｋ
+									荳ｭ蜿､</label>
 							</div>
 							<div class="customSelectIconAssociation"
 								style="background-position-x: 81.5%">
@@ -156,7 +156,7 @@ limitations under the License.
 						</span></td>
 
 						<td><div style="margin-bottom: 10px; margin-top: -70px;">
-								<label class="lblElement japaneseFont">役割</label>
+								<label class="lblElement japaneseFont">蠖ｹ蜑ｲ</label>
 							</div>
 							<div>
 								<div class="customSelectIconAssociation"
@@ -179,13 +179,13 @@ limitations under the License.
 			<section class="positionButtons">
 				<div id="dvCreate" class="dvCreate japaneseFont">
 					<input type="button" id="relCreateBtn" class="btnClose"
-						value="作る" onclick="objRelation.createRelation();"
+						value="菴懊ｋ" onclick="objRelation.createRelation();"
 						tabindex="6">
 				</div>
 				<div id="dvCancel" class="dvCreate">
 					<input type="button" id=""
 						onclick="closeEntityModal('#modalCreateRel')" class="cancelBtn japaneseFont"
-						value="キャンセル" tabindex="5">
+						value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="5">
 				</div>
 			</section>
 			<!-- Button Section Ends -->
@@ -214,25 +214,25 @@ limitations under the License.
 			<div class="boxPopupWrapper" id="deleteRelationpopup">
 				<div id="dvCloseIcon" class="popupCloseIcon"
 					onclick="closeEntityModal('#multipleDeleteModalWindow');"
-					tabindex="3" title="クローズ"></div>
+					tabindex="3" title="繧ｯ繝ｭ繝ｼ繧ｺ"></div>
 
 				<div class="sessionExpiryDiv" style="padding-top: 30px">
-					<label class="sessionExpiredPopUpHeading japaneseFont"> 削除
-						関係(s)</label>
+					<label class="sessionExpiredPopUpHeading japaneseFont"> 蜑企勁
+						髢｢菫�s)</label>
 				</div>
 
 				<div class="sessionExpiredLabel japaneseFont"
 					style="margin-top: 44px; height: 34px">
-					<div style="text-align: left;">やる あなた 欲しい へ 削除する 選択した
-						関係(s) ?</div>
+					<div style="text-align: left;">繧�ｋ 縺ゅ↑縺�谺ｲ縺励＞ 縺ｸ 蜑企勁縺吶ｋ 驕ｸ謚槭＠縺�
+						髢｢菫�s) ?</div>
 
 				</div>
 				<div id="relationDivClose" class="sessionPopUpCloseSection">
-					<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+					<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 						onclick="objRelation.closeRelation();" tabindex="1"
 						id="btnCancelDeleteRelation"> <input type="button"
 						class="btnSavePopup japaneseFont"
-						onclick="objRelation.deleteMultipleRelations();" value="削除"
+						onclick="objRelation.deleteMultipleRelations();" value="蜑企勁"
 						style="margin-right: 0px;" tabindex="2">
 				</div>
 			</div>
@@ -249,16 +249,16 @@ limitations under the License.
 				<div style="height: 34px; width: 474px">
 					<a class="popupCloseIcon"
 						onclick="objRelation.closeEditRelationPopUp();" tabindex="5"
-						title="クローズ"></a>
+						title="繧ｯ繝ｭ繝ｼ繧ｺ"></a>
 				</div>
 				<div class="divPopupInner">
-					<label class="AccessTokenHeading japaneseFont">編集 関係</label>
+					<label class="AccessTokenHeading japaneseFont">邱ｨ髮�髢｢菫�/label>
 					<section class="sectionContent"
 						style="height: 170px; width: 320px; margin-left: 58px;">
 						<form onsubmit="return false;">
 							<table>
 								<tr>
-									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">名前</label></td>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">蜷榊燕</label></td>
 								</tr>
 								<tr>
 									<td><input type="text" id="txtEditRelationName"
@@ -271,7 +271,7 @@ limitations under the License.
 								</tr>
 								<tr>
 									<td id="idselectBox"><div style="margin-bottom: 10px;">
-											<label class="lblElement japaneseFont">この関係を使用しているボックス</label>
+											<label class="lblElement japaneseFont">縺薙�髢｢菫ゅｒ菴ｿ逕ｨ縺励※縺�ｋ繝懊ャ繧ｯ繧ｹ</label>
 										</div>
 										<div class="customSelectIconAssociation"
 											style="background-position-x: 79.5%">
@@ -286,9 +286,9 @@ limitations under the License.
 					</section>
 					<section style="float: right; margin: 15px 0px 0px 0px;"
 						class="divLogoutBtn">
-						<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+						<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 							onclick="objRelation.closeEditRelationPopUp();" tabindex="3">
-						<input type="button" value="保存" class="btnSavePopup japaneseFont"
+						<input type="button" value="菫晏ｭ� class="btnSavePopup japaneseFont"
 							id="btnEditRole" onclick="objRelation.updateRelation();"
 							tabindex="4">
 					</section>

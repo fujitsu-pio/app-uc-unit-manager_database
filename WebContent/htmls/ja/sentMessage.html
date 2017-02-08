@@ -18,7 +18,7 @@ limitations under the License.
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../js/sentMessage.js"></script>
@@ -29,10 +29,10 @@ limitations under the License.
 	<div class="boxOperationSection">
 		<div class="leftSubHeading">
 			<div class="divList">
-				<label class="lblList japaneseFont">送信されたメッセージ·リスト</label>
+				<label class="lblList japaneseFont">騾∽ｿ｡縺輔ｌ縺溘Γ繝�そ繝ｼ繧ｸﾂｷ繝ｪ繧ｹ繝�/label>
 			</div>
 				<div class="divDeleteIcon">
-				<input type="button" class="deleteIconDisabled" id="btnDeleteSentMessage" title="削除" disabled="disabled">
+				<input type="button" class="deleteIconDisabled" id="btnDeleteSentMessage" title="蜑企勁" disabled="disabled">
 			</div>
 		</div>
 				<div id="rowCountSentMessageBlock" class="crudOperationSuccessWrapper" style="display:none;float: left;position:absolute;margin-top: 6px;">
@@ -50,23 +50,23 @@ limitations under the License.
 		</div>
 		<div class="rightSubHeading">
 			<div class="odataModeWrapper">
-				<div style="margin-top:0px;" class="odataGridIconSelected" id="btnGridSentMessage" title="グリッド"></div>
+				<div style="margin-top:0px;" class="odataGridIconSelected" id="btnGridSentMessage" title="繧ｰ繝ｪ繝�ラ"></div>
 				<div style="margin-top:0px;" class="odataRawIconUnselected" id="btnRawSentMessage"></div>
 			</div>
 			<div style="margin-top: 0px;" class="sortWrapperWebDav sortWrapperOData" id="sortWrapperOData">
-				<div class="sortTextWebDav japaneseFont" id="sortTextOData">日付で並べ替え</div>
+				<div class="sortTextWebDav japaneseFont" id="sortTextOData">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/div>
 				<div class="sortdownArrowWebDav" id="sortdownArrowOData"></div>
 			</div> 
 			<div class="paginationWrapper">
 				<div class="recordCount" id="recordCount_SentMessage"></div>
 				<div class="paginationIcons">
 					<div class="leftPagination">
-						<div class="firstPageDisabled" id="firstPage_SentMessage" title="最初"></div>
-						<div class="prevPageDisabled" id="prevPage_SentMessage" title="前"></div>
+						<div class="firstPageDisabled" id="firstPage_SentMessage" title="譛��"></div>
+						<div class="prevPageDisabled" id="prevPage_SentMessage" title="蜑�></div>
 					</div>
 					<div class="rightPagination">
-						<div class="nextPageDisabled" id="nextPage_SentMessage" title="次"></div>
-						<div class="lastPageDisabled" id="lastPage_SentMessage" title="ラスト"></div>
+						<div class="nextPageDisabled" id="nextPage_SentMessage" title="谺｡"></div>
+						<div class="lastPageDisabled" id="lastPage_SentMessage" title="繝ｩ繧ｹ繝�></div>
 					</div>
 					<div class="rightPagination"></div>
 				</div>
@@ -76,7 +76,7 @@ limitations under the License.
 	<div id="dvSentMessage" class="dvReceivedMessage" >
 		<div style="width:100%;margin-left: 0px;" class="odataQueryWrapper">
 			<input type="text" placeholder="Type your query" class="txtBoxQuery" id="txtBoxQuerySentMessage" tabindex="-1"/>
-			<input type="button" value="行く" class="btnGo japaneseFont" id="btnGoSentMessage" tabindex="-1"/>
+			<input type="button" value="陦後￥" class="btnGo japaneseFont" id="btnGoSentMessage" tabindex="-1"/>
 			<div id="dvSentErrorMessage" style="display: none">
 				<span class="spanPopupErrorMessageCommon" style="margin-bottom: 2px;margin-top: 2px;height: auto;">
 				<aside class="asidePopupErrorMessageCommon japaneseFont" id="errorSentMsgQuery"></aside>
@@ -94,31 +94,31 @@ limitations under the License.
 				<th class="largeCol"><div 
 						class="entityHeadText">ID</div></th>
 				<th class="mediumSpacedCol"><div 
-						class="entityHeadText japaneseFont">作成された</div></th>
+						class="entityHeadText japaneseFont">菴懈�縺輔ｌ縺�/div></th>
 			<th class="mediumSpacedCol"><div 
-						class="entityHeadText japaneseFont">更新日時</div></th>
+						class="entityHeadText japaneseFont">譖ｴ譁ｰ譌･譎�/div></th>
 				<th class="largeCol"><div 
-						class="entityHeadText">へ</div></th>
+						class="entityHeadText">縺ｸ</div></th>
 				<th class="mediumSpacedCol"><div 
 						class="entityHeadText">Box.Name</div></th>
 				<th class="mediumSpacedCol"><div 
-						class="entityHeadText japaneseFont">メタデータのEtag</div></th>
+						class="entityHeadText japaneseFont">繝｡繧ｿ繝��繧ｿ縺ｮEtag</div></th>
 						<th class="mediumSpacedCol"><div 
-						class="entityHeadText japaneseFont">メタデータの型</div></th>
+						class="entityHeadText japaneseFont">繝｡繧ｿ繝��繧ｿ縺ｮ蝙�/div></th>
 				<th class="mediumSpacedCol"><div 
-						class="entityHeadText japaneseFont">メタデータ-URI</div></th>
+						class="entityHeadText japaneseFont">繝｡繧ｿ繝��繧ｿ-URI</div></th>
 				<th class="smallCol"><div 
 						class="entityHeadText">InReplyTo</div></th>
 						<th class="mediumSpacedCol"><div 
 						class="entityHeadText">ToRelation</div></th>
 				<th class="mediumSpacedCol"><div 
-						class="entityHeadText japaneseFont">タイプ</div></th>
+						class="entityHeadText japaneseFont">繧ｿ繧､繝�/div></th>
 				<th class="mediumSpacedCol"><div 
-						class="entityHeadText japaneseFont">タイトル</div></th>
+						class="entityHeadText japaneseFont">繧ｿ繧､繝医Ν</div></th>
 				<th class="largeCol"><div 
-						class="entityHeadText japaneseFont">ボディ</div></th>
+						class="entityHeadText japaneseFont">繝懊ョ繧｣</div></th>
 				<th class="smallestCol"><div 
-						class="entityHeadText japaneseFont">優先</div></th>
+						class="entityHeadText japaneseFont">蜆ｪ蜈�/div></th>
 				<th class="largeCol"><div 
 						class="entityHeadText">RequestRelation</div></th>
 				<th class="largeCol"><div class="entityHeadText">RequestRelationTarget</div></th>
@@ -149,10 +149,10 @@ limitations under the License.
 			<div id="" class="closeIconDiv">
 				<a href="#" id="modalbox-close" class="popupCloseIcon"
 					onclick="closeEntityModal('#sentMessageDetailPopUpModalWindow');"
-					style="margin: 0px;" tabindex="3" title="クローズ"></a>
+					style="margin: 0px;" tabindex="3" title="繧ｯ繝ｭ繝ｼ繧ｺ"></a>
 			</div>
 			<div class="accessTokenDiv">
-				<label class="AccessTokenHeading japaneseFont"> 送信済み メッセージ 詳細</label>
+				<label class="AccessTokenHeading japaneseFont"> 騾∽ｿ｡貂医∩ 繝｡繝�そ繝ｼ繧ｸ 隧ｳ邏ｰ</label>
 			</div>
 			<div class="dvTextArea">
 				<div class="outerDvTextArea" style="height: 312px;">
@@ -164,7 +164,7 @@ limitations under the License.
 				</div>
 			</div>
 			<div class="dvClose">
-				<input type="button" id="btnClose" class="btnClose japaneseFont" style="margin-top: 11px;" onclick="closeEntityModal('#sentMessageDetailPopUpModalWindow');" value="クローズ" tabindex="2">
+				<input type="button" id="btnClose" class="btnClose japaneseFont" style="margin-top: 11px;" onclick="closeEntityModal('#sentMessageDetailPopUpModalWindow');" value="繧ｯ繝ｭ繝ｼ繧ｺ" tabindex="2">
 			</div>
 		</div>
 	</div>
@@ -178,23 +178,23 @@ limitations under the License.
 			id="sentMessageDeleteDialogBox">
 			<section class="headerSection">
 				<div id="dvCloseIcon" class="closeIconDiv" style="padding: 0px">
-					<a href="#" title="クローズ" id="modalbox-close"
+					<a href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close"
 						class="popupCloseIcon"
 						onclick="closeEntityModal('#sentMessageDeleteModalWindow');" tabindex="3"></a>
 				</div>
 				<div class="sessionExpiryDiv" id="dvAccessheader">
 					<label class="sessionExpiredPopUpHeading japaneseFont"
-						id="lblHeadingAccessToken"> 削除 送信済み メッセージ</label>
+						id="lblHeadingAccessToken"> 蜑企勁 騾∽ｿ｡貂医∩ 繝｡繝�そ繝ｼ繧ｸ</label>
 				</div>
 			</section>
 			<div class="sessionExpiredLabel japaneseFont">
-				<label>やる あなた 欲しい へ 削除する 選択した メッセージ ? </label>
+				<label>繧�ｋ 縺ゅ↑縺�谺ｲ縺励＞ 縺ｸ 蜑企勁縺吶ｋ 驕ｸ謚槭＠縺�繝｡繝�そ繝ｼ繧ｸ ? </label>
 			</div>
 			<div id="dvClose" class="sessionPopUpCloseSection">
-				<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+				<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 					onclick="closeEntityModal('#sentMessageDeleteModalWindow');" tabindex="1" id="btnCancelSentMessage">
 				<input type="button" id="btnSendMessageDelete" class="btnSavePopup"
-					onclick="" value="削除" style="margin-right: 0px" tabindex="2">
+					onclick="" value="蜑企勁" style="margin-right: 0px" tabindex="2">
 			</div>
 		</div>
 	</div>

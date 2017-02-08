@@ -18,7 +18,7 @@ limitations under the License.
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../js/uRole.js"></script>
@@ -29,21 +29,21 @@ limitations under the License.
 	<div class="boxOperationSection">
 		<div class="leftSubHeading">
 			<div class="divList">
-				<label class="lblList japaneseFont">役割リスト</label>
+				<label class="lblList japaneseFont">蠖ｹ蜑ｲ繝ｪ繧ｹ繝�/label>
 			</div>
 
 			<div id="createEntityWrapper" class="createRoleWrapper" style="width:118px!important;"
 				onclick="openCreateEntityModal('#createRoleModal','#createRoleDialog', 'roleName');">
 				<div id="createIcon" class="createIcon"></div>
-				<div id="createText" class="createText japaneseFont">ロールの作成</div>
+				<div id="createText" class="createText japaneseFont">繝ｭ繝ｼ繝ｫ縺ｮ菴懈�</div>
 			</div>
 
 			<div class="divEditIcon">
-				<input id="btnEditRoleIcon" onclick="openCreateEntityModal('#roleEditModalWindow','#roleEditDialogBox', 'txtEditRoleName');" type="button" class="editIconDisabled" tabindex="-1" title="編集" disabled="disabled">
+				<input id="btnEditRoleIcon" onclick="openCreateEntityModal('#roleEditModalWindow','#roleEditDialogBox', 'txtEditRoleName');" type="button" class="editIconDisabled" tabindex="-1" title="邱ｨ髮� disabled="disabled">
 			</div>
 			<div class="divDeleteIcon">
 				<input type="button" class="deleteIconDisabled" id="btnDeleteRole"
-					onclick="objRole.openPopUpWindow('#multipleDeleteDialogBox','#multipleDeleteModalWindow');" tabindex="-1" title="削除">
+					onclick="objRole.openPopUpWindow('#multipleDeleteDialogBox','#multipleDeleteModalWindow');" tabindex="-1" title="蜑企勁">
 			</div>
 		</div>
 		<div id="roleMessageBlock" class="crudOperationSuccessWrapper"
@@ -55,19 +55,19 @@ limitations under the License.
 		</div>
 		<div class="rightSubHeading">
 			<div class="sortWrapper">
-				<label class="sortText japaneseFont">日付で並べ替え</label>
+				<label class="sortText japaneseFont">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/label>
 				<div class="downArrow"></div>
 			</div>
 			<div class="paginationWrapper">
 				<div class="recordCount" id="recordCount_Role"></div>
 				<div class="paginationIcons">
 					<div class="leftPagination">
-						<div class="firstPageDisabled" id="firstPage_Role" title="最初"></div>
-						<div class="prevPageDisabled" id="prevPage_Role" title="前"></div>
+						<div class="firstPageDisabled" id="firstPage_Role" title="譛��"></div>
+						<div class="prevPageDisabled" id="prevPage_Role" title="蜑�></div>
 					</div>
 					<div class="rightPagination">
-						<div class="nextPageDisabled" id="nextPage_Role" title="次"></div>
-						<div class="lastPageDisabled" id="lastPage_Role" title="ラスト"></div>
+						<div class="nextPageDisabled" id="nextPage_Role" title="谺｡"></div>
+						<div class="lastPageDisabled" id="lastPage_Role" title="繝ｩ繧ｹ繝�></div>
 					</div>
 					<div class="rightPagination"></div>
 				</div>
@@ -84,10 +84,10 @@ limitations under the License.
 							onclick='objRole.checkAll(this);'
 							class='checkBox cursorHand regular-checkbox big-checkbox' /><label
 							for="chkSelectall" class="checkBoxLabel"></label></th>
-						<th class='col2 japaneseFont'>名前</th>
+						<th class='col2 japaneseFont'>蜷榊燕</th>
 						<th class='col3 japaneseFont'>Box</th>
-						<th class='col4 japaneseFont'>作成された</th>
-						<th class='col4 japaneseFont'>更新日時</th>
+						<th class='col4 japaneseFont'>菴懈�縺輔ｌ縺�/th>
+						<th class='col4 japaneseFont'>譖ｴ譁ｰ譌･譎�/th>
 					</tr>
 				</thead>
 				<tbody id='entityGridTbody' class='entityGridTbody'></tbody>
@@ -147,16 +147,16 @@ limitations under the License.
 			id="createRoleDialog">
 			<div style="height: 300px; width: 474px;">
 				<div style="height: 34px; width: 474px">
-					<a class="popupCloseIcon" onclick="closeCreateRole();" tabindex="5" title="クローズ"></a>
+					<a class="popupCloseIcon" onclick="closeCreateRole();" tabindex="5" title="繧ｯ繝ｭ繝ｼ繧ｺ"></a>
 				</div>
 				<div class="divPopupInner">
-					<label class="AccessTokenHeading japaneseFont">ロールの作成</label>
+					<label class="AccessTokenHeading japaneseFont">繝ｭ繝ｼ繝ｫ縺ｮ菴懈�</label>
 					<section class="sectionContent"
 						style="height: 170px; width: 320px; margin-left: 58px;">
 						<form onsubmit="return false;">
 							<table>
 								<tr>
-									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">*名前</label></td>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">*蜷榊燕</label></td>
 								</tr>
 								<tr>
 									<td><input type="text" id="roleName"
@@ -169,7 +169,7 @@ limitations under the License.
 								<tr>
 								<td id="idselectBox"><div
 											style="margin-bottom: 10px;">
-											<label class="lblElement japaneseFont">*この役割が使用されているボックス</label>
+											<label class="lblElement japaneseFont">*縺薙�蠖ｹ蜑ｲ縺御ｽｿ逕ｨ縺輔ｌ縺ｦ縺�ｋ繝懊ャ繧ｯ繧ｹ</label>
 										</div>
 										<div class="customSelectIconAssociation"
 											style="background-position-x: 79.5%">
@@ -185,9 +185,9 @@ limitations under the License.
 						</form>
 					</section>
 					<section style="float: right;margin: 15px 0px 0px 0px;" class="divLogoutBtn">
-						<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+						<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 							onclick="closeCreateRole();" tabindex="3"> <input type="button"
-							value="作る" class="btnSavePopup japaneseFont" id="" onclick="createRole();" tabindex="4">
+							value="菴懊ｋ" class="btnSavePopup japaneseFont" id="" onclick="createRole();" tabindex="4">
 					</section>
 				</div>
 			</div>
@@ -203,23 +203,23 @@ limitations under the License.
 			id="multipleDeleteDialogBox">
 			<section class="headerSection">
 				<div id="dvCloseIcon" class="closeIconDiv" style="padding: 0px">
-					<a href="#" title="クローズ" id="modalbox-close"
+					<a href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close"
 						class="popupCloseIcon"
 						onclick="closeEntityModal('#multipleDeleteModalWindow');" tabindex="3"></a>
 				</div>
 				<div class="sessionExpiryDiv" id="">
-					<label class="sessionExpiredPopUpHeading japaneseFont" id="lblHeadingCollection">削除
-						役割</label>
+					<label class="sessionExpiredPopUpHeading japaneseFont" id="lblHeadingCollection">蜑企勁
+						蠖ｹ蜑ｲ</label>
 				</div>
 			</section>
 			<div class="sessionExpiredLabel japaneseFont">
-				<label>やる あなた 欲しい へ 削除する 選択した 役割(s) ? </label>
+				<label>繧�ｋ 縺ゅ↑縺�谺ｲ縺励＞ 縺ｸ 蜑企勁縺吶ｋ 驕ｸ謚槭＠縺�蠖ｹ蜑ｲ(s) ? </label>
 			</div>
 			<div class="sessionPopUpCloseSection">
-				<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+				<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 					onclick="closeEntityModal('#multipleDeleteModalWindow');" tabindex="1" id="btnCancelRoleDelete">
 				<input type="button" id="" class="btnClose japaneseFont"
-					onclick="objRole.deleteMultipleRoles();" value="削除" tabindex="2">
+					onclick="objRole.deleteMultipleRoles();" value="蜑企勁" tabindex="2">
 			</div>
 		</div>
 	</div>
@@ -256,16 +256,16 @@ limitations under the License.
 			<div style="height: 300px; width: 474px;">
 				<div style="height: 34px; width: 474px">
 					<a class="popupCloseIcon"
-						onclick="closeEditRolePopUp('#roleEditModalWindow');" tabindex="5" title="クローズ"></a>
+						onclick="closeEditRolePopUp('#roleEditModalWindow');" tabindex="5" title="繧ｯ繝ｭ繝ｼ繧ｺ"></a>
 				</div>
 				<div class="divPopupInner">
-					<label class="AccessTokenHeading japaneseFont">編集 役割</label>
+					<label class="AccessTokenHeading japaneseFont">邱ｨ髮�蠖ｹ蜑ｲ</label>
 					<section class="sectionContent"
 						style="height: 170px; width: 320px; margin-left: 58px;">
 						<form onsubmit="return false;">
 							<table>
 								<tr>
-									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">名前</label></td>
+									<td style="padding-bottom: 5px;"><label class="lblElement japaneseFont">蜷榊燕</label></td>
 								</tr>
 								<tr>
 									<td><input type="text" id="txtEditRoleName"
@@ -278,8 +278,8 @@ limitations under the License.
 								</tr>
 								<tr>
 									<td id="idselectBox"><div style="margin-bottom: 10px;">
-											<label class="lblElement japaneseFont">ボックス どこに この 役割 ある
-												中古</label>
+											<label class="lblElement japaneseFont">繝懊ャ繧ｯ繧ｹ 縺ｩ縺薙↓ 縺薙� 蠖ｹ蜑ｲ 縺ゅｋ
+												荳ｭ蜿､</label>
 										</div>
 										<div class="customSelectIconAssociation"
 											style="background-position-x: 79.5%">
@@ -294,9 +294,9 @@ limitations under the License.
 					</section>
 					<section style="float: right; margin: 15px 0px 0px 0px;"
 						class="divLogoutBtn">
-						<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+						<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 							onclick="closeEditRolePopUp('#roleEditModalWindow');" tabindex="3"> <input type="button"
-							value="保存" class="btnSavePopup japaneseFont" id="btnEditRole" onclick="updateRole();" tabindex="4">
+							value="菫晏ｭ� class="btnSavePopup japaneseFont" id="btnEditRole" onclick="updateRole();" tabindex="4">
 					</section>
 				</div>
 			</div>

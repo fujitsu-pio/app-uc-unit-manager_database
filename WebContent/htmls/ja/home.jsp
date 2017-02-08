@@ -39,7 +39,7 @@ var jquery1_9_0 = jQuery.noConflict();
 <link href="../../css/japaneseStylesheet.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../../js/spin.js"></script>
 <script type="text/javascript" src="../../js/main/core/DaoConfig.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
 <!-- <script type="text/javascript" src="../../js/odataCommon.js"></script> -->

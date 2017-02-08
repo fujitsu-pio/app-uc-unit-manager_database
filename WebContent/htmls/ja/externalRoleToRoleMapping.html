@@ -25,7 +25,7 @@ limitations under the License.
 <script type="text/javascript" src="../../js/commonFunctions.js"></script>
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <script type="text/javascript" src="../../js/jquery.modalbox.js"></script>
-<script type="text/javascript" src="../../js/main/core/DcContext.js"></script>
+<script type="text/javascript" src="../../js/main/core/PersoniumContext.js"></script>
 <script type="text/javascript" src="../../js/main/util/extend.js"></script>
 <script type="text/javascript" src="../../js/externalRoleToRoleMapping.js"></script>
 </head>
@@ -47,9 +47,9 @@ limitations under the License.
 		<div class="assignEntities">
 			<ul>
 				<li id="assignAccountToExtRole" class="selected" onclick="clickExternalRoleLinkMappingPage();"><label
-					class="assignNavigation">役割の割り当て</label></li>
+					class="assignNavigation">蠖ｹ蜑ｲ縺ｮ蜑ｲ繧雁ｽ薙※</label></li>
 				<li style="margin-right: 0px;" id="assignExtRoleInfo"><label
-					class="assignNavigation" onclick="uMainNavigation.openExternalRoleInfo();">インフォ</label></li>
+					class="assignNavigation" onclick="uMainNavigation.openExternalRoleInfo();">繧､繝ｳ繝輔か</label></li>
 			</ul>
 		</div>
 		<div class="divAssignEntity"  id="divAccountHeader">
@@ -67,7 +67,7 @@ limitations under the License.
 					<input type="button" class="assignBtn assignBtnDisabled" id="btnMapToExtenalRole" value="Assign" style="margin-left: -25px;" disabled="disabled">
 				</div>
 				<div class="divDeleteIcon divDeleteAssignEntityIcon">
-					<input type="button" class="deleteIconDisabled" id="btnDeleteAssignExtRoleToRole" onclick="openCreateEntityModal('#extRoleToRoleDeleteModalWindow', '#extRoleToRoleDeleteDialogBox', 'btnCancelDeleteExternalRole');" tabindex="-1" title="削除">
+					<input type="button" class="deleteIconDisabled" id="btnDeleteAssignExtRoleToRole" onclick="openCreateEntityModal('#extRoleToRoleDeleteModalWindow', '#extRoleToRoleDeleteDialogBox', 'btnCancelDeleteExternalRole');" tabindex="-1" title="蜑企勁">
 				</div>
 			</div>
 			<div id="extRoleToRoleMessageBlock" class="crudOperationSuccessWrapper" style="display:none;float: left;position:absolute;margin-top: 6px;">
@@ -78,19 +78,19 @@ limitations under the License.
 		</div>
 			<div class="rightSubHeading">
 				<div class="sortWrapper">
-					<label class="sortText" style="margin-top: 5px;">日付で並べ替え</label>
+					<label class="sortText" style="margin-top: 5px;">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/label>
 					<div id="arrow" class="downArrow assignEntityDownArrow"></div>
 				</div>
 				<div class="paginationWrapper" style="margin-top: 3px;">
 					<div class="recordCount" id="recordCount_assignExtRoleTab"></div>
 					<div class="paginationIcons">
 						<div class="leftPagination">
-							<div class="firstPageDisabled" id="firstPage_assignExtRoleTab" title="最初"></div>
-							<div class="prevPageDisabled" id="prevPage_assignExtRoleTab" title="前"></div>
+							<div class="firstPageDisabled" id="firstPage_assignExtRoleTab" title="譛��"></div>
+							<div class="prevPageDisabled" id="prevPage_assignExtRoleTab" title="蜑�></div>
 						</div>
 						<div class="rightPagination">
-							<div class="nextPageDisabled" id="nextPage_assignExtRoleTab" title="次"></div>
-							<div class="lastPageDisabled" id="lastPage_assignExtRoleTab" title="ラスト"></div>
+							<div class="nextPageDisabled" id="nextPage_assignExtRoleTab" title="谺｡"></div>
+							<div class="lastPageDisabled" id="lastPage_assignExtRoleTab" title="繝ｩ繧ｹ繝�></div>
 						</div>
 						<div class="rightPagination"></div>
 					</div>
@@ -108,7 +108,7 @@ limitations under the License.
 								onclick="uExternalRoleToRoleMapping.checkAllSelect(this)"
 								class="checkBox cursorHand regular-checkbox big-checkbox"><label
 								for="chkSelectAllExtRoleMappingRecords" class="checkBoxLabel"></label></th>
-							<th style="border-top: 0px" class="col2">役割</th>
+							<th style="border-top: 0px" class="col2">蠖ｹ蜑ｲ</th>
 							<th style="border-top: 0px" class="col3">Box</th>
 						</tr>
 					</thead>
