@@ -362,7 +362,7 @@ _pc.Acl.prototype.parse = function(xmlStr) {
     objAce = new _pc.Ace();
     objAcl.addAce(objAce);
     if (ace[aceCount].firstElementChild !== null) {
-      if (ace[aceCount].firstElementChild.childNodes[1] === "root") {
+      if (ace[aceCount].firstElementChild.childNodes[1] === "all") {
         objAce.setPrincipal(_pc.Principal.ALL);
       } else {
 
