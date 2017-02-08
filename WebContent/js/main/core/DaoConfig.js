@@ -18,7 +18,7 @@
 /*global _pc:false */
 
 /**
- * @namespace Namespace enclosing the PCS client library classes.
+ * @namespace Namespace enclosing the Personium client library classes.
  */
 var _pc = {};
 

@@ -248,7 +248,7 @@ $(function() {
 							<select id="ddLanguageSelector" name="ddLanguageSelector" class="dropDownBig" onclick="" style="float: left;margin-top: -17px;margin-right: 10px;padding-bottom: 2px;margin-left: 80px;height: 30px;width: 150px;">
 						
 						<option value="en">English(en)</option>
-						<option value="ja">Japanese(ja)</option>
+<!-- 						<option value="ja">Japanese(ja)</option> -->
 					</select>
 							</dt>
 							<dt class="dtLoginBtn">

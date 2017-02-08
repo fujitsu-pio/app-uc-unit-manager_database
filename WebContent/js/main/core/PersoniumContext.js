@@ -16,22 +16,11 @@
  */
 
 
-///**
-//* @namespace PCSクライアントライブラリクラス群を内包する名前空間。
-//*/
 /**
- * @namespace Namespace enclosing the PCS client library classes.
+ * @namespace Namespace enclosing the Personium client library classes.
  */
 //var _pc = {};
 
-///**
-//* @class データクラウドコンテキスト.
-//* @constructor
-//* @param url 基底URL (string)
-//* @param name Cell Name (string)
-//* @param boxSchema Box DataSchemaURI (string)
-//* @param bName Box Name (string)
-//*/
 /**
  * It creates a new object _pc.PersoniumContext.
  * @class This class is the Data cloud context used as the package for all the files.

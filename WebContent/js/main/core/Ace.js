@@ -19,7 +19,7 @@
 
 /**
  * It creates a new object _pc.Ace.
- * @class class representing Ace (Access Control Element) in WebDAV ACL implemented in PCS.
+ * @class class representing Ace (Access Control Element) in WebDAV ACL implemented in Personium.
  * @constructor
  */
 _pc.Ace = function() {

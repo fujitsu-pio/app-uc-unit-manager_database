@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 /**
- * This method gets called on load of PCS footer
+ * This method gets called on load of Personium footer
  * fetches revision number for the first time
  * thereafter manages till session expiration
  * */

@@ -52,7 +52,7 @@ exports.DaoException = _pc.DaoException;
  * @param {String} code Status code
  */
 _pc.DaoException.prototype.initializeProperties = function(self, msg, code) {
-  self.name = "PersoniumDaoException";
+  self.name = "DaoException";
   self.message = msg;
   /** Status Code. */
   self.code = code;

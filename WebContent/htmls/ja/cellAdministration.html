@@ -18,19 +18,19 @@ limitations under the License.
 
 <div id="AdministrationDetail" style="max-height: 450px;display: block;overflow: auto;" class='entityGridTbody'>
 	<div class="borderBottom" style="float:left; margin: 10px 0px 0px 0px; width:100%">
-		<label id="deleteCell" style="margin: 10px 0px 20px 0px;" class="japaneseFont">セルの削除</label>
-		<input type="button" id="" class="btnClose japaneseFont" style="margin: 12px 0px 18px 15px;" value="削除" onclick="openDeleteModalWindow();" tabindex="-1">
+		<label id="deleteCell" style="margin: 10px 0px 20px 0px;" class="japaneseFont">繧ｻ繝ｫ縺ｮ蜑企勁</label>
+		<input type="button" id="" class="btnClose japaneseFont" style="margin: 12px 0px 18px 15px;" value="蜑企勁" onclick="openDeleteModalWindow();" tabindex="-1">
 	</div>
 	<div class="webDavAclSettings">
 		<div class="aclSettingsHeader">
 			<div class="aclSettingsText japaneseFont" style="margin:15px 0px 0px 2px;">ACL</div>
-			<div id="dvEditCellAclSettings" onclick="uCellAcl.openPopUpWindow('#editCellAclSettingDialog','#editCellAclSettingModal');"   class="editIconACLSettings" style="margin:15px 0px 0px 0px;" title="編集"></div>
+			<div id="dvEditCellAclSettings" onclick="uCellAcl.openPopUpWindow('#editCellAclSettingDialog','#editCellAclSettingModal');"   class="editIconACLSettings" style="margin:15px 0px 0px 0px;" title="邱ｨ髮�></div>
 		</div>
 			<table id="cellInfoAdmin" class="cellInfoAdminData" cellpadding='0' cellspacing='0'>
 		<thead>
 			<tr>
-				<th class="ContentHeadingpt1 japaneseFont" style="width:27%;border:none;padding: 15px 0px 15px 0px;font-weight: normal;">プリンシパル</th>
-				<th class="ContentHeadingpt1 japaneseFont" style="width:73%;border:none;font-weight: normal;">特権</th>
+				<th class="ContentHeadingpt1 japaneseFont" style="width:27%;border:none;padding: 15px 0px 15px 0px;font-weight: normal;">繝励Μ繝ｳ繧ｷ繝代Ν</th>
+				<th class="ContentHeadingpt1 japaneseFont" style="width:73%;border:none;font-weight: normal;">迚ｹ讓ｩ</th>
 			</tr>
 		</thead>
 		<tbody id="cellInfoAdminData"></tbody></table>
@@ -40,17 +40,17 @@ limitations under the License.
 <div id="deleteModal" class="modelback" style="display: none;">
 	<div class="modal-window block-border" style="display: block; height: 395px; width: 614px; background-color: rgb(255, 255, 255); top: 71px; left: 330px; background-position: initial initial; background-repeat: initial initial;" id="deleteDialog">
 		<div id="dvCloseIcon" class="closeIconDiv">
-			<a style="margin:0px;" href="#" title="クローズ" id="modalbox-close" class="popupCloseIcon" onclick="closeDeleteModalWindow();" tabindex="4"></a>
+			<a style="margin:0px;" href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close" class="popupCloseIcon" onclick="closeDeleteModalWindow();" tabindex="4"></a>
 		</div>
 		<div class="accessTokenDiv" style="padding-bottom: 15px" id="dvAccessheader">
 			<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
-				セルの削除</label>
+				繧ｻ繝ｫ縺ｮ蜑企勁</label>
 		</div>
 		<div class="popupContent">
 			<section class="popupInnerContent">
-				<aside class="ContentHeadingpt1 japaneseFont" style="text-align: left;margin: 15px 0px 0px 160px;">あなたが選択したセルを削除してもよろしいていますか？</aside>
-				<aside class="ContentHeadingpt1 japaneseFont" style="text-align: left;margin: 10px 0px 0px 186px;">削除された後は、復元することはできません。</aside>
-				<aside class="ContentHeadingpt1 japaneseFont" style="text-align: left;margin: 25px 0px 0px 166px;">あなたは以下を参照の検証テキストを入力してください：</aside>
+				<aside class="ContentHeadingpt1 japaneseFont" style="text-align: left;margin: 15px 0px 0px 160px;">縺ゅ↑縺溘′驕ｸ謚槭＠縺溘そ繝ｫ繧貞炎髯､縺励※繧ゅｈ繧阪＠縺�※縺�∪縺吶°��/aside>
+				<aside class="ContentHeadingpt1 japaneseFont" style="text-align: left;margin: 10px 0px 0px 186px;">蜑企勁縺輔ｌ縺溷ｾ後�縲∝ｾｩ蜈�☆繧九％縺ｨ縺ｯ縺ｧ縺阪∪縺帙ｓ縲�/aside>
+				<aside class="ContentHeadingpt1 japaneseFont" style="text-align: left;margin: 25px 0px 0px 166px;">縺ゅ↑縺溘�莉･荳九ｒ蜿ら�縺ｮ讀懆ｨｼ繝�く繧ｹ繝医ｒ蜈･蜉帙＠縺ｦ縺上□縺輔＞��/aside>
 				<input class="ContentTextpt16 border3 backgroundcolor6 labelCapcha" type="text" id="labelCapcha" onfocus="this.blur()" tabindex="-1"/>
 				<input class="textCapcha" type="text" id="textCapcha" tabindex="1">
 				<span class="popupAlertArea">
@@ -62,10 +62,10 @@ limitations under the License.
 			<!-- Button Section Starts -->
 			<section class="positionButtons" style="margin-top:0px;">
 				<div id="dvCreate" class="dvCreate">
-					<input type="button" id="btnDeleteCell" onclick="deleteCell();" class="btnClose japaneseFont" value="削除" tabindex="3">
+					<input type="button" id="btnDeleteCell" onclick="deleteCell();" class="btnClose japaneseFont" value="蜑企勁" tabindex="3">
 				</div>
 				<div id="dvCancel" class="dvCreate">
-					<input type="button" id="btnCancel" onclick="closeDeleteModalWindow();" class="cancelBtn japaneseFont" value="キャンセル" tabindex="2">
+					<input type="button" id="btnCancel" onclick="closeDeleteModalWindow();" class="cancelBtn japaneseFont" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="2">
 				</div>
 			</section>
 			<!-- Button Section Ends -->
@@ -79,14 +79,14 @@ limitations under the License.
 			style="display: block; height: 465px; width: 997px; background: #ffffff"
 			id="editCellAclSettingDialog">
 			<div id="dvCloseIcon" class="closeIconDiv">
-				<a style="margin: 0px;" href="#" title="クローズ" id="modalbox-close"
+				<a style="margin: 0px;" href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close"
 					class="popupCloseIcon crossIconCellACLFocus"
 					onclick="closeEntityModal('#editCellAclSettingModal')" tabindex="3"></a>
 			</div>
 			<div class="accessTokenDiv" style="padding-bottom: 15px"
 				id="dvAccessheader">
 				<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
-					ACLの設定</label>
+					ACL縺ｮ險ｭ螳�/label>
 			</div>
 				<div id="" class="folderElement">
 				<div>
@@ -97,8 +97,8 @@ limitations under the License.
 						</table> -->
 						<table id="tblHeaderEditAcl" cellpadding="0" cellspacing="0"
 						border="0" class="tblEditACLHeader">
-						<th class="firstHeaderWidth japaneseFont">プリンシパル</th>
-						<th class="japaneseFont">特権</th>
+						<th class="firstHeaderWidth japaneseFont">繝励Μ繝ｳ繧ｷ繝代Ν</th>
+						<th class="japaneseFont">迚ｹ讓ｩ</th>
 					</table>
 						<table id="editAclSettingsTable" style="display: block; max-width: 844px; width: 844px;overflow-x: auto; overflow-y: hidden;border: 1px solid #e6e6e6;min-width: 844px;"
 						class="tblEditSettingsAcl entityGridTbody " cellpadding="0" cellspacing="0"
@@ -119,7 +119,7 @@ limitations under the License.
 						<tr>
 							<td style='text-align: left; min-width: 159.5px;'
 								class='borderRight headerFontSettings'><div class='editACLTableEllipsis '></div></td>
-							<td class="headerFontSettings"><div>All</div></td>
+							<td class="headerFontSettings"><div>Root</div></td>
 							<td style="padding-left: 23px;" class="headerFontSettings headerCellAcl"><div>Auth</div></td>
 							<td class="headerFontSettings "><div class='auth-read'>Auth-Read</div></td>
 							<td class="headerFontSettings "><div>Message</div></td>
@@ -148,12 +148,12 @@ limitations under the License.
 			<section class="positionBottomButtons" style="margin-top:20px">
 				<div id="dvCreateFoolder" class="dvCreate">
 					<input type="button" onclick="uCellAcl.editCellAcl();" id="btnEditCellAcl" class="btnClose japaneseFont"
-						value="保存" tabindex="2">
+						value="菫晏ｭ� "tabindex="2">
 				</div>
 				<div id="dvCancel" class="dvCreate">
 					<input type="button"
 						onclick="closeEntityModal('#editCellAclSettingModal')"
-						class="cancelBtn japaneseFont" value="キャンセル" tabindex="1" id = "btnCancelEditCellAcl">
+						class="cancelBtn japaneseFont" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="1" id = "btnCancelEditCellAcl">
 				</div>
 			</section>
 		</div>
