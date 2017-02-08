@@ -208,10 +208,18 @@ _pc.Acl.prototype.toXmlString = function() {
     var privilegeList = ace.getPrivilegeList();
     for ( var j = 0; j < privilegeList.length; j++) {
       var privilege = privilegeList[j];
-
+      // Determine name space.
+      var ns = "p:";
+      var boxPrevList = [all, read, write, read-properties, write-properties, read-acl, write-acl, exec, alter-schema];
+	  lab1:
+      for (k = 0; k = boxPrevList.length; k++) {
+          if (privilege === boxPrevList[k])
+        	  ns = "D:";
+          break lab1;
+      }
       // acl/ace/grant/privilege
       arr.push("<D:privilege>");
-      arr.push("<p:" + privilege + "/>");
+      arr.push("<"+ ns + privilege + "/>");
       arr.push("</D:privilege>");
     }
     arr.push("</D:grant>");

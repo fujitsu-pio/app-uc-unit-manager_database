@@ -559,6 +559,7 @@ boxDetail.prototype.createAclRows = function(dynamicTable,id,roleBoxDisplay){
 	var idFocusReadAcl = '"' + "#lblReadAcl"+id + '"';
 	var idFocusWriteAcl = '"' + "#lblWriteAcl"+id + '"';
 	var idFocusExec = '"' + "#lblExec"+id + '"';
+	var idFocusAlsc = '"' + "#lblAlsc"+id + '"';
 	
 	var tabIndex = id + 4;
 	dynamicTable += "<tr id=tr_"+id+"><td style='text-align:left;' class='borderRight'><div id=dv"+ id+" class='editACLTableEllipsis' title='"
@@ -596,6 +597,10 @@ boxDetail.prototype.createAclRows = function(dynamicTable,id,roleBoxDisplay){
 	+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id= 'chkexec"
 	+ id
 	+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='exec' onfocus='checkBoxACLFocus("+idFocusExec+");' onblur='checkBoxACLBlur("+idFocusExec+");' tabindex='"+tabIndex+"'><label id ='lblExec"+id+"' for='chkexec"
+	+ id
+	+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id= 'chkalsc"
+	+ id
+	+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='alter-schema' onfocus='checkBoxACLFocus("+idFocusAlsc+");' onblur='checkBoxACLBlur("+idFocusAlsc+");' tabindex='"+tabIndex+"'><label id ='lblExec"+id+"' for='chkalsc"
 	+ id
 	+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td></tr>";
 return dynamicTable;
@@ -696,6 +701,10 @@ boxDetail.prototype.getRoleBoxACLSettings = function() {
 		if ($('#chkexec' + index).is(':checked')) {
 			rolePrivilegeList += 'exec,';
 		}
+		if ($('#chkalsc' + index).is(':checked')) {
+			rolePrivilegeList += 'alter-schema,';
+		}
+
 		//regex below removes the last comma and extra space from the privilege list.
 		if (rolePrivilegeList.length >= 1) {
 		jsonRolePrivilegeList = {
