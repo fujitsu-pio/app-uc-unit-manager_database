@@ -211,7 +211,7 @@ _pc.Acl.prototype.toXmlString = function() {
 
       // acl/ace/grant/privilege
       arr.push("<D:privilege>");
-      arr.push("<D:" + privilege + "/>");
+      arr.push("<p:" + privilege + "/>");
       arr.push("</D:privilege>");
     }
     arr.push("</D:grant>");

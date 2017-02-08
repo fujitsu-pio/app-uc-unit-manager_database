@@ -551,9 +551,9 @@ cellAcl.prototype.getRoleBoxACLSettings = function() {
 		}
 		roleBoxPair = "../" + boxName + "/" + roleName;
 		}
-		//all, auth, auth-read, message, message-read, event, event-read, log, log-read, social, social-read, box, box-read, box-install, acl, acl-read, propfind.
-		if ($('#chkall' + index).is(':checked')) {
-			rolePrivilegeList += 'all,';
+		//root, auth, auth-read, message, message-read, event, event-read, log, log-read, social, social-read, box, box-read, box-install, acl, acl-read, propfind.
+		if ($('#chkroot' + index).is(':checked')) {
+			rolePrivilegeList += 'root,';
 		}
 		if ($('#chkauth' + index).is(':checked')) {
 			rolePrivilegeList += 'auth,';
@@ -653,11 +653,11 @@ cellAcl.prototype.createAclRows = function(dynamicTable, id, roleBoxDisplay) {
 			+ roleBoxDisplay
 			+ "'>"
 			+ roleBoxDisplay
-			+ "</div></td><td><input  id='chkall"
+			+ "</div></td><td><input  id='chkroot"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAllFocus+");' onblur='checkBoxCellACLBlur("+lblAllFocus+");' tabindex='"+tabIndex+"' value='all'><label id ='lblAll"
 			+ id
-			+ "'  for='chkall"
+			+ "'  for='chkroot"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkauth"
 			+ id

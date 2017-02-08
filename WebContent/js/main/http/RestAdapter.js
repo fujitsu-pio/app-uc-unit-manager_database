@@ -345,7 +345,7 @@ _pc.RestAdapter.prototype.acl = function(requestUrl, requestBody, callback) {
 _pc.RestAdapter.prototype.mkcol = function(requestUrl, callback) {
   /** MKCol用リクエストボディ. */
   var REQUEST_BODY_MKCOL_XML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-  "<D:mkcol xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-personium:xmlns\"><D:set><D:prop><D:resourcetype><D:collection/>" +
+  "<D:mkcol xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\"><D:set><D:prop><D:resourcetype><D:collection/>" +
   "</D:resourcetype></D:prop></D:set></D:mkcol>";
 
   var builder = new _pc.PersoniumRequestHeaderBuilder();
@@ -379,7 +379,7 @@ _pc.RestAdapter.prototype.mkcol = function(requestUrl, callback) {
 _pc.RestAdapter.prototype.mkOData = function(requestUrl, callback) {
   /** MKOData用リクエストボディ. */
   var REQUEST_BODYMKODATA_XML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-  "<D:mkcol xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-personium:xmlns\"><D:set><D:prop><D:resourcetype><D:collection/>" +
+  "<D:mkcol xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\"><D:set><D:prop><D:resourcetype><D:collection/>" +
   "<p:odata/></D:resourcetype></D:prop></D:set></D:mkcol>";
 
   var builder = new _pc.PersoniumRequestHeaderBuilder();
@@ -413,7 +413,7 @@ _pc.RestAdapter.prototype.mkOData = function(requestUrl, callback) {
 _pc.RestAdapter.prototype.mkService = function(requestUrl, callback) {
   /** サービスコレクション用リクエストボディ. */
   var REQUEST_BODY_SERVICE_XML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-  "<D:mkcol xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-personium:xmlns\"><D:set><D:prop><D:resourcetype>" +
+  "<D:mkcol xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\"><D:set><D:prop><D:resourcetype>" +
   "<D:collection/><p:service/></D:resourcetype></D:prop></D:set></D:mkcol>";
 
   var builder = new _pc.PersoniumRequestHeaderBuilder();
@@ -453,7 +453,7 @@ _pc.RestAdapter.prototype.mkService = function(requestUrl, callback) {
 _pc.RestAdapter.prototype.setService = function(requestUrl, key, value, subject, callback) {
   var sb = "";
   sb += "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
-  sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-personium:xmlns\" xmlns:Z=\"http://www.w3.com/standards/z39.50/\"><D:set><D:prop>";
+  sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\" xmlns:Z=\"http://www.w3.com/standards/z39.50/\"><D:set><D:prop>";
   sb += "<p:service language=\"JavaScript\" subject=\"" + subject + "\">";
   sb += "<p:path name=\"" + key + "\" src=\"" + value + "\"/>";
   sb += "</p:service></D:prop></D:set></D:propertyupdate>";
@@ -487,7 +487,7 @@ _pc.RestAdapter.prototype.setMultipleService = function(requestUrl, arrServiceNa
 	var value = null;
 	var sb = "";
 	sb += "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
-	sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-personium:xmlns\" xmlns:Z=\"http://www.w3.com/standards/z39.50/\"><D:set><D:prop>";
+	sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\" xmlns:Z=\"http://www.w3.com/standards/z39.50/\"><D:set><D:prop>";
 	sb += "<p:service language=\"JavaScript\" subject=\"" + subject + "\">";
 	var len = arrServiceNameAndSrcFile.length;
 	for (var i = 0; i < len; i++) {
@@ -530,7 +530,7 @@ _pc.RestAdapter.prototype.setMultipleService = function(requestUrl, arrServiceNa
  */
 _pc.RestAdapter.prototype.proppatch = function(requestUrl, key, value, callback) {
   var sb = "";
-  sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-personium:xmlns\"><D:set><D:prop>";
+  sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\"><D:set><D:prop>";
   sb += "<" + key + ">";
   sb += value;
   sb += "</" + key + ">";
@@ -564,7 +564,7 @@ _pc.RestAdapter.prototype.multiProppatch = function(requestUrl, setPropertyList,
 	var sb = "";
 	var key = null;
 	var value = null;
-	sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:dc=\"urn:x-personium:xmlns\" xmlns:Z=\"http://www.w3.com/standards/z39.50/\"><D:set><D:prop>";
+	sb += "<D:propertyupdate xmlns:D=\"DAV:\" xmlns:p=\"urn:x-personium:xmlns\" xmlns:Z=\"http://www.w3.com/standards/z39.50/\"><D:set><D:prop>";
 	for ( var i = 0; i < setPropertyList.length; i++) {
 		key = setPropertyList[i].propName;
 		value = setPropertyList[i].propValue;
