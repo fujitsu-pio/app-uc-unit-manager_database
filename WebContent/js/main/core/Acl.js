@@ -212,7 +212,7 @@ _pc.Acl.prototype.toXmlString = function() {
       var ns = "p:";
       var boxPrevList = [all, read, write, read-properties, write-properties, read-acl, write-acl, exec, alter-schema];
 	  lab1:
-      for (k = 0; k = boxPrevList.length; k++) {
+      for (k = 0; k < boxPrevList.length; k++) {
           if (privilege === boxPrevList[k])
         	  ns = "D:";
           break lab1;
