@@ -553,82 +553,82 @@ cellAcl.prototype.getRoleBoxACLSettings = function() {
 		}
 		//root, auth, auth-read, message, message-read, event, event-read, log, log-read, social, social-read, box, box-read, box-install, acl, acl-read, propfind.
 		if ($('#chkroot' + index).is(':checked')) {
-			rolePrivilegeList += 'root,';
+			rolePrivilegeList += 'p:root,';
 		}
 		if ($('#chkauth' + index).is(':checked')) {
-			rolePrivilegeList += 'auth,';
+			rolePrivilegeList += 'p:auth,';
 		}
 		if ($('#chkauth-read' + index).is(':checked')) {
-			rolePrivilegeList += 'auth-read,';
+			rolePrivilegeList += 'p:auth-read,';
 		}
 		if ($('#chkmessage' + index).is(':checked')) {
-			rolePrivilegeList += 'message,';
+			rolePrivilegeList += 'p:message,';
 		}
 		if ($('#chkmessage-read' + index).is(':checked')) {
-			rolePrivilegeList += 'message-read,';
+			rolePrivilegeList += 'p:message-read,';
 		}
 		if ($('#chkevent' + index).is(':checked')) {
-			rolePrivilegeList += 'event,';
+			rolePrivilegeList += 'p:event,';
 		}
 		if ($('#chkevent-read' + index).is(':checked')) {
-			rolePrivilegeList += 'event-read,';
+			rolePrivilegeList += 'p:event-read,';
 		}
 		if ($('#chklog' + index).is(':checked')) {
-			rolePrivilegeList += 'log,';
+			rolePrivilegeList += 'p:log,';
 		}
 		if ($('#chklog-read' + index).is(':checked')) {
-			rolePrivilegeList += 'log-read,';
+			rolePrivilegeList += 'p:log-read,';
 		}
 		if ($('#chksocial' + index).is(':checked')) {
-			rolePrivilegeList += 'social,';
+			rolePrivilegeList += 'p:social,';
 		}
 		if ($('#chksocial-read' + index).is(':checked')) {
-			rolePrivilegeList += 'social-read,';
+			rolePrivilegeList += 'p:social-read,';
 		}
 		if ($('#chkbox' + index).is(':checked')) {
-			rolePrivilegeList += 'box,';
+			rolePrivilegeList += 'p:box,';
 		}
 		if ($('#chkbox-read' + index).is(':checked')) {
-			rolePrivilegeList += 'box-read,';
+			rolePrivilegeList += 'p:box-read,';
 		}
 		if ($('#chkbox-install' + index).is(':checked')) {
-			rolePrivilegeList += 'box-install,';
+			rolePrivilegeList += 'p:box-install,';
 		}
 		if ($('#chkacl' + index).is(':checked')) {
-			rolePrivilegeList += 'acl,';
+			rolePrivilegeList += 'p:acl,';
 		}
 		if ($('#chkacl-read' + index).is(':checked')) {
-			rolePrivilegeList += 'acl-read,';
+			rolePrivilegeList += 'p:acl-read,';
 		}
 		if ($('#chkpropfind' + index).is(':checked')) {
-			rolePrivilegeList += 'propfind,';
+			rolePrivilegeList += 'p:propfind,';
 		}
 		if ($('#chkall' + index).is(':checked')) {
-			rolePrivilegeList += 'all,';
+			rolePrivilegeList += 'D:all,';
 		}
 		if ($('#chkread' + index).is(':checked')) {
-			rolePrivilegeList += 'read,';
+			rolePrivilegeList += 'D:read,';
 		}
 		if ($('#chkwrite' + index).is(':checked')) {
-			rolePrivilegeList += 'write,';
+			rolePrivilegeList += 'D:write,';
 		}
 		if ($('#chkread-properties' + index).is(':checked')) {
-			rolePrivilegeList += 'read-properties,';
+			rolePrivilegeList += 'D:read-properties,';
 		}
 		if ($('#chkwrite-properties' + index).is(':checked')) {
-			rolePrivilegeList += 'write-properties,';
+			rolePrivilegeList += 'D:write-properties,';
 		}
 		if ($('#chkread-acl' + index).is(':checked')) {
-			rolePrivilegeList += 'read-acl,';
+			rolePrivilegeList += 'D:read-acl,';
 		}
 		if ($('#chkwrite-acl' + index).is(':checked')) {
-			rolePrivilegeList += 'write-acl,';
+			rolePrivilegeList += 'D:write-acl,';
 		}
 		if ($('#chkexec' + index).is(':checked')) {
-			rolePrivilegeList += 'exec,';
+			rolePrivilegeList += 'D:exec,';
 		}
 		if ($('#chkalsc' + index).is(':checked')) {
-			rolePrivilegeList += 'alter-schema,';
+			rolePrivilegeList += 'D:alter-schema,';
 		}
 
 		//regex below removes the last comma and extra space from the privilege list.
@@ -791,55 +791,55 @@ cellAcl.prototype.createAclRows = function(dynamicTable, id, roleBoxDisplay) {
 			+ id 
 			+ "' for='chkpropfind"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkall"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkall"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAllFocus+");' onblur='checkBoxCellACLBlur("+lblAllFocus+");' tabindex='"+tabIndex+"'  value='all'><label id ='lblAll"
 			+ id
 			+ "' for='chkall"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkread"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkread"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadFocus+");' onblur='checkBoxCellACLBlur("+lblReadFocus+");' tabindex='"+tabIndex+"'  value='read'><label id ='lblRead"
 			+ id
 			+ "' for='chkread"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkwrite"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 31px;><input  id='chkwrite"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWriteFocus+");' onblur='checkBoxCellACLBlur("+lblWriteFocus+");' tabindex='"+tabIndex+"'  value='write'><label id ='lblWrite"
 			+ id
 			+ "' for='chkwrite"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkread-properties"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkread-properties"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadPropertiesFocus+");' onblur='checkBoxCellACLBlur("+lblReadPropertiesFocus+");' tabindex='"+tabIndex+"'  value='read-properties'><label id ='lblReadProperties"
 			+ id
 			+ "' for='chkread-properties"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkwrite-properties"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkwrite-properties"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWritePropertiesFocus+");' onblur='checkBoxCellACLBlur("+lblWritePropertiesFocus+");' tabindex='"+tabIndex+"'  value='write-properties'><label id ='lblWriteProperties"
 			+ id
 			+ "' for='chkwrite-properties"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkread-acl"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkread-acl"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadAclFocus+");' onblur='checkBoxCellACLBlur("+lblReadAclFocus+");' tabindex='"+tabIndex+"'  value='read-acl'><label id ='lblReadAcl"
 			+ id
 			+ "' for='chkread-acl"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkwrite-properties"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkwrite-properties"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWriteAclFocus+");' onblur='checkBoxCellACLBlur("+lblWriteAclFocus+");' tabindex='"+tabIndex+"'  value='write-acl'><label id ='lblWriteAcl"
 			+ id
 			+ "' for='chkwrite-acl"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkexec"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkexec"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblExecFocus+");' onblur='checkBoxCellACLBlur("+lblExecFocus+");' tabindex='"+tabIndex+"'  value='exec'><label id ='lblExec"
 			+ id
 			+ "' for='chkexec"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkalsc"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkalsc"
 			+ id
 			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAlscFocus+");' onblur='checkBoxCellACLBlur("+lblAlscFocus+");' tabindex='"+tabIndex+"'  value='alsc'><label id ='lblAlsc"
 			+ id
