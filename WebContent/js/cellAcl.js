@@ -691,7 +691,7 @@ cellAcl.prototype.createAclRows = function(dynamicTable, id, roleBoxDisplay) {
 			+ roleBoxDisplay
 			+ "</div></td><td><input id='chkroot"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblRootFocus+");' onblur='checkBoxCellACLBlur("+lblRootFocus+");' tabindex='"+tabIndex+"' value='all'><label id ='lblRoot"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblRootFocus+");' onblur='checkBoxCellACLBlur("+lblRootFocus+");' tabindex='"+tabIndex+"' value='p:root'><label id ='lblRoot"
 			+ id
 			+ "' for='chkroot"
 			+ id
@@ -703,145 +703,145 @@ cellAcl.prototype.createAclRows = function(dynamicTable, id, roleBoxDisplay) {
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 26px;'><input id = 'chkauth-read"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAuthreadFocus+");' onblur='checkBoxCellACLBlur("+lblAuthreadFocus+");' tabindex='"+tabIndex+"'  value='auth-read'><label id ='lblAuth-read"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAuthreadFocus+");' onblur='checkBoxCellACLBlur("+lblAuthreadFocus+");' tabindex='"+tabIndex+"'  value='p:auth-read'><label id ='lblAuth-read"
 			+ id
 			+ "' for='chkauth-read"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 35px;' ><input id = 'chkmessage"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblMessageFocus+");' onblur='checkBoxCellACLBlur("+lblMessageFocus+");' tabindex='"+tabIndex+"'  value='message'><label id ='lblMessage"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblMessageFocus+");' onblur='checkBoxCellACLBlur("+lblMessageFocus+");' tabindex='"+tabIndex+"'  value='p:message'><label id ='lblMessage"
 			+ id
 			+ "' for='chkmessage"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 40px;' ><input id = 'chkmessage-read"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblMessagereadFocus+");' onblur='checkBoxCellACLBlur("+lblMessagereadFocus+");' tabindex='"+tabIndex+"'  value='chkmessage-read'><label id ='lblMessage-read"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblMessagereadFocus+");' onblur='checkBoxCellACLBlur("+lblMessagereadFocus+");' tabindex='"+tabIndex+"'  value='p:message-read'><label id ='lblMessage-read"
 			+ id
 			+ "' for='chkmessage-read"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 53px;' ><input id = 'chkevent"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblEventFocus+");' onblur='checkBoxCellACLBlur("+lblEventFocus+");' tabindex='"+tabIndex+"'  value='event'><label id ='lblEvent"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblEventFocus+");' onblur='checkBoxCellACLBlur("+lblEventFocus+");' tabindex='"+tabIndex+"'  value='p:event'><label id ='lblEvent"
 			+ id
 			+ "' for='chkevent"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 31px;'><input id = 'chkevent-read"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblEventreadFocus+");' onblur='checkBoxCellACLBlur("+lblEventreadFocus+");' tabindex='"+tabIndex+"'  value='event-read'><label id ='lblEvent-read"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblEventreadFocus+");' onblur='checkBoxCellACLBlur("+lblEventreadFocus+");' tabindex='"+tabIndex+"'  value='p:event-read'><label id ='lblEvent-read"
 			+ id
 			+ "' for='chkevent-read"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 24px;' ><input id= 'chklog"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblLogFocus+");' onblur='checkBoxCellACLBlur("+lblLogFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblLog"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblLogFocus+");' onblur='checkBoxCellACLBlur("+lblLogFocus+");' tabindex='"+tabIndex+"'  value='p:log'><label id ='lblLog"
 			+ id
 			+ "' for='chklog"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 20px;'><input id= 'chklog-read"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblLogReadFocus+");' onblur='checkBoxCellACLBlur("+lblLogReadFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblLogRead"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblLogReadFocus+");' onblur='checkBoxCellACLBlur("+lblLogReadFocus+");' tabindex='"+tabIndex+"'  value='p:log-read'><label id ='lblLogRead"
 			+ id
 			+ "' for='chklog-read"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 24px;'><input id= 'chksocial"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblSocialFocus+");' onblur='checkBoxCellACLBlur("+lblSocialFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblSocial"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblSocialFocus+");' onblur='checkBoxCellACLBlur("+lblSocialFocus+");' tabindex='"+tabIndex+"'  value='p:log-social'><label id ='lblSocial"
 			+ id
 			+ "' for='chksocial"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 31px;'><input id= 'chksocial-read"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblSocialReadFocus+");' onblur='checkBoxCellACLBlur("+lblSocialReadFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblSocialRead"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblSocialReadFocus+");' onblur='checkBoxCellACLBlur("+lblSocialReadFocus+");' tabindex='"+tabIndex+"'  value='p:social-read'><label id ='lblSocialRead"
 			+ id
 			+ "' for='chksocial-read"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;' ><input id= 'chkbox"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblBoxFocus+");' onblur='checkBoxCellACLBlur("+lblBoxFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblBox"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblBoxFocus+");' onblur='checkBoxCellACLBlur("+lblBoxFocus+");' tabindex='"+tabIndex+"'  value='p:box'><label id ='lblBox"
 			+ id
 			+ "' for='chkbox"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left:18px;'><input id= 'chkbox-read"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblBoxReadFocus+");' onblur='checkBoxCellACLBlur("+lblBoxReadFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblBoxRead"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblBoxReadFocus+");' onblur='checkBoxCellACLBlur("+lblBoxReadFocus+");' tabindex='"+tabIndex+"'  value='p:box-read'><label id ='lblBoxRead"
 			+ id
 			+ "' for='chkbox-read"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 35px;'><input id= 'chkbox-install"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblBoxInstallFocus+");' onblur='checkBoxCellACLBlur("+lblBoxInstallFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblBoxInstall"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblBoxInstallFocus+");' onblur='checkBoxCellACLBlur("+lblBoxInstallFocus+");' tabindex='"+tabIndex+"'  value='p:box-install'><label id ='lblBoxInstall"
 			+ id
 			+ "' for='chkbox-install"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 20px;'><input id= 'chkacl"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAclFocus+");' onblur='checkBoxCellACLBlur("+lblAclFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblAcl"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAclFocus+");' onblur='checkBoxCellACLBlur("+lblAclFocus+");' tabindex='"+tabIndex+"'  value='p:acl'><label id ='lblAcl"
 			+ id
 			+ "' for='chkacl"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 18px;'><input id= 'chkacl-read"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAclreadFocus+");' onblur='checkBoxCellACLBlur("+lblAclreadFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblAcl-read"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAclreadFocus+");' onblur='checkBoxCellACLBlur("+lblAclreadFocus+");' tabindex='"+tabIndex+"'  value='p:acl-read'><label id ='lblAcl-read"
 			+ id
 			+ "' for='chkacl-read"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;'><input id= 'chkpropfind"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblPropfindFocus+");' onblur='checkBoxCellACLBlur("+lblPropfindFocus+");' tabindex='"+tabIndex+"'  value='log'><label id ='lblPropfind"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblPropfindFocus+");' onblur='checkBoxCellACLBlur("+lblPropfindFocus+");' tabindex='"+tabIndex+"'  value='p:propfind'><label id ='lblPropfind"
 			+ id 
 			+ "' for='chkpropfind"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkall"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAllFocus+");' onblur='checkBoxCellACLBlur("+lblAllFocus+");' tabindex='"+tabIndex+"'  value='all'><label id ='lblAll"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAllFocus+");' onblur='checkBoxCellACLBlur("+lblAllFocus+");' tabindex='"+tabIndex+"'  value='D:all'><label id ='lblAll"
 			+ id
 			+ "' for='chkall"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkread"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadFocus+");' onblur='checkBoxCellACLBlur("+lblReadFocus+");' tabindex='"+tabIndex+"'  value='read'><label id ='lblRead"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadFocus+");' onblur='checkBoxCellACLBlur("+lblReadFocus+");' tabindex='"+tabIndex+"'  value='D:read'><label id ='lblRead"
 			+ id
 			+ "' for='chkread"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 31px;><input  id='chkwrite"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWriteFocus+");' onblur='checkBoxCellACLBlur("+lblWriteFocus+");' tabindex='"+tabIndex+"'  value='write'><label id ='lblWrite"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWriteFocus+");' onblur='checkBoxCellACLBlur("+lblWriteFocus+");' tabindex='"+tabIndex+"'  value='D:write'><label id ='lblWrite"
 			+ id
 			+ "' for='chkwrite"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkread-properties"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadPropertiesFocus+");' onblur='checkBoxCellACLBlur("+lblReadPropertiesFocus+");' tabindex='"+tabIndex+"'  value='read-properties'><label id ='lblReadProperties"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadPropertiesFocus+");' onblur='checkBoxCellACLBlur("+lblReadPropertiesFocus+");' tabindex='"+tabIndex+"'  value='D:read-properties'><label id ='lblReadProperties"
 			+ id
 			+ "' for='chkread-properties"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkwrite-properties"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWritePropertiesFocus+");' onblur='checkBoxCellACLBlur("+lblWritePropertiesFocus+");' tabindex='"+tabIndex+"'  value='write-properties'><label id ='lblWriteProperties"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWritePropertiesFocus+");' onblur='checkBoxCellACLBlur("+lblWritePropertiesFocus+");' tabindex='"+tabIndex+"'  value='D:write-properties'><label id ='lblWriteProperties"
 			+ id
 			+ "' for='chkwrite-properties"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkread-acl"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadAclFocus+");' onblur='checkBoxCellACLBlur("+lblReadAclFocus+");' tabindex='"+tabIndex+"'  value='read-acl'><label id ='lblReadAcl"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadAclFocus+");' onblur='checkBoxCellACLBlur("+lblReadAclFocus+");' tabindex='"+tabIndex+"'  value='D:read-acl'><label id ='lblReadAcl"
 			+ id
 			+ "' for='chkread-acl"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkwrite-properties"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWriteAclFocus+");' onblur='checkBoxCellACLBlur("+lblWriteAclFocus+");' tabindex='"+tabIndex+"'  value='write-acl'><label id ='lblWriteAcl"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWriteAclFocus+");' onblur='checkBoxCellACLBlur("+lblWriteAclFocus+");' tabindex='"+tabIndex+"'  value='D:write-acl'><label id ='lblWriteAcl"
 			+ id
 			+ "' for='chkwrite-acl"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkexec"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblExecFocus+");' onblur='checkBoxCellACLBlur("+lblExecFocus+");' tabindex='"+tabIndex+"'  value='exec'><label id ='lblExec"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblExecFocus+");' onblur='checkBoxCellACLBlur("+lblExecFocus+");' tabindex='"+tabIndex+"'  value='p:exec'><label id ='lblExec"
 			+ id
 			+ "' for='chkexec"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td style='padding-left: 29px;><input  id='chkalsc"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAlscFocus+");' onblur='checkBoxCellACLBlur("+lblAlscFocus+");' tabindex='"+tabIndex+"'  value='alsc'><label id ='lblAlsc"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAlscFocus+");' onblur='checkBoxCellACLBlur("+lblAlscFocus+");' tabindex='"+tabIndex+"'  value='p:alter-schema'><label id ='lblAlsc"
 			+ id
 			+ "' for='chkalsc"
 			+ id
