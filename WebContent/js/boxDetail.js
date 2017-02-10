@@ -600,7 +600,7 @@ boxDetail.prototype.createAclRows = function(dynamicTable,id,roleBoxDisplay){
 	+ id
 	+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id= 'chkalsc"
 	+ id
-	+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='alter-schema' onfocus='checkBoxACLFocus("+idFocusAlsc+");' onblur='checkBoxACLBlur("+idFocusAlsc+");' tabindex='"+tabIndex+"'><label id ='lblExec"+id+"' for='chkalsc"
+	+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='alter-schema' onfocus='checkBoxACLFocus("+idFocusAlsc+");' onblur='checkBoxACLBlur("+idFocusAlsc+");' tabindex='"+tabIndex+"'><label id ='lblAlsc"+id+"' for='chkalsc"
 	+ id
 	+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td></tr>";
 return dynamicTable;
@@ -741,7 +741,7 @@ boxDetail.prototype.populateACLSettings = function(roleList, rolePrivList,
 	var noOfRoles = roleList.length;
 	var displayBoxName = '';
 	//var dynamicTable = " <tr><td style='text-align:left;min-width:147px;' class='borderRight' ><div class='editACLTableEllipsis '></div></td><td ><div>All</div></td><td ><div>	Read</div></td><td >Write</td><td ><div class='readProperties'>Read-Properties</div></td><td ><div class='writeProperties'>Write-Properties</div></td><td ><div class='readAcl'>Read-acl</div></td><td ><div class='writeAcl'>Write-acl</div></td><td ><div class='writeContent'>Write-content</div></td><td ><div>Bind</div></td><td ><div>Unbind</div></td><td ><div>Exec</div></td></tr>";
-	var dynamicTable = " <tr><td style='text-align:left;min-width:147px;' class='borderRight' ><div class='editACLTableEllipsis '></div></td><td ><div>All</div></td><td ><div>	Read</div></td><td >Write</td><td ><div class='readProperties'>Read-Properties</div></td><td ><div class='writeProperties'>Write-Properties</div></td><td ><div class='readAcl'>Read-acl</div></td><td ><div class='writeAcl'>Write-acl</div></td><td ><div>Exec</div></td></tr>";
+	var dynamicTable = " <tr><td style='text-align:left;min-width:147px;' class='borderRight' ><div class='editACLTableEllipsis '></div></td><td ><div>All</div></td><td ><div>	Read</div></td><td >Write</td><td ><div class='readProperties'>Read-Properties</div></td><td ><div class='writeProperties'>Write-Properties</div></td><td ><div class='readAcl'>Read-acl</div></td><td ><div class='writeAcl'>Write-acl</div></td><td ><div>Exec</div></td><td ><div>Alter-Schema</div></td></tr>";
 	var arrCheckedState = [];
 	for ( var count = 0; count < noOfRoles; count++) {
 		var rolePrivCounter = 0;

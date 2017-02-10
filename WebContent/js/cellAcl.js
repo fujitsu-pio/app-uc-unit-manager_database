@@ -809,29 +809,41 @@ cellAcl.prototype.createAclRows = function(dynamicTable, id, roleBoxDisplay) {
 			+ id
 			+ "' for='chkwrite"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id = 'chkread-properties"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkread-properties"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='read-properties' onfocus='checkBoxACLFocus("+idFocusReadProperties+");' onblur='checkBoxACLBlur("+idFocusReadProperties+");' tabindex='"+tabIndex+"'><label id ='lblReadProperties"+id+"' for='chkread-properties"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadPropertiesFocus+");' onblur='checkBoxCellACLBlur("+lblReadPropertiesFocus+");' tabindex='"+tabIndex+"'  value='read-properties'><label id ='lblReadProperties"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id = 'chkwrite-properties"
+			+ "' for='chkread-properties"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='write-properties' onfocus='checkBoxACLFocus("+idFocusWriteProperties+");' onblur='checkBoxACLBlur("+idFocusWriteProperties+");' tabindex='"+tabIndex+"'><label id ='lblWriteProperties"+id+"' for='chkwrite-properties"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkwrite-properties"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id = 'chkread-acl"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWritePropertiesFocus+");' onblur='checkBoxCellACLBlur("+lblWritePropertiesFocus+");' tabindex='"+tabIndex+"'  value='write-properties'><label id ='lblWriteProperties"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='read-acl' onfocus='checkBoxACLFocus("+idFocusReadAcl+");' onblur='checkBoxACLBlur("+idFocusReadAcl+");' tabindex='"+tabIndex+"'><label id ='lblReadAcl"+id+"' for='chkread-acl"
+			+ "' for='chkwrite-properties"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id = 'chkwrite-acl"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkread-acl"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='write-acl' onfocus='checkBoxACLFocus("+idFocusWriteAcl+");' onblur='checkBoxACLBlur("+idFocusWriteAcl+");' tabindex='"+tabIndex+"'><label id ='lblWriteAcl"+id+"' for='chkwrite-acl"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblReadAclFocus+");' onblur='checkBoxCellACLBlur("+lblReadAclFocus+");' tabindex='"+tabIndex+"'  value='read-acl'><label id ='lblReadAcl"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id= 'chkexec"
+			+ "' for='chkread-acl"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='exec' onfocus='checkBoxACLFocus("+idFocusExec+");' onblur='checkBoxACLBlur("+idFocusExec+");' tabindex='"+tabIndex+"'><label id ='lblExec"+id+"' for='chkexec"
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkwrite-properties"
 			+ id
-			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td ><input id= 'chkalsc"
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblWriteAclFocus+");' onblur='checkBoxCellACLBlur("+lblWriteAclFocus+");' tabindex='"+tabIndex+"'  value='write-acl'><label id ='lblWriteAcl"
 			+ id
-			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' value='alter-schema' onfocus='checkBoxACLFocus("+idFocusAlsc+");' onblur='checkBoxACLBlur("+idFocusAlsc+");' tabindex='"+tabIndex+"'><label id ='lblExec"+id+"' for='chkalsc"
+			+ "' for='chkwrite-acl"
+			+ id
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkexec"
+			+ id
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblExecFocus+");' onblur='checkBoxCellACLBlur("+lblExecFocus+");' tabindex='"+tabIndex+"'  value='exec'><label id ='lblExec"
+			+ id
+			+ "' for='chkexec"
+			+ id
+			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td><td><input  id='chkalsc"
+			+ id
+			+ "' type='checkbox' class='case cursorHand regular-checkbox big-checkbox aclCheckboxFocus' name='case' onfocus='checkBoxCellACLFocus("+lblAlscFocus+");' onblur='checkBoxCellACLBlur("+lblAlscFocus+");' tabindex='"+tabIndex+"'  value='alsc'><label id ='lblAlsc"
+			+ id
+			+ "' for='chkalsc"
 			+ id
 			+ "' class='customChkbox checkBoxLabel aclLabelFocus'></label></td></tr>";
 		return dynamicTable;
