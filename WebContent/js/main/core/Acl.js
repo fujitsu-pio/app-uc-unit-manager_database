@@ -210,7 +210,8 @@ _pc.Acl.prototype.toXmlString = function() {
       var privilege = privilegeList[j];
       // Determine name space.
       var ns = "p:";
-      var boxPrevList = [all, read, write, read-properties, write-properties, read-acl, write-acl, exec, alter-schema];
+      var boxPrevList = ["all", "read", "write", "read-properties", "write-properties",
+                         "read-acl", "write-acl", "exec", "alter-schema"];
 	  lab1:
       for (k = 0; k < boxPrevList.length; k++) {
           if (privilege === boxPrevList[k])
