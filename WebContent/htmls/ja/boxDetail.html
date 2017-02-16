@@ -35,9 +35,9 @@ limitations under the License.
 		<div class="backBtnTxt"><a id="backBtnTxt"></a></div>
 	</div>
 	<ul class="secondaryHeaderBar">
-		<li><div class="data selected japaneseFont" id="boxdetailContentsTab">コンテンツ</div></li>
-		<li><div class="profile japaneseFont" id="boxdetailProfileTab" style="margin-right: 20px">プロフィール</div></li>
-		<li><div class="info japaneseFont" id="boxdetailInfoTab">インフォ</div></li>
+		<li><div class="data selected japaneseFont" id="boxdetailContentsTab">繧ｳ繝ｳ繝�Φ繝�/div></li>
+		<li><div class="profile japaneseFont" id="boxdetailProfileTab" style="margin-right: 20px">繝励Ο繝輔ぅ繝ｼ繝ｫ</div></li>
+		<li><div class="info japaneseFont" id="boxdetailInfoTab">繧､繝ｳ繝輔か</div></li>
 		<li>
 			<div id="collectionMessageSuccessBlock"
 				class="crudOperationSuccessWrapper" style="display: none; position:absolute;">
@@ -83,26 +83,26 @@ limitations under the License.
 	<div class="tertiaryBar" id="tertiaryBar">
 		<div class="leftTertiaryBar">
 			<div id="leftIcons" style="float:left;">
-				<div id="dvRefreshIcon" class="refreshIcon removeBorderOdataRefreshIcon" onclick="objOdata.refreshCollection();" title="リフレッシュ"></div>
+				<div id="dvRefreshIcon" class="refreshIcon removeBorderOdataRefreshIcon" onclick="objOdata.refreshCollection();" title="繝ｪ繝輔Ξ繝�す繝･"></div>
 				<div class="createWebDavWrapper" id="createWebDavWrapper">
 					<div id="createIconCollection" class="createWebDavIconEnabled"></div>
-					<div id="createTextCollection" class="createWebDavTextEnabled japaneseFont" style="width: 50px">作る</div>
+					<div id="createTextCollection" class="createWebDavTextEnabled japaneseFont" style="width: 50px">菴懊ｋ</div>
 					<div id="arrowCollection" class="downArrowWebDavEnabled"></div>
 					<div id="dvCollectionSubMenu" style="display:none;">
 						<ul id="createCollectionSubMenu" class="createBoxSubMenu" style="padding-top: 27px;">
 							<li><a href="#" style="padding: 9px 57px 7px 10px;" class="folderItem japaneseFont"
 								onclick="openCreateEntityModal('#createFolderModal','#createFolderDialog', 'txtFolderName');">
-									フォルダ</a></li>
+									繝輔か繝ｫ繝�/a></li>
 							<li class="oDataWrapper"><a href="#" style="border-top: 0px;padding: 9px 56px 7px 10px;" onclick="openCreateEntityModal('#createODataModal','#createODataDialog', 'txtOdataName');" class="folderItem japaneseFont">
-									ODataの</a></li>
+									OData縺ｮ</a></li>
 							<li class="oDataWrapper"><a href="#" style="padding: 9px 57px 7px 10px" onclick="openCreateEntityModal('#createEngineServiceModal','#createEngineserviceDialog', 'txtEngineServiceName');" class="oDataItem japaneseFont">
-									サービス</a></li>
+									繧ｵ繝ｼ繝薙せ</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="uploadWebDavWrapper" id="uploadWebDavWrapper" onclick="objOdata.toggleMode();">
 					<div class="uploadWebDavIconEnabled" id="uploadWebDavIcon"></div>
-					<div class="uploadWebDavTextEnabled japaneseFont" id="uploadWebDavText">アップロード</div>
+					<div class="uploadWebDavTextEnabled japaneseFont" id="uploadWebDavText">繧｢繝��繝ｭ繝ｼ繝�/div>
 				</div>
 			<!-- 	<div class="downloadWebDavWrapper" id="downloadWebDavWrapper">
 					<div class="downloadWebDavIconDisabled"></div>
@@ -110,20 +110,20 @@ limitations under the License.
 				</div> -->
 					<div class="downloadWebDavWrapper" onclick="uFileDownload.downloadFile();" id="downloadWebDavWrapper">
 				<div id="dvDownLoadIcon" class="downloadWebDavIconDisabled"></div>
-				<div id="dvDownLoadText" class="downloadWebDavTextDisabled japaneseFont">ダウンロード</div>
+				<div id="dvDownLoadText" class="downloadWebDavTextDisabled japaneseFont">繝�え繝ｳ繝ｭ繝ｼ繝�/div>
 			</div>
 			<!-- <div id="btnServiceRegistration" onclick="uRegisterFileAsService.openServiceRegistrationModal();" style="display: none;">Service Registration
 			</div> -->
-			<div class="createWebDavWrapper createWebDavTextEnabled japaneseFont" id="btnServiceRegistration" onclick="uRegisterFileAsService.openServiceRegistrationModal();" style="display: none;border-left: 1px solid #565656;padding: 0px 10px 0px 10px;margin-top: 9px;height: 20px;border-right: 1px solid #565656;">設定する
+			<div class="createWebDavWrapper createWebDavTextEnabled japaneseFont" id="btnServiceRegistration" onclick="uRegisterFileAsService.openServiceRegistrationModal();" style="display: none;border-left: 1px solid #565656;padding: 0px 10px 0px 10px;margin-top: 9px;height: 20px;border-right: 1px solid #565656;">險ｭ螳壹☆繧�
 			</div>
 				<a id = "downloadBinaryData" download = "" ></a>
-				<div id="btnDeleteCollection" class="deleteIconWebDav" onclick="uBoxDetail.openDeleteBoxDetailEntityPopUp();" title="削除"></div>
+				<div id="btnDeleteCollection" class="deleteIconWebDav" onclick="uBoxDetail.openDeleteBoxDetailEntityPopUp();" title="蜑企勁"></div>
 			</div>
 		</div>
  		<div class="rightTertiaryBar" id="rightTertiaryBar">
 <!-- 			<div class="rightArrowWebDav"></div> -->
 			<div class="sortWrapperWebDav" id="sortWrapperWebDav">
-				<div class="sortTextWebDav japaneseFont" id="sortTextWebDav">日付で並べ替え</div>
+				<div class="sortTextWebDav japaneseFont" id="sortTextWebDav">譌･莉倥〒荳ｦ縺ｹ譖ｿ縺�/div>
 				<div class="sortdownArrowWebDav" id="sortdownArrowWebDav"></div>
 			</div>
 		</div>
@@ -294,16 +294,16 @@ limitations under the License.
 			style="display: block; height: 217px; width: 444px; background: #ffffff"
 			id="createODataDialog">
 			<div id="dvCloseIcon" class="closeIconDiv">
-				<a style="margin:0px;" href="#" title="クローズ" id="modalbox-close" class="popupCloseIcon"
+				<a style="margin:0px;" href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close" class="popupCloseIcon"
 					onclick="objCollectionOdata.closePopUp('#createODataModal','#txtOdataName')" tabindex="4"></a>
 			</div>
 			<div class="accessTokenDiv" style="padding-bottom: 15px"
 				id="dvAccessheader">
 				<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
-					ODataの作成</label>
+					OData縺ｮ菴懈�</label>
 			</div>
 			<div id="dvCreateOdata" class="folderElement">
-				<div  id="dvOdataName" class="lblElement errorMessageSpan japaneseFont" >ODataの名前</div>
+				<div  id="dvOdataName" class="lblElement errorMessageSpan japaneseFont" >OData縺ｮ蜷榊燕</div>
 				<div class="positionTopDiv">
 					<div id="dvTextOdataName" class=" ">
 						<input  id="txtOdataName" onkeyup="objCollectionOdata.createOdataOnEnterKeyPress();" type="text" class="bigTextBoxCollection" tabindex="1" onblur="objCollectionOdata.validateOdataNameOnBlur();">
@@ -317,12 +317,12 @@ limitations under the License.
 		<section class="positionBottomButtons">
 				<div id="dvCreateOdatar" class="dvCreate">
 					<input type="button" onclick="objCollectionOdata.createOdataCollection();"  id="btnCreateOdata" class="btnClose japaneseFont"
-						value="作る" tabindex="3">
+						value="菴懊ｋ" tabindex="3">
 				</div>
 				<div id="dvOdataCancel" class="dvCreate">
 					<input type="button" 
 						onclick="objCollectionOdata.closePopUp('#createODataModal','#txtOdataName')" 
-						class="cancelBtn japaneseFont" value="キャンセル" tabindex="2">
+						class="cancelBtn japaneseFont" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="2">
 				</div>
 			</section> 
 		</div>
@@ -387,23 +387,23 @@ limitations under the License.
 			id="multipleFileDeleteDialogBox">
 			<section class="headerSection">
 				<div id="dvCloseIcon" class="closeIconDiv" style="padding: 0px">
-					<a href="#" title="クローズ" id="modalbox-close"
+					<a href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close"
 						class="popupCloseIcon"
 						onclick="closeEntityModal('#multipleFileDeleteModalWindow');" tabindex="3"></a>
 				</div>
 				<div class="sessionExpiryDiv" id="">
 					<label class="sessionExpiredPopUpHeading japaneseFont"
-						id="lblHeadingCollection">コレクションを削除する（S）</label>
+						id="lblHeadingCollection">繧ｳ繝ｬ繧ｯ繧ｷ繝ｧ繝ｳ繧貞炎髯､縺吶ｋ����/label>
 				</div>
 			</section>
 			<div class="sessionExpiredLabel japaneseFont">
-				<label id="multipleDeleteMsg">あなたが選択したコレクションを削除しますか（複数可） ? </label>
+				<label id="multipleDeleteMsg">縺ゅ↑縺溘′驕ｸ謚槭＠縺溘さ繝ｬ繧ｯ繧ｷ繝ｧ繝ｳ繧貞炎髯､縺励∪縺吶°�郁､�焚蜿ｯ��? </label>
 			</div>
 			<div  class="sessionPopUpCloseSection">
-				<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont"
+				<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont"
 					onclick="closeEntityModal('#multipleFileDeleteModalWindow');" tabindex="1" id= "btnCancelDavCollectionDelete">
 				<input type="button" id="btnMultipleFileDelete" class="btnClose japaneseFont"
-					onclick="objOdata.deleteMultipleCollections();" value="削除" tabindex="2">
+					onclick="objOdata.deleteMultipleCollections();" value="蜑企勁" tabindex="2">
 			</div>
 		</div>
 	</div>
@@ -429,16 +429,16 @@ limitations under the License.
 			style="display: block; height: 217px; width: 444px; background: #ffffff"
 			id="createFolderDialog">
 			<div id="dvCloseIcon" class="closeIconDiv">
-				<a style="margin:0px;" href="#" title="クローズ" id="modalbox-close" class="popupCloseIcon"
+				<a style="margin:0px;" href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close" class="popupCloseIcon"
 					onclick="objCollectionOdata.closePopUp('#createFolderModal','#txtFolderName')" tabindex="4"></a>
 			</div>
 			<div class="accessTokenDiv" style="padding-bottom: 15px"
 				id="dvAccessheader">
 				<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
-					Foldeを作成r</label>
+					Folde繧剃ｽ懈�r</label>
 			</div>
 			<div id="dvCreateFolder" class="folderElement">
-				<div  id="dvFolderName" class="lblElement errorMessageSpan japaneseFont" >フォルダ名</div>
+				<div  id="dvFolderName" class="lblElement errorMessageSpan japaneseFont" >繝輔か繝ｫ繝�錐</div>
 				<div class="positionTopDiv">
 					<div id="dvTextBoxName" class=" ">
 						<input id="txtFolderName"  onkeyup="objCollectionOdata.createFolderOnEnterKeyPress();" type="text" class="bigTextBoxCollection" tabindex="1" onblur="objCollectionOdata.validateFolderNameOnBlur();">
@@ -452,12 +452,12 @@ limitations under the License.
 		<section class="positionBottomButtons">
 				<div id="dvCreateFoolder" class="dvCreate">
 					<input type="button" id="btnCreateFolder" onclick="objCollectionOdata.createFolder();" class="btnClose japaneseFont"
-						value="作る" tabindex="3">
+						value="菴懊ｋ" tabindex="3">
 				</div>
 				<div id="dvCancel" class="dvCreate">
 					<input type="button" 
 						onclick="objCollectionOdata.closePopUp('#createFolderModal','#txtFolderName')" 
-						class="cancelBtn japaneseFont" value="キャンセル" tabindex="2">
+						class="cancelBtn japaneseFont" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="2">
 				</div>
 			</section> 
 		</div>
@@ -471,16 +471,16 @@ limitations under the License.
 			style="display: block; height: 217px; width: 444px; background: #ffffff"
 			id="createEngineserviceDialog">
 			<div id="dvCloseIcon" class="closeIconDiv">
-				<a style="margin:0px;" href="#" title="クローズ" id="modalbox-close" class="popupCloseIcon"
+				<a style="margin:0px;" href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close" class="popupCloseIcon"
 					onclick="objCollectionOdata.closePopUp('#createEngineServiceModal','#txtEngineServiceName')" tabindex="4"></a>
 			</div>
 			<div class="accessTokenDiv" style="padding-bottom: 15px"
 				id="dvEngineServiceheader">
 				<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
-					サービスの作成</label>
+					繧ｵ繝ｼ繝薙せ縺ｮ菴懈�</label>
 			</div>
 			<div id="dvCreateService" class="folderElement">
-				<div  id="dvPlugInName" class="lblElement errorMessageSpan japaneseFont" >サービス名</div>
+				<div  id="dvPlugInName" class="lblElement errorMessageSpan japaneseFont" >繧ｵ繝ｼ繝薙せ蜷�/div>
 				<div class="positionTopDiv">
 					<div id="dvTextPlugInName" class=" ">
 						<input id="txtEngineServiceName"  onkeyup="objCollectionOdata.createEngineServiceOnEnterKeyPress();" type="text" class="bigTextBoxCollection" tabindex="1" onblur="objCollectionOdata.validateEngineServiceNameOnBlur();">
@@ -494,12 +494,12 @@ limitations under the License.
 		<section class="positionBottomButtons">
 				<div id="dvCreateEngineService" class="dvCreate">
 					<input type="button" id="btnCreateEngineService" onclick="objCollectionOdata.createEngineService();" class="btnClose japaneseFont"
-						value="作る" tabindex="3">
+						value="菴懊ｋ" tabindex="3">
 				</div>
 				<div id="dvCancel" class="dvCreate">
 					<input type="button" 
 						onclick="objCollectionOdata.closePopUp('#createEngineServiceModal','#txtEngineServiceName')" 
-						class="cancelBtn japaneseFont" value="キャンセル" tabindex="2">
+						class="cancelBtn japaneseFont" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="2">
 				</div>
 			</section> 
 		</div>
@@ -512,11 +512,11 @@ limitations under the License.
 		<div class="modal-window block-border" style="display: block; height: 493px; width: 850px; background: #ffffff" id="serviceRegistratioDialog">
 			<section class="headerSection">
 				<div id="dvCloseIcon" class="closeIconDiv" style="padding: 0px">
-					<a href="#" id="modalbox-close" class="popupCloseIcon" onclick="uRegisterFileAsService.closeServiceRegistrationModal('#serviceRegistrationModal');" tabindex="4" title="クローズ"></a>
+					<a href="#" id="modalbox-close" class="popupCloseIcon" onclick="uRegisterFileAsService.closeServiceRegistrationModal('#serviceRegistrationModal');" tabindex="4" title="繧ｯ繝ｭ繝ｼ繧ｺ"></a>
 				</div>
 				<div class="sessionExpiryDiv" id="">
 					<div>
-					<label class="sessionExpiredPopUpHeading japaneseFont" id="lblHeadingCollection">サービス構成</label>
+					<label class="sessionExpiredPopUpHeading japaneseFont" id="lblHeadingCollection">繧ｵ繝ｼ繝薙せ讒区�</label>
 					</div>
 					<div id="serviceRegistraionMessageBlock" class="crudOperationSuccessWrapper" style="display:none; margin: -29px 0px 4px 327px;">
 						<div class="crudOperationMsgWrapper" style="display: table-cell;white-space: nowrap;padding-right: 34px;">
@@ -529,7 +529,7 @@ limitations under the License.
 			<div class="serviceRegistrationUpperHeader">
 				<div style="width:305px;height:50px;float:left;">
 					<div style="margin-bottom: 10px;">
-						<label class="lblElement japaneseFont">サービスパス</label>
+						<label class="lblElement japaneseFont">繧ｵ繝ｼ繝薙せ繝代せ</label>
 					</div>
 					<div>
 						<div>
@@ -540,12 +540,12 @@ limitations under the License.
 				</div>
 				<div style="width:305px;height:50px;float:left;">
 					<div style="margin-bottom: 10px;">
-						<label class="lblElement japaneseFont"> ソースファイル</label>
+						<label class="lblElement japaneseFont"> 繧ｽ繝ｼ繧ｹ繝輔ぃ繧､繝ｫ</label>
 					</div>
 					<div>
 						<div class="customSelectIconAssociation" style="background-position-x: 106.5%;width:272px;">
 							<select name="" id="dropDownSourceFileID" onblur="uRegisterFileAsService.validateSourceFileDropDown();" class="selectMenuPopup" style="width:272px;" tabindex="2">
-								<option class="disabled japaneseFont">選択する</option>
+								<option class="disabled japaneseFont">驕ｸ謚槭☆繧�/option>
 							</select>
 							<aside class="popupAlertmsg japaneseFont" id="sourceFileDDErrorMsg" style="height:14px;width:272px;background:#fff;float:left;"></aside>
 						</div> 
@@ -553,7 +553,7 @@ limitations under the License.
 				</div>
 				<div style="float:right;width:90px;margin-top:30px;">
 					<div class="">
-						<input type="button" id="btnRegisterServiceID" class="btnClose japaneseFont" onclick="uRegisterFileAsService.registerFileAsAService();" value="登録" tabindex="3">
+						<input type="button" id="btnRegisterServiceID" class="btnClose japaneseFont" onclick="uRegisterFileAsService.registerFileAsAService();" value="逋ｻ骭ｲ" tabindex="3">
 					</div>
 				</div>
 			</div>
@@ -566,11 +566,11 @@ limitations under the License.
 									<input type='checkbox' id='chkSelectallServiceRegistrationPopup' onclick='uRegisterFileAsService.checkAllRegisteredServices(this);' class='checkBox cursorHand regular-checkbox big-checkbox' />
 									<label for="chkSelectallServiceRegistrationPopup" class="checkBoxLabel" style="margin-left:10px;"></label>
 								</th>
-								<th class='col2 japaneseFont'>サービスパス</th>
-								<th class='col3 japaneseFont'>ソースファイル</th>
+								<th class='col2 japaneseFont'>繧ｵ繝ｼ繝薙せ繝代せ</th>
+								<th class='col3 japaneseFont'>繧ｽ繝ｼ繧ｹ繝輔ぃ繧､繝ｫ</th>
 								<th class='col4 japaneseFont'>
 									<div style="float: left">URL</div>
-									<div ><input type="button" class="deleteIconDisabled" style="float: right;" id="deleteRegisteredService" disabled="disabled" onclick="openCreateEntityModal('#serviceRegistrationDeleteModalWindow','#serviceRegistrationDeleteDialogBox', 'btnCancelDeletePlugin');" title="削除"></div>
+									<div ><input type="button" class="deleteIconDisabled" style="float: right;" id="deleteRegisteredService" disabled="disabled" onclick="openCreateEntityModal('#serviceRegistrationDeleteModalWindow','#serviceRegistrationDeleteDialogBox', 'btnCancelDeletePlugin');" title="蜑企勁"></div>
 								</th>
 							</tr>
 						</thead>
@@ -578,7 +578,7 @@ limitations under the License.
 					</table>
 				</form>
 			<div id="dvEmptyServiceRegistration" class="emptyTableMessage japaneseFont"
-				style="display: none; width: 260px;margin: 119px auto;margin-bottom:0px; cursor: default;line-height: 24px;">いいえサービスがまだ設定されていない</div>
+				style="display: none; width: 260px;margin: 119px auto;margin-bottom:0px; cursor: default;line-height: 24px;">縺�＞縺医し繝ｼ繝薙せ縺後∪縺�ｨｭ螳壹＆繧後※縺�↑縺�/div>
 			</div>
 		</div>
 	</div>
@@ -591,12 +591,12 @@ limitations under the License.
 			style="display: block; height: 506px; width: 706px; background: #ffffff"
 			id="xmlViewDialogBox">
 			<div id="" class="closeIconDiv">
-				<a title="クローズ" id="modalbox-close" class="popupCloseIcon"
+				<a title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close" class="popupCloseIcon"
 					onclick="uBoxProperty.closeXmlPopup('#xmlViewPopUpModalWindow')" style="margin: 0px;" tabindex="4"></a>
 			</div>
 			<div class="accessTokenDiv"> 
 				<label class="AccessTokenHeading japaneseFont" >
-					XMLビュー</label>
+					XML繝薙Η繝ｼ</label>
 			</div>
 			
 			<div class="dvTextArea">
@@ -612,9 +612,9 @@ limitations under the License.
 			
 			<div  class="dvClose">
 				<input type="button"  class=" btnCancelPopup japaneseFont"
-					onclick="uBoxProperty.closeXmlPopup('#xmlViewPopUpModalWindow')" value="キャンセル" tabindex="2">
+					onclick="uBoxProperty.closeXmlPopup('#xmlViewPopUpModalWindow')" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="2">
 				<input type="button" id="btnXmlViewEdit" class="normalButtonBlue btnClose japaneseFont" disabled="disabled"
-					 style="cursor:default;background-color: #AAA6A6;" value="編集" tabindex="3">
+					 style="cursor:default;background-color: #AAA6A6;" value="邱ｨ髮� tabindex="3">
 				
 				</div>
 		</div>
@@ -630,23 +630,23 @@ limitations under the License.
 			id="serviceRegistrationDeleteDialogBox">
 			<section class="headerSection">
 				<div id="dvCloseIcon" class="closeIconDiv" style="padding: 0px">
-					<a href="#" title="クローズ" id="modalbox-close"
+					<a href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close"
 						class="popupCloseIcon"
 						onclick="closeEntityModal('#serviceRegistrationDeleteModalWindow');"></a>
 				</div>
 				<div class="sessionExpiryDiv" id="dvAccessheader">
 					<label class="sessionExpiredPopUpHeading japaneseFont"
-						id="lblHeadingAccessToken"> サービスを削除する（S）</label>
+						id="lblHeadingAccessToken"> 繧ｵ繝ｼ繝薙せ繧貞炎髯､縺吶ｋ����/label>
 				</div>
 			</section>
 			<div class="sessionExpiredLabel japaneseFont" style="margin-bottom: 52px">
-				<label>あなたが選択したサービスの設定を解除しますか（複数可） ? </label>
+				<label>縺ゅ↑縺溘′驕ｸ謚槭＠縺溘し繝ｼ繝薙せ縺ｮ險ｭ螳壹ｒ隗｣髯､縺励∪縺吶°�郁､�焚蜿ｯ��? </label>
 			</div>
 			<div id="dvClose" class="sessionPopUpCloseSection">
-				<input type="button" value="キャンセル" class="btnCancelPopup japaneseFont" id="btnCancelDeletePlugin"
+				<input type="button" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" class="btnCancelPopup japaneseFont" id="btnCancelDeletePlugin"
 					onclick="closeEntityModal('#serviceRegistrationDeleteModalWindow');">
 				<input type="button" id="" class="btnSavePopup japaneseFont"
-					onclick="uRegisterFileAsService.selectRecordsForDelete();" value="削除" style="margin-right: 0px">
+					onclick="uRegisterFileAsService.selectRecordsForDelete();" value="蜑企勁" style="margin-right: 0px">
 			</div>
 		</div>
 	</div>
@@ -658,49 +658,49 @@ limitations under the License.
 			style="display: block; height: 510px; width: 997px; background: #ffffff"
 			id="editAclSettingDialog">
 			<div id="dvCloseIcon" class="closeIconDiv">
-				<a style="margin: 0px;" href="#" title="クローズ" id="modalbox-close"
+				<a style="margin: 0px;" href="#" title="繧ｯ繝ｭ繝ｼ繧ｺ" id="modalbox-close"
 					class="popupCloseIcon crossIconFocus"
 					onclick="closeEntityModal('#editAclSettingModal')" tabindex="6"></a>
 			</div>
 			<div class="accessTokenDiv" style="padding-bottom: 15px"
 				id="dvAccessheader">
 				<label class="AccessTokenHeading japaneseFont" id="lblHeadingAccessToken">
-					ACLの設定</label>
+					ACL縺ｮ險ｭ螳�/label>
 			</div>
 			<div id="dvSchemaAuth" class="folderElement schemaAuthDIV">
 				<div id="dvSchemaAuthOptions"
-					class="lblElement errorMessageSpan schemaAuthOptionsDIV japaneseFont">スキーマ認証</div>
+					class="lblElement errorMessageSpan schemaAuthOptionsDIV japaneseFont">繧ｹ繧ｭ繝ｼ繝櫁ｪ崎ｨｼ</div>
 				<div class="radio" style="float: left;">
-					<input id="rdNone" type="radio" name="schemaAuth" value="None"
+					<input id="rdNone" type="radio" name="schemaAuth" value="none"
 						tabindex="1" onfocus="radioBtnFocusOnBoxAcl('#lblNoneBoxAcl');"
 						onblur="radioBtnBlurOnBoxAcl('#lblNoneBoxAcl');"
 						style="display: inline-block; opacity: 0"> <label
 						for="rdNone" class="radioButtonMargin" id="lblNoneBoxAcl"
-						style="margin-left: -17px;height: 17px;padding-right: 2px;">None</label> <input id="rdPublic"
-						type="radio" name="schemaAuth" value="Public" tabindex="2"
+						style="margin-left: -17px;height: 17px;padding-right: 2px;">none</label> <input id="rdPublic"
+						type="radio" name="schemaAuth" value="public" tabindex="2"
 						onfocus="radioBtnFocusOnBoxAcl('#lblPublicBoxAcl');"
 						onblur="radioBtnBlurOnBoxAcl('#lblPublicBoxAcl');"
 						style="display: inline-block; opacity: 0"> <label
 						class="radioButtonMargin" for="rdPublic" id="lblPublicBoxAcl"
-						style="margin-left: -17px;height: 17px;padding-right: 2px;">Public</label> <input
+						style="margin-left: -17px;height: 17px;padding-right: 2px;">public</label> <input
 						id="rdConfidential" type="radio" name="schemaAuth"
-						value="Confidential" tabindex="3"
+						value="confidential" tabindex="3"
 						onfocus="radioBtnFocusOnBoxAcl('#lblConfidentialBoxAcl');"
 						onblur="radioBtnBlurOnBoxAcl('#lblConfidentialBoxAcl');"
 						style="display: inline-block; opacity: 0"> <label
 						for="rdConfidential" id="lblConfidentialBoxAcl"
-						style="margin-left: -17px;height: 17px;padding-right: 2px;">Confidential</label> <input
+						style="margin-left: -17px;height: 17px;padding-right: 2px;">confidential</label> <input
 						style="display: none" id="rdHidden" checked="checked" type="radio"
 						name="schemaAuth" value="">
 				</div>
 			</div>
 			<div id="" class="folderElement">
-				<div id="" class="lblElement errorMessageSpan japaneseFont">アクセス制御</div>
+				<div id="" class="lblElement errorMessageSpan japaneseFont">繧｢繧ｯ繧ｻ繧ｹ蛻ｶ蠕｡</div>
 				<div>
 					<table id="tblHeaderEditAcl" cellpadding="0" cellspacing="0"
 						border="0" class="tblEditACLHeader" style="  width: 838px;">
-						<th class="firstHeaderWidth japaneseFont">プリンシパル</th>
-						<th class="japaneseFont">特権</th>
+						<th class="firstHeaderWidth japaneseFont">繝励Μ繝ｳ繧ｷ繝代Ν</th>
+						<th class="japaneseFont">迚ｹ讓ｩ</th>
 					</table>
 					<table id="editAclSettingsTable" class="tblEditSettingsAcl"
 						cellpadding="0" cellspacing="0" border="0">
@@ -712,13 +712,13 @@ limitations under the License.
 			<!-- Button Section Starts -->
 			<section class="positionBottomButtons" style="margin-top: 20px">
 				<div id="dvCreateFoolder" class="dvCreate">
-					<input type="button" id="btnEditAcl" class="btnClose japaneseFont" value="保存"
+					<input type="button" id="btnEditAcl" class="btnClose japaneseFont" value="菫晏ｭ�
 						tabindex="13">
 				</div>
 				<div id="dvCancel" class="dvCreate">
 					<input type="button"
 						onclick="closeEntityModal('#editAclSettingModal')"
-						class="cancelBtn japaneseFont" value="キャンセル" tabindex="12" id="btnCancelBoxAcl">
+						class="cancelBtn japaneseFont" value="繧ｭ繝｣繝ｳ繧ｻ繝ｫ" tabindex="12" id="btnCancelBoxAcl">
 				</div>
 			</section>
 		</div>
