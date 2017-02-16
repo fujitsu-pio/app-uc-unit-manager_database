@@ -630,11 +630,11 @@ if (arrCheckedState.length > 0) {
  * @param schemaAuthz
  */
 boxDetail.prototype.showSchemaAuth = function(schemaAuthz) {
-	if (schemaAuthz == 'None') {
+	if (schemaAuthz == 'none') {
 		$('#rdNone').attr('checked', 'true');
-	} else if (schemaAuthz == 'Public') {
+	} else if (schemaAuthz == 'public') {
 		$('#rdPublic').attr('checked', 'true');
-	} else if (schemaAuthz == 'Confidential') {
+	} else if (schemaAuthz == 'confidential') {
 		$('#rdConfidential').attr('checked', 'true');
 	}
 	else if (schemaAuthz == '') {
