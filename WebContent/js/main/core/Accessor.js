@@ -916,7 +916,7 @@ _pc.Accessor.prototype.authenticate = function(useCookie) {
       this.schema += "/";
     }
     restAdapter = _pc.RestAdapterFactory.create(this);
-    restAdapter.post(_pc.UrlUtils.append(this.schema, "__auth"), schemaRequestBody,"application/x-www-form-urlencoded");
+    restAdapter.post(_pc.UrlUtils.append(this.schema, "__token"), schemaRequestBody,"application/x-www-form-urlencoded");
     this.schemaAuth = restAdapter.bodyAsJson();
 
     requestBody += "&client_id=";
@@ -938,7 +938,7 @@ _pc.Accessor.prototype.authenticate = function(useCookie) {
 
   // 認証してトークンを保持する
   /** To hold the token to authenticate */
-  var requestUrl = _pc.UrlUtils.append(authUrl, "__auth");
+  var requestUrl = _pc.UrlUtils.append(authUrl, "__token");
   restAdapter = _pc.RestAdapterFactory.create(this);
   restAdapter.post(requestUrl, requestBody,"application/x-www-form-urlencoded");
 

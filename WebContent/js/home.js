@@ -899,7 +899,7 @@ home.prototype.getUserPrivilege = function(jsonData) {
 	var CSRFTokenDisplayEnvironment =  document.getElementById("CSRFTokenDisplayEnvironment").value;
 	$.ajax({
 		dataType : 'json',
-		url : '../../__auth' ,//+ tokenUrl,
+		url : '../../__token' ,//+ tokenUrl,
 		data : {
 			p_target : target,
 			p_env : envID,

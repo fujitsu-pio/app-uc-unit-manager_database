@@ -170,7 +170,7 @@ odataCommon.prototype.refreshTokenForOdata = function(paramOldRefreshToken) {
 	var paramTargetURL = sessionStorage.selectedUnitUrl;
 	var paramEnvironmentID = sessionStorage.selectedEnvID ;
 	var CSRFTokenDisplayEnvironment = sessionStorage.requestId;
-	var refreshtokenURL = "__auth?p_target=" + paramTargetURL
+	var refreshtokenURL = "__token?p_target=" + paramTargetURL
 		+ "&p_env=" + paramEnvironmentID + "&grant_type=refresh_token"+"&refresh_token=" + paramOldRefreshToken;
 		$.ajax({
 		dataType : 'json',

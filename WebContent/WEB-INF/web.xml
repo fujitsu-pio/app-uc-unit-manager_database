@@ -72,7 +72,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TokenGeneration</servlet-name>
-		<url-pattern>/__auth</url-pattern>
+		<url-pattern>/__token</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>CreateEnvironment</servlet-name>
